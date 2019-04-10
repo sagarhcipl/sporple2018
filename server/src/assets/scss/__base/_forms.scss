@@ -1,0 +1,585 @@
+/**
+ * @group css.base.forms
+ *
+ * Here we define the UI styles
+ *
+ * ## Usage
+ * Import into your main file using
+ *
+ * @example
+ *     @import "__base/_forms.scss";
+ *
+ */
+
+/* Form fields etc. */
+$input-height: 42px;
+$button-height: 37px;
+
+%form-input{
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: solid 1px $grey-border;
+    background-color: transparent;
+    background-color: #fff;
+    color: $text-main;
+    font-weight: $normal;
+    @include font(17, 23);
+
+    &.error,
+    &.parsley-error{
+        border-color: $error;
+    }
+
+}
+.parsley-errors-list {
+    font-family: $font-default;
+}
+
+%outside-label{
+    padding-left: 5px;
+    @include font(14, 15); 
+}
+
+
+.short-row{
+    width: 260px;
+}
+
+.form__row{
+    position: relative;
+    margin-bottom: 10px;
+    height: auto;
+
+    &.form__row--short{
+        width: 260px;
+    }
+
+    .form__label{
+        opacity: 1;
+        padding: 10px;
+        @include font(17, 23);
+        color: $grey-med;
+        font-weight: $normal;
+        transition: opacity 0.15s ease;
+
+        //we need js to use the lables like placeholders. otherwise we fallback to ugly labels
+        .js &{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+    }
+    .post-input {
+        margin-left: -30px;
+        position: relative;
+        z-index: 1;
+        top: 2px;
+        @include mq($until: tablet) {
+            margin-left: -22px;
+        }
+    }
+    .range-separator {
+        padding-right: 10px;
+        width: 5%;
+    }
+    .range {
+        width: 30%;
+        display: inline-block;
+        @include mq($from: desktop) {
+            width: 25%;
+        }
+    }
+    .range, .range-separator {
+        position: relative;
+        min-height: 1px;
+    }
+
+    //if we want a label that sints on top of the input use a p
+    & > p{
+        @extend %outside-label;
+        margin-bottom: 7px;
+    }
+
+    &.inline-label{
+        label, p{
+            display: inline-block;
+            vertical-align: middle;
+            width: 28%;
+            @extend %outside-label;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="url"],
+        & > select,
+        .select-wrapper,
+        textarea{
+            display: inline-block;
+            vertical-align: middle;
+            width: 70%;
+        }        
+
+        .range {
+            input[type=text] {
+                width: 80%;
+                text-align: right;
+                padding-right: 30px;
+                @include mq($until: tablet) {
+                    padding: 10px 20px 10px 0;
+                }
+            }
+        }
+        .birth-date-fields-cont {
+            display: inline-block;
+        }
+        &.month-year-fields-cont > select,
+        &.month-year-fields-cont .select-wrapper
+        {
+            width: 30%;
+        }
+
+        &.dob {
+            input[type=text],input[type=number] {
+                width: 15%
+            }
+            & > select,
+            .select-wrapper {
+                width: 25%;
+            }
+        }
+    }
+
+    //static positioning on checkbox & radio labels
+    .js &.checkbox .form__label,
+    &.checkbox .form__label{
+        position: static;
+        padding: 0;
+    }
+
+    &.form__field-focused .form__label,
+    &.form__field-dirty .form__label{
+        z-index: 0;
+        @include opacity(0);
+    }
+
+    &.has-tooltip{
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="url"],
+        textarea{
+            width: 90%;
+        }
+
+        .tooltip{
+            vertical-align: top;
+        }
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="url"],
+    textarea{
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"]{
+        display: inline-block;
+        margin-right: 10px;
+    } 
+
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="number"]{
+    @extend %form-input;
+    height: $input-height;
+}
+
+//date picker
+input.hasDatepicker{
+    background-image: url('../../static/images/svg/calendar.png');
+    background-position: 94% 5px;
+    background-repeat: no-repeat;
+    background-size: 28px;
+
+    .svg &{
+        background-image: url('../../static/images/svg/calendar.svg');
+    }
+}
+
+select{
+    width: 100%;
+    height: $input-height;
+    border: solid 1px $grey-border;
+    border-radius: 0;
+    @include font(17, 42);
+    -webkit-appearance: menulist-button;
+}
+
+.select-wrapper{
+    @extend %form-input;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    width: 100%;
+    height: $input-height;
+    text-align: left;
+
+    select{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .select-wrapper__label{
+        width: 100%;
+        padding-right: 12px;
+        white-space: nowrap;
+        font-weight: $normal;
+        color: $text-main;
+    }
+
+    &.icon-select-wrap{
+
+        .select-wrapper__label{
+            padding-left: 25px;
+            background-repeat: no-repeat;
+            background-size: auto 20px;
+        }
+    }
+
+
+    &:after{
+        content: "";
+        position: absolute;
+        top: 17px;
+        right: 5px;
+        @include triangle("down", 7px, $grey-border);
+    }
+
+}
+
+textarea{
+    @extend %form-input;
+    height: 100px;
+}
+
+input[type="submit"],
+button[type="submit"]{
+    @extend %form-input;
+    width: 100%;
+    height: $button-height;
+    border: none;
+    background-color: $brand-blue;
+    color: #fff;
+    font-weight: $bold;
+    @include font(14, 19);
+    -webkit-appearance: none;
+    transition: background 0.25s ease-out, color 0.25s ease-out;
+
+    &.btn--large{
+        height: $input-height;
+        @include font(17, 23);
+    }
+}
+
+//styled file inputs
+.file-wrapper{
+    position: relative;
+    cursor: pointer;
+
+    input[type="file"]{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    ::-ms-browse {
+        width: 100%;
+        height: 100%;
+    }
+
+    .lt-ie10 &{
+        input[type="file"]{
+            position: static !important;
+            opacity: 1 !important;
+            width: 100%;
+            height: auto;
+        } 
+    }
+}
+
+//values list. used with multiple select elements
+.multiple-select-list{
+    text-align: center;
+    vertical-align: top;
+    @include mq($from: tablet){
+        margin-left: 10px;  
+    }
+    &.select-list-inline {
+        text-align: left;
+        li {
+            display: inline-block;
+            padding-left: 10px;
+        }
+    }
+
+    li{
+        margin-top: 10px;
+        @include font(14,34);
+        transition: all 0.2s $swiftOut;
+
+        &:last-child{
+            margin-bottom: 10px;
+        }
+
+        &.remove{
+            transform: translate(50%,0);
+            transform: translate3d(50%,0,0);
+            opacity: 0;
+        }
+
+        .multiple-select-list__delete{
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            background: $brand-blue url("/static/images/svg/x.png") center no-repeat;
+
+            .svg &{
+                background-image: url("/static/images/svg/x.svg");
+                background-size: 20px 20px;
+                fill: #fff;
+            }
+        }
+
+        @include mq($from: tablet){
+            margin-top: 0;  
+            @include font(14,22);
+
+            &:last-child{
+                margin-bottom: 15px;
+            }
+
+            .multiple-select-list__delete{
+                width: 20px;
+                height: 20px;
+
+                .svg &{
+                    background-size: 12px 12px;
+                }
+            }
+        }
+    }
+}
+
+
+//validation errors
+.parsley-errors-list,
+.errors-list{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.15s ease 0.2s;
+
+    &.filled{
+        visibility: visible;
+        opacity: 1;
+        color: $error;
+        @include font(14, 18);
+        font-weight: $normal;
+
+        li{
+            padding-top: 2px;
+        }
+
+    }
+
+}
+
+//show validation messages as tooltips (desktop BP only)
+.tooltip-validation{
+
+    .parsley-errors-list,
+    .errors-list{
+
+        &.filled{
+
+            @include mq($from: desktop) {
+                position: absolute;
+                top: 55px;
+                left: 0;
+                z-index: 3;
+                padding: 5px 10px;
+                width: 100%;
+                background: $error;
+                color: #fff;
+                text-align: center;
+
+                &:before{
+                    content: "";
+                    position: absolute;
+                    left: 5%;
+                    top: -19px;
+                    @include triangle("top", 10px, $error);
+                }
+            }
+        }
+
+    }
+
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    @include font(15,18, $font-default);
+    color: $black;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-error {
+    background-color: #a94442;
+    border-color: #a94442;
+    color: $white;
+}
+
+//custom range input
+//Note that while we're not using nesting here repeating code here, that's necessary as you can't comma-separate these type of selectors. Browsers will drop the entire selector if it doesn't understand a part of it.
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent; /* Hides the slider so custom styles can be added */
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #fff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: $brand-orange;
+  cursor: pointer;
+  margin-top: -7px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+border: 1px solid #fff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: $brand-orange;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+border: 1px solid #fff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: $brand-orange;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: $grey-lighter;
+  border-radius: 3px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: $grey-light;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: $grey-lighter;
+  border-radius: 3px;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: $grey-lighter;
+  border-radius: 6px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: $grey-light;
+}
+input[type=range]::-ms-fill-upper {
+  background: $grey-lighter;
+  border-radius: 6px;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: $grey-light;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

@@ -1,0 +1,25 @@
+/*
+ * Styles common across profile types
+ *
+ */
+
+.page--club-profile{
+
+	.profile__header{
+		width: 240px;
+	}
+
+	.profile__profile-pic{
+		margin-bottom: 10px;
+		padding: 0;
+		width: 142px;
+		height: 142px;
+	}
+
+	.profile__name{
+		margin-bottom: 2px;
+		background: transparent;
+		color: $text-main;
+	}
+
+}

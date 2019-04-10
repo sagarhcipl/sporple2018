@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page_content page--search page-connection row row-centered">
+  <section class="col-md-6 col-centered">
+    <div>{% include 'connections/counts.html' %}</div>
+    {% include 'global/pagination.html' %}
+
+    <div class="Contacts">
+        {% include 'connections/list.html' %}
+    </div>
+
+  </section>
+
+</section>
+{% endblock content %}

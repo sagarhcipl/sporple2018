@@ -1,0 +1,35 @@
+- name: create nginx group
+  group: name=nginx system=yes state=present
+
+- name: create user
+  user: name=nginx group=nginx system=yes state=present
+
+- name: install nginx
+  apt: name=nginx state=present
+
+- name: create nginx log directory
+  file: path={{ log_directory }}/nginx
+        state=directory
+        owner=nginx
+        group=nginx
+        mode=0755
+
+- name: push nginx.conf
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=nginx group=nginx mode=0644
+  notify:
+    - reload nginx
+
+- name: push sporple.conf
+  template: src=sporple.conf.j2 dest=/etc/nginx/sites-available/sporple.conf owner=nginx group=nginx mode=0644
+  notify:
+    - reload nginx
+
+- name: create link to sites-enabled
+  file:
+    src:    /etc/nginx/sites-available/sporple.conf
+    dest:   /etc/nginx/sites-enabled/sporple.conf
+    owner:  nginx
+    group:  nginx
+    state:  link
+  notify:
+    - reload nginx

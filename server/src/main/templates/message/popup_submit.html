@@ -1,0 +1,21 @@
+<div class="send-message__submitted">
+	
+	<h2 class="ttl2">Message sent to {{ target_user.name }}</h2>
+
+	{% if not current_user.user.is_following(target_user.id) %}
+	    <form class="form" id="send-message__form--follow" action="{{ url_for('social.follow', user_id=target_user.id, message_popup='true') }}" method="post">
+			<div class="form__row">
+				<p>We noticed that you are not currently following {{ target_user.name }}, would you like to?</p>
+			</div>
+
+			<div class="form__row">
+				<button id="send-message__follow-btn" class="btn btn--follow" tabindex="1">Follow</button>
+				<input id="send-message__submitted-close" type="button" class="btn btn--secondary" value="Cancel" tabindex="2">
+			</div>
+	    </form>
+	    
+	{% else %}
+
+		<a id="send-message__submitted-close" class="btn" tabindex="1">OK</a>
+	{% endif %}
+</div>

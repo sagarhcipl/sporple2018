@@ -1,0 +1,35 @@
+{% import 'forms/base.html' as base %}
+{% extends 'base.html' %}
+{% block content %}
+<section id="container" class="row row-centered settings">
+    <section class="col-centered col-md-8 top_content" style="min-height: 600px">
+        {% include 'settings/left_column.html' %}
+        <div class="container col-md-6 col-xs-11 col-centered">
+            <h1>Membership</h1>
+            <div>View and change your Sporple Membership subscription</div>
+
+            <div class="row row-centered invoice-list">
+                <div class="col-xs-6 left">Current Membership</div>
+                <div class="col-xs-6 right">{{ plan_info['name'] }}</div>
+            </div>
+            {% if subscription %}
+            <div class="row row-centered invoice-list">
+                <div class="col-xs-6 left">Plan Activation Date</div>
+                <div class="col-xs-6 right">{{ subscription.created_at.strftime('%b %d, %Y') }}</div>
+                <div class="col-xs-6 left">Next Billing Date</div>
+                <div class="col-xs-6 right">{{ subscription.next_billing_date.strftime('%b %d, %Y') }}</div>
+                <div class="col-xs-6 left">Subscription Cost</div>
+                <div class="col-xs-6 right">${{ subscription.price }}</div>
+            </div>
+            <div class="center">
+                <button class="btn btn--secondary deactivate-membership">Deactivate</button>
+            </div>
+            {% elif current_user.user.can_upgrade() %}
+            <div class="center">
+                <a class="btn btn--large btn--blue" href="{{ url_for('plan.checkout') }}">Get Premium</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</section>
+{% endblock content %}

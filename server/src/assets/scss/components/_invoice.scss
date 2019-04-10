@@ -1,0 +1,13 @@
+.invoice-list {
+    @include font(15, 30);
+    color: $black;
+    @include mq($until: desktop) {
+        @include font(12, 25);
+    }
+    > div {
+        padding: 2px 5px;
+    }
+    .right {
+        font-weight: bold;
+    }
+}

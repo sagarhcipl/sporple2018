@@ -1,0 +1,24 @@
+{% if not suggested_profiles %}
+    <li>
+        <div class="opportunity-profiles-placeholder">
+            <img src="/static/images/suggested-profile-placeholder.jpg" alt="Sporple Opportunities">
+        </div>
+    </li>
+{% else %}
+    {% for user in suggested_profiles %}
+        {% set hidden = (loop.index > 8 or page > 1) %}
+        <li class="has-clickable" {% if hidden %}style="display:none;"{% endif %}>
+            <a class="clickable" href="{{ url_for('profile.slug', slug=user.profile.slug) }}">
+                <div class="profile-pic">
+                    <img src="{{ user.profile.get_image('x-small') }}" alt="Club image" title="Club image"/>
+                </div>
+
+                <div class="profiles-list__details">
+                    <p class="ttl4">{{ user.name.upper() }}</p>
+                    <p class="ttl5 orange">{% if user.profile.first_position %}{{ user.profile.first_position.name }}{% endif %}</p>
+                    <p class="ttl5">{% if user.profile.nationality %}{{ user.profile.nationality.name }}{% endif %}</p>
+                </div>
+            </a>
+        </li>
+    {% endfor %}
+{% endif %}

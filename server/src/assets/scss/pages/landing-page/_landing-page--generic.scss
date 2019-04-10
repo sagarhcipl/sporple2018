@@ -1,0 +1,297 @@
+.landing-page--generic.landing-page__hero{
+    text-align: center;
+    background-position: center bottom;
+    background-attachment: fixed;
+	background-size: cover;
+    background-image: url('/static/images/landing/generic-bg-1.jpg');
+    min-height: 100%;
+    padding-bottom: 10px;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/images/landing/generic-bg-1.jpg', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/images/landing/generic-bg-1.jpg', sizingMethod='scale')";
+	.landing-page__hero-inner{
+        margin-top: 80px;
+        height: 500px;
+        max-height: 100%;
+		@include mq($from: desktop) {
+		    margin-bottom: 40px;
+			padding: 72px 0 0;
+		}
+        .landing-page__hero-text {
+            padding: 0 20px 60px;
+            display: table-cell;
+            vertical-align: middle;
+            height: inherit;
+        }
+	}
+    @include mq($until: desktop) {
+        background-attachment: inherit;
+    }
+}
+
+.learn-more-btn {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    &:hover, &:focus {
+        background-color: #222;
+        border-color: #222;
+    }
+}
+
+.opportunities {
+    background-color: #f9f9f9;
+    position: relative;
+    @include mq($from: desktop) {
+        .added-this-week {
+            text-align: left;
+            padding: 65px 0;
+        }
+    }
+    .scroll-left, .scroll-right {
+        position: absolute;
+        top: 280px;
+        width: 60px;
+        height: 50px;
+        padding: 10px;
+        cursor: pointer;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px 2px rgba(236, 239, 241, 0.6);
+        border: solid 1px #eff1f3;
+        .fa {
+            font-weight: bold;
+            color: #9b9b9b;
+        }
+    }
+    .scroll-left {
+        left: 0;
+    }
+    .scroll-right {
+        right: 0;
+    }
+
+   .tab {
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        height: 300px;
+        &::-webkit-scrollbar {
+                display: none;
+        }
+        .feature-listing {
+            display: inline-block;
+            width: 446px;
+            height: 242px;
+            margin: 25px;
+            background-color: $white;
+        }
+        .club {
+            margin: 45px 10px;
+        }
+    }
+}
+
+section.landing {
+     text-align: center;
+     padding-bottom: 30px;
+    .info {
+        white-space: normal;
+        padding: 30px 20px 20px;
+        color: $grey-dark;
+        @include font(13, 21);
+        letter-spacing: 0.2px;
+        .heading {
+            color: lighten($grey-med, 20%);
+            padding-right: 5px;
+        }
+        .apply {
+            border: 1px solid #4a90e2;
+            border-radius: 4px;
+            font-family: $font-bebas-light;
+            color: #4a90e2;
+            @include font(15);
+            margin: 15px 0 0;
+            padding: 4px 20px 0px;
+            display: inline-block;
+
+            &:hover {
+                color: darken(#4a90e2, 20%);
+                border-color: darken(#4a90e2, 20%);
+            }
+        }
+    }
+    h2 {
+        padding-top: 50px;
+        @include font(42, 52);
+        @include mq($from: desktop) {
+            @include font(56,72);
+        }
+    }
+    .sub-ttl {
+        @include mq($until: desktop) {
+            @include font(22, 26);
+            padding: 0;
+        }
+    }
+}
+
+.sport {
+    color: #4a90e2;
+    padding-bottom: 10px;
+}
+
+.showcase {
+    text-align: center;
+    .container-x {
+        margin: auto;
+    }
+    .card {
+        text-align: left;
+        margin: 50px 17px auto;
+        display: inline-block;
+        box-shadow: 0 2px 4px 2px rgba(236, 239, 241, 0.3);
+        border: solid 1px #eff1f3;
+        vertical-align: top;
+        &.info {
+            min-height: 320px;
+            width: 170px;
+            padding: 20px;
+        }
+        .ttl {
+            padding-top: 10px;
+        }
+        @include mq($until: desktop) {
+            margin: 40px 1.5%;
+            max-width: 44%;
+        }
+    }
+    .video {
+        margin-left: -21px;
+        padding: 0;
+        border-left: none;
+        img {
+            height: 320px;
+            width: 480px;
+        }
+    }
+    .create-profile {
+        padding: 20px;
+    }
+}
+
+.learn-more {
+    .subttl {
+        @include font(14, 21);
+        color: lighten($grey-med, 10%);
+        padding-bottom: 30px;
+    }
+    .tabs {
+        div {
+            display: table;
+            height: 120px;
+            border: solid 1px #eff1f3;
+            color: $grey-dark;
+            box-shadow: 0 2px 1px rgba(236, 239, 241, 0.3);
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0,0,0, 0.03));
+            &.active {
+                background-color: $white;
+                background-image: none;
+                box-shadow: none;
+                border-bottom: none;
+                color: $black;
+                img, h3 {
+                    opacity: 1;
+                }
+            }
+            &:hover {
+                cursor: pointer;
+                background-image: none;
+                background-color: lighten($grey-lighter, 10%);
+                color: $black;
+                img, h3 {
+                    opacity: 1;
+                }
+            }
+
+            h3 {
+                vertical-align:middle;
+                display: table-cell;
+                opacity: 0.9;
+                @include mq($until: desktop) {
+                    @include font(16);
+                }
+            }
+            img {
+                height: 70px;
+                padding-right: 20px;
+                display: inline;
+                opacity: 0.9;
+                @include mq($until: desktop) {
+                    display: block;
+                    padding:0;
+                    margin: auto;
+                    height: 50px;
+                }
+            }
+        }
+    }
+    text-align: center;
+    .info {
+        .fa {
+            color: #434343;
+            padding: 10px 0;
+        }
+    }
+    .card {
+        padding: 40px 68px;
+        color: #9b9b9b;
+        @include font(14,18);
+        margin: 25px;
+        @include mq($until: desktop) {
+            padding: 40px 18px;
+        }
+    }   
+}
+
+section.who-is-using {
+    background-color: #ffffff;
+    border-top: solid 1px #eff1f3;
+    margin: auto;
+    padding-bottom: 0;
+    .text, a {
+        margin: 30px;
+        vertical-align: middle;
+        display: inline-block;
+        @include font(14,21);
+    }
+    .text {
+        padding-left: 20px;
+        margin: 50px 0;
+    }
+    img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+    .users {
+        white-space: nowrap;
+        overflow-x: scroll;
+    }
+}
+
+.join-us {
+    background-color: #21212a;
+    font-family: $font-bebas-light;
+    @include font(34);
+    padding: 40px;
+    color: $white;
+    .blue {
+        color: #4a90e2;
+        font-family: $font-bebas;
+        @include font(38);
+    }
+    .btn--blue {
+        letter-spacing: 1.8px;
+        background-color: #4a90e2;
+    }
+}
+

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="main_wrapper">
+  <div class="landing_container">
+    <section class="not_found">
+      Sorry the page cannot be found!
+    </section> 
+    <section id="landing_head">
+      <section class="landing_head_wrap" style="text-align:center;">
+        <section class="landing_head_content">
+          <img src="{{ image_path('img_landingpage.png') | safe }}" style="display:inline;"/>
+        </section>
+      </section>
+    </section>
+  </div>
+</div>
+{% endblock %}

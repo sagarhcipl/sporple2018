@@ -1,0 +1,39 @@
+/*
+ * Styles for agent "media" panel in profile page
+ *
+ */
+
+#profile__agent-media{
+	float: right !important;
+
+    @include mq($until: desktop) {
+        display:none !important;
+    }
+}
+
+.page--agent-profile {
+    @include mq($until: desktop) {
+        img.profile__profile-pic {
+            margin-top: 0px !important;
+        }
+        .profile__action-btn-cont {
+            top: 5px;
+        }
+    }
+}
+
+//modals
+.model--agent-listing{
+
+	.textBoxHide{
+		padding-top: 10px;
+
+		p{
+			margin-bottom: 15px;
+		}
+
+		.ttl3{
+			margin-bottom: 20px;
+		}
+	}
+}

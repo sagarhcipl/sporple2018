@@ -1,0 +1,150 @@
+{% import 'forms/base.html' as base %}
+<div class="listing__edit-cont profile__listing {% if listing_id %}edit-listing {% else %}add-listing {% endif %}">
+    
+{% if listing_id %}
+{% set action =  url_for('profile.edit_club_listing', listing_id=listing_id) %}
+{% else %}
+{% set action = url_for('profile.edit_club_listing') %}
+{% endif %}
+    <form action="{{ action }}" method="POST"
+          class="form listing__edit-form"
+          id="{% if not listing_id %}listing__add-form{% else %}listing__edit-form{% endif %}">
+        
+        <div>
+            <div class="form__row inline-label">
+                {{ form.position.label }}
+                {{ form.position(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'change'
+                    })
+                }}
+                {{ base.errors(form.position.errors) }}
+            </div>
+
+            <div class="form__row inline-label">
+                {{ form.season_start.label }}
+                {{ form.season_start(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'change',
+                    'class': 'listing_season_start'
+                    })
+                }}
+                {{ base.errors(form.season_start.errors) }}
+            </div>
+        </div>
+        <div class="premium">
+            <div class="form__row inline-label">
+                <label>Age Range</label>
+                <div class="range">
+                    {{ form.age_min(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'change',
+                        'data-parsley-type': 'integer',
+                        'class': 'right-pad',
+                        'maxlength': 2,
+                        })
+                    }}
+                    <span class="post-input">yrs</span>
+                    {{ base.errors(form.age_min.errors) }}
+                </div>
+                <span class="range-separator">–</span>
+                <div class="range">
+                    {{ form.age_max(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'change',
+                        'data-parsley-type': 'integer',
+                        'class': 'right-pad',
+                        'maxlength': 2,
+                        })
+                    }}
+                    <span class="post-input">yrs</span>
+                    {{ base.errors(form.age_max.errors) }}
+                </div>
+            </div>
+            <div class="form__row inline-label">
+                <label>Height Range</label>
+                <div class="range">
+                    {{ form.height_min(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'change',
+                        'data-parsley-type': 'integer',
+                        'class': 'right-pad',
+                        'maxlength': 3,
+                        })
+                    }}
+                    <span class="post-input">cm</span>
+                    {{ base.errors(form.height_min.errors) }}
+                </div>
+                <span class="range-separator">–</span>
+                <div class="range">
+                    {{ form.height_max(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'change',
+                        'data-parsley-type': 'integer',
+                        'class': 'input-short right-pad',
+                        'maxlength': 3,
+                        })
+                    }}
+                    <span class="post-input">cm</span>
+                    {{ base.errors(form.height_max.errors) }}
+                </div>
+            </div>
+            <div class="form__row inline-label">
+                <label>Weight Range</label>
+                <div class="range">
+                    {{ form.weight_min(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'change',
+                        'data-parsley-type': 'integer',
+                        'class': 'input-short right-pad',
+                        'maxlength': 3,
+                        })
+                    }}
+                    <span class="post-input">kg</span>
+                    {{ base.errors(form.weight_min.errors) }}
+                </div>
+                <span class="range-separator">–</span>
+                <div class="range">
+                    {{ form.weight_max(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'change',
+                        'data-parsley-type': 'integer',
+                        'class': 'input-short right-pad',
+                        'maxlength': 3,
+                        })
+                    }}
+                    <span class="post-input">kg</span>
+                    {{ base.errors(form.weight_max.errors) }}
+                </div>
+            </div>
+            <div class="form__row inline-label">
+              <label>{{ form.country_groups.label }}</label>
+              {{ form.country_groups(**{
+                  'data-parsley-trigger': 'change',
+                  'class': 'listing_country_groups no-style'
+                  })
+              }}
+              {{ base.errors(form.country_groups.errors) }}
+            </div>
+            <ul id="country_groups-list" class="col-xs-5 col-xs-offset-5"></ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="form__row">
+            <p>{{ form.description.label }}</p>
+            {{ form.description(**{
+                'data-parsley-trigger': 'change',
+                'class': 'listing_description'
+                })
+            }}
+            {{ base.errors(form.description.errors) }}
+        </div>
+
+        {{ form.csrf_token }}
+        <div class="form__row form__row--btns">
+            <button id="btn--submit" class="btn btn--blue btn--med">Done</button>
+            <a href="#" class="btn btn--secondary btn--med">Cancel</a>
+        </div>
+    </form>
+
+</div>
+

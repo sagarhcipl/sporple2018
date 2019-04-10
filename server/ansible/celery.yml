@@ -1,0 +1,4 @@
+- hosts: celery
+  roles:
+    - role: celery
+      become: yes

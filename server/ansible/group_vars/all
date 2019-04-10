@@ -1,0 +1,5 @@
+log_directory:      /data/log
+data_directory:     /data
+repo_path:          /Users/s3lki3/Dropbox/Sites/Sporple/elites/server
+environment_name:   dev
+app_config_file:     ../config/dev.cfg

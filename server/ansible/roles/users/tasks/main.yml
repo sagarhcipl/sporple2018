@@ -1,0 +1,28 @@
+- name: create deploy group
+  group: name=deploy state=present
+
+- name: create deploy user with sudo powers
+  user: name=deploy state=present group=deploy shell=/bin/bash groups="sudo"
+
+- name: give passwordless sudo power
+  lineinfile: 'dest=/etc/sudoers.d/deploy state=present create=yes regexp="deploy .*" line="deploy ALL=(ALL) NOPASSWD: ALL"'
+
+- name: create deploy directory
+  file: path=/home/deploy/.ssh state=directory mode=0700
+
+- name: set the authorized keys for deploy
+  authorized_key:
+    user: deploy
+    key: "{{ lookup('file', 'deploy_rsa.pub') }}"
+
+- name: create sporple group
+  group: name=sporple state=present
+
+- name: create sporple user
+  user: name=sporple state=present group=sporple shell=/bin/bash
+
+- name: create postgres group
+  group: name=postgres state=present system=yes
+
+- name: create postgres user
+  user: name=postgres state=present group=postgres shell=/bin/bash

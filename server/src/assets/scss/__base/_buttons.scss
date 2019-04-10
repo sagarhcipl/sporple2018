@@ -1,0 +1,405 @@
+/**
+ * @group css.base.buttons
+ *
+ * Here we define the UI styles
+ *
+ * ## Usage
+ * Import into your main file using
+ *
+ * @example
+ *     @import "__base/_buttons.scss";
+ *
+ */
+
+/* Buttons */
+
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+    height: 37px;
+    border: none;
+    background-color: $blue-secondary;
+    color: #fff;
+    text-align: center;
+    @include font(14,19);
+    font-weight: $bold;
+    transition: background 0.25s ease-out, color 0.25s ease-out, width 0.25s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 0;
+
+    //the ::after is for svg icons
+    .svg &:after{
+        content: "";
+        margin-left: 0;
+        transform: scale(0);
+        transition: all 0.3s ease 0.1s;
+        will-change: transform, margin;
+    }
+
+    &:hover,
+    &:focus{
+        outline: none;
+        background-color: darken($blue-secondary, 10%);
+        color: #fff;
+    }
+
+    &.btn--orange,
+    &.btn--cta{
+        background-color: $brand-orange;
+
+        &:hover,
+        &:focus{
+            background-color: darken($brand-orange, 10%);
+        }
+    }
+    &.btn--large.btn--orange {
+        @include font(24, 28, $font-bebas-light);
+    }
+
+    &.btn--blue {
+        background-color: #4a90e2;
+        color: #fff;
+        letter-spacing: 1.8px;
+        &:hover,&:focus {
+            background-color: darken(#4a90e2, 10%);
+        }
+    }
+    &.btn--white {
+        color: #434343;
+        background-color: $white;
+        &:hover, &:focus {
+            background-color: darken($white, 10%);
+        }
+    }
+
+    &.btn--cta-secondary{
+        background-color: $blue-bright;
+
+        &:hover,
+        &:focus{
+            background-color: darken($blue-bright, 10%);
+        }
+    }
+
+    &.btn--secondary{
+        background-color: $grey-light;
+
+        &:hover,
+        &:focus{
+            background-color: darken($grey-light, 10%);
+        }
+    }
+
+    &.btn--grey{
+        background-color: $grey-dark;
+
+        &:hover,
+        &:focus{
+            background-color: darken($grey-dark, 10%);
+        }
+    }
+
+    &.btn--text{
+        background-color: transparent;
+        color: $brand-blue;
+        font-weight: $normal;
+
+        .btn-icon{
+            fill: $brand-blue;
+        }
+
+        &:hover,
+        &:focus{
+            color: darken($brand-blue, 10%);
+
+            .btn-icon{
+                fill: darken($brand-blue, 10%);
+            }
+        }
+
+    }
+
+    &.btn--large, &.btn--med,
+    &.btn--side-by-side {
+        height: 42px;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        @include font(20, 24, $font-bebas-light);
+    }
+    &.btn--large {
+        min-width: 260px;
+    }
+    &.btn--med {
+        min-width: 200px;
+        max-width: 50%;
+        @include mq($until: tablet) {
+            min-width: 100px;
+        }
+    }
+
+    &.btn--small{
+        padding: 0 12px;
+        height: 25px;
+        @include font(13,26);
+    }
+
+    &.btn--full-width{
+        width: 100%;
+    }
+
+    &.btn--side-by-side{
+        vertical-align: top;
+        width: 49%;
+    }
+
+    .btn--side-by-side + &.btn--side-by-side{
+        margin-right: 0;
+    }
+
+    //svg loading icon
+    .svg &.btn--loading{
+
+        &:after{
+            content: "";
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            width: 19px;
+            height: 19px;
+            background: url("/static/images/svg/spinner.svg") 0 0 no-repeat;
+            background-size: 19px 19px;
+            transform: scale(1);
+        }
+
+        &.btn--text{
+
+            &:after{
+                background-image: url("/static/images/svg/spinner-grey.svg");
+            }
+        }
+
+        &.btn--large{
+
+            &:after{
+                width: 22px;
+                height: 22px;
+                background-size: 22px 22px;
+            }
+        }
+    }
+
+}
+
+// -- Icon Buttons -- //
+%btn-icon{
+    content: "";
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 2px;
+    height: 18px;
+    background-repeat: no-repeat;
+}
+
+.btn-icon{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 2px;
+    width: 18px;
+    height: 18px;
+    transition: fill 0.25s ease-out;
+}
+
+.btn--follow{
+    @extend .btn--cta-secondary;
+
+    &:before{
+        @extend %btn-icon;
+        width: 20px;
+        background-image: url("/static/images/svg/follow.png");
+        background-size: 20px 18px;
+
+        .svg &{
+            background-image: url("/static/images/svg/follow.svg");
+        }
+    }
+
+    &.active{
+        @extend .btn--secondary;
+
+        &:before{
+            width: 18px;
+            background-image: url("/static/images/svg/tick.png");
+            background-size: 18px 18px;
+
+            .svg &{
+                background-image: url("/static/images/svg/tick.svg");
+            }
+        }
+    }
+
+    &.btn--small{
+
+        &:before{
+            display: none !important;
+        }
+
+    }
+}
+
+.btn.btn--message:before{
+    @extend %btn-icon;
+    width: 18px;
+    background-image: url("/static/images/svg/messages.png");
+    background-size: 18px 18px;
+
+    .svg &{
+        background-image: url("/static/images/svg/messages.svg");
+    }
+
+}
+
+.btn.btn--delete:before{
+    @extend %btn-icon;
+    width: 16px;
+    background-image: url("/static/images/svg/x.png");
+    background-size: 16px 16px;
+
+    .svg &{
+        background-image: url("/static/images/svg/x.svg");
+    }
+
+}
+
+.grid > .btn{
+
+    @include mq($until: tablet) {
+        width: 100%;
+    }
+}
+
+%btn--icon{
+    position: relative;
+    padding: 10px 30px 10px 50px;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        vertical-align: middle;
+        display: inline-block;
+        width: 60px;
+        height: 42px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+
+    @include mq($from: tablet, $until: desktop) {
+        position: relative;
+        padding: 10px 20px 10px 70px;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            vertical-align: middle;
+            display: inline-block;
+            width: 50px;
+            height: 42px;
+            background-repeat: no-repeat;
+            background-position: 50%;
+        }
+    }
+}
+
+.btn--fb{
+    @extend %btn--icon;
+    background-color: #3b62b1;
+    color: #fff;
+    text-transform: uppercase;
+
+    &:before {
+        background-image: url('/static/images/landing/facebook.png');
+
+        .svg &{
+            background-image: url('/static/images/svg/facebook.svg');
+            background-size: 28px;
+        }
+    }
+
+    &:hover,
+    &:focus{
+        background-color: #002675;
+    }
+}
+
+.btn.btn--email{
+    background-color: lighten($blue-secondary,10);
+    color: #fff;
+    padding: auto 10px;
+
+    &:hover,
+    &:focus{
+        background-color: $blue-secondary;
+    }
+}
+
+
+.txt-link{
+    color: $brand-orange;
+
+    &:after{
+        content: '';
+        display: inline-block;
+        vertical-align: -0.2em;
+        margin-left: 5px;
+        background: url('../img/svg/arrow-right.svg') 0 0 no-repeat;
+        background-size: 100%;
+        width: 10px;
+        height: 17px;
+    }
+}
+
+.btn--edit{
+    display: inline-block;
+    cursor: pointer;
+
+    img{
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.btn--box {
+    background-color: $blue;
+    border-color: #2e6da4;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    border: 1px solid;
+    padding: 6px 12px;
+    text-align: center;
+    border-radius: 4px;
+    color: $white;
+    &.btn--danger {
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+    &.btn--edit {
+        background-color: transparent;
+        border-color: #dfdfdf;
+        color: #333;
+    }
+}
+
+.btn--info {
+    color: #333;
+    border: solid 1px lighten($grey-light, 20%);
+    border-radius: 4px;
+    padding: 5px 15px;
+    &:hover {
+        color: darken($blue, 20%);
+    }
+}

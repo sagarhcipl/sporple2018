@@ -1,0 +1,39 @@
+{% for message in messages %}
+    <d>
+        <a style="display: block;" href="{{ url_for('profile.slug', slug=message.user.slug) }}">
+            <img src="{{ message.user.profile.get_image('x-small') }}" width="45"
+                alt="Profile image" title="Profile image" />
+        </a>
+        <strong><a href="{{ url_for('profile.slug', slug=message.user.slug) }}">{{ message.user.name }}</a></strong>
+
+        <span>{{ message.body | link_text }}</span>
+
+        {% if message.attachment %}
+            {% if message.has_image %}
+            <img id="message_{{ message.id }}_image" class="upload_image" src="/uploads/{{ message.attachment }}" width=100>
+            {% else %}
+                <a href="/uploads/{{ message.attachment }}" target="_blank">
+                    Download File
+                </a>
+            {% endif %}
+        {% endif %}
+
+        <aside>
+            <span>{{ post_date_format(message.created_at) }}</span>
+        </aside>
+
+        <!-- start image popup -->
+        <div id="message_{{ message.id }}_popup" class="popupPostMedia">
+            <a class="b-close">x</a>
+            <header>
+                <img src="{{ message.user.profile.get_image('x-small') }}" width="35"
+                    alt="Profile image" title="Profile image"/>
+                <strong>{{ message.user.name }}</strong>
+            </header>
+            <a class="btn_prev"></a>
+            <figure></figure>
+            <a class="btn_next"></a>
+        </div>
+        <!-- end image popup -->
+    </d>
+{% endfor %}

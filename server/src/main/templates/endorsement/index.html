@@ -1,0 +1,14 @@
+{% if endorsements or is_owner %}
+    <header class="header--secondary">
+        <h2 {% if foldable != False %} class="foldable" {% endif %}>
+            Endorsements
+        </h2>
+    </header>
+{% endif %}
+
+<div class="profile__about-section-content">
+    {% if edit_endorsement %}
+        {% include 'endorsement/edit.html' %}
+    {% endif %}
+    {% include 'endorsement/list.html' %}
+</div>

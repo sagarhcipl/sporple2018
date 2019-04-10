@@ -1,0 +1,37 @@
+    <div class="profile__media-cover-cont aspect-wrap ratio-16-9">
+        {% set reel_type = 'image' if profile.reel_image else profile.reel_video_type %}
+        {% if reel_type == 'youtube' %}
+            <iframe id="ytplayer" type="text/html" 
+                    class="profile__media-cover-vid"
+                    src="https://www.youtube.com/embed/{{ profile.reel_video_url }}?wmode=opaque"
+                    frameborder="0" allowfullscreen></iframe>
+        {% elif reel_type  == 'vimeo' %}
+            <iframe id="vimeo-player" class="profile__media-cover-vid" 
+                    src="//player.vimeo.com/video/{{ profile.reel_video_url }}?color=018eff&byline=0&portrait=0&api=1"
+                    width="500" height="281"
+                    frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        {% elif profile.reel_image or not is_owner %}
+            <img class="profile__media-cover-img" src="{{ profile.reel_url }}" alt=""/>
+        {% else %}
+            <div class="upload-video">
+              <div class="content">
+                <h3>Upload A Video</h3>
+                {% if profile.role.slug == 'club' %}
+                <div>Uploading a video of your club is a great way to grab interest.</div>
+                {% else %}
+                <div>Uploading a video of you in action is a great way to grab some interest.</div>
+                {% endif %}
+                <button data-url="{{ url_for('profile.edit_player_media', user_id=profile.user_id) }}"
+                    class="btn btn--med btn--white profile__edit-media">Upload</button>
+              </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% if is_owner %}
+    <button data-url="{{ url_for('profile.edit_player_media', user_id=profile.user_id) }}" 
+        id="edit-media" class="btn--edit btn--info profile__edit-media">
+        <i class="fa fa-edit"></i> Edit Cover
+    </button>
+{% endif %}
+

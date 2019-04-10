@@ -1,0 +1,54 @@
+- name: get latest git commit id
+  local_action: "shell git rev-parse HEAD warn=no"
+  register: git_commit_id
+
+- name: clean pyc files
+  local_action: "shell find {{repo_path}}/src/ -name '*.pyc' -print0 | xargs -0 rm -f"
+
+- name: push sporple
+  synchronize:
+    src:        '{{repo_path}}/src'
+    dest:       /home/www/
+    archive:    yes
+    delete:     yes
+    rsync_opts: "--exclude='tags' --exclude='.git' --exclude='*.swp' --exclude='*.pyc' --exclude 'node_modules'"
+    rsync_path: "sudo rsync"
+
+  notify:
+    - reload webserver
+    - restart celery
+
+- name: update version id
+  lineinfile:
+    dest:   /home/www/src/config/autogen.py
+    regexp: "^VERSION_ID"
+    line:   "VERSION_ID = '{{ git_commit_id.stdout[-7:] }}'"
+    state: present
+  become: yes
+
+  notify:
+    - reload webserver
+    - restart celery
+
+- name: update permissions
+  file: path=/home/www/ owner=sporple group=sporple state=directory mode=0755 recurse=yes
+  become: yes
+
+- name: ensure softlink
+  file: src=/home/www/src dest=/sporple/src owner=sporple group=sporple state=link
+  become: yes
+  become_user: sporple
+  notify:
+    - reload webserver
+    - restart celery
+
+- name: update venv
+  pip:
+    requirements: /home/www/src/requirements.txt
+    virtualenv: /sporple/venv
+  become: yes
+  become_user: sporple
+  tags: venv
+  notify:
+    - reload webserver
+    - restart celery

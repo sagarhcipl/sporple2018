@@ -1,0 +1,55 @@
+.settings {
+    @include font(14, 30);
+        
+    @include mq($until: desktop) {
+        @include font(10);
+    }
+
+    .navigation {
+        margin: 5px;
+        margin-bottom: 40px;
+        color: $grey-med;
+    }
+    ul {
+        display:block;
+    }
+    li {
+        display: inline-block;
+        &.selected, &:hover {
+            border-bottom: 3px solid $blue;
+            color: darken($grey-dark, 20%);
+            cursor: pointer;
+        }
+        @include mq($from: tablet) {
+            min-width: 20%;
+        }
+        box-shadow: 0 2px 3px -2px $grey-light;
+        a {
+            display: block;
+            padding: 10px;
+        }
+    }
+    .checkbox {
+        padding:0 20px;
+        text-align: left;
+    }
+    .btn {
+        margin-top: 40px;
+    }
+    .info {
+        color: $blue;
+        font-weight: bold;
+    }
+    .success {
+        display: block;
+        background-color: #dff0d8;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .error {
+        display: block;
+        background-color: #f2dede;
+        border-radius: 5px;
+        padding: 10px;
+    }
+}

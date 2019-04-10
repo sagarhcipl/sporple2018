@@ -1,0 +1,25 @@
+{% if is_owner %}
+<button class="btn--box edit-header open-edit-modal"
+    data-url="{{ url_for('profile.edit_qualification') }}"
+    data-title="Add Qualification"><i class="fa fa-plus"></i> Add</button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-trophy"></i> Qualifications</h3>
+<ul class="content_list">
+    {% for qualification in qualifications %}
+        <li class="qualification_item_id_{{ qualification.id }}">
+          <div class="title">{{ qualification.year or '' }}</div>
+          <div class="description">{{ qualification.title }}</div>
+          {% if is_owner %}
+          <div class="edit-buttons">
+            <button class="btn--box btn--edit open-edit-modal"
+                    data-url="{{ url_for('profile.edit_qualification_id', id=qualification.id) }}"
+                    data-title="Edit Qualification"><i class="fa fa-edit fa-1-5x"></i>
+            </button>
+            <button class="btn--box btn--danger delete"
+                    data-url="{{ url_for('profile.delete_qualification', id=qualification.id) }}"><i class="fa fa-trash-o fa-1-5x"></i>
+            </button>
+          </div>
+          {% endif %}
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,25 @@
+<ul>
+    {% if user_role == 'club' and target_role == 'athlete' %}
+    <li data-type="current_team">{{ profile.firstname }} currently plays For us</li>
+    <li data-type="past_team">{{ profile.firstname }} played for us</li>
+    <li data-type="want_to_recruit">want to recruit {{ profile.firstname }}</li>
+    {% elif user_role == 'athlete' and target_role == 'athlete' %}
+    <li data-type="played_with">I played with {{ profile.firstname }}</li>
+    <li data-type="current_play_with">I currently play with {{ profile.firstname }}</li>
+    <li data-type="want_to_play_with">I want to play with {{ profile.firstname }}</li>
+    {% elif user_role == 'agent' and target_role == 'athlete' %}
+    <li data-type="current_client">I manage {{ profile.firstname }}</li>
+    <li data-type="past_client">I used to manage {{ profile.firstname }}</li>
+    <li data-type="want_to_offer">I want to recruit {{ profile.firstname }}</li>
+    {% elif user_role == 'athlete' and target_role == 'club' %}
+    <li data-type="current_team">I currently play here</li>
+    <li data-type="want_to_join">I want to play here</li>
+    <li data-type="past_team">I used to play here</li>
+    {% elif user_role == 'athlete' and target_role == 'agent' %}
+    <li data-type="want_to_be_managed">I want to be managed by {{ profile.firstname }}</li>
+    <li data-type="current_client">{{ profile.firstname }} manages me</li>
+    <li data-type="past_client">{{ profile.firstname }} managed me in past</li>
+    {% endif %}
+    <li data-type="is_fan">I am a Fan</li>
+    <li data-type="just_follow">Follow</li>
+</ul>

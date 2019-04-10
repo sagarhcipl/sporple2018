@@ -1,0 +1,18 @@
+# PgBouncer Upstart script
+
+description "pgbouncer"
+
+start on (net-device-up
+          and local-filesystems
+          and runlevel [2345])
+
+stop on runlevel [016]
+
+respawn
+
+respawn limit 10 30
+
+setuid sporple
+setgid sporple
+
+exec /usr/sbin/pgbouncer /etc/pgbouncer/pgbouncer.ini

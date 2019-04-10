@@ -1,0 +1,152 @@
+.profile-page {
+    color: #4a4a4a;
+    background-color: $grey-bg;
+    a {
+        color: $blue;
+        &:hover {
+            color: darken($blue, 20%);
+        }
+    }
+    section {
+        background-color: $white;
+        margin-top: 25px;
+    }
+    div {
+        vertical-align: top;
+    }
+    .content-title {
+        @include font(14, 16, $font-default);
+        padding: 15px;
+        font-weight: 700;
+        border-bottom: solid 1px #f5f6f7;
+        .fa {
+            color: $blue;
+            padding-right: 10px;
+            font-size: 1.2em;
+        }
+        .small-link {
+            float:right;
+            @include font(12, 14);
+        }
+    }
+    .edit-header {
+        margin: 7px;
+        position: absolute;
+        right: 12px;
+    }
+    .basic-info {
+        margin-top: 0;
+        padding-top: 35px;
+        background-color: $white;
+        @include mq($until: desktop) {
+            text-align: center;
+        }
+        .profile-photo {
+            margin: 0 25px -20px;
+            padding: 5px;
+            box-shadow: 0 1px 4px 1px rgba(236, 239, 241, 0.25);
+            border: solid 1px #eff1f3;
+            width: 200px;
+            height: 200px;
+            background-color: $white;
+            display: inline-block;
+            text-align: center;
+            @include mq($until: desktop) {
+                margin: auto;
+            }
+            .edit-image {
+                position: relative;
+                top: -40px;
+                background-color: $white;
+                display: inline-block;
+                text-align: center;
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+        }
+        img {
+            background-color: #ccc;
+        }
+        .details {
+            display: inline-block;
+        }
+        .sport {
+            @include font(22, 25, $font-title);
+        }
+        h1 {
+            color: #434343;
+            @include mq($until: desktop) {
+                text-align: center;
+            }
+        }
+        h2 {
+            height: 21px;
+            @include font(13, 20, $font-default);
+            color: #4a90e2;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            @include mq($until: desktop) {
+                text-align: center;
+            }
+        }
+        @include mq($from: desktop) {
+            .social-share {
+                display: inline-block;
+                padding-top: 0;
+            }
+        }
+        .social-share {
+            padding-top: 10px;
+            p {
+                margin-top: 5px;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+            p, .addthis_toolbox {
+                display: inline-block;
+            }
+        }
+        .managed-by {
+            padding-left: 10px;
+            @include mq($until: tablet) {
+                display: block;
+                padding-top: 10px;
+            }
+        }
+    }
+    .left-section, .right-section {
+        margin: 20px 0px;
+        padding: 0 15px;
+    }
+    .about {
+        background-color: $white;
+        padding: 20px;
+        .btn--info {
+            margin-left: 10px;
+        }
+    }
+    .activity .activity_container {
+        max-height: 400px;
+        overflow-y: scroll;
+    }
+    .twitter-mod__inner {
+        padding: 20px;
+    }
+    .edit-buttons {
+        position: absolute;
+        right: 7px;
+        top: 10px;
+    }
+}
+.invite-box {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid transparent;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    color: $white;
+    background-color: $blue;
+    a {
+        margin-left: 30px;
+    }
+}

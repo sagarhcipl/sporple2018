@@ -1,0 +1,27 @@
+- name: install mysql
+  apt: name=mysql-server update_cache=yes state=present
+
+- name: ensure home directory for sporple
+  file: name=/home/sporple state=directory owner=sporple group=sporple mode=0744
+
+- name: copy cnf
+  template: src=mysql.cnf.j2 dest=/home/sporple/.my.cnf
+
+- name: Start the MySQL service
+  service: name=mysql state=started enabled=true
+
+- name: update mysql root password
+  mysql_user:
+    name: sporple
+    host: '{{ item }}'
+    password: '{{ mysql_root_password }}'
+    login_user: sporple
+    login_password: '{{ mysql_root_password }}'
+    check_implicit_admin: yes
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+

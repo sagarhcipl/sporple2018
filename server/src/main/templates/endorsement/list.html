@@ -1,0 +1,61 @@
+{% if endorsements or is_owner %}
+            <ul class="content_list">
+                {% for endorsement in endorsements %}
+                    <li class="endorsement_item_id_{{ endorsement.id }}">
+                        <span>
+                            <span class="name">
+                                {{ endorsement.abbreviation_str }}
+                                {{ endorsement.first_name}} {{ endorsement.last_name }}
+                            </span>
+                            <span class="position">
+                                {{ endorsement.title }}
+                                {% if is_owner %}
+                                <a class="delete-profile-about-section-item"
+                                    data-query=".endorsement_item_id_{{ endorsement.id }}"
+                                    href="{{ url_for('profile.delete_endorsement', id=endorsement.id) }}">
+                                    <img src="/static/images/ico_delete_field.png" class="clr_field_button"/>
+                                </a>
+                                <a class="edit-profile-about-section"
+                                    data-query=".endorsement_item_id_{{ endorsement.id }}"
+                                    href="{{ url_for('profile.edit_endorsement_id', id=endorsement.id) }}">
+                                    <img src="/static/images/icon_edit.png" class="clr_field_button"/>
+                                </a>
+                                {% endif %}
+
+                            </span>
+                        </span>
+
+                        <p id="body-short-endorsement-{{ endorsement.id }}" class="BodyShort">
+                        {{ endorsement.body | truncate(350) | nl2br | safe }}
+                        </p>
+
+                        <p id="body-long-endorsement-{{ endorsement.id }}" class="BodyFull"
+                           style="display: none">
+                           {{ endorsement.body | nl2br | safe }}
+                        </p>
+
+                        {% if endorse | length > 350 %}
+                            <a id="more-button-endorsement-{{ endorsement.id }}"
+                                data-id="endorsement-{{ endorsement.id }}"
+                                class="MoreButton" >
+                                more
+                            </a>
+                            <a id="less-button-endorsement-{{ endorsementid }}"
+                                data-id="endorsement-{{ endorsement.id }}"
+                                class="LessButton"
+                                style="display: none" >
+                                less
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+
+    {% endif %}
+
+    {% if is_owner %}
+        <a href="{{ url_for('profile.edit_endorsement') }}" id="profile_add_endorsement" class="btn--edit edit-profile-about-section">
+            <img src="/static/images/icon_edit.png"/>
+        </a>
+    {% endif %}
+

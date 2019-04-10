@@ -1,0 +1,37 @@
+server {
+    listen         80;
+    server_name    {{ domain_name }};
+    if ($http_x_forwarded_proto = 'http') {
+        return 301 https://{{ domain_name }}$request_uri;
+    }
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+    location /static {
+        alias /home/www/src/main/static;
+    }
+    location /uploads {
+        set $s3_bucket          'sporple-uploads.s3-website-eu-west-1.amazonaws.com';
+        proxy_set_header        Host $s3_bucket;
+        proxy_hide_header       Set-Cookie;
+        proxy_ignore_headers    "Set-Cookie";
+        proxy_hide_header       x-amz-id-2;
+        proxy_hide_header       x-amz-request-id;
+        proxy_buffering         off;
+        proxy_intercept_errors   on;
+        proxy_method            GET;
+        resolver                8.8.4.4 8.8.8.8 valid=300s;
+        resolver_timeout        10s;
+        proxy_pass              http://$s3_bucket;
+        expires                 1y;
+        add_header              Cache-Control "public";
+    }
+}
+
+server {
+    listen 80;
+    server_name sporple.com;
+    return 301 https://www.sporple.com$request_uri;
+}

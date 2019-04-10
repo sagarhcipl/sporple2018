@@ -1,0 +1,45 @@
+<h3 class="content-title"><i class="fa fa-th-large"></i> Gallery</h3>
+{% if gallery_images %}
+<div class="image-container">
+    <div class="row">
+    {% for image in gallery_images %}
+        <div class="col-xs-4 image">
+            <a href="{{ image.link }}" class="thumb" data-index="{{ loop.index -1 }}">
+                <img src="{{ image.thumb_link }}"/>
+            </a>
+        </div>
+        {% if loop.index % 3 == 0 %}
+    </div>
+    <div class="row">
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
+<div class="navigate">
+{% if is_owner and config.MAX_NR_ATTACHMENTS > gallery_images | length %}
+<form id="profile__media-gallery-form" method="post"
+    action="{{ url_for('upload.attachment', user_id=profile.user_id) }}" enctype="multipart/form-data"
+    style="display:inline;">
+    {{ image_form.hidden_tag() }}
+<div class="button btn--info file-wrapper"><i class="fa fa-plus"></i> Add Photo <i class="fa fa-spinner fa-pulse fa-fw loading hidden"></i>
+    {{ image_form.filename(**{
+        'id': 'profile__media-add-photo',
+        'accept': 'image/jpeg,image/png,capture=camera',
+        'data-parsley-profilepic': 'profile__media-add-photo',
+        'data-parsley-trigger': 'change',
+        })
+    }}</div>
+
+</form>
+{% endif %}
+
+<span class="fa-stack fa-lg down-arrow">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-angle-down fa-stack-1x fa-inverse"></i>
+</span>
+<span class="fa-stack fa-lg up-arrow">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-angle-up fa-stack-1x fa-inverse"></i>
+</span>
+</div>

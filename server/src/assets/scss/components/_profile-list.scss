@@ -1,0 +1,82 @@
+.profile-list,
+.suggested-profiles-list{
+
+	li{
+		position: relative;
+		padding: 10px 0;
+
+		&.has-clickable{
+			padding: 0;
+		}
+
+		& > a.clickable{
+			display: block;
+			padding: 10px 0;
+
+			&:hover{
+				background-color: $grey-bg;
+			}
+		}
+	}
+
+	.profiles-list__remove-btn{
+		position: absolute;
+		right: 10px;
+		top: 8px;
+		color: $grey-light;
+		cursor: pointer;
+	}
+
+	.profile-pic{
+		float: left;
+		width: 60px;
+		height: 60px;
+
+		@include mq($from: tablet) {
+			margin-left: 10px;
+		}
+	}
+
+	.profiles-list__details{
+		overflow: hidden;
+		margin-left: 80px;
+		min-height: 60px;
+
+		.ttl4{ 
+			display: block;
+			margin-top: -2px;
+		}
+
+		p:last-child{
+			margin-bottom: 0;
+		}
+	}
+
+	.profiles-list__date{
+		margin-top: 4px;
+		@include font(11,10);
+		color: $grey-light;
+	}
+
+	.btn--cta-secondary{
+		position: absolute;
+		right: 0;
+		bottom: 10px;
+		min-width: 65px;
+	}
+
+}
+
+/** New section **/
+.related-profiles {
+    .profile-list {
+        li {
+            padding: 20px 10px;
+            .btn--follow {
+                right: 20px;
+                bottom: 30px;
+                background-color: $blue;
+            }
+        }
+    }
+}

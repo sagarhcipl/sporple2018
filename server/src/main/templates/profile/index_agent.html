@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}{{ profile.user.sport.name }} | {{ profile.user.name }} | Sporple{% endblock title %}
+{% block meta_title %}{{ profile.user.sport.name }} | {{ profile.user.name }} | Sporple{% endblock meta_title %}
+{% block content %}
+
+<div class="profile-page agent clearfix {% if is_owner %}is-owner{% endif %}">
+  <section class="basic-info row clearfix col-xs-12">
+    {% include 'profile/basic_info.html' %}
+  </section>
+  <div class="right-section pull-right col-md-8 col-xs-12">
+    {% if is_owner %}
+    <section class="invite-friends">
+        {% include 'profile/invite.html' %}
+    </section>
+    {% endif %}
+    <section class="recruiting">
+        {% include 'agent/looking_for.html' %}
+    </section>
+
+    {% if profile.career_summary or is_owner %}
+    <section class="about row">
+        {% if not profile.career_summary %}
+        Add a brief summary of your career to get noticed.
+        {% else %}
+        <span class="more" data-chars="250">
+            {{ profile.career_summary | escape_custom }}
+        </span>
+        {% endif %}
+        {% if is_owner %}
+            <button class="btn--info open-edit-modal"
+                data-url="{{ url_for('profile.edit_career_summary') }}"
+                data-title="Career Summary"><i class="fa fa-edit"></i> edit
+            </button>
+        {% endif %}
+    </section>
+    {% endif %}
+
+    <section class="clients">
+        {% include 'agent/clients.html' %}
+    </section>
+
+    {% if is_owner or endorsements %}
+    <section class="endorsements">
+        {% include 'profile/endorsements.html' %}
+    </section>
+    {% endif %}
+
+    {% if past_clients %}
+    <section class="past-clients">
+        {% include 'agent/past_clients.html' %}
+    </section>
+    {% endif %}
+  </div>
+  <div class="left-section pull-let col-md-4 col-xs-12">
+    <section class="athlete-info">
+        {% include 'agent/basic_info.html' %}
+    </section>
+    <section class="qualification">
+            {% include 'agent/qualifications.html' %}
+    </section>
+    <section class="twitter">
+    {% if profile.twitter_account %}
+        {% include 'profile/show_twitter_account.html' %}
+    {% elif is_owner %}
+        {% include 'profile/edit_twitter_account.html' %}
+    {% endif %}
+    </section>
+
+    {% if current_user.is_authenticated %}
+    <section class="activity">
+        {% include 'profile/activities.html' %}
+    </section>
+    <section id="related-profiles-mod" class="related-profiles">
+        {% include 'profile/related_profiles.html' %}
+    </section>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

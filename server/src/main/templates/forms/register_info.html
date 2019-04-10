@@ -1,0 +1,138 @@
+{% import 'forms/base.html'  as base %}
+<!-- Additional Info -->
+<div class="info">
+<form name="additional-info-form" id="sign-up-form--3" method="post" action="{{ url_for('register_info') }}" autocomplete="off" enctype="multipart/form-data">
+    <fieldset class="row row-centered">
+      <div class="col-md-5 col-centered center">
+      {{ form.csrf_token }}
+      {% if role != 'club' %}
+        <div id="add-profile-pic-cont" class="sign-up-form__step sign-up-form__step-1 cf {{ role }}" data-content="1">
+            {{ form.image_x1() }}
+            {{ form.image_y1() }}
+            {{ form.image_h() }}
+            {{ form.image_w() }}
+            {{ form.rotation() }}
+    
+            <div class="sign-up-form__step-img-cont button" id="uploadTrigger">
+                <span id="registration-crop-preview">
+            {% if 'empty_profile_image' in  user.profile.get_image() %}
+                <svg class="icon sign-up-form__step-icon" role="presentation" viewBox="0 0 54.987 44"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#profile-pic"></use></svg>
+            {% else %}
+                    <img src="{{ user.profile.get_image() }}" width="80"
+                        alt="Profile image" title="Profile image" id="picture" />
+            {% endif %}
+                </span>
+
+            </div>
+
+            <h3 class="sign-up-form__step-ttl">Upload profile photo</h3> 
+            {{ form.image(**{
+                'id': 'uploadFile',
+                'accept': 'image/jpeg,image/png,capture=camera',
+                'data-parsley-profilepic': 'uploadFile',
+                'data-parsley-trigger': 'change'
+                })  
+            }}
+
+            {{ base.errors(form.image.errors) }}
+        </div>
+    {% endif %}
+        <div class="dob row sign-up-form__step">
+            <div class="col-xs-5 label sign-up-form__step-ttl">Date of Birth</div>
+            <div class="col-xs-7">
+                <div class="form-group float-label-control">
+                    <label>dd</label>
+                    <input type="number" name="dd" maxlength="2" class="form-control" max="31">
+                </div>
+                <div class="form-group float-label-control">
+                    <label>mm</label>
+                    <input type="number" name="mm" maxlength="2" class="form-control" max="12">
+                </div>
+                <div class="form-group float-label-control">
+                    <label>yyyy</label>
+                    <input type="number" maxlength="4" name="yyyy" class="form-control yyyy" min="1900">
+                </div>
+            {{ base.errors(form.dd.errors) }}
+            </div>
+        </div>
+        <div class="sign-up-form__step sign-up-form__step-2 cf {{ role }} {% if role == 'club' %}has-textbox {% endif %} row">
+        {% if role == 'agent' %}
+
+            <h3 class="col-xs-5 sign-up-form__step-ttl">Years of experience</h3>
+            <div class="col-xs-7">
+            {{ form.years_experience(**{
+                'data-parsley-type': 'integer',
+                'data-parsley-required': 'true',
+                'data-parsley-trigger': 'change',
+                'data-parsley-range': '[0,100]',
+                'data-parsley-type-message': 'Enter the number of years to the nearest year',
+                })
+            }}
+
+            {{ base.errors(form.years_experience.errors) }}
+            </div>
+
+        {% elif role == 'athlete' %}
+            <div class="row">
+              <div class="sign-up-form__step-ttl col-xs-5">Positions</div>
+              <div class="col-xs-7">
+            {{ form.positions(**{
+                'data-parsley-nonempty': 'true',
+                'data-parsley-nonempty-message': 'Please select at least 1 position',
+                'data-parsley-maxcheck': '4',
+                'data-parsley-trigger': 'change',
+                'class': 'no-style',
+                'id': 'registration_positions',
+                })
+            }}
+
+              {{ base.errors(form.positions.errors) }}
+              </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="sign-up-form__step-ttl col-xs-5">Add a Division</div>
+
+            <div class="form__row col-xs-7">
+                {{ form.division(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'blur',
+                    'placeholder': 'Add a Division',
+                    })
+                }}
+            </div>
+
+            {{ base.errors(form.division.errors) }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if role == 'athlete' %}
+        <ul id="sign-up-form__positions-list" class="sign-up-form__value-list"></ul>
+    {% endif %}
+
+    {% if not user.profile.address_country %}
+        <div class="sign-up-form__step sign-up-form__step-3 {{ role }} has-textbox cf">
+          <div class="row">
+            <div class="sign-up-form__step-ttl col-xs-5">country</div>
+            <div class="col-xs-7">
+            {{ form.address_country_id(**{
+                'data-parsley-required': 'true',
+                'data-parsley-trigger': 'change',
+                'class': 'no-style',
+                'id': 'registration_address_country_id',
+                })
+            }}
+
+            {{ base.errors(form.address_country_id.errors) }}
+            </div>
+          </div>
+        </div>
+    {% endif %}
+        <div class="form-group last">
+            <button class="btn btn--large btn--blue" type="submit">Complete Profile</button> 
+        </div>
+      </div>
+    </fieldset>
+</form>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <link rel="stylesheet" type="text/css" href="/static/css/stats.css">
+</head>
+<body>
+<p>
+  <label for="stat-data"
+          style="display: inline-block; width: 140px; text-align: right">
+    Data =
+  </label>
+  <select id="stat-data" onchange="update_url()">
+    <option value="listings">New Listings</option>
+    <option value="applications">New Applications</option>
+    <option value="apps_per_listing">Apps per listing</option>
+    <option value="users">New Users</option>
+    <option value="clubs">New Clubs</option>
+    <option value="agents">New Agents</option>
+    <option value="athletes">New Athletes</option>
+    <option value="unknown_users">New Unknown Users</option>
+    <option value="messages" selected>New Messages</option>
+    <option value="club_messages">New Club Messages</option>
+    <option value="agent_messages">New Agent Messages</option>
+    <option value="athlete_messages">New Athlete Messages</option>
+    <option value="threads">New Threads</option>
+    <option value="club_threads">New Club Threads</option>
+    <option value="agent_threads">New Agent Threads</option>
+    <option value="athlete_threads">New Athlete Threads</option>
+    <option value="connections">New Connections</option>
+    <option value="looking_for">New Looking For</option>
+    <option value="posts">New Posts</option>
+  </select>
+  <label for="stat-type"
+          style="display: inline-block; width: 140px; text-align: right">
+    Type =
+  </label>
+  <select id="stat-type" onchange="update_url()">
+    <option value="daily">Daily</option>
+    <option value="weekly" selected>Weekly</option>
+  </select>
+</p>
+<p>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="/static/js/stats_d3.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+[hosts]
+prod_node2
+
+[redis:children]
+hosts
+

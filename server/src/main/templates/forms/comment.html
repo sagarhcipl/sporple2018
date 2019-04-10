@@ -1,0 +1,11 @@
+{% import 'forms/base.html' as base %}
+{% if current_user.is_authenticated %}
+<form action="{{ url_for('post.comment') }}" class="sf_comment_form" id="sf_comment_form" method="post">
+    <fieldset>
+        <div class="required">
+        <textarea placeholder="Comment..." class="comment_textarea" name="text" id="sf_comment_text" required></textarea>
+        <button type="button" class="btn btn--blue comment_button" id="comment_button">Post</button>
+        <input type="hidden" name="post" value="{{post.id}}"/>
+    </fieldset>
+</form>
+{% endif %}

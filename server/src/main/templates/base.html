@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+    <!--[if lt IE 9]> <html class="no-js lt-ie9 lt-ie10" xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ current_user.get_locale() }}"
+      lang="{{ current_user.get_locale() }}"> <![endif]-->
+    <!--[if IE 9]> <html class="no-js is-ie9 lt-ie10" xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ current_user.get_locale() }}"
+      lang="{{ current_user.get_locale() }}"> <![endif]-->
+    <!--[if gt IE 9]><!--> <html class="no-js" xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ current_user.get_locale() }}"
+      lang="{{ current_user.get_locale() }}"> <!--<![endif]-->
+<head>
+    {% block head %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% if meta %}
+        {% for key, value in meta.iteritems() %}
+            <meta name="{{key}}" content="{{value}}" />
+        {% endfor %}
+    {% endif %}
+    <meta name="title" content="{% block meta_title %}Sporple | People of Sport{% endblock meta_title %}" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    {% if profile %}
+        <meta name="twitter:card" content="product">
+        <meta name="twitter:site" content="@sporple{{ profile.sport_slug }}">
+        <meta name="twitter:creator" content="@sporple{{ profile.sport_slug }}">
+        <meta name="twitter:domain" content="sporple.com">
+        <meta name="twitter:title" content="{{ profile.user.name }}">
+        <meta name="twitter:description" content="Sporple - Connecting athletes, agents, & clubs">
+        <meta name="twitter:image" content="{{ config.BASE_URL + profile.get_image() }}">
+        <meta name="twitter:label1" content="Position">
+        <meta name="twitter:data1" content="{% if profile.first_position %}{{ profile.first_position.name }}{% endif %}">
+        <meta name="twitter:label2" content="Country">
+        <meta name="twitter:data2" content="{{ profile.address_country_slug }}">
+        <meta name="og:title" content="{{ profile.user.name }}">
+        <meta name="og:site_name" content="Sporple/{{ profile.sport_slug }}">
+        <meta name="og:url" content="{{ url_for('profile.slug', slug=profile.slug, _external=True) }}">
+        <meta name="og:description" content="{{ profile.personal_statement or '' }}">
+        <meta name="og:image" content="{{ config.BASE_URL + profile.get_image() }}">
+        <meta name="fb:app_id" content="{{ config.FACEBOOK_APP_ID }}">
+    {% endif %}
+    <title>{% block title %}Sporple | People of Sport{% endblock title %}</title>
+    <link rel="shortcut icon" href="/favicon.ico?_=2.0" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    {% block stylesheets %}
+    {{ use_stylesheet('style.css') | safe }}
+    {{ use_stylesheet('activity.css') | safe }}
+    {{ use_stylesheet('frontend/message/_popupInput.css') | safe }}
+    {{ use_stylesheet('vendor/JQueryUI/jquery.ui.autocomplete.css') | safe }}
+    {{ use_stylesheet('search.css') | safe }}
+    {{ use_stylesheet('vendor/JQueryUI/jquery-ui-datepicker-redmond.css') | safe }}
+    {% endblock stylesheets %}
+    {{ use_stylesheet('frontend/styles.css') | safe }}
+
+    {% include 'global/old_ie_files.html' %}
+    {{ use_javascript('frontend/modernizr.js') | safe }}
+    <script type="text/javascript">
+        {% include 'global/web_font.html' %}
+        var main_current_module = "main",
+            main_update_url = "{{ url_for('main.update') }}",
+            follow_user_url = "{{ url_for('social.follow_noid') }}",
+            unfollow_user_url = "{{ url_for('social.unfollow_noid') }}",
+            related_profiles_url = "{{ url_for('profile.related_profiles') }}",
+            favourite_post_url = "{{ url_for('post.favourite') }}",
+            unfavourite_post_url = "{{ url_for('post.unfavourite') }}",
+            message_popup_url = "{{ url_for('message.popup_input') }}",
+            message_popup_retrieve_images_url = "/message/messagePopupImages",
+            message_popup_delete_images_url = "{{ url_for('message.popup_delete_file') }}",
+            post_popup_form_url = "/post/popupForm",
+            post_preview_url = "/post/preview",
+            listings_url = "{{ url_for('listings') }}",
+            looking_for_url = "{{ url_for('looking_for') }}",
+            is_user_loggedin = "{{ current_user.is_authenticated }}",
+            agent_listings = "{{ url_for('profile.looking_for_list') }}",
+            agent_listing = "{{ url_for('profile.show_looking_for') }}",
+            suggested_profiles_url = "{{ url_for('suggested_profiles') }}";
+    </script>
+    {% block javascripts %}
+    {{ use_javascript('frontend/app.js') | safe }}
+    {{ use_javascript('vendor/JQueryUI/jquery-ui.min.js') | safe }}
+    {{ use_javascript('vendor/bPopup/jquery.bpopup.min.js') | safe }}
+    {{ use_javascript('vendor/filedrop/jquery.filedrop.js') | safe }}
+    {{ use_javascript('frontend/main/main.js') | safe }}
+    {{ use_javascript('vendor/collapse.js') | safe }}
+    {{ use_javascript('vendor/jquery.dropdown.js') | safe }}
+    {{ use_javascript('vendor/jquery.url.js') | safe }}
+    {{ use_javascript('vendor/JQueryUI/jquery.ui.autocomplete.min.js') | safe }}
+    {{ use_javascript('vendor/underscore/underscore-min.js') | safe }}
+    {% endblock javascripts %}
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    {% include 'global/mixpanel.html' %}
+
+    {% include 'global/fb_ads.html' %}
+
+
+    {% endblock head %}
+</head>
+<body>
+        {% if show_olark %}
+            {% include 'global/olark_code.html' %}
+        {% endif %}
+
+        {% include 'global/google_tag_manager_code.html' %}
+        {% include 'global/header.html' %}
+        {% if not hide_container %}
+        <div class="content-container">
+        {% endif %}
+        {% block content %}
+        {% endblock content %}
+        {% if not hide_container %}
+        </div>
+        {% endif %}
+        {% include 'global/twitter_ads.html' %}
+        {% include 'global/footer.html' %}
+        {% include 'global/modal.html' %}
+
+</body>
+</html>

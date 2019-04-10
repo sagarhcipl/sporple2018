@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}{{ profile.user.sport.name }} | {{ profile.user.name }} | Sporple{% endblock title %}
+{% block meta_title %}{{ profile.user.sport.name }} | {{ profile.user.name }} | Sporple{% endblock meta_title %}
+{% block content %}
+
+<div class="profile-page club clearfix {% if is_owner %}is-owner{% endif %}">
+  <section class="basic-info row clearfix col-xs-12">
+    {% include 'profile/basic_info.html' %}
+  </section>
+  <div class="right-section pull-right col-md-8 col-xs-12">
+    {% if is_owner %}
+    <section class="invite-friends">
+        {% include 'profile/invite.html' %}
+    </section>
+    {% endif %}
+    {% if profile.reel_video_url or is_owner %}
+    <section class="profile-media">
+        {% include 'profile/media.html' %}
+    </section>
+    {% endif %}
+
+    <section class="recruiting">
+        {% include 'club/listings.html' %}
+    </section>
+
+    {% if profile.career_summary or is_owner %}
+    <section class="about row">
+        {% if not profile.career_summary %}
+        Add a short statement about your club to get noticed.
+        {% else %}
+        <span class="more" data-chars="250">{{ profile.career_summary | escape_custom }}<span>
+        {% endif %}
+        {% if is_owner %}
+        <button class="btn--info open-edit-modal"
+            data-url="{{ url_for('profile.edit_club_about') }}"
+            data-title="Club Statement"><i class="fa fa-edit"></i> edit
+        </button>
+        {% endif %}
+    </section>
+    {% endif %}
+
+    {% if current_team or past_team or is_owner %}
+    <section class="full-roster my-team">
+        {% include 'club/team.html' %}
+    </section>
+    {% endif %}
+
+  </div>
+  <div class="left-section col-md-4 pull-left col-xs-12">
+    <section class="roster hidden-xs hidden">
+    </section>
+
+    {% if is_owner or gallery_images %}
+    <section class="gallery">
+        {% include 'profile/gallery.html' %}
+    </section>
+    {% endif %}
+
+    <section class="twitter">
+    {% if profile.twitter_account %}
+        {% include 'profile/show_twitter_account.html' %}
+    {% elif is_owner %}
+        {% include 'profile/edit_twitter_account.html' %}
+    {% endif %}
+    </section>
+
+    {% if current_user.is_authenticated %}
+    <section class="activity">
+        {% include 'profile/activities.html' %}
+    </section>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <section id="related-profiles-mod" class="related-profiles">
+        {% include 'profile/related_profiles.html' %}
+    </section>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
+

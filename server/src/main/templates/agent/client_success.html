@@ -1,0 +1,16 @@
+<div class="add-success">
+    <h2>Client Added : {{ profile.fullname }}</h2>
+    <div class="row row-centered">
+        <div class="col col-centered col-xs-11 col-md-6">
+            <img src="{{ profile.get_image() }}"/>
+            <div class="check"></div>
+            <p>You have successfully added a client. Now you can manage their profile, upload a video showreel. All of your client's communications will come to you.</p>
+            <a class="btn btn--blue btn--med" href="{{ url_for('profile.slug', slug=profile.slug) }}" target="_blank">Upload Video</a>
+            <button class="btn btn--secondary btn--med" href="#">Done</button>
+            <a href="{{ url_for('profile.edit_client') }}" id="add-another-client"
+                data-cancel-url="{{ url_for('profile.clients') }}"
+                data-target-id="clients-container"
+                data-title="Add New Client">Add Another Client</a>
+        </div>
+    </div>
+</div>

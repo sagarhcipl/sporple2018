@@ -1,0 +1,25 @@
+{% if threads %}
+  {% for thread in threads %}
+    <a data-thread-id="{{ thread.thread_id }}" class="message-open-thread-link" href="{{ url_for('message.thread', thread_id=thread.thread_id) }}">
+      <img src="{{ thread.other_user.profile.get_image('x-small') }}" width="55"
+            alt="Profile image" title="Profile image"/>
+      <strong>{{ thread.other_user.name }}</strong>
+      <span>{{ thread.latest_message_body | truncate(50) }}</span>
+
+      <aside>
+        {% if thread.nb_unread_messages %}
+            <strong id="message_thread_list_thread_unread_count_{{ thread.id }}">
+                {{ thread.nb_unread_messages }}
+            </strong>
+        {% endif %}
+        <span>{{ post_date_format(thread.updated_at) }}</span>
+      </aside>
+    </a>
+  {% endfor %}
+
+{% else %}
+  <div style="padding: 10px;">
+    You do not yet have any conversations.
+  </div>
+{% endif %}
+

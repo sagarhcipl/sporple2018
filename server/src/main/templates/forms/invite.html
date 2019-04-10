@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{{ FACEBOOK_APP_ID }}',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<h1 class="padded">Invite your team mates &amp; friends</h1>
+<section class="invite-email row row-centered">
+  <div class="col-xs-12 col-md-6 col-centered">
+    <h2>Enter one email address per field. They will receive an invitation to join Sporple.</h2>
+    <form action="{{ url_for('auth.invite') }}" method="post">
+        <div class="row">
+            <div class="col-xs-12 col-md-6"><input type="email" id="email1" name="emails[]" class="col-xs-11 col-centered"/></div>
+            <div class="col-xs-12 col-md-6"><input type="email" id="email2" name="emails[]" class="col-xs-11 col-centered"/></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6"><input type="email" id="email3" name="emails[]" class="col-xs-11 col-centered"/></div>
+            <div class="col-xs-12 col-md-6"><input type="email" id="email4" name="emails[]" class="col-xs-11 col-centered"/></div>
+        </div>
+    </form>
+    <div class="alert alert-success{% if not success %} hidden{% endif %}"><strong>Great!</strong> Your friends will shortly receive an invite. Feel free to invite as many as you want</div>
+    <div class="row">
+        <button class="btn btn--blue btn--large send-invite">Send Invite</button>
+    </div>
+  </div>
+</section>
+<section class="invite-social row row-centered">
+  <div class="or-border col-xs-10 col-md-5 col-centered"><div class="or-text">OR</div></div>
+  <div class="clearfix"></div>
+  <div class="col-xs-12 col-md-6 col-centered">
+    <button class="btn btn--fb btn--large" id="invite-fb-friends">Invite from Facebook</button>
+  </div>
+</section>
+{% endblock content %}

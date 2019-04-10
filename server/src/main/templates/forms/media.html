@@ -1,0 +1,76 @@
+{% import 'forms/base.html' as base %}
+<div class="profile__media-cover-cont aspect-wrap ratio-16-9">
+  <div class="upload-video">
+    <div class="content">
+      <form action="{{ url_for('profile.edit_player_media', user_id=profile.user_id) }}" method="post" class="profile__edit-cover-form" id="profile__edit-cover-form" enctype="multipart/form-data">
+  
+              {{ form.csrf_token }}
+              {% if profile.role.slug == 'club' %}
+                  <h3>Add a Club video</h2>
+              {% else %}
+  
+                  <h3>Add your Player Showreel</h2>
+              {% endif %}
+  
+              <div class="col-md-6 col-xs-12 col-centered">Paste your
+                  <strong><img src="/static/images/ico_youtube.png"/> Youtube</strong> or
+                  <strong><img src="/static/images/ico_vimeo.png"/> Vimeo</strong> link
+              </p>
+  
+              <div class="form__row has-tooltip">
+                  {{ form.reel_video_url(**{
+                      'id': 'profile__edit-vid-url',
+                      'data-parsley-type': 'url',
+                      'data-parsley-trigger': 'change',
+                      'placeholder': 'Video URL',
+                      })
+                  }}
+                  
+                  <span class="tooltip" id="media_video_help" onmouseover="$('#showreel_tip').addClass('show_tip')"
+                            onmouseout="$('#showreel_tip').removeClass('show_tip')">?</span>
+                  <span id="showreel_tip" class="tip_info">Please paste your video URL into this field then select Add. For both youtube and vimeo videos once you have your video in your browser then select the SHARE button and simply copy the entire displayed URL and paste it back into this field.</span>
+              </div>
+  
+              <button class="btn btn--side-by-side btn--white" id="profile__edit-vid-btn"> save </button>
+              <button class="btn btn--side-by-side" id=""> cancel </button>
+  
+              {% if profile.role.slug == 'club' %}            
+                  <p>Dont have a Club video? Then select a cover image instead.</p>
+              {% else %}
+                  <p>Don't have a showreel? Then select a cover image instead.</p>
+              {% endif %}
+              {{ form.reel_image_x1(id='media_upload_image_x1') }}
+              {{ form.reel_image_y1(id='media_upload_image_y1') }}
+              {{ form.reel_image_w(id='media_upload_image_w') }}
+              {{ form.reel_image_h(id='media_upload_image_h') }}
+              {{ form.is_temp(id='media_upload_image_is_temp') }}
+  
+              {% if profile.role.slug == 'club' %}
+                  <a href="#" class="btn_add_cover btn_add_club_media btn file-wrapper">
+                      <strong>+</strong> Add
+                      {{ form.reel_image(**{
+                          'id': 'profile__edit-img-file',
+                          'accept': 'image/jpeg,image/png,capture=camera',
+                          'data-parsley-profilepic': 'profile__edit-img-file',
+                          'data-parsley-trigger': 'change'
+                          })
+                      }}
+                  </a>
+  
+              {% else %}
+                  <a href="#" class="btn_add_cover btn btn--white file-wrapper">
+                      <span>+</span> Add a cover image
+                      {{ form.reel_image(**{
+                          'id': 'profile__edit-img-file',
+                          'accept': 'image/jpeg,image/png,capture=camera',
+                          'data-parsley-profilepic': 'profile__edit-img-file',
+                          'data-parsley-trigger': 'change'
+                          })
+                      }}
+                  </a>
+              {% endif %}
+              {{ base.errors(form.reel_image.errors) }}
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+    <ul class="search-results-navigation">
+
+            {% if total_pages > 10 %}
+                {% if current_page < total_pages / 2 %}
+                    {% if current_page < 4 %}
+                        {% set first_half_start = 1 %}
+                        {% set first_half_end = 4 %}
+                    {% else %}
+                        {% set first_half_start = current_page - 3 %}
+                        {% set first_half_end = current_page %}
+                    {% endif %}
+                    {% set second_half_start = total_pages - 2 %}
+                    {% set second_half_end = total_pages %}
+                {% else %}
+                    {% set first_half_start = 1 %}
+                    {% set first_half_end = 3 %}
+
+                    {% if current_page < total_pages - 3 %}
+                        {% set second_half_start = current_page %}
+                        {% set second_half_end = current_page + 3 %}
+                    {% else %}
+                        {% set second_half_start = total_pages - 3 %}
+                        {% set second_half_end = total_pages %}
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% set first_half_start = 1 %}
+                {% set first_half_end = total_pages if total_pages > 1 else 0 %}
+                {% set second_half_start = 0 %}
+                {% set second_half_end = -1 %}
+            {% endif %}
+
+        {% if current_page %}
+            <li>
+                <a href="{{ results_url.replace('-page-', (current_page -1)|string) | safe }}">
+                    Previous
+                </a>
+            </li>
+        {% endif %}
+
+        {% for i in range(first_half_start, first_half_end+1) %}
+            <li {% if i-1 == current_page %}class="active"{% endif %}>
+                <a href="{{ results_url.replace('-page-', (i-1)|string) }}">
+                    {{ i }}
+                </a>
+            </li>
+        {% endfor %}
+
+        {% if second_half_start - first_half_end > 0 %}
+            <li>
+                ...
+            </li>
+        {% endif %}
+
+        {% for i in range(second_half_start, second_half_end+1) %}
+            <li {% if i-1 == current_page %}class="active"{% endif %}>
+                <a href="{{ results_url.replace('-page-', (i-1)|string) }}">
+                    {{ i }}
+                </a>
+            </li>
+        {% endfor %}
+
+        {% if total_pages > 1 and current_page < total_pages - 1 %}
+            <li>
+                <a href="{{ results_url.replace('-page-', (current_page +1)|string) }}">
+                    Next
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+

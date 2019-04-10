@@ -1,0 +1,12 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+<p>New claim request for: <a href="{{ url_for('profile.slug', slug=profile.slug, _external=True) }}">{{ profile.user.name }}</a>.<br/>
+Requester: {{ claim.name }} &mdash; {{ claim.email }}<br/>
+Notes from user: <br/>
+<em>{{ claim.comments }}</em><br/>
+<br/>
+</p>
+<p>To approve this request, click the following link<br/>
+<a href="{{ url_for('auth.approve_claim', claim_id=claim.id, _external=True) }}">{{ url_for('auth.approve_claim', claim_id=claim.id, _external=True) }}</a>
+</p>
+{% endblock content %}

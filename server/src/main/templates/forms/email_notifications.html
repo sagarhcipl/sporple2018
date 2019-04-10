@@ -1,0 +1,39 @@
+{% import 'forms/base.html' as base %}
+{% extends 'base.html' %}
+{% block content %}
+<section id="container" class="row row-centered settings email-notifications">
+    <section id="profile_basic_information" class="col-centered col-md-8 top_content" style="min-height: 600px">
+        {% include 'settings/left_column.html' %}
+        <h1>EMAIL NOTIFICATIONS</h1>
+        <div>Choose how you are notified by email</div>
+
+        <div class="row row-centered">
+            <form method="POST" action="{{ url_for('settings.email_notifications') }}" class="form new-school col-md-6 col-centered">
+                {% for subfield in form %}
+                {% if subfield.type != 'CSRFTokenField' %} 
+                {% if current_user.user.profile.role.slug == 'club' or subfield.name != 'new_application' %}
+                <div class="form__row checkbox">
+
+                    {{ subfield(**{
+                        'data-parsley-trigger': 'blur',
+                        })
+                    }}
+                    <label class="form__label">{{ subfield.label }}</label>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% if success_message %}
+                <p class="success">{{ success_message }}</p>
+                {% endif %}
+                {% for field,errors in form.errors.iteritems() %}
+                    <p class="error">{{ ','.join(errors) }}</p>
+                {% endfor %}
+                {{ form.hidden_tag() }}
+                <button class="btn btn--large btn--blue">SAVE</button>
+            </form>
+        </div>
+    </section>
+</section>
+<div class="clearfix"></div>
+{% endblock content %}

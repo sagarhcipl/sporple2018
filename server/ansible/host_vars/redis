@@ -1,0 +1,7 @@
+ansible_user:       deploy
+ansible_host:       redis.corp.sporple.com
+
+public_ip:          52.30.46.78
+private_ip:         172.31.40.67
+
+environment_name:   prod

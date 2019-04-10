@@ -1,0 +1,36 @@
+{% if not looking_fors %}
+<li class="empty-state"><p class="ttl3">Sorry, there are no listings at this time.</p></li>
+{% endif %}
+{% for looking_for in looking_fors %}
+    <li class="cf">
+        
+        <p class="listing__date-listed">Listed: <span>{{ looking_for.created_at.strftime('%d %b %Y') }}</span></p>
+
+        <div class="listing__img">
+            <img src="{{ profile.get_image('small') }}"/>
+        </div>
+
+        <div class="listing__body">
+            {% if looking_for.title[0] in 'aeiou' %}
+                {% set determiner = 'an' %}
+            {% else %}
+                {% set determiner = 'a' %}
+            {% endif %}
+
+            <h3 class="ttl2">Looking for {{ determiner }} <span>{{ looking_for.title }}</span></h3>
+
+            <dl>
+                <dt>Sport</dt>
+                <dd>{{ looking_for.sport.name }}</dd>
+                <dt>Country</dt>
+                <dd>{% if looking_for.country %}{{ looking_for.country.name }}{% endif %}</dd>
+            </dl>
+
+            <p>{{ looking_for.body | truncate(60) }}</p>
+
+        </div>
+
+        <a data-id="{{ looking_for.id }}" class="btn btn--cta-secondary listing__view-listing-btn">View</a>
+    </li>
+{% endfor %}
+

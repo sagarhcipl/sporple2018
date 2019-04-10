@@ -1,0 +1,31 @@
+<ul class="search-results">
+  {% for user in users %}
+  <li class="row">
+    <div class="search-results__profile-info col-md-6 col-xs-12 left">
+      <div class="search-results__profile-info--avatar col-xs-4">
+        <a href="{{ url_for('profile.slug', slug=user.slug) }}">
+          <img src="{{ user.profile.get_image('small') }}">
+        </a>
+      </div>
+
+      <div class="TextHolder col-xs-7">
+        <a href="{{ url_for('profile.slug', slug=user.slug) }}" class="ttl">{{ user.name }}</a><br/>
+        {{ user.sports_string }}<br/>
+        <span class="club">{{ user.profile.address_city }}{% if user.profile.address_country %}, {{ user.profile.address_country.name }}{% endif %}</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0 buttons">
+      <a class="btn btn--side-by-side btn--message send-message" data-user-id="{{ user.id }}">Message</a>
+      {% if type == 'following' or current_user.user.is_following(user.id) %}
+        <a href="#" class="follow btn btn--side-by-side btn--follow active" data-user-id="{{ user.id }}">
+          <span>Following</span>
+        </a>
+      {% else %}
+        <a href="#" class="follow btn btn--side-by-side btn--follow" data-user-id="{{ user.id }}">
+          <span>Follow</span>
+        </a>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,32 @@
+{% if not hide_title %}
+{% if is_owner %}
+<button class="btn--box edit-header open-edit-inplace"
+    data-url="{{ url_for('profile.edit_client') }}"
+    data-cancel-url="{{ url_for('profile.clients') }}"
+    data-target-id="clients-container"
+    data-title="Add New Client"><i class="fa fa-plus"></i> Add</button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-users"></i> Current Clients</h3>
+{% endif %}
+<div id="clients-container">
+<ul class="row row-eq-height">
+{% for client in clients %}
+<li class="col-xs-6 col-md-4 col-lg-3 team-player" data-id="{{ client.id }}">
+
+    <div class="client__img">
+        <a href="{{ url_for('profile.slug', slug=client.slug) }}"><img src="{{ client.get_image() }}" /></a>
+    </div>
+
+    <div class="body">
+        <h3 class="ttl2"><a href="{{ url_for('profile.slug', slug=client.slug) }}">{{ client.fullname }}</a></h3>
+        <div><a>{{ client.current_club }}</a></div>
+        {% if is_owner and client.relate %}
+        <button class="btn--box btn--danger delete"
+            data-url="{{ url_for('relate.delete', target_id=client.user_id, user_id=profile.user_id) }}"><i class="fa fa-trash-o"></i>
+        </button>
+        {% endif %}
+    </div>
+</li>
+{% endfor %}
+</ul>
+</div>

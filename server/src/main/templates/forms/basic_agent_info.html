@@ -1,0 +1,159 @@
+{% import 'forms/base.html' as base %}
+<form action="{{ url_for('profile.edit_agent') }}" method="post" id="profile_basic_information_form" enctype="multipart/form-data" class="form new-school">
+    {{ form.hidden_tag() }}
+
+    <div id="profile_basic_agent_information_form__agency-pic-cont" class="form__row cf profile-pic-upload-cont file-wrapper">
+        <div id="profile_agency-crop-preview" class="profile-pic-upload__preview">
+            <img src="{{ profile.get_agency_image() }}"
+                alt="Agency image" title="Agency image"
+                width="42" id="profile_agency_image_preview"/>
+        </div>
+
+        <label class="form__label">Edit Agency Picture</label>
+
+        {{ form.profile_agency_image(**{
+            'id': 'profile_agency_image',
+            'class': 'profile-pic-upload',
+            'accept': 'image/jpeg,image/png,capture=camera',
+            'data-parsley-profilepic': 'profile_agency_image',
+            'data-parsley-trigger': 'change',
+            'data-prefix': 'profile_agency'
+            })
+        }}
+
+        {{ base.errors(form.profile_agency_image.errors) }}
+    </div>
+
+
+    <div id="profile_basic_agent_information_form__first-name-cont" class="form__row">
+        {{ form.firstname(**{
+            'data-parsley-required': 'true',
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">First name<span class="red">*</span></label>
+
+        {{ base.errors(form.firstname.errors) }}
+    </div>
+
+    <div id="profile_basic_agent_information_form__last-name-cont" class="form__row">
+        {{ form.lastname(**{
+            'data-parsley-required': 'true',
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">Last name<span class="red">*</span></label>
+
+        {{ base.errors(form.lastname.errors) }}
+    </div>
+
+    <div id="profile_basic_agent_information_form__birth-date-cont" class="form__row">
+        <p>Date of Birth<span class="red">*</span></p>
+        
+        <div class="birth-date-fields-cont">
+            {{ form.birthday(**{
+                'data-parsley-required': 'true',
+                'data-parsley-trigger': 'change'
+                })
+            }}
+        </div>
+
+        {{ base.errors(form.birthday.errors) }}
+
+    </div>
+
+    <div id="profile_basic_agent_information_form__sport-cont" class="form__row">
+        <p>Sports<span class="red">*</span></p>
+
+        {{ form.user_sport(**{
+            'id': 'profile__agents-sports',
+            'data-parsley-required': 'true',
+            'data-parsley-required-message': 'Please select a sport',
+            'data-parsley-trigger': 'change',
+            'class': 'no-style'
+            })
+        }}
+
+    </div>
+
+    <ul id="profile__agents-sports-list" class="multiple-select-list"></ul>
+
+    <div id="profile_basic_agent_information_form__agency-cont" class="form__row">
+        {{ form.agency_name(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">Agency</label>
+
+        {{ base.errors(form.agency_name.errors) }}
+    </div>
+
+    <div id="profile_basic_agent_information_form__agency-url-cont" class="form__row">
+        {{ form.agency_url(**{
+            'type': 'url',
+            'minlength': '4',
+            'maxlength': '255',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">Agency website</label>
+
+        {{ base.errors(form.agency_url.errors) }}
+    </div>
+
+    <div id="profile_basic_agent_information_form__years-experience-cont" class="form__row">
+        <p>Years of experience<span class="red">*</span></p>
+
+        {{ form.years_experience(**{
+            'data-parsley-type': 'integer',
+            'data-parsley-required': 'true',
+            'data-parsley-trigger': 'change',
+            'data-parsley-range': '[0,100]',
+            'data-parsley-type-message': 'Enter the number of years to the nearest year',
+            })
+        }}
+
+        {{ base.errors(form.years_experience.errors) }}
+    </div>
+
+    <div id="profile_basic_agent_information_form__nationality-cont" class="form__row">
+        <p>Nationality</p>
+        {{ form.nationality() }}
+
+        {{ base.errors(form.nationality.errors) }}
+    </div>
+
+    <div id="profile_basic_agent_information_form__country-cont" class="form__row">
+        <p>Country</p>
+        {{ form.address_country() }}
+
+        {{ base.errors(form.address_country.errors) }}
+    </div>
+
+    <div id="profile_basic_agent_information_form__city-cont" class="form__row">
+        {{ form.address_city(**{
+            'minlength': '2',
+            'maxlength': '50',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">City</label>
+
+        {{ base.errors(form.address_city.errors) }}
+    </div>
+
+    <a href="#" class="btn btn--secondary btn--side-by-side">Cancel</a>
+    <button class="btn btn--side-by-side btn--blue" id="btn--submit">Save</button>
+
+</form>

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+              fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
+{% if current_user.is_authenticated and not set_new_mixpanel_props  %}
+<script type="text/javascript">
+mixpanel.people.set({
+    "$email": "{{ current_user.user.username }}",
+    "$created": "{{ now.isoformat(' ') }}",
+    "$name": "{{ current_user.user.name }}",
+    "role": "{{ current_user.user.role_slug }}",
+    "country": "{{ current_user.user.profile.address_country_slug }}",
+});
+mixpanel.register({
+    "role": "{{ current_user.user.role_slug }}"
+});
+mixpanel.alias("{{ current_user.user.username }}");
+</script>
+<script type='text/javascript'>
+    var addthis_share = addthis_share || {}
+    addthis_share = {
+        url: 'http://lp.sporple.com/rugby1.html',
+        title: 'I just set up my player profile on @Sporple!  You can too!'
+    }
+</script>
+{% endif %}
+{{ use_javascript('frontend/registration/facebook_tracking_pixel.js') | safe }}
+{{ use_stylesheet('frontend/registration/signup_complete.css') | safe }}
+  <div id="wrapper-box" class="content_space">
+    <div class="page_content signup_complete l-center">
+      <h1>Congratulations!</h1>
+
+      <p><strong>Welcome to</strong></p>
+
+      <img src="/static/images/img_logo_HR.png" width="239" height="66" alt="Sporple" class="logo_signup_complete l-center"/>
+
+      <p><strong class="font-arial">Jump in and begin customising your profile!</strong></p>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <div class='center_addthis'>
+    <div class="addthis_inline_share_toolbox" id='absolute_addthis'></div>
+    </div>
+
+    <div class="wrapper border-top spacing-top-20">
+        <span class="knop l-center new-school">
+            <a class="btn btn--cta btn--large" href="{{ url_for('profile.slug', slug=current_user.user.slug) }}">Go to Profile</a>
+        </span>
+    </div>
+
+    </div>
+<!-- Google Code for Registration Basic Conversion Page -->
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 983870752;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "66WICPf3q2MQoNqS1QM";
+    var google_remarketing_only = false;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/983870752/?label=66WICPf3q2MQoNqS1QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- End Conversion -->
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '1645738359089680');
+  fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1645738359089680&ev=PageView&noscript=1"
+  /></noscript>
+<!-- End Facebook Pixel Code -->
+</div>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57d9da66e0288c2b"></script>
+{% endblock content %}

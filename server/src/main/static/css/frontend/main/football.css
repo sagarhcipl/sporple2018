@@ -1,0 +1,533 @@
+/*  CLEARFIX  */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+html, body{
+    font-family:Helvetica, Arial, sans-serif;
+}
+
+body{
+    min-width: 1064px;
+    width: 100%;
+}
+
+section{
+    display: block;
+}
+
+.caps{
+    text-transform:uppercase;
+}
+
+.orange{
+    color:#f89d00;
+}
+
+.blue{
+    color:#4b89e4;
+}
+
+.din{
+    font-family:"Din","HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+.table{
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+.cell{
+    display:table-cell;
+    vertical-align:middle;
+}
+
+/*  HEADER  */
+section.landing_join {
+    height: 410px;
+}
+
+.landing_join_football_bkg{
+    background:url(/static/images/sporple-football-header-background.jpg) no-repeat center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.football_wrapper .landing_join--body{
+    padding:75px 0 45px;
+}
+
+.football_wrapper .landing_join .landing_join_video{
+    padding:0;
+    margin-top: -15px;
+}
+
+.football_wrapper .landing_join .landing_join_content{
+    padding:30px 0 30px 30px;
+    margin-left:30px;
+    height:258px;
+}
+
+.football_wrapper .landing_join ul{
+    padding:0;
+}
+
+.football_wrapper .landing_join ul li{
+    padding:10px 0 0;
+}
+
+.football_wrapper .landing_join ul li a img{
+    -webkit-box-shadow: #333333 0 3px 6px 0px;
+    -moz-box-shadow: #333333 0 3px 6px 0px; /* color, h-offset, v-offset, blur, spread */
+    box-shadow: #333333 0 3px 6px 0px; /* inset is optional */;
+}
+
+.football_wrapper .landing_join ul li.terms{
+    color:white;
+    text-shadow:0 1px 3px #000;
+    text-transform:uppercase;
+    font-size:10px;
+}
+
+.football_wrapper .landing_join ul li.terms a{
+    color:#fff;
+    font-size:10px;
+}
+
+.football_wrapper .landing_join ul li.terms a:hover{
+    color:#f89d00;
+}
+
+.landing_join .landing_join_content h1.shadow-header{
+    font-weight:bold;
+    text-transform:uppercase;
+    text-shadow:0 1px 2px #474747;
+    margin:0 0 45px;
+    font-size:25px;
+    line-height:1.2em;
+    letter-spacing:1px;
+    font-family:"Din","HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+.landing_join_content h3{
+    font-size:17px;
+}
+
+.default-signup_buttons-list li a{
+    position:relative;
+    display:inline-block;
+    height:33px;
+    width:231px;
+}
+
+.default-signup_buttons-list li a img{
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+.default-signup_buttons-list li a span{
+    font-family: font-family:"Din","HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+    font-size:13px;
+    text-transform:uppercase;
+    display:inline-block;
+    position:relative;
+    left:45px;
+    line-height:35px;
+    color:#fff;
+}
+
+.default-signup_buttons-list li.terms a{
+    display:inline-block;
+    height:auto;
+    width:auto;
+}
+
+/*  SCHEME  */
+.landing_scheme{
+    padding:55px 0 66px;
+    text-align:center;
+}
+
+.landing_scheme h1{
+    font-size:23px;
+    text-align:center;
+    margin:0 0 50px;
+    font-weight:bold;
+}
+
+.landing_scheme_step{
+    display:inline-block;
+    padding:0 25px;
+    width:300px;
+    vertical-align: top;
+}
+
+.landing_scheme_step h2{
+    font-size:19px;
+    line-height:1.2em;
+    font-weight:normal;
+    width:80%;
+    margin:0 auto 10px;
+}
+
+.landing_scheme_step h2 b{
+    font-weight:bold;
+}
+
+.landing_scheme_step-image{
+    height:257px;
+}
+
+.recycle-scheme .landing_scheme_step-image{
+    position:relative;
+    top:30px;
+}
+
+/*  TESTIMONIALS  */
+#testimonials{
+    width:100%;
+    text-align:center;
+    background: #01427e;
+    background: -moz-linear-gradient(left, #ffffff 0%, #006cb8 24%, #01427e 75%, #ffffff 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(24%,#006cb8), color-stop(75%,#01427e), color-stop(100%,#ffffff));
+    background: -webkit-linear-gradient(left, #ffffff 0%,#006cb8 24%,#01427e 75%,#ffffff 100%);
+    background: -o-linear-gradient(left, #ffffff 0%,#006cb8 24%,#01427e 75%,#ffffff 100%);
+    background: -ms-linear-gradient(left, #ffffff 0%,#006cb8 24%,#01427e 75%,#ffffff 100%);
+    background: linear-gradient(to right, #ffffff 0%,#006cb8 24%,#01427e 75%,#ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006cb8', endColorstr='#01427e',GradientType=1 );
+}
+
+.testimonials_pattern{
+    background:url(/static/images/sporple-testimonial-bar-pattern.png) repeat top center transparent;
+    width:100%;
+    height:100%;
+    padding:15px 0;
+}
+
+.testimonials_title{
+    font-size:23px;
+    text-align:right;
+    display:inline-block;
+    vertical-align:top;
+}
+
+.testimonial_image{
+    display:inline-block;
+    width:83px;
+    height:83px;
+    margin:0 15px;
+}
+
+.testimonial_text{
+    display:inline-block;
+    font-size:14px;
+    line-height:1.5em;
+    width:420px;
+    text-align:left;
+    vertical-align:top;
+}
+
+.testimonial_text--user{
+    text-transform:uppercase;
+    font-family:"HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    font-size:15px;
+    color:#ffffff;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=30)"; /* for IE8 in IE7 mode */
+    filter: alpha(opacity=30); /* for IE6-IE8 */
+    opacity:.3;
+    margin-left:12px;
+    font-weight: bold;
+}
+
+.football-join-bar{
+    background: #ffffff;
+    background: -moz-linear-gradient(left,  #ffffff 0%, #eeeeee 50%, #ffffff 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(50%,#eeeeee), color-stop(100%,#ffffff));
+    background: -webkit-linear-gradient(left,  #ffffff 0%,#eeeeee 50%,#ffffff 100%);
+    background: -o-linear-gradient(left,  #ffffff 0%,#eeeeee 50%,#ffffff 100%);
+    background: -ms-linear-gradient(left,  #ffffff 0%,#eeeeee 50%,#ffffff 100%);
+    background: linear-gradient(to right,  #ffffff 0%,#eeeeee 50%,#ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 );
+    text-align:center;
+    position:relative;
+    z-index:10;
+    margin-top:5px;
+}
+
+.football-join-bar .btn_join{
+    display:inline-block;
+    width:130px;
+    height:36px;
+    line-height:36px;
+    border-top:1px solid #144482;
+    background-color:#2674b2;
+    color:#fff;
+    text-transform:uppercase;
+    font-size:20px;
+    -webkit-box-shadow: #0c2a58 0 2px 4px 0px inset, #6aa0ca 0 -1px 2px 2px inset;
+    -moz-box-shadow: #0c2a58 0 2px 4px 0px inset, #6aa0ca 0 -1px 2px 2px inset; /* color, h-offset, v-offset, blur, spread */
+    box-shadow: #0c2a58 0 2px 4px 0px inset, #6aa0ca 0 -1px 2px 2px inset; /* inset is optional */
+    text-decoration:none;
+}
+
+.football-join-bar .btn_join:hover{
+    -webkit-box-shadow: #0c2a58 0 1px 2px 0px inset, #6aa0ca 0 -1px 2px 2px inset;
+    -moz-box-shadow: #0c2a58 0 1px 2px 0px inset, #6aa0ca 0 -1px 2px 2px inset; /* color, h-offset, v-offset, blur, spread */
+    box-shadow: #0c2a58 0 1px 2px 0px inset, #6aa0ca 0 -1px 2px 2px inset; /* inset is optional */
+    text-decoration:none;
+    color:#00002d;
+}
+
+/*  PROFILES  */
+#profiles{
+    margin-top:103px;
+}
+
+.profiles_titles{
+    margin:0;
+    text-align:center;
+    font-size:23px;
+    font-weight:bold;
+}
+
+ul.profiles_tab-list{
+    text-align:center;
+    padding:0;
+    margin:57px auto;
+    list-style:none;
+}
+
+ul.profiles_tab-list li{
+    display:inline-block;
+    margin:0 40px;
+}
+
+ul.profiles_tab-list li a{
+    background:#fff;
+    border-radius:100%;
+    height:134px;
+    width:134px;
+    display:block;
+    text-align:center;
+    color:#8b8b8b;
+    font-family:"Din","HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    font-size:20px;
+    text-decoration:none;
+    text-transform:uppercase;
+    position:relative;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -o-transition: all linear .3s;
+    transition: all linear .3s;
+}
+
+ul.profiles_tab-list li a:hover{
+    background-color:#e4e4e4;
+    color:#969696;
+}
+
+ul.profiles_tab-list li a.selected:hover span.sprite{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=60)";
+    filter: alpha(opacity=60);
+    opacity:.6;
+}
+
+ul.profiles_tab-list li a.selected, ul.profiles_tab-list li a:active{
+    background:#e4e4e4;
+    color:#014887;
+}
+
+ul.profiles_tab-list li a span.text{
+    position:relative;
+    top:30px;
+}
+
+ul.profiles_tab-list li a span.sprite{
+    display:block;
+    position:absolute;
+    width:64px;
+    height:56px;
+    background:url(/static/images/sporple-profile-select-sprite.png) no-repeat center -63px;
+    left:50%;
+    top:55px;
+    margin-left:-32px;
+    -webkit-transition: opacity linear .3s;
+    -moz-transition: opacity linear .3s;
+    -o-transition: opacity linear .3s;
+    transition: opacity linear .3s;
+}
+
+ul.profiles_tab-list li a#ha-athlete.selected span.athlete{
+    background-position:center -4px;
+}
+
+ul.profiles_tab-list li a#ha-agent span.agent{
+    background-position:6px -194px;
+}
+
+ul.profiles_tab-list li a#ha-agent.selected span.agent{
+    background-position:6px -128px;
+}
+
+ul.profiles_tab-list li a#ha-club span.club{
+    background-position:center -324px;
+}
+
+ul.profiles_tab-list li a#ha-club.selected span.club{
+    background-position:center -259px;
+}
+
+.profiles_tabs{
+    margin: 30px auto 0;
+    width: 1064px;
+    padding-bottom: 65px;
+}
+
+.profile_tabs-images{
+    position:relative;
+    width:50%;
+    float:left;
+}
+
+.profile_tabs-big-image{
+    width:100%;
+    height:auto;
+}
+
+.profile_tabs-small-image{
+    position:absolute;
+}
+
+.profile_tabs-bottom-gradient{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100%;
+    height:50px;
+    background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 25%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(25%,rgba(255,255,255,1)));
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 25%);
+    background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 25%);
+    background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 25%);
+    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 25%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+}
+
+#ha-athlete-expand .profile_tabs-small-image{
+    top: 144px;
+    left: -48px;
+}
+
+#ha-agent-expand .profile_tabs-small-image{
+    top:-6px;
+    right:-14px;
+}
+
+#ha-club-expand .profile_tabs-small-image{
+    top:146px;
+    left:-45px;
+}
+
+.profile_tabs-text{
+    width:48%;
+    float:right;
+}
+
+.profile_tabs-text-title{
+    font-size:20px;
+    margin:0 auto 36px;
+}
+
+ul.profile_tabs-text-list{
+    margin:0 0 45px;
+    padding:0;
+    list-style:none;
+}
+
+ul.profile_tabs-text-list li{
+    margin-bottom:10px;
+    padding-left:20px;
+    position:relative;
+}
+
+ul.profile_tabs-text-list li:before{
+    content:"";
+    display:block;
+    width:11px;
+    height:11px;
+    background-color:#4b89e4;
+    border-radius:100%;
+    position:absolute;
+    top:3px;
+    left:0;
+}
+
+.profile_tabs-text hr{
+    height:1px;
+    background-color:#c7c7c7;
+    width:100%;
+    background-image:none;
+    margin-bottom:15px;
+}
+
+.default-button{
+    display: inline-block;
+    vertical-align: top;
+    height: 34px;
+    line-height:34px;
+    font-size: 14px;
+    padding:0 10px;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    text-decoration:none;
+    color: #333333;
+    text-shadow: 1px 1px rgba(255,255,255,0.8);
+    border-bottom: 1px solid #AAAAAA;
+    cursor: pointer;
+    background: #f0f0f0;
+    background: -moz-linear-gradient(top, #f0f0f0 0%, #ababab 50%, #f0f0f0 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(50%,#ababab), color-stop(100%,#f0f0f0));
+    background: -webkit-linear-gradient(top, #f0f0f0 0%,#ababab 50%,#f0f0f0 100%);
+    background: -o-linear-gradient(top, #f0f0f0 0%,#ababab 50%,#f0f0f0 100%);
+    background: -ms-linear-gradient(top, #f0f0f0 0%,#ababab 50%,#f0f0f0 100%);
+    background: linear-gradient(to bottom, #f0f0f0 0%,#ababab 50%,#f0f0f0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#f0f0f0',GradientType=0);
+}
+
+.default-button:hover{
+    color: #FFFFFF;
+    text-shadow: 1px 1px rgba(0,0,0,0.5);
+    border-color: #165589;
+    background: #207ac2; /* Old browsers */
+    background: -moz-linear-gradient(top,  #207ac2 0%, #00436A 50%, #207ac2 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#207ac2), color-stop(50%,#00436A), color-stop(100%,#207ac2)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #207ac2 0%,#00436A 50%,#207ac2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #207ac2 0%,#00436A 50%,#207ac2 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #207ac2 0%,#00436A 50%,#207ac2 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #207ac2 0%,#00436A 50%,#207ac2 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ac2', endColorstr='#207ac2',GradientType=0 ); /* IE6-9 */
+}
+
+.profile_tabs-text-description{
+    margin-top:30px;
+}

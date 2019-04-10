@@ -1,0 +1,25 @@
+- name: install pgbouncer
+  apt: name=pgbouncer state=present update_cache=yes
+
+- name: create data directory
+  file: path={{ log_directory }}/pgbouncer state=directory owner=sporple group=sporple mode=0755
+
+- name: update pgbouncer ini file
+  template: src=pgbouncer.ini.j2 dest=/etc/pgbouncer/pgbouncer.ini owner=sporple group=sporple mode=0644
+  notify:
+    - restart pgbouncer
+
+- name: change permissions of postgres socket folder
+  file: path=/var/run/postgresql mode=0777 recurse=yes
+
+- name: install pgbouncer init script
+  template: src=pgbouncer.conf.j2 dest=/etc/init/pgbouncer.conf mode=0644
+  notify:
+    - restart pgbouncer
+
+- name: create pid directory
+  file: path=/var/run/pgbouncer state=directory owner=sporple group=sporple mode=0755
+  notify:
+    - restart pgbouncer
+
+

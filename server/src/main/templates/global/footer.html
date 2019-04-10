@@ -1,0 +1,186 @@
+<footer id="footer" {% if hide_footer %}class="hidden"{% endif %}>
+    <div class="row">
+        <img class="col-md-2 logo hidden-xs" src="/static/images/logos/logo-white.png" />
+        <nav class="col-md-6">
+            <ul>
+                <li>
+                    <a href="https://newsroom.sporple.com" target="_blank">
+                        Newsroom
+                    </a>
+                </li>
+                <li>
+                    <a href="https://newsroom.sporple.com/about-us" target="_blank">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="https://newsroom.sporple.com/contact" target="_blank">
+                        Contact
+                    </a>
+                </li>
+                <li>
+                    <a href="https://newsroom.sporple.com/terms" target="_blank">
+                        Terms
+                    </a>
+                </li>
+                <li>
+                    <a href="https://sporple.zendesk.com/hc" target="_blank">
+                        Help
+                    </a>
+                <li>
+                    <a href="https://newsroom.sporple.com/privacy-cookies" target="_blank">
+                        Privacy &amp; Cookies
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <aside class="col-md-4 footer__aside">
+            <div class="footer__social-cont">
+                {% if sport and sport['slug'] == 'basketball' %}
+                        <a class="social_button facebook" href="https://www.facebook.com/sporplebasketball" target="_blank">
+                            <svg class="icon" role="img" title="Sporple on Facebook" viewBox="0 0 50 50">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/svg/foreground-svg.svg#facebook"></use>
+                            </svg>
+                        </a>
+                {% else %}
+                    <a class="social_button facebook" href="https://www.facebook.com/sporple" target="_blank">
+                        <svg class="icon" role="img" title="Sporple on Facebook" viewBox="0 0 50 50">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/svg/foreground-svg.svg#facebook"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+
+                {% if sport %}
+                        <a class="social_button twitter" href="www.twitter.com/{{ sport['twitter'] }}" target="_blank">
+                            <svg class="icon" role="img" title="Sporple on Twitter" viewBox="0 0 50 50">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/svg/foreground-svg.svg#twitter"></use>
+                            </svg>
+                        </a>
+                {% else %}
+                    <a class="social_button twitter" href="https://twitter.com/Sporple" target="_blank">
+                        <svg class="icon" role="img" title="Sporple on Twitter" viewBox="0 0 50 50">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/svg/foreground-svg.svg#twitter"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+
+                <a class="social_button youtube" href="https://www.youtube.com/user/sporple" target="_blank">
+                    <svg class="icon" role="img" title="Sporple on youtube" viewBox="0 0 50 50">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/svg/foreground-svg.svg#youtube"></use>
+                    </svg>
+                </a>
+                <a class="social_button google" href="https://plus.google.com/+Sporple" target="_blank">
+                    <svg class="icon" role="img" title="Sporple on Google Plus" viewBox="0 0 50 50">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/svg/foreground-svg.svg#gplus"></use>
+                    </svg>
+                </a>
+            </div>
+
+            <p class="footer__copyright">&COPY; Copyright Sporple {{ now.year }} All rights reserved</p>
+
+        </aside>
+
+        <img class="logo visible-xs-block" src="/static/images/logos/logo-white.png" />
+        {% include 'global/google_retargeting.html' %}
+    </div>
+</footer>
+{% if not config['DEBUG'] %}
+    <script>
+
+        setTimeout(function(){var a=document.createElement("script");
+            var b=document.getElementsByTagName("script")[0];
+            a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/7913.js?"+Math.floor(new Date().getTime()/3600000);
+            a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments);
+            };
+            i[r].l = 1 * new Date();
+            a = s.createElement(o);
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-43559116-1', 'sporple.com');
+        ga('send', 'pageview');
+    </script>
+{% endif %}
+{% include 'global/adroll.html' %}
+
+{% if profile and profile.midnight_madness %}
+    
+    {% if not current_user.is_authenticated %}
+        
+        <script type='text/javascript'>
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+
+            (function () {
+                var gads = document.createElement('script');
+                gads.async = true;
+                gads.type = 'text/javascript';
+                var useSSL = 'https:' == document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:') +
+                    '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            })();
+
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/104790170/MM_001', [728, 90], 'div-gpt-ad-1409080322023-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/104790170/MM_002', [300, 250], 'div-gpt-ad-1409080761041-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/104790170/MM_003', [300, 250], 'div-gpt-ad-1409080848737-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/104790170/MM_004', [300, 250], 'div-gpt-ad-1409080919001-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        </script>
+   
+    {% else %}
+
+        <script type='text/javascript'>
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+            (function() {
+                var gads = document.createElement('script');
+                gads.async = true;
+                gads.type = 'text/javascript';
+                var useSSL = 'https:' == document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:') +
+                    '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            })();
+
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/104790170/MM_Int_01', [300, 250], 'div-gpt-ad-1409188442834-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        </script>
+
+    {% endif %}
+
+{% endif %}
+

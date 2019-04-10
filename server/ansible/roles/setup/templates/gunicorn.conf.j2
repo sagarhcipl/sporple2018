@@ -1,0 +1,14 @@
+description "Gunicorn application server running sporple"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+setuid sporple
+setgid sporple
+
+env PATH=/sporple/venv/bin
+env ENVIRONMENT={{ environment_name }}
+env SERVER_NAME={{ domain_name }}
+chdir /sporple/src
+exec gunicorn --workers 3 -b localhost:8000 application --pid=/var/run/gunicorn/app.pid --log-file {{ log_directory }}/guincorn.log --error-logfile={{ log_directory }}/gunicorn_error.log

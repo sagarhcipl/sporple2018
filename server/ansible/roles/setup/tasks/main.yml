@@ -1,0 +1,32 @@
+- name: add python 2.7 ppa
+  apt_repository: repo='ppa:fkrull/deadsnakes-python2.7' state=present update_cache=yes
+
+- name: install pip 
+  easy_install: name=pip state=latest
+  tags: packages
+  become: no
+
+- name: install gunicorn
+  pip: name=gunicorn virtualenv=/sporple/venv
+  tags: packages
+  become_user: sporple
+
+- name: make pid directory for gunicorn
+  file: path=/var/run/gunicorn state=directory owner=sporple group=sporple mode=0755
+
+- name: copy gunicorn config
+  template: src=gunicorn.conf.j2 dest=/etc/init/gunicorn.conf backup=yes mode=0644
+
+- name: create log directory
+  file: path={{ log_directory }} state=directory owner=sporple group=sporple mode=0755
+
+- name: make web directory
+  file: path=/home/www/ owner=sporple state=directory  group=sporple mode=0755
+
+- name: create log webapp directory
+  file:
+    path:   '{{ log_directory }}/webapp'
+    state:  'directory'
+    owner:  'sporple'
+    group:  'sporple'
+    mode:   '0755'

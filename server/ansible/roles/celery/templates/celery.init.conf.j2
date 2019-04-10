@@ -1,0 +1,34 @@
+# celery-worker -runs the celery worker as my virutal env user
+#
+#
+# This task is run on startup to start the celery worker as my vritual env user
+
+description "runs the celery worker"
+author "michel van Leeuwen <michel@iamit.nl>"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+setuid sporple
+setgid sporple
+
+# retry if ended unexpectedly
+respawn
+# limit the retries to max 15 times with timeouts of 5 seconds
+respawn limit 15 5
+
+# Time to wait between sending TERM and KILL signals
+kill timeout 20
+
+env PATH=/sporple/venv/bin/
+env ENVIRONMENT={{ environment_name }}
+env APP_CONFIG_FILE={{ app_config_file }}
+env SERVER_NAME={{ domain_name }}
+chdir /sporple/src
+
+script
+  exec celery worker -A main.celery \
+        --logfile={{ log_directory }}/celery.log --loglevel=info \
+        --pidfile=/var/run/celery/app.pid
+end script
+

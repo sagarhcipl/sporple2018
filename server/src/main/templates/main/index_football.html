@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% block stylesheets %}
+{{ use_stylesheet('frontend/main/signup.css') | safe }}
+{{ use_stylesheet('frontend/main/football.css') | safe }}
+{% endblock stylesheets %}
+{% block javascripts %}
+{{ super() }}
+{{ use_javascript('frontend/main/anonymous.js') | safe }}
+{% endblock javascripts %}
+{% block content %}
+<div id="main_wrapper" class="football_wrapper">
+    <div class="landing_container">
+        <section class="landing_join">
+            <hr />
+            <div class="landing_join_bkg landing_join_football_bkg"></div>
+            <div class="landing_join--body clearfix">
+                <div class="landing_join_video">
+                    <iframe src="https://fast.wistia.net/embed/iframe/smren4k1cx" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="571" height="346"></iframe>
+                </div>
+                <div class="landing_join_content">
+                    <h1 class="white shadow-header din">
+                        Your Football
+                        <br/>recruitment &amp;
+                        <br/>Social Network
+                    </h1>
+                    <form action="{{ url_for('register', sport='football', role='athlete') }}" class="default-signup">
+                        <!-- Added new class and changed to h3 -->
+                        <h3 class="white din">Athletes free, always!</h3>
+                        <ul class="default-signup_buttons-list">
+                            <!-- Interchanged buttons and modified button images -->
+                            <li>
+                                <a href="{{ url_for('register', sport='football', role='athlete') }}">
+                                    <img src="images/sporple-sport-email-sign-up.png" alt="Sign up into Sporple using your Email" />
+                                    <span>Sign up with email</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('facebook_authorize') }}">
+                                    <img src="images/sporple-sport-facebook-sign-up.jpg" alt="Sign up into Sportple using your Facebook account" />
+                                    <span>Sign up with facebook</span>
+                                </a>
+                            </li>
+                            <li class="terms">By joining Sporple you agree to our <a href="https://newsroom.sporple.com/terms">Terms of Service</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="landing_scheme">
+            <h1 class="caps orange din">How it works</h1>
+
+            <div class="landing_scheme_step">
+                <h2 class="din caps"><b class="blue">Create</b> your free football profile</h2>
+                <div class="landing_scheme_step-image">
+                    <div class="table">
+                        <div class="cell">
+                            <img src="images/sporple-sport-scheme-first-step.png" alt="Create your free football profile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="landing_scheme_step recycle-scheme">
+                <h2 class="din caps"><b class="blue">Connect</b> with Athletes agents and clubs</h2>
+                <div class="landing_scheme_step-image">
+                    <div class="table">
+                        <div class="cell">
+                            <img src="images/sporple-sport-scheme-second-step.jpg" alt="Connects Athletes agents and clubs">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="landing_scheme_step">
+                <h2 class="din caps"><b class="blue">Control</b> your football career</h2>
+                <div class="landing_scheme_step-image">
+                    <div class="table">
+                        <div class="cell">
+                            <img src="images/sporple-sport-scheme-third-step.png" alt="Control your football career">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="testimonials_pattern">
+                <div class="testimonials_title white caps">
+                    Success<br/>Story
+                </div>
+                <div class="testimonial_image">
+                    <img src="images/sporple-football-testimonial-avatar.jpg" alt="Testimonial by Tobias Hoskins" width="83" height="83">
+                </div>
+                <div class="testimonial_text white">
+                    “Sporple was a massive reason behind how I came in contact <br>with Jersey RUFC and how I got the contract, without it <br>I don’t know if I would have ever got this good an opportunity <br>to play professionally“
+                    <span class="testimonial_text--user">Tobias Hoskins</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="football-join-bar">
+            <a class="btn_join" href="{{ url_for('facebook_authorize') }}">Join now</a>
+        </section>
+
+        <section id="profiles">
+            <h1 class="profiles_titles caps orange">Show me the profiles</h1>
+
+            <ul class="profiles_tab-list">
+                <li>
+                    <a id="ha-athlete" href="?athlete" class="ha-clickable {% if request.args.get('athlete') %}selected{% endif %}">
+                        <span class="text">Athlete</span>
+                        <span class="sprite athlete"></span>
+                    </a>
+                </li>
+                <li>
+                    <a id="ha-agent" href="?agent" class="ha-clickable {% if request.args.get('agent') %}selected{% endif %}">
+                        <span class="text">Agent</span>
+                        <span class="sprite agent"></span>
+                    </a>
+                </li>
+                <li>
+                    <a id="ha-club" href="?club" class="ha-clickable {% if request.args.get('club') %}selected{% endif %}">
+                        <span class="text">Club</span>
+                        <span class="sprite club"></span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="profiles_tabs">
+                <div id="ha-athlete-expand" class="ha-expandable clearfix">
+                    <div class="profile_tabs-images">
+                        <img class="profile_tabs-big-image" src="images/sporple-profile-big-image-athlete-football.jpg" alt="Athlete">
+                        <img class="profile_tabs-small-image" src="images/sporple-profile-small-image-athlete-football.png" alt="Athlete zoom in">
+                        <div class="profile_tabs-bottom-gradient"></div>
+                    </div>
+
+                    <div class="profile_tabs-text">
+                        <div class="profile_tabs-text-title caps">Athlete</div>
+
+                        <ul class="profile_tabs-text-list">
+                            <li>Control your own career</li>
+                            <li>Direct access to leading agents and clubs</li>
+                            <li>Your own customised profile</li>
+                            <li>Enable recruiters to find you</li>
+                        </ul>
+
+                        <hr/>
+
+                        <a href="{{ url_for('profile.slug', slug='drew-mitchell') }}" class="default-button">View Full Athletes Profile</a>
+                    </div>
+                </div>
+                <div id="ha-agent-expand" class="ha-expandable clearfix">
+                    <div class="profile_tabs-images">
+                        <img class="profile_tabs-big-image" src="images/sporple-profile-big-image-agent-football.jpg" alt="Agent">
+                        <img class="profile_tabs-small-image" src="images/sporple-profile-small-image-agent-football.png" alt="Agent zoom in">
+                        <div class="profile_tabs-bottom-gradient"></div>
+                    </div>
+
+                    <div class="profile_tabs-text">
+                        <div class="profile_tabs-text-title caps">Agent</div>
+
+                        <ul class="profile_tabs-text-list">
+                            <li>Create your own professional network</li>
+                            <li>Search and connect with your next marquee client </li>
+                            <li>Showcase endorsements from past and present clients or clubs</li>
+                            <li>Profile current opportunities anywhere on the globe</li>
+                        </ul>
+
+                        <hr/>
+
+                        <a href="{{ url_for('profile.slug', slug='mathew-cole') }}" class="default-button">View Full Agents Profile</a>
+                    </div>
+                </div>
+                <div id="ha-club-expand" class="ha-expandable clearfix">
+                    <div class="profile_tabs-images">
+                        <img class="profile_tabs-big-image" src="images/sporple-profile-big-image-club-football.jpg" alt="Club">
+                        <img class="profile_tabs-small-image" src="images/sporple-profile-small-image-club-football.png" alt="Club zoom in">
+                        <div class="profile_tabs-bottom-gradient"></div>
+                    </div>
+
+                    <div class="profile_tabs-text">
+                        <div class="profile_tabs-text-title caps">Club</div>
+
+                        <ul class="profile_tabs-text-list">
+                            <li>Create your interactive club profile</li>
+                            <li>Connect to players and agents through a single platform</li>
+                            <li>Search for your next superstar with advanced search functionality</li>
+                            <li>List up and coming matches and club trials</li>
+                            <li>Display club images and videos</li>
+                        </ul>
+
+                        <hr/>
+
+<!--                        <a href="#" class="default-button">View Full Clubs Profile</a>-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="football-join-bar">
+            <a class="btn_join" href="{{ url_for('facebook_authorize') }}">Join now</a>
+        </section>
+    </div>
+</div>
+{% endblock content %}

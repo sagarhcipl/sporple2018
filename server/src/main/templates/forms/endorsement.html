@@ -1,0 +1,67 @@
+{% import 'forms/base.html' as base %}
+{% if endorsement_id %}
+{% set action = url_for('profile.edit_endorsement_id', id=endorsement_id, user_id=profile.user_id) %}
+{% else %}
+{% set action = url_for('profile.edit_endorsement', user_id=profile.user_id) %}
+{% endif %}
+<form action="{{ action }}" method="post" class="form" id="profile_endorsement_form">
+    <div class="form__row inline-label">  
+        <label>First name</label>
+        {{ form.first_name(**{
+            'data-parsley-required': 'true',
+            'maxlength': '127'
+            })
+        }}
+
+        {{ base.errors(form.first_name.errors) }}
+    </div>
+
+    <div class="form__row inline-label">  
+        <label>Last name</label>
+        {{ form.last_name(**{
+            'data-parsley-required': 'true',
+            'maxlength': '127'
+            })
+        }}
+
+        {{ base.errors(form.last_name.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Role (e.g. manager)</label>
+        {{ form.title(**{
+            'data-parsley-required': 'true',
+            'maxlength': '127'
+            })
+        }}
+
+        {{ base.errors(form.title.errors) }}
+
+    </div>
+
+    <div class="form__row month-year-fields-cont cf inline-label">  
+        <p>Month and Year</p>
+        {{ form.month() }} {{ form.year() }}
+        {{ base.errors(form.month.errors) }}
+        {{ base.errors(form.year.errors) }}
+    </div>
+
+    <div class="form__row">
+        <p>Reference</p>
+        {{ form.body(maxlength=800) }}
+
+        {{ base.errors(form.body.errors) }}
+    </div>
+
+    {{ form.csrf_token }}
+
+    <div class="form__row">
+        {% if not endorsement_id %}
+            <button class="btn btn--blue btn--med" id="btn--submit">Add endorsement</button>
+        {% else %}
+            <button class="btn btn--blue btn--med" id="btn--submit">Save</button>
+        {% endif %}
+
+        <a href="#" class="btn btn--secondary btn--med">Cancel</a>
+    </div>
+</form>

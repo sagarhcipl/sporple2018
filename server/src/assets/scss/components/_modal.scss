@@ -1,0 +1,290 @@
+.modal-bg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.7);
+	transition: opacity 0.25s ease;
+
+	&.active{
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+
+.modal{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 10px 15px;
+	width: 93.75%;
+	max-width: 500px;
+    max-height: 90%;
+	background-color: #fff;
+	transform: translate(-50%,-50%);
+    display: inherit;
+    right: auto;
+    bottom: auto;
+    overflow: auto;
+
+	#modal__close{
+		position: absolute;
+		top: 7px;
+		right: 10px;
+		z-index: 1;
+		display: block;
+		padding: 0;
+		width: 30px;
+		height: 30px;
+        font-size: 30px;
+
+		.sign-up-form__close-icon{
+			width: 20px;
+			height: 20px;
+			fill: $grey-dark;
+			transition: fill 0.25s ease-out;
+		}
+
+		&:hover{
+			.sign-up-form__close-icon{
+				fill: #000;
+			}
+		}
+	}
+
+	.ttl{
+		margin-bottom: 10px;
+        @include font(32, 35);
+	}
+
+	.modal__inner{
+		margin-bottom: 15px;
+	}
+
+	.loading{
+		height: 300px;
+        position: relative;
+        .fa {
+            position: absolute;
+            top: 40%;
+            left: 45%;
+            margin: auto;
+        }
+	}
+
+	.modal__user-badge{
+		color: $brand-orange;
+
+		.profile-pic{
+			display: inline-block;
+			vertical-align: -0.5em;
+			margin-right: 4px;
+		}
+	}
+
+	//buttons
+	#modal__cancel{
+		display: none;
+	}
+
+	.image-viewer-cont__btn-prev,
+	.image-viewer-cont__btn-next{
+		-moz-box-sizing: content-box;
+		box-sizing: content-box;
+		position: absolute;
+		top: 50%;
+		margin-top: -20px;
+		padding: 5px;
+		width: 22px;
+		height: 44px;
+		background: url("/static/images/svg/arrow-left.png") 5px 5px no-repeat;
+		background-size: 22px 44px; 
+		@extend .hide-text;
+		text-indent: 120%; //edit for the .hide-text
+		transition: background-color 0.25s ease-out;
+
+		&:hover,
+		&:focus{
+			outline: none;
+			background-color: $grey-dark;
+			background-color: rgba(63,62,64,0.5);
+		}
+
+		&.slick-hidden{
+			display: none;
+		}
+
+		.svg &{
+			background-image: url("/static/images/svg/arrow-left.svg");
+		}
+	}
+
+	//by default we have 1 button
+	& > .btn{
+		width: 100%;
+	}
+
+	//we can switch that to two
+	&.two-btns > .btn{		
+		@extend .btn--side-by-side;
+
+		&#modal__cancel{
+			display: inline-block;
+		}
+	}
+
+	// MODAL VARIATIONS
+	&.no-btns #modal__confirm{
+		display: none;	
+	}
+
+	@include mq($from: tablet){
+		padding: 15px;
+	}
+}
+
+
+// -- SPECIFIC MODALS -- //
+.modal.modal--send-message{
+
+	@include mq($from: tablet){
+		width: 570px;
+		max-width: 570px;
+	}
+}
+
+.modal.modal--image-viewer{
+	padding: 0;
+	width: 90%;
+	max-width: none;
+	height: 90%;
+	background-color: transparent;
+	transform: translate(-50%,-50%);
+
+	#modal__close .sign-up-form__close-icon{
+		fill: #fff;
+	}
+
+	#modal__close:hover .sign-up-form__close-icon{
+		fill: $grey-light;
+	}
+
+	.ttl{
+		display: none;
+	}
+
+	.modal__inner{
+		margin-bottom: 0;
+	}
+
+	.image-viewer-cont__btn-next{ 
+		left: auto;
+		right: 0;
+		background-image: url("/static/images/svg/arrow-right.png");
+
+		.svg &{
+			background-image: url("/static/images/svg/arrow-right.svg");
+		}
+	}
+
+	.image-viewer__img-cont{
+		height: 90vh;	
+
+		&:before{
+			content: '';
+			display: inline-block;
+			width: 0;
+			height: 100%; 
+			vertical-align: middle;
+		}
+
+		img{
+			display: inline-block;
+  			vertical-align: middle;
+			margin: 0 auto;
+			width: auto;
+			height: auto;
+			max-width: 85vw;
+			max-height: 90vh;
+		}
+
+		.iframe-cont{
+			display: inline-block;
+  			vertical-align: middle;
+			width: 100%;
+			background: url("/static/images/svg/spinner-grey.svg") center no-repeat;
+        	background-size: 34px 34px;
+		}
+	}
+
+
+	.image-viewer-cont--multiple.slick-slider,
+	.image-viewer__img-cont{
+		margin: 0;
+		padding: 0;
+		text-align: center;
+
+		.slick-slide{
+			@extend .image-viewer__img-cont;
+			background: url("/static/images/svg/spinner-grey.svg") center no-repeat;
+        	background-size: 34px 34px;
+
+			&.slick-current{
+
+			}
+		}
+	}
+
+	@include mq($from: desktop) {
+		width: 75%;
+		max-width: none;
+		height: 75%;
+
+		.image-viewer__img-cont{
+			height: 75vh;	
+
+			img{
+				max-width: 75vw;
+				max-height: 75vh;
+			}
+		}
+	}
+}
+
+
+//transition
+.csstransforms3d{
+
+	.modal{
+		opacity: 0;
+		transform: translate3d(-50%,-30%,0);
+		transition: opacity 0.24s linear 0.2s, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.575) 0.2s;
+		will-change: transform, opacity;
+	}
+
+	.image-viewer-cont__btn-prev,
+	.image-viewer-cont__btn-next{
+		opacity: 0;
+		transition: background-color 0.25s ease-out 0s, opacity 0.15s ease-out 0.8s, 
+	}
+
+	.active{
+
+		.modal{
+			opacity: 1;
+			transform: translate3d(-50%,-50%,0);
+		}
+
+		.image-viewer-cont__btn-prev,
+		.image-viewer-cont__btn-next{
+			opacity: 1;
+		}
+	}
+
+}

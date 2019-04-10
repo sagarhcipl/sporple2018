@@ -1,0 +1,8 @@
+<h3 class="content-title roster"><i class="fa fa-trophy"></i> Hall of Fame</h3>
+<div class="row images">
+{% for star in club_stars %}
+<div class="col-xs-4">
+    <img src="{{ star.get_image('small') }}" />
+</div>
+{% endfor %}
+</div>

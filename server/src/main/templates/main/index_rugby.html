@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% block stylesheets %}{% endblock stylesheets %}
+{% block javascripts %}
+{{ use_javascript('frontend/landing.js') | safe }}
+{% endblock javascripts %}
+{% block content %}
+<section class="landing-page__hero landing-page--rugby">
+    <span class="landing-page__hero-stripe"></span>
+    <div class="landing-page__hero-inner">
+        <div class="grid--ten24">
+            <div class="landing-page__hero-video-cont col-1-2">
+                
+                <iframe src="https://fast.wistia.net/embed/iframe/w4wx58fbjt" allowtransparency="true" frameborder="0"
+                    scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen=""
+                    mozallowfullscreen="" webkitallowfullscreen="" oallowfullscreen="" msallowfullscreen=""
+                    width="490" height="305" class></iframe>
+
+            </div>
+
+            <div class="landing-page__hero-text col-1-2">
+                
+                <h1>YOUR RUGBY <br>RECRUITMENT <span>&amp;</span> <br>SOCIAL NETWORK</h1>
+
+                <p>Connect with Clubs, <br>Athletes and Agents</p>
+
+                <a href="#" class="btn btn--large btn--orange open-sign-up">Join Free</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="featured landing-page__section">
+    <div class="grid--ten24 landing-page__section-inner">
+        <h3>As featured in</h3>
+
+        <div class="publications">
+            <a href="#" class="telegraph"></a>
+            <a href="#" class="rugby-world"></a>
+
+            <div class="clearfix"></div>
+            <a href="#" class="espn"></a>
+            <a href="#" class="sports-awards"></a>
+        </div>
+    </div>
+</div>
+
+<section class="potential landing-page__section">
+    <div class="landing-page__section-inner grid--ten24">
+        <div class="columns">
+            <div class="col-1-3 create">
+                <span class="icon landing-page__icon"><i class="fa fa-user-plus fa-2x"></i></span>
+                <div class="text">
+                    <h3>Create your <br/>free sports profile</h3>
+                </div>
+            </div>
+            <div class="col-1-3 connect">
+                <span class="icon landing-page__icon"><i class="fa fa-connectdevelop fa-2x"></i></span>
+                <div class="text">
+                    <h3>Meet agents &amp; clubs<br/>across the globe</h3>
+                </div>
+            </div>
+
+            <div class="col-1-3 control">
+                <span class="icon landing-page__icon"><i class="fa fa-crosshairs fa-2x"></i></span>
+                <div class="text">
+                    <h3>Take control <br/>of your career</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="players landing-page__section landing-page--generic">
+    <div class="landing-page__section-inner grid">
+        <h2 class="center">Featured Profiles</h2>
+        <div class="columns">
+        {% for profile in featured_profiles %}
+            <div class="col-1-4 center">
+            <div class="tile">
+                <a class="featured-pic" href="{{ url_for('profile.slug', slug=profile.slug) }}">
+                    <div class="featured">
+                        <img src="{{ profile.get_image() }}"
+                            alt="{{ profile.user.name }} | {{ profile.address_country_slug }}"
+                            class="profile__profile-pic"/>
+                        <div class="details">
+                            <p>
+                                <span class="title">{{ profile.user.name }}</span><br/>
+                                <span class="role">{{ profile.role.name }}</span><br/>
+                                Sport: <strong>Rugby</strong><br/>
+                            {% if profile.role.slug != 'club' %}
+                                Age:<strong> {{ profile.age or 'unknown' }}</strong><br/>
+                                {% if profile.positions %}Position:<strong> {{profile.positions_string | truncate(25) }}</strong><br/>{% endif %}
+                            {% endif %}
+                                Location:<strong>
+                                {{ profile.address_country.name }}
+                                {% if profile.address_city %} - {{ profile.address_city }}{% endif %}</strong>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <div class="profiles-list__details">
+                    <a href="{{ url_for('profile.slug', slug=profile.slug) }}">
+                        {{ profile.user.name | truncate(25, True) }}
+                    </a>
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div><!-- class columns -->
+    </div>
+</section>
+
+<section class="positions landing-page__section langing-page--generic">
+    <div class="landing-page__section-inner">
+        <h2>Latest Opportunities</h2>
+
+        <div class="grid">
+        {% for listing in latest_listings %}
+            {% if loop.index == 4 %}</div><div class="grid">{% endif %}
+            {% set club = listing.club %}
+            <div class="col-1-3 center">
+                <table><tr>
+                    <td>
+                        <a class="featured-listing" href="{{ url_for('profile.slug', slug=listing.club.profile.slug) }}">
+                        <img src="{{ listing.club.profile.get_image() }}" alt_title="{{club.profile.fullname }} | {{ club.profile.address_country.slug }}" class="image" width="150" hheight"150" />
+                        </a>
+                    </td>
+                    <td class="details">
+                        <p>
+                            <span class="title">{{ listing.position.name }}</span><br/>
+                            <span class="role">{{ listing.club.sport.name }}</span>
+                            Club: <strong>{{ club.fullname }}</strong><br/>
+                            Division: <strong> {{ listing.division }}</strong><br/>
+                            Season Start: <strong>{{ listing.season_start }}</strong><br/>
+                            Location: <strong>{{ listing.club.profile.full_address }}</strong><br/>
+                            <a href="{{ url_for('profile.slug', slug=club.profile.slug) }}">Read More</a>
+                        </p>
+                    </td>
+                </tr></table>
+            </div>
+        {% endfor %}
+        </div><!-- class columns -->
+    </div>
+</section>
+
+<section class="success landing-page__section">
+
+    <div class="landing-page__section-inner grid--ten24 no-cols">
+       
+        <div class="landing-page__slider">
+            
+            <div class="landing-page__slider-item" id="slider-item--johny">
+                <div class="landing-page__slider-photo"></div>
+                <div class="landing-page__slider-quote">
+                    <p>I do believe that Sporple has the potential to change the face of rugby recruitment throughout the world</p>
+                    <span>Jonny Wilkinson - OBE &amp; British Sporting Icon</span>
+                </div>
+            </div>
+
+            <div class="landing-page__slider-item" id="slider-item--tobias">
+                <div class="landing-page__slider-photo"></div>
+                <div class="landing-page__slider-quote">
+                    <p>Sporple was how I came in contact with Jersey RUFC and how I got the contract, without it I don’t know if I would have ever got this good an opportunity to play rugby professionally</p>
+                    <span>Tobias Hoskins - Jersey RFC</span>
+                </div>
+            </div>
+
+            <div class="landing-page__slider-item" id="slider-item--mat">
+                <div class="landing-page__slider-photo"></div>
+                <div class="landing-page__slider-quote">
+                    <p>Throughout my career I had so many mates that wanted to play rugby overseas however they never knew how to connect with agents, players or even coaches in those countries. Sporple helps solve this problem</p>
+                    <span>Matt Giteau - Wallaby and Heineken &amp; Top 14 Champion</span>
+                </div>
+            </div>
+            <div class="landing-page__slider-item" id="slider-item--drew">
+                <div class="landing-page__slider-photo"></div>
+                <div class="landing-page__slider-quote">
+                    <p>When I was first made aware of what Sporple did and how capable the platform was at connecting people from anywhere in the world, at any level of sporting ability, I knew I wanted to be involved</p>
+                    <span>Drew Mitchell - Wallaby, Heineken &amp; Top 14 Champion</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="who landing-page__section">
+    
+    <div class="grid--ten24 landing-page__section-inner">
+
+        <h2>WHO IS SPORPLE FOR?</h2>
+
+        <div id="landing-page__accordian" class="columns">
+            <div class="col-1-3 athlete">
+
+                <div class="landing-page__hexagon"></div>
+
+                <svg class="icon landing-page__icon toggle-pane" role="presentation" viewBox="0 0 107.96 79.998">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#athlete"></use>
+                </svg>
+                <h3 class="toggle-pane">Athlete</h3>
+                
+                <span class="toggle-icon toggle-pane">
+                   <span class="toggle-icon__line-1"></span> 
+                   <span class="toggle-icon__line-2"></span>
+                </span>
+
+                <div class="pane">
+                    <ul>
+                        <li>Create and control your own customised profile</li>
+                        <li>Take control of your own career in rugby</li>
+                        <li>Get direct access to leading agents and clubs</li>
+                        <li>Enable recruiters to easily find you</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-1-3 agent">
+
+                <div class="landing-page__hexagon"></div>
+
+                <svg class="icon landing-page__icon toggle-pane" role="presentation" viewBox="0 0 53.292 83.562">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#agent"></use>
+                </svg>
+                <h3 class="toggle-pane">AGENT</h3>
+
+                <span class="toggle-icon toggle-pane">
+                   <span class="toggle-icon__line-1"></span> 
+                   <span class="toggle-icon__line-2"></span>
+                </span>
+
+                <div class="pane">
+                    <ul>
+                        <li>Create your own professional network</li>
+                        <li>Search and connect with your next marquee client</li>
+                        <li>Showcase endorsements from past and present clients or clubs</li>
+                        <li>Easily profile current opportunities anywhere</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-1-3 club">
+
+                <div class="landing-page__hexagon"></div>
+
+                <svg class="icon landing-page__icon toggle-pane" role="presentation" viewBox="0 0 69.051 83.557">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#club"></use>
+                </svg>
+                <h3 class="toggle-pane">CLUB</h3>
+
+                <span class="toggle-icon toggle-pane">
+                   <span class="toggle-icon__line-1"></span> 
+                   <span class="toggle-icon__line-2"></span>
+                </span>
+
+                <div class="pane">
+                    <ul>
+                        <li>Create your club’s interactive profile</li>
+                        <li>Connect with players and agents worldwide</li>
+                        <li>Scout easily for your next superstar</li>
+                        <li>List matches, results and club trials</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a class="btn btn--large col-1-3"
+            href="{{ url_for('register', sport='rugby', role='athlete') }}">Create your free <span>Athlete profile</span></a>
+        <a class="btn btn--large btn--grey col-1-3"
+            href="{{ url_for('register', sport='rugby', role='agent') }}">Create your free <span>Agent profile</span></a>
+        <a class="btn btn--large btn--orange col-1-3"
+            href="{{ url_for('register', sport='rugby', role='club') }}">Create your free <span>Club profile</span></a>
+
+    </div>
+
+</section>
+
+{% endblock content %}

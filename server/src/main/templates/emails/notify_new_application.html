@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Sporple - New Message</title>
+        <style type="text/css">
+            body {
+                width: 600px;
+                margin: 0 auto;
+                padding: 0;
+                background: #f2f3f3;
+            }
+
+            @media screen and (max-width: 599px) {
+                body {
+                    width: 100%
+                }
+            }
+
+            p.view-online {
+                font-size: 11px;
+                color: #fff;
+                font-family: Arial,Tahoma,sans-serif;
+            }
+
+            span.view-online {
+                font-size: 11px;
+                color: #6f6f71;
+                font-family: Arial,Tahoma,sans-serif;
+                text-align: right;
+            }
+
+            h2.greeting {
+                font-size: 22px;
+                font-weight: bold;
+                color: #000000;
+                margin: 30px auto 0;
+                font-family: Arial,Tahoma,sans-serif;
+            }
+
+            p.info-first {
+                font-family: Arial,Tahoma,sans-serif;
+                font-weight: bold;
+                font-size: 14px;
+                color: #000000;
+                margin-top: 5px;
+                margin-bottom: 2px;
+            }
+
+            p.info-second {
+                font-family: Arial,Tahoma,sans-serif;
+                font-size: 14px;
+                color: #000000;
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+
+            p.reason {
+                font-size: 14px;
+                font-family: Arial,Tahoma,sans-serif;
+                margin-top: 5px;
+                margin-bottom: 30px;
+            }
+
+            p.message-separator {
+                height: 1px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                width: 60%;
+                margin-left: auto;
+                margin-right: auto;
+                background-color: #d9dada;
+            }
+
+            a {
+                text-decoration:none;
+            }
+
+            span.footer-link {
+                font-size: 11px;
+                color: #3d6cb4;
+                font-family: Arial,Tahoma,sans-serif;
+                text-align: right;
+            }
+
+            span.orange {
+                color:#f89d00;
+            }
+        </style>
+    </head>
+    <body bgcolor="#f2f3f3">
+        <!-- main table wrapper -->
+        <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background:#f2f3f3">
+            <tbody>
+                <tr>
+                    <td>
+                        <!-- top head links -->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td align="right" valign="middle">
+                                        <p class="view-online">
+                                            <a href="#" class="link" target="_blank">
+                                                <span class="view-online">
+                                                    Not displaying correctly? View this newsletter online.
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- header -->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#233d73;">
+                            <tbody>
+                                <tr>
+                                    <td align="left" valign="middle">
+                                        <p>
+                                            <a href="http://www.sporple.com" target="_blank">
+                                                <img src="{{ image_path('mail_sporple_header_logo.png', True) }}" alt="Go to sporple.com"/>
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- gray line -->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#b0b0b0;">
+                            <tbody>
+                                <tr>
+                                    <td align="center" valign="middle">
+                                        <p style="margin:0;height:2px;"></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table align="center" border="0" cellpadding="15" cellspacing="0" width="100%" style="background:#ffffff;">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:center;">
+                                        <h2 class="greeting">
+                                            Hi {{ club.profile.firstname }},
+                                        </h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table align="center" border="0" cellpadding="5" cellspacing="0" style="background:#ffffff;">
+                                            <tr>
+                                                <td align="center" valign="top">
+                                                    <a href="{{ url_for('profile.slug', slug=applicant.profile.slug, _external=True) }}" target="_blank" title="Check out {{ applicant.name }}'s profile on Sporple">
+                                                        <img src="{{ config.BASE_URL + applicant.profile.get_image() }}"
+                                                             alt="Check out {{ applicant.name }}'s profile on Sporple"
+                                                             width="70" height="auto"
+                                                             style="width:70px;height:auto;border-style:solid;border-color:#bbbbbb;border-width:1px;"/>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <p class="info-first">
+                                                        {{ applicant.name }} - <span class="orange">{{ applicant.profile.age }}</span>
+                                                    </p>
+
+                                                    <p class="info-second">
+                                                        {{ applicant.sports_string }} - {{ applicant.profile.positions_string }}
+                                                    </p>
+
+                                                    <p class="info-second">
+                                                        {{ applicant.profile.full_address }}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">
+                                        <p class="reason">
+                                            Just applied for the position - <span class="orange">{{ application.listing.position.name }}</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#ffffff;">
+                            <tbody>
+                                <tr>
+                                    <td align="center" valign="middle">
+                                        <p class="message-separator"></p>
+
+                                        <p>
+                                            <i>{{ application.note }}</i>
+                                        </p>
+
+                                        <p class="message-separator"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" valign="middle" style="padding:0 0 30px 0;">
+                                        <a href="{{ url_for('profile.slug', slug=applicant.profile.slug, _external=True) }}" target="_blank" title="View {{ applicant.name }}'s profile on Sporple">
+                                            <img src="{{ image_path('mail_view_profile.png', True) }}" alt="View {{ applicant.name }}'s profile on Sporple" width="131" height="28"/>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- blue footer line -->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#233d73;">
+                            <tbody>
+                                <tr>
+                                    <td align="center" valign="middle">
+                                        <p style="margin:0;height:8px;"></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- main footer credits -->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td align="center" valign="middle" style="padding:30px 10px 0">
+                                        <p style="font-size:10px;color:#6f6f71;font-family:Arial,Tahoma,sans-serif;">
+                                            This email was sent to
+                                            <a href="#" target="_blank">
+                                                <span class="footer-link">
+                                                    {{ club.username }}
+                                                </span>
+                                            </a>
+                                            <br/>
+                                            Don’t want to receive this type of email?
+                                            <br/>
+                                            <a href="{{ url_for('settings.email_notifications', _external=True) }}" target="_blank">
+                                                <span class="footer-link">
+                                                    Change your email preferences
+                                                </span>
+                                            </a>
+                                            <br/>
+                                            Didn’t sign up for Sporple?
+                                            <a href="mailto:team@sporple.com" target="_blank">
+                                                <span class="footer-link">
+                                                    Please let us know
+                                                </span>
+                                            </a>
+                                            <br/>
+                                            Have a question?
+                                            <a href="mailto:team@sporple.com" target="_blank">
+                                                <span class="footer-link">
+                                                    Drop the team at Sporple an email
+                                                </span>
+                                            </a>
+                                            <br/><br/><br/>
+                                            Copyright © {{ now.year }} Sporple - All Rights Reserved
+                                            <br/>
+                                            Privacy Policy - Terms &amp; Conditions
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

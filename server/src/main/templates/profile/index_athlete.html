@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}{{ profile.user.sport.name }} | {{ profile.user.name }} | Sporple{% endblock title %}
+{% block meta_title %}{{ profile.user.sport.name }} | {{ profile.user.name }} | Sporple{% endblock meta_title %}
+{% block content %}
+<div class="profile-page athlete clearfix {% if is_owner %}is-owner{% endif %}">
+    <section class="basic-info row clearfix col-xs-12">
+      {% include 'profile/basic_info.html' %}
+    </section>
+    <div class="right-section pull-right col-md-8 col-xs-12">
+        {% if is_owner %}
+        <section class="invite-friends">
+            {% include 'profile/invite.html' %}
+        </section>
+        {% endif %}
+        <section class="profile-media">
+            {% include 'profile/media.html' %}
+        </section>
+
+        {% if profile.personal_statement or is_owner %}
+        <section class="about row">
+          {% if not profile.personal_statement %}
+          Add a short statement about yourself to get noticed.
+          {% else %}
+            <span class="more" data-chars="250">
+                {{ profile.personal_statement | escape_custom }}
+            </span>
+          {% endif %}
+          {% if is_owner %}
+            <button class="btn--info open-edit-modal"
+                data-url="{{ url_for('profile.edit_personal_statement', user_id=profile.user_id) }}"
+                data-title="Personal Statement"><i class="fa fa-edit"></i> edit
+            </button>
+          {% endif %}
+        </section>
+        {% endif %}
+        {% if is_owner or team %}
+        <section class="my-team">
+            {% include 'athlete/team.html' %}
+        </section>
+        {% endif %}
+
+        {% if is_owner or career_items %}
+        <section class="career-overview">
+            {% include 'athlete/career_items.html' %}
+        </section>
+        {% endif %}
+
+        {% if is_owner or endorsements %}
+        <section class="endorsements">
+            {% include 'profile/endorsements.html' %}
+        </section>
+        {% endif %}
+    </div>
+    <div class="left-section pull-left col-md-4 col-xs-12">
+        <section class="athlete-info">
+            {% include 'athlete/basic_info.html' %}
+        </section>
+
+        {% if is_owner or gallery_images %}
+        <section class="gallery">
+            {% include 'profile/gallery.html' %}
+        </section>
+        {% endif %}
+
+        {% if is_owner or achievements %}
+        <section class="achievements">
+            {% include 'athlete/achievements.html' %}
+        </section>
+        {% endif %}
+
+        <section class="twitter">
+        {% if profile.twitter_account %}
+            {% include 'profile/show_twitter_account.html' %}
+        {% elif is_owner %}
+            {% include 'profile/edit_twitter_account.html' %}
+        {% endif %}
+        </section>
+
+        {% if current_user.is_authenticated %}
+        <section class="activity">
+            {% include 'profile/activities.html' %}
+        </section>
+        {% endif %}
+
+        {% if current_user.is_authenticated %}
+          <section id="related-profiles-mod" class="related-profiles">
+                {% include 'profile/related_profiles.html' %}
+          </section>
+      {% endif %}
+
+    </div>
+</div>
+{% endblock content %}

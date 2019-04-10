@@ -1,0 +1,11 @@
+[hosts]
+push
+
+[push:children]
+hosts
+
+[nginx:children]
+hosts
+
+[pgbouncer:children]
+hosts

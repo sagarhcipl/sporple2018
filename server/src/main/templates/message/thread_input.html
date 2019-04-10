@@ -1,0 +1,25 @@
+<d>
+
+  <form id="message-form" method="post" class="reply-form" action="{{ url_for('message.submit') }}">
+    <input type="hidden" name="thread_id" value="{{ thread_id }}">
+    <textarea id="message-file-form-body-input" name="body" placeholder="Write a reply" required></textarea>
+    <div class="alert alert-error hidden" id="message-input-error"></div>
+    <button type="submit" id="message-input-submit" value="Reply" class="btn btn--blue" {% if not thread_id %}disabled{% endif %}>Reply</button>
+  </form>
+{% if thread_id %}
+  <form id="message-file-form" class="file-form" method="post" action="{{ url_for('message.submit_file') }}" enctype="multipart/form-data">
+    <input id="message-file-form-threadid-input" type="hidden" name="thread_id" value="{{ thread_id }}">
+
+    <a class="upload_button">
+      <input id="message-file-form-file-input" type="file" name="message-file">
+      <span><strong>+</strong>Add file</span>
+    </a>
+    <div id="message-file-form-file-dropzone" class="file-dropzone">
+      <span class="message-upload">Drop image here to attach.</span>
+      <div id="message-form-files"></div>
+    </div>
+
+    <input style="display: none;" type="submit" value="add file">
+  </form>
+{% endif %}
+</d>

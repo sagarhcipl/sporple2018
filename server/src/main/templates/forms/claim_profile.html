@@ -1,0 +1,41 @@
+{% import 'forms/base.html' as base %}
+<p>Please provide your information and we will verify and approve your profile. </p>
+<form action="{{ url_for('auth.claim_profile', user_id=user_id) }}" method="post" class="form">
+    <div class="form__row inline-label">  
+        <label class="">Your Name</label>
+        {{ form.name(**{
+            'data-parsley-required': 'true',
+            'minlength': '2',
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.name.errors) }}
+    </div>
+
+    <div class="form__row inline-label">  
+        <label class="">Email</label>
+        {{ form.email(**{
+            'data-parsley-required': 'true',
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.email.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label class="">Comments (optional)</label>
+        {{ form.comments(maxlength='800') }}
+    </div>
+    {{ form.csrf_token }}
+
+    <div class="form__row">
+        <button class="btn btn--blue btn--med" id="btn--submit">Submit</button>
+        <a href="#" class="btn btn--secondary btn--med"
+               id="profile_career_item_cancel">Cancel</a>
+
+    </div>
+</form>

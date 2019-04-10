@@ -1,0 +1,337 @@
+.edit_button
+{
+    float:right;
+}
+
+.page_content .content_part #profile_add_achievement {
+/*  position:absolute;
+  right:15px;
+  top:30px;*/
+}
+.page_content .content_part .edit_button {
+  padding:0px;
+  position:absolute;
+  right:15px;
+  top:30px;
+}
+
+#profile_club_about .edit_button {
+    right: 32px;
+    top: 3px;
+}
+
+#profile_achievements .edit_button {
+    position: relative;
+}
+
+#profile_achievements .achievement_delete_button {
+    text-decoration: none;
+}
+
+#profile_endorsements .endorsement_delete_button {
+    text-decoration: none;
+}
+
+#profile_qualifications .qualification_delete_button {
+    text-decoration: none;
+}
+
+#profile_career_items .careeritem_delete_button {
+    text-decoration: none;
+}
+
+.page_content .edit_button {
+    padding:15px;
+}
+.profile_clear_field_button {
+    float:right;
+    margin:15px 0 0;
+    padding:0;
+}
+
+#icons_dropdown_container {
+    display:none;
+}
+
+.icons_dropdown {
+    display:none;
+}
+
+.add_form .add_form_main .icon_dd > a,
+#icons_dropdown_container > a {
+    background:#fff url(/static/images/bg_dd.png) no-repeat top right;
+    border:1px solid #c7c8ca;
+    border-radius:3px;
+    box-shadow:1px 1px 2px rgba(0,0,0,0.4) inset;
+    float:left;
+    margin:2px 0 0;
+    padding:3px 41px 3px 11px;
+}
+
+.add_form .add_form_main .icon_dd > a:hover,
+#icons_dropdown_container > a:hover  {
+    background-image: url(/static/images/bg_dd_hover.png);
+}
+
+.add_form .add_form_main .icon_dd > a > img,
+#icons_dropdown_container  > a > img{
+    height:16px;
+    width:16px;
+}
+
+
+
+
+.page_content.top_content .player_information .player_baseball {
+    background:url(/static/images/ico_baseball.png) no-repeat center center;
+    display:block;
+    float:left;
+    margin:3px 0 0 15px;
+    height:20px;
+    width:20px;
+}
+.page_content.top_content .player_information .player_basketball {
+    background:url(/static/images/ico_basketball.png) no-repeat center center;
+    display:block;
+    float:left;
+    margin:3px 0 0 15px;
+    height:20px;
+    width:20px;
+}
+.page_content.top_content .player_information .player_rugby {
+    background:url(/static/images/ico_rugbyball.png) no-repeat center center;
+    display:block;
+    float:left;
+    margin:3px 0 0 15px;
+    height:20px;
+    width:20px;
+}
+.page_content.top_content .player_information .error {
+
+  color: #DE000D;
+  margin: 0px;
+  padding: 4px;
+}
+
+.profile_image_preview_container {
+    width:38px;
+    height:38px;
+    overflow:hidden;
+    float:left;
+}
+.client_image_preview_container {
+    overflow: hidden;
+    width:38px;
+    height:38px;
+    left: 11px;
+    position: relative;
+}
+
+.club_profile #profile_edit_twitter {
+    top: 48px;
+}
+
+#profile_edit_twitter {
+    position: absolute;
+    right: -18px;
+    top: 25px;
+}
+#profile_edit_twitter:hover {
+    opacity: 0.7;
+}
+
+#twitter_section {
+    width: 100%;
+}
+
+#twitter_section .small_edit_icon {
+    height: 15px;
+    width: 15px;
+}
+
+#twitter_section span.errors {
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    display: block;
+    font-size: 13px;
+    color: #DE000D;
+    min-height: 16px;
+    line-height: 16px;
+    text-align: center;
+    padding: 6px 4px;
+}
+
+#twitter_section .twitter_error input {
+    border: 1px solid #DE000D;
+}
+
+.sidebar {
+    width: 100%;
+}
+
+.sidebar-widget {
+    margin-bottom:15px;
+    width: 100%;
+}
+
+#twitter_section .sidebar-widget__title {
+    background-color: #f89d00;
+    border-top-left-radius: 7px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    font-family: "HelveticaW01-TextbookBd 709911",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+#twitter_section .sidebar-widget__wrapper {
+    border-radius:5px;
+    border:solid 1px #bfbfbf;
+    background-color:#fff;
+}
+
+#twitter_section .sidebar-widget__header {
+    font-size:12px;
+    color:#000;
+    clear:both;
+    padding:20px 15px;
+}
+
+#twitter_section .sidebar-widget__header .twitter-image {
+    float:right;
+    position:relative;
+    top:-10px;
+}
+
+#twitter_section .sidebar-widget__body {
+    background-color:#e5e5e5;
+    padding:20px 15px;
+    color:#7e7e7e;
+}
+
+#twitter_section .sidebar-widget__body form .clear {
+    clear:both; 
+}
+
+#twitter_section .sidebar-widget__body form .before-input {
+    display:inline-block;
+    width:15px;
+    text-align:center;
+    font-size:18px;
+}
+
+
+#twitter_section .sidebar-widget__body .tip {
+    display:inline-block;
+    margin-left:6px;
+    font-size:12px;
+}
+
+#twitter_section .tip {	
+    position:relative;
+    display:block;
+}
+
+#twitter_section .tip__button {
+    cursor:pointer;
+    background-color:#999999;
+    border-radius:50%;
+    font-size:12px;
+    color:#fff;
+    width:15px;
+    height:15px;
+    line-height:15px;
+    text-align:center;
+}
+
+#twitter_section .tip__body {
+    position:absolute;
+    border-radius:5px;
+    background-color:#000;
+    color:#ababab;
+    padding:10px;
+    max-width:170px;
+    display:none;
+    top: -10px;
+    left: 32px;
+}
+
+#twitter_section .tip__body:before {
+    content:"";
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 7.5px 10px 7.5px 0;
+    border-color: transparent #000000 transparent transparent;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+}
+
+#twitter_section .tip:hover .tip__body {
+    display:block;
+}
+
+#twitter_section .sidebar-widget__body label {
+    margin:0;
+}
+
+
+.social_sharing {
+    margin: 0 !important;
+    padding: 0 !important;
+    /*background: url("/images/share_your_profile.jpg") no-repeat;*/
+    width: 330px;
+    height: 45px;
+}
+.social_sharing_small {
+    margin: -5px 0 0 !important;
+    padding: 0 !important;
+    background: url("/images/share_your_profile_small_without_arrow.jpg") no-repeat;
+    width: 330px;
+    height: 28px;
+}
+
+.social_sharing_small.agent {
+    margin: 17px 0 0 !important;
+}
+
+.social_sharing_small.club {
+    margin: 20px 0 0 !important;
+}
+
+.social_sharing.club {
+    margin-top: 4px !important;
+}
+
+.social_sharing_small.athlete {
+}
+
+.social_sharing.athlete {
+    margin-top: -22px !important;
+}
+
+.social_sharing_small .addthis_toolbox {
+    float: right;
+    width: 105px;
+}
+
+.social_sharing .addthis_toolbox {
+    float: right;
+    padding: 6px 0;
+    width: 185px;
+}
+
+.social_sharing .addthis_default_style .at15t_expanded, .addthis_default_style .at15t_compact {
+    margin-right: -2px;
+}
+
+ul.error_list li {
+    color: #DE000D;
+}
+
+li.has-error select, li.has-error input {
+    border-color: #DE000D;
+}

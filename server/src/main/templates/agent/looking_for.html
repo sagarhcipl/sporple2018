@@ -1,0 +1,73 @@
+<div class="recruiting-header {% if is_owner %}bottom-btn-container{% endif %}">
+{% if is_owner %}
+  <button class="btn btn--blue btn--med add-listing open-edit-modal"
+        data-url="{{ url_for('profile.new_looking_for') }}"
+        data-title="Add New Listing">
+    <i class="fa fa-plus"></i> Add Listing
+  </button>
+{% endif %}
+  <h2>{% if looking_for_list %} currently recruiting {% else %}not recruiting{% endif %}
+  </h2>
+  <span>{% if looking_for_list %} {{ looking_for_list | length }} open position(s) {% endif %}</span>
+</div>
+{% if profile.user.is_premium %}
+<ul class="listing-info">
+{% for looking in looking_for_list %}
+    <li data-action="{{ action }}" data-position="{{ looking.position.name }}" class="row">
+       <div class="col-md-8">
+         <div class="looking-for">Looking for</div>
+         <h3 class="position-title">{{ looking.position.name or 'General Listing' }}</h3>
+         <button class="btn--info show-listing-details">View Details</button>
+         <div class="listing-details hidden">
+           <p>{{ looking.body }}</p>
+           <p>
+           {% if looking.country_id %}
+           POSTION IN: {{ looking.country.name }}<br/>
+           {% endif %}
+           {% if looking.age_min or (looking.age_max and looking.age_max < 99) %}
+           AGE: {{ looking.age_min }} &mdash; {{ looking.age_max }}<br/>
+           {% endif %}
+           {% if looking.height_min or (looking.height_max and looking.height_max < 999) %}
+           HEIGHT (cms): {{ looking.height_min }} &mdash; {{ looking.height_max }}<br/>
+           {% endif %}
+           {% if looking.weight_min or (looking.weight_max and looking.weight_max < 999) %}
+           WEIGHT (kg): {{ looking.weight_min }} &mdash; {{ looking.weight_max }}<br/>
+           {% endif %}
+           {% if looking.country_groups %}
+           <strong>Eligible Athletes: {% for cg in looking.country_groups %} {{ cg.name }}, {% endfor %}</strong><br/>
+           {% endif %}
+           </p>
+         </div>
+       </div>
+       <div class="col-md-4 center">
+         <p class=""><span>{% if looking.country_id %}Country: {{ looking.country.name }}{% endif %}</span></p>
+         {% if current_user.is_authenticated and current_user.user.role_slug == 'athlete' %}
+         <button data-id="{{ looking.id }}"
+                 data-user-id="{{ looking.user_id }}"
+                 class="btn btn--blue btn--med send-message">Contact</button>
+         {% elif not current_user.is_authenticated %}
+         <button class="btn btn--blue btn--med btn--apply open-signin">Contact</button>
+         {% endif %}
+       </div>
+       {% if is_owner %}
+       <div class="edit-buttons">
+       <a href="{{ url_for('profile.get_applicant_list', listing_id=looking.id, role="agent") }}">
+               <button class="btn--box btn--blue open-applied-list"
+                    data-title="Edit Listing">
+                <i class="fa fa-list fa-1-5x"></i><span class="hidden-xs"> Get Applicant List</span>
+            </button></a>
+            <button class="btn--box btn--edit open-edit-modal"
+                    data-url="{{ url_for('profile.edit_looking_for', id=looking.id) }}"
+                    data-title="Edit Listing">
+                <i class="fa fa-edit fa-1-5x"></i><span class="hidden-xs"> Edit</span>
+            </button>
+            <button class="btn--box btn--danger delete"
+                data-url="{{ url_for('profile.delete_looking_for', id=looking.id) }}">
+                <i class="fa fa-trash-o fa-1-5x"></i>
+            </button>
+        </div>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% endif %}

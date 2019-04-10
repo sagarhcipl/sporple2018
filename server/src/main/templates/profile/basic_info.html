@@ -1,0 +1,76 @@
+<div class="profile-photo card">
+<img src="{{ profile.get_image() }}" class="profile-image"/>
+{% if is_owner %}
+<form id="profile__photo-form" method="post"
+    action="{{ url_for('profile.upload_photo', user_id=profile.user_id) }}" enctype="multipart/form-data">
+    {{ profile_image_form.hidden_tag() }}
+<div class="button edit-image file-wrapper" id="edit-profile-photo">
+    <i class="fa fa-edit"></i>Change photo
+    <i class="fa fa-spinner fa-pulse hidden"></i>
+    {{ profile_image_form.profile_image(**{
+        'id': 'profile__add-profile-photo',
+        'accept': 'image/jpeg,image/png,capture=camera',
+        'data-parsley-profilepic': 'profile__add-profile-photo',
+        'data-parsley-trigger': 'change',
+        })  
+    }}</div>
+
+</form>
+{% endif %}
+</div>
+<div class="details">
+  <div class="sport">{{ profile.sport.name }}</div>
+  <h1 class="left">{{ profile.user.name }}</h1>
+  {% if profile.role.slug == 'club' %}
+  <h2 class="left">{% if profile.club_league %}{{ profile.club_league }}, {% endif %}{{ profile.address_city or '' }} {{ profile.address_country_slug }}</h2>
+  {% elif profile.role.slug == 'athlete' %}
+  <h2 class="left">{{ profile.positions_string }}, {{ profile.address_city or '' }} {{ profile.address_country_slug }}</h2>
+  {% else %}
+  <h2 class="left">{{ profile.address_city or '' }} {{ profile.address_country_slug }}</h2>
+  {% endif %}
+  {% if not is_owner and not profile.user.unclaimed %}
+  <button class="btn--info {% if current_user.is_authenticated %}send-message{% else %}open-signin{% endif %}" data-user-id="{{ profile.user_id }}"> <i class="fa fa-comments"></i> Message</button>
+  {% elif profile.user.unclaimed %}
+  <button class="btn--info open-edit-modal"
+            data-url="{{ url_for('auth.claim_profile', user_id=profile.user_id) }}"
+            data-title="Claim this profile">
+    <i class="fa fa-hand-paper-o"></i> Claim Profile
+  </button>
+  {% else %}
+  <button class="btn--info open-edit-modal"
+          data-url="{{ url_for('profile.edit_' + profile.role.slug, user_id=profile.user_id) }}"
+          data-title="Edit Profile">
+    <i class="fa fa-edit"></i> Edit Profile
+  </button>
+  {% endif %}
+  {% if current_user.is_authenticated and current_user.user.is_super_admin %}
+  <a class="btn--info" href="/login_as/{{ profile.slug }}"/><i class="fa fa-cogs"></i> Login As</a>
+  {% endif %}
+  <div class="social-share">
+    {% include 'profile/social_sharing.html' %}
+  </div>
+  {% if profile.managed_by_id %}
+  <span class="managed-by">
+    Profile managed by:
+    <a href="{{ url_for('profile.slug', slug=profile.managed_by.slug) }}">
+        {{ profile.managed_by.name }}
+    </a>
+  </span>
+  {% elif profile.user.unclaimed %}
+  <span class="managed-by">
+    Profile not managed by user
+  </span>
+  {% endif %}
+</div>
+{% if not is_owner and current_user.is_authenticated %}
+<div class="btn-group dropdown-btn-group connect">
+    <button type="button"
+        class="btn btn--blue btn--med btn--connect dropdown-menu__toggle"
+        data-user-id="{{ profile.user_id }}"
+        data-url="{{ url_for('relate.connect', target_id=profile.user_id) }}"
+        >Connect <span class="caret"></span></button>
+    <div class="dropdown-menu__list-cont" style="height:0;">
+    {% include 'relate/connect_dropdown.html' %}
+    </div>
+</div>
+{% endif %}

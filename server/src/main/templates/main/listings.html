@@ -1,0 +1,27 @@
+{% if not listings %}
+    <li>
+        <div class="opportunity-profiles-placeholder">
+            <img src="/static/images/suggested-profile-placeholder.jpg" alt="Sporple Opportunities">
+        </div>
+    </li>
+{% else %}
+    {% for listing in listings %}
+        {% set hidden = (loop.index > 8 or page > 1) %}
+        {% set profile_url = url_for('profile.slug', slug=listing.club.slug, tab='listings', lid=listing.id) %}
+        <li class="has-clickable" {% if hidden %}style="display:none;" {% endif %}>
+            <a class="clickable" href="{{ profile_url }}">
+                <div class="profile-pic profile-pic--square">
+                    <img src="{{ listing.club.profile.get_image('x-small') }}"
+                        alt="Club image" title="{{ listing.club.profile.club_name }}"/>
+                </div>
+
+                <div class="profiles-list__details">
+                    <p class="ttl4">{{ listing.club.profile.club_name.upper() }}</p>
+                    <p class="ttl5">Looking For: <span class="orange">{{ listing.position.name }}</span></p>
+                    <p class="ttl5">{{ listing.club.profile.address_country.name }}</p>
+                    <p class="profiles-list__date">Listed: {{ listing.created_at.strftime('%b  %d, %Y') }}</p>
+                </div>
+            </a>
+        </li>
+    {% endfor %}
+{% endif %}

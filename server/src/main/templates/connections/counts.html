@@ -1,0 +1,7 @@
+<a class="connections-link {% if type == 'followers' %}selected{% endif %}" href="{{ url_for('connections', type='followers') }}">
+  Followers ({{ current_user.user.get_followers_count() }})
+</a>
+<a class="connections-link {% if type == 'following' %}selected{% endif %}" href="{{ url_for('connections', type='following') }}">
+  Following ({{ current_user.user.get_following_count() }})
+</a>
+

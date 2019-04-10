@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ use_javascript('frontend/registration/facebook_tracking_pixel.js') | safe }}
+{{ use_stylesheet('frontend/registration/signup_complete.css') | safe }}
+  <div id="wrapper-box" class="content_space">
+    <div class="page_content signup_complete l-center signup_premium">
+      <h1 class="bigger">Congratulations!</h1>
+
+      <p><strong class="bigger">Welcome to</strong></p>
+
+      <img src="/static/images/img_logo_HR.png" width="239" height="66" alt="Sporple" class="logo_signup_complete l-center"/>
+      
+      <p><strong class="font-arial">Jump in and begin customising your profile</strong></p>
+
+      <div class="wrapper border-top spacing-top-20">
+          <span class="knop l-center new-school">
+              <a class="btn btn--cta btn--large" href="{{ url_for('profile.slug', slug=current_user.user.slug) }}">Go to Profile</a>
+          </span>      
+      </div>
+<!-- Google Code for Registration Basic Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 983870752;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "66WICPf3q2MQoNqS1QM";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/983870752/?label=66WICPf3q2MQoNqS1QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- End Conversion tracking -->
+    </div>
+</div>
+{% endblock content %}

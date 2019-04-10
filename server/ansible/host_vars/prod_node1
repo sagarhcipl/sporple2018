@@ -1,0 +1,9 @@
+ansible_user:       deploy
+ansible_host:       node1.corp.sporple.com
+
+public_ip:          52.17.191.25
+private_ip:         172.31.47.242
+
+environment_name:   prod
+app_config_file:    ../config/prod.cfg
+domain_name:        www.sporple.com

@@ -1,0 +1,205 @@
+/**
+ * User search form
+ */
+
+d#message-user-threads d#message-user-threads-filter-input
+{
+  padding: 0px 0px 5px 0px;
+}
+
+/**
+ * User Thread list
+ */
+ 
+d#message-user-threads d#message-user-threads-list
+{
+  height: 700px;
+  overflow-y: auto;
+}
+ 
+d#message-user-threads d#message-user-threads-list a
+{
+  position: relative;
+  font-size: 13px;
+  display: block;
+  margin: -1px 10px 0px 10px;
+  padding: 20px 0px 8px 65px;
+  border-bottom: 1px solid #E6E6E6;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+d#message-user-threads d#message-user-threads-list a img
+{
+  float: left;
+  margin: 0px 0px 0px -65px;
+  width: 55px;
+  height: 55px;
+  border: 1px solid #FFFFFF;
+}
+ 
+d#message-user-threads d#message-user-threads-list a strong
+{
+  color: #000000;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: block;
+  padding: 5px 0px 2px 0px;
+}
+ 
+d#message-user-threads d#message-user-threads-list a span
+{
+  color: #000000;
+  display: block;
+  line-height: 18px;
+}
+ 
+d#message-user-threads d#message-user-threads-list a aside
+{
+  display: inline-block;
+  font-size: 12px;
+  position: absolute;
+  top: 1px;
+  right: 0px;
+  text-align: right;
+}
+ 
+d#message-user-threads d#message-user-threads-list a aside strong
+{
+  vertical-align: middle;
+  font-weight: normal;
+  display: inline-block;
+  background: #2777B2;
+  color: #FFFFFF;
+  padding: 2px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+}
+ 
+d#message-user-threads d#message-user-threads-list a aside span
+{
+  vertical-align: middle;
+  color: #777777;
+  display: inline-block;
+  padding: 2px 0px 2px 2px;
+  text-shadow: 1px 1px rgba(255,255,255,0.8);
+}
+ 
+/**
+ * User Thread list item selected & hover
+ */
+ 
+d#message-user-threads d#message-user-threads-list a.selected,
+d#message-user-threads d#message-user-threads-list a:hover
+{
+  background: #D8D8D8;
+  margin: -1px 0px 0px 0px;
+  padding: 20px 10px 8px 75px;
+  border-color: #D8D8D8;
+}
+ 
+d#message-user-threads d#message-user-threads-list a.selected aside,
+d#message-user-threads d#message-user-threads-list a:hover aside
+{
+  right: 10px;
+}
+
+/**
+ * Message Thread input
+ */
+ 
+d#message-current d#message-current-input
+{
+  border-top: 5px solid #686868;
+}
+ 
+
+/**
+ * Message Thread list
+ */
+ 
+d#message-current d#message-current-thread
+{
+  height: 545px;
+  overflow-y: auto;
+}
+ 
+d#message-current d#message-current-thread d
+{
+  position: relative;
+  font-size: 13px;
+  display: block;
+  margin: -1px 15px 0px 15px;
+  padding: 20px 0px 10px 55px;
+  border-bottom: 1px solid #E6E6E6;
+  text-decoration: none;
+  overflow: hidden;
+}
+ 
+d#message-current d#message-current-thread d:last-child
+{
+  padding-bottom: 50px;
+  border-bottom: 0px;
+}
+
+d#message-current d#message-current-thread d img
+{
+  float: left;
+  margin: 0px 0px 0px -55px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #FFFFFF;
+}
+
+d#message-current d#message-current-thread d span+img
+{
+  float: none;
+  margin: 0px;
+  max-width: 100px;
+  max-height: 100px;
+  border: 1px solid #FFFFFF;
+  margin: 5px 0px 0px 0px;
+  cursor: pointer;
+}
+ 
+d#message-current d#message-current-thread d strong
+{
+  color: #000000;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: block;
+  padding: 5px 0px 5px 0px;
+}
+ 
+d#message-current d#message-current-thread d strong a 
+{
+  color:#244988;
+  text-decoration:none;
+}
+d#message-current d#message-current-thread d span
+{
+  color: #000000;
+  display: block;
+  line-height: 18px;
+}
+
+d#message-current d#message-current-thread d aside
+{
+  display: inline-block;
+  font-size: 12px;
+  position: absolute;
+  top: 1px;
+  right: 0px;
+  text-align: right;
+}
+ 
+d#message-current d#message-current-thread d aside span
+{
+  vertical-align: middle;
+  color: #c9c9c9;
+  display: inline-block;
+  font-size:11px;
+  padding: 2px 0px 2px 2px;
+  text-shadow: 1px 1px rgba(255,255,255,0.8);
+}

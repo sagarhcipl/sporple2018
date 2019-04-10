@@ -1,0 +1,23 @@
+{{ use_javascript('frontend/post/list.js') | safe }}
+{{ use_stylesheet('frontend/post/_list.css') | safe }}
+
+{% if profile.career_summary or is_owner %}
+    <header class="header--secondary">
+        <h2 {% if foldable != False %}class="foldable" {% endif %}>
+            Career Summary
+        </h2>
+    </header>
+
+    <div class="profile__about-section-content">
+
+        <p>
+            {{ profile.career_summary | escape_custom }}
+        </p>
+
+        {% if is_owner %}
+            <a href="{{ url_for('profile.edit_career_summary') }}" id="profile_edit_career_summary" class="btn--edit edit-profile-about-section">
+                <img src="/static/images/icon_edit.png"/>
+            </a>
+        {% endif %}
+    </div>
+{% endif %}

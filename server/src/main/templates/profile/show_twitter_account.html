@@ -1,0 +1,9 @@
+{% if is_owner %}
+<button class="btn--info edit-header" id="profile__edit-twitter"
+    data-url="{{ url_for('profile.twitter_account') }}">
+    <i class="fa fa-edit fa-1-5x"></i><span class="hidden-xs"> Edit</span>
+</button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-twitter"></i> Tweets</h3>
+<a class="twitter-timeline" height="350" data-chrome="nofooter noborders" data-widget-id="{{ config.TWITTER_WIDGET_ID }}" data-screen-name="{{ profile.twitter_account }}">Tweets by @{{profile.twitter_account}}</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

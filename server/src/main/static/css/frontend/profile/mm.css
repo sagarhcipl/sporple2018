@@ -1,0 +1,33 @@
+#body_main_container {
+    background: url(/static/images/mm/background.jpg) center top repeat-y;
+}
+
+#container {
+    border-left: 7px solid #000000;
+}
+
+.page_content.top_content .player_information h1.player_name {
+    background: url(/static/images/mm/bg_player_name_right.png) no-repeat top right;
+}
+
+.page_content.top_content .player_information h1.player_name div {
+    background-color: #000000;
+}
+
+section#profile_basic_information {
+    background: url(/static/images/mm/logo.jpg) left top no-repeat;
+}
+
+.page_content.top_content .player_information {
+    margin-top: 71px;
+}
+
+.page_content .content_part > header {
+    background: none;
+    background: #000000;
+}
+
+div#leaderboard {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

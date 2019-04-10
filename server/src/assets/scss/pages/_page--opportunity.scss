@@ -1,0 +1,52 @@
+.listing-info.opportunity-list {
+    background-color: $grey-bg;
+    padding: 20px 0;
+    li {
+        background-color: #fff;
+        vertical-align: top;
+        margin: 10px;
+        &.clearfix {
+            margin: 0;
+            padding: 0;
+        }
+        .listing-club-image {
+            max-width: 102px;
+            max-height: 102px;
+            float:left;
+        }
+    }
+}
+
+.search-opportunity {
+    h1 {
+        padding-top: 40px;
+    }
+    .subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+}
+.opportunities-page {
+    .search-results-navigation {
+        float:none;
+        font-weight: bold;
+        @include font(20, 28);
+        text-align: right;
+        padding: 10px;
+        background-color: #000;
+        display: block;
+        margin-right: 0;
+    }
+    .bottom .search-results-navigation {
+        text-align: center;
+        margin-bottom: 20px;
+        a {
+            border: solid 1px $grey-light;
+            padding: 5px;
+            &:hover, &:focus {
+                border-color: $blue;
+            }
+        }
+    }
+}

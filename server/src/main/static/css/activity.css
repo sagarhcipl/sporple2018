@@ -1,0 +1,715 @@
+/**
+ * Activity Input
+ */
+
+section.activity_input {
+    background: #EDEDED;
+    font-size: 13px;
+}
+
+/**
+ * Activity Input Header
+ */
+
+section.activity_input header {
+    background: #EDEDED;
+    border-bottom: 5px solid #686868;
+    padding: 12px 5px 10px 25px;
+    cursor: default;
+}
+
+section.activity_input header h1 {
+    font-size: 12px;
+    line-height: inherit;
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    padding: 10px 10px 2px 0px;
+    border-right: 1px solid #C9C9C9;
+}
+
+section.activity_input header span {
+    float: right;
+    padding: 10px 10px 0px 10px;
+    line-height: 13px;
+}
+
+section.activity_input header span:last-child {
+    border-right: 1px solid #C9C9C9;
+}
+
+section.activity_input header span strong {
+    display: inline-block;
+    margin: 0px 2px -2px 2px;
+    color: #01427E;
+    font-size: 22px;
+}
+
+section.activity_input .connections_link {
+    text-decoration: none;
+    color: #000000;
+}
+
+/**
+ * Activity Input Content
+ */
+
+section.activity_input div.content {
+    background: #C6C6C7;
+    padding: 7px 30px 10px 65px;
+}
+
+section.activity_input div.content textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 65px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    resize: none;
+    border: 1px solid #AAAAAA;
+    overflow: auto;
+    padding: 10px 0px;
+    margin: 0px;
+}
+
+section.activity_input div textarea::-webkit-input-placeholder {
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    color: #BBBBBB;
+}
+
+section.activity_input div textarea::-moz-placeholder {
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    color: #999999;
+}
+
+section.activity_input div textarea:-moz-placeholder {
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    color: #999999;
+}
+
+section.activity_input div textarea:-ms-input-placeholder {
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    color: #BBBBBB;
+}
+
+section.activity_input div.content footer {
+    background: #EDEDEE;
+    margin: 0px 1px;
+    height: 32px;
+    clear: both;
+}
+
+section.activity_input div.content footer img {
+    height: 32px;
+    width: auto;
+}
+
+section.activity_input div.content .upload_item_conainer {
+    position: relative;
+}
+
+section.activity_input div.content footer.upload_share_btn {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+/**
+ * Activity Input Upload Button
+ */
+
+section.activity_input div.content footer a.upload_button {
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+
+section.activity_input div.content footer a.edit_file {
+    width: 155px;
+    height: 32px;
+}
+
+section.activity_input div.content footer a.edit_file .file{
+    width: 60px;
+    float: left;
+}
+
+section.activity_input .edit_footer input {
+    height: 30px;
+    float: left;
+    margin: 0;
+}
+
+section.activity_input .edit_footer .remove_text{
+    height: 32px;
+    float: left;
+    line-height: 32px;
+    margin-right: 10px;
+}
+
+section.activity_input div.content footer a.edit_file input {
+    width: 107px !important;
+    left:32px !important;
+    position: absolute !important;
+    top: 0;
+    z-index: 100;
+}
+
+section.activity_input div.content footer a.edit_file .upload_file {
+    position: absolute;
+    top: 0;
+}
+
+section.activity_input div.content footer ul.error_list {
+    border: 1px solid #FF0000;
+    right: -57px;
+    height: 30px;
+    line-height: 30px;
+}
+
+section.activity_input div.content footer a.upload_button input {
+    position: absolute;
+    cursor: pointer;
+    background: #CCCCCC;
+    left: -200px;
+    width: 300px;
+    height: 32px;
+    opacity: 0;
+}
+
+section.activity_input div.content footer .post_filename {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+}
+
+section.activity_input div.content footer a.upload_button span.upload_file {
+    display: inline-block;
+    text-shadow: 1px 1px rgba(255, 255, 255, 0.8);
+    line-height: 32px;
+    padding: 0px 15px;
+}
+
+section.activity_input div.content footer a.upload_button span strong {
+    float: left;
+    color: #207AC2;
+    font-size: 22px;
+    line-height: 30px;
+    /*font-weight: 800;*/
+    margin: 0px 4px 0px 0px;
+}
+
+section.activity_input div.content footer a.upload_button:hover span.upload_file {
+    background: #207AC2;
+    color: #FFFFFF;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+section.activity_input div.content footer a.upload_button:hover span strong {
+    color: #FFFFFF;
+}
+
+/**
+ * Activity Input Submit Button
+ */
+
+section.activity_input div.content footer button {
+    float: right;
+    font-size: 14px;
+    height: 32px;
+    padding: 0px 25px;
+    border: 0px;
+    border-radius: 0;
+    margin: 0px -1px 0px 0px;
+    cursor: pointer;
+    background: #0060a8; 
+    background: #008eff;
+    font-weight: 700;
+    color: #fff;
+    transition: background-color 0.25s ease-out;
+}
+
+section.activity_input div.content footer button:hover {
+    background: #01407c;
+    background: #356496;
+}
+
+/**
+ * Activity Items
+ */
+
+section.activity_container {
+    background: #EDEDED;
+    font-size: 12px;
+    padding-bottom: 100px;
+    margin-top: 0!important;
+}
+
+section.activity_container article {
+    padding: 20px 0px 10px 0px;
+    /*margin: 0px 65px 0px 20px;*/
+    border-bottom: 1px solid #FFFFFF;
+    cursor: default;
+}
+
+section.activity_container article .article-inner {
+    margin: 0px 65px 0px 20px;
+}
+
+section.activity_container.with_picture article .article-inner {
+    margin-left: 85px;
+    padding:0;
+}
+
+.new-post {
+    background-color: #dcdcdc;
+    position: relative;
+}
+
+.new-post .new-post-notification {
+    margin: 10px 0 0;
+}
+
+.new-post .new-post-badge {
+    position: absolute;
+    color: #ffffff;
+    background-color: #f89d00;
+    padding: 0 10px;
+    height: 17px;
+    line-height: 17px;
+    text-align: center;
+    left: -10px;
+    top: 3px;
+}
+
+.new-post .new-post-badge:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 10px 10px 0;
+    border-color: transparent #000000 transparent transparent;
+}
+
+.new-post .follow-button-holder {
+    float: left;
+    padding: 0;
+}
+
+.new-post aside {
+    height: 17px;
+}
+
+.new-post .follow-button-holder a.Follow span {
+    display: inline-block;
+    font-size: 13px;
+    text-shadow: 0 1px 0 #fff;
+    text-transform:capitalize;
+}
+
+.new-post .follow-button-holder a.button-unfollow span:before {
+    content:'\2714';
+}
+.new-post .follow-button-holder a.button-follow span:before {
+    content:'\002B ';
+    margin-right: 3px;
+}
+
+.new-post .follow-button-holder a.Follow span:hover,
+.new-post .follow-button-holder a.Follow span:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/**
+ * Activity Item Header
+ */
+
+section.activity_container article header {
+    height: 15px;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    padding-bottom: 10px;
+    box-sizing: content-box;
+}
+
+section.activity_container article header a,
+section.activity_container article header div.title {
+    display: inline-block;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+}
+
+section.activity_container article .article-inner header a,
+section.activity_container article .article-inner header div.title {
+    display: inline-block;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section.activity_container article header div.title {
+    padding: 0;
+}
+
+section.activity_container article header a:hover {
+    text-decoration: underline;
+}
+
+section.activity_container article .article-inner header a:hover {
+    text-decoration: underline;
+}
+
+section.activity_container article header span {
+    color: #f89d00;
+    /*font-weight: 800;*/
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+/**
+ * Activity Item Profile Picture
+ */
+
+section.activity_container article .article-inner > a {
+    float: left;
+    margin: -15px 0px 0px -65px;
+}
+
+section.activity_container article .article-inner > a img {
+    width: 43px;
+    height: 43px;
+    border: 1px solid #FFFFFF;
+}
+
+section.activity_container article .article-inner > img {
+    border: 1px solid #FFFFFF;
+    float: left;
+    height: 43px;
+    margin: -15px 0 0 -65px;
+    width: 43px;
+}
+
+section.activity_container article .article-inner > a img:hover {
+    border: 3px solid #FFFFFF;
+    margin: -2px;
+}
+
+/**
+ * Activity Item Text
+ */
+
+article#profile_activities section.activity_container article p {
+    margin: 10px 0 0;
+}
+
+section.activity_container article p {
+    line-height: 18px;
+}
+
+section.activity_container article p a {
+    color: #000;
+    float: none;
+    display: inline;
+    margin: 0px;
+    text-transform: none;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+section.activity_container article ul.ooip_attachment_list {
+    -moz-column-count: 2;
+    -webkit-column-count:2;
+    column-count:2;
+    overflow: hidden;
+}
+
+section.activity_container article ul.ooip_attachment_list li {
+    float: left;
+}
+
+section.activity_container article ul.large li {
+    /*  clear: both;*/
+    margin-bottom: 5px;
+    padding-right: 8px;
+}
+
+section.activity_container article ul.large li img {
+    /* changed width calculation */
+    margin-right: 8px;
+}
+
+section.activity_container article aside {
+    padding: 10px 0px 0px 0px;
+}
+
+section.activity_container article aside time {
+    color: #AFB1B4;
+    font-size: 13px;
+    line-height: 12px;
+}
+
+section.activity_container article aside a {
+    display: inline-block;
+    color: #828283;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    text-transform: lowercase;
+    margin: 0px 0px 0px 10px;
+    height: 16px;
+}
+
+section.activity_container article aside a:hover, section.activity_container article aside a span:hover {
+    text-decoration: underline;
+}
+
+section.activity_container article aside p {
+    color: #888888;
+    display: block;
+    padding: 4px 0px 0px 18px;
+    background: transparent url(../images/ico_like.png) no-repeat 0px 4px;
+}
+
+section.activity_container article aside p a,
+section.activity_container article aside p strong {
+    position: relative;
+    display: inline-block;
+    color: #777777;
+    padding: 0px;
+    margin: 0px;
+    height: auto;
+}
+
+/**
+ * Activity shared post
+ */
+
+section.activity_container article .SharedPost {
+    /*border: 1px dotted black;*/
+    padding: 2px;
+    margin: 2px;
+    display: inline-block;
+}
+
+section.activity_container article .SharedPost p {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+section.activity_container article .SharedPost img {
+    display: inline-block;
+    float: left;
+    margin-left: 2px;
+    margin-top: 4px;
+}
+
+/**
+ * Activity Likes
+ */
+
+/*section.activity_container article aside a span {*/
+    /*display: none;*/
+    /*position: absolute;*/
+    /*bottom: 20px;*/
+    /*left: -20px;*/
+    /*z-index: 2;*/
+    /*background: #929496;*/
+/*}*/
+
+section.activity_container article aside a:hover span {
+    display: block;
+}
+
+section.activity_container article aside a span em {
+    margin: 0px;
+    white-space: nowrap;
+    color: #FFFFFF;
+    display: block;
+    padding: 2px 10px;
+    margin: 0px;
+}
+
+section.activity_container article aside a span em:first-child {
+    padding-top: 7px;
+}
+
+section.activity_container article aside a span em:last-child {
+    padding-bottom: 7px;
+}
+
+/**
+ * Activity Item Comments
+ */
+
+section.activity_container article div {
+    padding: 0px 0px 0px 18px;
+}
+
+section.activity_container article div.favourite-button-holder {
+    position: relative;
+    display: inline-block;
+    height: 16px;
+    padding-left: 10px;
+    line-height: 16px;
+}
+
+section.activity_container article div.favourite-button-holder a {
+    color: #828283;
+    margin-left: 0px;
+}
+
+section.activity_container article div.favourite-button-holder a span {
+    margin-left: 0px;
+    position: static;
+    display: inline-block;
+    color: #828283;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    text-transform: lowercase;
+    background: none;
+    line-height: 12px;
+}
+
+section.activity_container article div a {
+    display: inline-block;
+    color: #01427E;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    padding: 4px 0px 2px 0px;
+}
+
+section.activity_container article div a:hover {
+    text-decoration: underline;
+}
+
+section.activity_container article div ul {
+    padding: 3px 0px 10px 0px;
+}
+
+section.activity_container article div li {
+    position: relative;
+    font-size: 11px;
+    padding: 3px 0px 0px 40px;
+}
+
+section.activity_container article div li a:first-child {
+    float: left;
+    margin: 0px 0px 0px -40px;
+}
+
+section.activity_container article .comments li a img {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #FFFFFF;
+}
+
+section.activity_container article .comments li a:hover img {
+    margin: -2px;
+    border: 3px solid #FFFFFF;
+}
+
+section.activity_container article div li a {
+    display: inline-block;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+    padding-right: 5px;
+}
+
+section.activity_container article div li a:hover {
+    text-decoration: underline;
+}
+
+section.activity_container article div li p {
+    font-size: 13px;
+    color: #515151;
+    display: inline;
+}
+
+section.activity_container article div li p > a {
+    color: #01427E;
+    float: none !important;
+    display: inline;
+    margin: 0px !important;
+    text-transform: none;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+section.activity_container article div li time {
+    display: block;
+    line-height: 14px;
+    color: #AFB1B4;
+}
+
+section.activity_container article div li fieldset div {
+    padding: 0px;
+}
+
+section.activity_container article div li fieldset div.required textarea {
+    background-image: none;
+    line-height: 1;
+}
+
+section.activity_container article div li fieldset div textarea,
+section.activity_container article div li span.dummy {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    height: 30px;
+    min-height: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    resize: none;
+    border: 1px solid #DADBDB;
+    overflow: hidden;
+    padding: 7px 10px 5px 10px;
+    margin: 5px 0px 0px 0px;
+    /*word-break: break-all;*/
+    -webkit-transition: height 0.3s ease-out 0s;
+    -moz-transition: height 0.3s ease-out 0s;
+    -o-transition: height 0.3s ease-out 0s;
+    transition: height 0.3s ease-out 0s;
+}
+
+section.activity_container article div li span.dummy {
+    height: auto;
+    min-height: 20px;
+    line-height: normal;
+    position: absolute;
+    visibility: hidden;
+}
+
+section.activity_container .hidden {
+    display: none;
+}
+
+section.activity_container .visible {
+    display: block;
+}
+
+section.activity_container .new_comment_container {
+    margin-top: 15px;
+}
+
+section.activity_container article .SharedPost.no_attached_image {
+    margin: 8px 0 0;
+    padding: 0px;
+}
+
+section.activity_container article .SharedPost.no_attached_image p,
+.no_attached_image p {
+    margin-left: 0px;
+    padding-left: 0px !important;
+}
+
+.sf_comment_form fieldset {
+border: 0 !important;
+padding: 0 !important;
+margin: 0 !important;
+}

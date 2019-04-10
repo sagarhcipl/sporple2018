@@ -1,0 +1,19 @@
+<section class="navigation">
+    <ul>
+        <li class="{% if request.endpoint == 'settings.password' %}selected{% endif %}">
+            <a href="{{ url_for('settings.password') }}">Password</a>
+        </li>
+        <li class="{% if request.endpoint == 'settings.email' %}selected{% endif %}">
+            <a href="{{ url_for('settings.email') }}">Email</a>
+        </li>
+        <li class="{% if request.endpoint == 'settings.email_notifications' %}selected{% endif %}">
+            <a href="{{ url_for('settings.email_notifications') }}">Email Notification</a>
+        </li>
+        {% if current_user.user.is_premium() %}
+        <li class="{% if request.endpoint == 'settings.membership' %}selected{% endif %}">
+            <a href="{{ url_for('settings.membership') }}">Membership</a>
+        </li>
+        {% endif %}
+    </ul>
+</section>
+

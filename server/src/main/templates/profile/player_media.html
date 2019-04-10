@@ -1,0 +1,35 @@
+{% if not request.is_xhr %}
+    <section
+        class="profile__media-cont col-8-12 {% if profile.role.slug == 'club' %}profile__media-cont--club{% endif %}" id="profile__media-cont">
+{% endif %}
+
+    <div class="profile__media-cover-cont aspect-wrap ratio-16-9">
+        {% set reel_type = 'image' if profile.reel_image else profile.reel_video_type %}
+        {% if reel_type == 'youtube' %}
+            <iframe id="ytplayer" type="text/html" 
+                    class="profile__media-cover-vid"
+                    src="https://www.youtube.com/embed/{{ profile.reel_video_url }}?wmode=opaque"
+                    frameborder="0" allowfullscreen></iframe>
+        {% elif reel_type  == 'vimeo' %}
+            <iframe id="vimeo-player" class="profile__media-cover-vid" 
+                    src="//player.vimeo.com/video/{{ profile.reel_video_url }}?color=018eff&byline=0&portrait=0&api=1"
+                    width="500" height="281"
+                    frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        {% else %}
+            <img class="profile__media-cover-img" src="{{ profile.reel_url }}" alt=""/>
+        {% endif %}
+    </div>
+
+    {% include 'profile/thumb_list.html' %}
+{% if is_owner %}
+    <a href="{{ url_for('profile.edit_player_media') }}" 
+        id="profile__edit-media"
+        class="btn--edit {% if not is_something_edited %}nothing_edited{% endif %}">
+        <img src="/static/images/icon_edit.png"/>
+    </a>
+{% endif %}
+
+{% if not request.is_xhr %}
+    </section>
+{% endif %}
+

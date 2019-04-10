@@ -1,0 +1,42 @@
+{% import 'forms/base.html' as base %}
+<div class="delete-listing-popup">
+<p>Select a reason to close the listing.</p>
+<form action="{{ url_for('club.delete_listing', id=listing.id) }}" method="post"
+        class="form delete-listing" id="delete-listing-form">
+    <div class="form__row">
+        <label><input type="radio" name="close_reason" value="found_on_sporple">Recruited on Sporple</label>
+    </div>
+    <div class="delete-listing-quick-search hidden form__row">
+        <label>Enter Name of Athlete Recruited:</label>
+        <input type="text" placeholder="Full Name" id="delete-listing-athlete-name" name="athlete_name" autocomplete="off">
+        <div id="delete-listing-results-container"></div>
+        <input type="hidden" value="" id="delete-listing-user-id" name="delete-listing-user-id">
+        <input type="hidden" value="{{ current_user.user.sport_slug }}" name="sport">
+        <div class="delete-listing-picked-user hidden">
+            <img src="" title="User Profile"/> <span class="name">User</span>
+        </div>
+    </div>
+    <div class="form__row">
+        <label><input type="radio" name="close_reason" value="found_elsewhere">Recruited Outside of Sporple</label>
+    </div>
+    <div class="delete-listing-outside form__row hidden">
+        <label>Enter details of Athlete You Recruited and we will invite him/her to join your team on Sporple:<label>
+    </div>
+    <div class="delete-listing-outside form__row inline-label hidden">
+        <label>Name</label>
+        <input type="text" placeholder="Full Name" id="delete-listing-outside-name" name="outside_athlete_name" autocomplete="off">
+    </div>
+    <div class="delete-listing-outside form__row inline-label hidden">
+        <label>Email</label>
+        <input type="text" placeholder="Email" id="delete-listing-outside-email" name="outside_athlete_email" autocomplete="off">
+    </div>
+    <div class="form__row">
+        <label><input type="radio" name="close_reason" value="no_hire">Will Not Recruit</label>
+    </div>
+
+    <div class="">
+        <button class="btn btn--blue btn--med" id="btn--submit">Close Listing</button>
+        <a href="#" class="btn btn--secondary btn--med">Cancel</a>
+    </div>
+</form>
+</div>

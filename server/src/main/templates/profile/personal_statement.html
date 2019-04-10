@@ -1,0 +1,26 @@
+
+<header class="header--secondary">
+    <h2 {% if foldable != False %}class="foldable" {% endif %}>
+        Personal Statement
+    </h2>
+</header>
+
+<div class="profile__about-section-content">
+    {% if not profile.personal_statement and not is_owner %}
+        <div class="empty-state">
+            <p class="ttl3">Sorry, this user doesn&#39;t have a personal statement yet.</p>
+        </div>
+
+    {% else %}
+        <p>
+            {{ profile.personal_statement | escape_custom }}
+        </p>
+    {% endif %}
+
+    {% if is_owner %}
+        <a href="{{ url_for('profile.edit_personal_statement') }}" id="profile_edit_personal_statement" class="btn--edit edit-profile-about-section">
+            <img src="/static/images/icon_edit.png"/>
+        </a>
+    {% endif %}
+</div>
+

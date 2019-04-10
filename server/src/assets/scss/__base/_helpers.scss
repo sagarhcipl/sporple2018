@@ -1,0 +1,259 @@
+/**
+ * @group css.base.helpers
+ *
+ * Here we define the reusable helper classes
+ *
+ * ## Usage
+ * Import into your main file using
+ *
+ * @example
+ *     @import "__base/_helpers.scss";
+ *
+ */
+
+ /**
+ * Cubic Beziers
+ */
+ $swiftOut: cubic-bezier(.3,.01,.4,1);
+ $inOut: cubic-bezier(.4,.01,.43,.99);
+ $pop: cubic-bezier(.39,.03,.2, 1.82);
+
+
+/**
+ * Clearfix
+ */
+
+.cf {
+  zoom: 1;
+	&:before, &:after { content: ""; display: table; }
+	&:after { clear: both; }
+}
+
+
+/**
+* Hidden - Hide from both screenreaders and browsers:
+*/
+
+.hdn {
+    display: none;
+    visibility: hidden;
+}
+
+
+/**
+* Visually Hidden
+*/
+
+.vhdn {
+    @include vhdn;
+}
+
+.vhdn-off {
+    @include vhdn-off;
+}
+
+
+/**
+* Visually Hidden on Focus - Extends the .vhdn class to allow the element to be focusable
+*/
+
+.vhdn.focus:active,
+.vhdn.focus:focus {
+	@include vhdn-off;
+}
+
+
+/**
+* Invisible - Hide visually and from screen readers, but maintain layout
+*/
+
+.invs {
+    visibility: hidden;
+}
+
+
+/**
+* hide text just out of the bounds of an element
+* e.g. so we can have a label to a bg image 
+*/
+
+.hide-text{
+    text-indent: 105%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+$mobileGuttersWidth: (100 - 93.5) + 0.1; //the exact equation doesnt render properly on an iphone so i add 0.1
+$tabletGuttersWidth: (100 - 97.56616);
+
+
+
+/**
+* Aspect Ratio Wrapper
+*/
+
+.aspect-wrap {
+    // Wrapper
+    position: relative;
+    height: 0;
+
+    &.ratio-16-9 {
+        padding-bottom: percentage(9/16);
+    }
+    &.ratio-4-3 {
+        padding-bottom: percentage(3/4);
+    }
+    &.ratio-1-1 {
+        padding-bottom: percentage(1/1);
+    }
+
+    // Content
+    > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/**
+* Circular profile pic
+*/
+.profile-pic{
+    overflow: hidden;
+    border-radius: 50%;
+
+    &.profile-pic--square{
+        border-radius: 0;
+    }
+}
+
+/**
+* Circular profile pic interactions
+*/
+.csstransforms3d.is-modern:not(.touch) a.profile-pic{
+    background-color: $grey-dark;
+    transform: translate3d(0,0,0);
+
+    img{
+        opacity: 1;
+    }
+
+    &:hover{
+        img{
+            opacity: 0.7;
+        }  
+    }
+
+}
+//safari has rendering issues when transitions are used
+.csstransforms3d.is-modern:not(.touch):not(.is-safari) a.profile-pic{
+    img{
+        transition: opacity 0.25s $swiftOut;
+    }
+}
+
+.header--secondary{
+    margin-bottom: 10px;
+    padding: 11px 20px 6px;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p{
+        @extend .ttl2;
+        margin: 0 !important;
+        color: #fff !important;
+    }
+
+    margin-left: ($mobileGuttersWidth/2)*-1%;
+    width: 100 + $mobileGuttersWidth*1%;
+
+    @include mq($from: tablet) {
+        margin-left: auto;
+        width: auto;
+    }
+}
+
+//svg loading icon
+.svg .module--loading{
+
+    > *{
+        visibility: hidden;
+    }
+
+    &:after{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: inline-block;
+        margin: -17px 0 0 -17px;
+        width: 34px;
+        height: 34px;
+        background: url("/static/images/svg/spinner-grey.svg") 0 0 no-repeat;
+        background-size: 34px 34px;
+    }
+
+    &.module--loading-white{
+        &:after{
+            background: url("/static/images/svg/spinner.svg") 0 0 no-repeat;
+        }
+    }
+}
+
+
+
+/**
+* box model
+*/
+.old-school{
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    line-height: 1;//so we dont desturb old layout
+
+    *,
+    *:after,
+    *:before {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+
+}
+
+.new-school{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.9rem;//so we dont desturb old layout
+
+    *,
+    *:after,
+    *:before {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+}
+
+/**
+ * show more plugin.
+ */
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: inline-block;
+    font-weight: bold;
+    @include font(12);
+    &.less {
+        display: block;
+    }
+}

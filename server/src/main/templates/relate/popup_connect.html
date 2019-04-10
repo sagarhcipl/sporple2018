@@ -1,0 +1,77 @@
+<div class="row row-centered">
+    <p><strong>Thanks for connecting, do you know {{ target_user.name }}?</strong></p>
+  <form method="post" class="col-xs-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 left">
+    {% if user_role == 'club' and target_role == 'athlete' %}
+    <div class="relate-option">
+        <div class="details hidden"><input type="text" name="year_start"></div>
+        <input type="radio" name="type" id="current_team" data-type="current_team">
+            <label for="current_team">
+                {{ target_user.profile.firstname }} currently plays For us</label>
+    </div>
+    <div class="relate-option">
+        <div class="details hidden"><input type="text" name="year_start"></div>
+        <div class="details hidden"><input type="text" name="year_end"></div>
+        <input type="radio" name="type" id="past_team" data-type="past_team">
+            <label for="past_team">{{ target_user.profile.firstname }} played for us</label>
+    </div>
+    <div class="relate-option">
+        <input type="radio" name="type" id="want_to_recruit" data-type="want_to_recruit">
+            <label for="want_to_recruit">We want to recruit {{ target_user.profile.firstname }}</label>
+    </div>
+    {% elif user_role == 'athlete' and target_role == 'athlete' %}
+    <div class="relate-option">
+        <div class="details hidden"><input type="text" name="club_name"></div>
+        <input type="radio" name="type" id="played_with" data-type="played_with">
+            <label for="played_with">I played with {{ target_user.profile.firstname }}</label>
+    </div>
+    <div class="relate-option">
+        <div class="details hidden"><input type="text" name="club_name"></div>
+        <input type="radio" name="type" id="current_play_with" data-type="current_play_with">
+            <label for="current_play_with">I currently play with {{ target_user.profile.firstname }}</label>
+    </div>
+    <div class="relate-option">
+        <input type="radio" name="type" id="want_to_play" data-type="want_to_play">
+            <label for="want_to_play">I want to play with {{ target_user.profile.firstname }}</label>
+    </div>
+    {% elif user_role == 'agent' and target_role == 'athlete' %}
+    <div class="relate-option">
+        <div class="details hidden"><input type="text" name="year_start"></div>
+        <input type="radio" name="type" id="current_client" data-type="current_client">
+            <label for="current_client">I manage {{ target_user.profile.firstname }}</label>
+    </div>
+    <div class="relate-option">
+        <div class="details hidden"><input type="text" name="year_start"></div>
+        <div class="details hidden"><input type="text" name="year_end"></div>
+        <input type="radio" name="type" id="past_client" data-type="past_client">
+            <label for="past_client">I used to manage {{ target_user.profile.firstname }}</label>
+    </div>
+    <div class="relate-option">
+        <input type="radio" name="type" id="want_to_offer" data-type="want_to_offer">
+            <label for="want_to_offer">I want to recruit {{ target_user.profile.firstname }}</label>
+    </div>
+    {% elif user_role == 'athlete' and target_role == 'club' %}
+    <div class="relate-option">
+        <input type="radio" name="type" id="current_team" data-type="current_team">
+            <label for="current_team">I currently play for them</label>
+    </div>
+    <div class="relate-option">
+        <input type="radio" name="type" id="want_to_play" data-type="want_to_play">
+            <label for="want_to_play">I want to play for them</label>
+    </div>
+    <div class="relate-option">
+        <input type="radio" name="type" id="past_team" data-type="past_team">
+            <label for="past_team">I played for them</label>
+    </div>
+    {% elif user_role == 'athlete' and target_role == 'agent' %}
+    <div class="relate-option">
+        <input type="radio" name="type" id="want_to_be_managed" data-type="want_to_be_managed">
+            <label for="want_to_be_managed">I want to be managed by {{ target_user.profile.firstname }}</label>
+    </div>
+    {% endif %}
+    <div class="relate-option">
+        <input type="radio" name="type" id="is_fan" data-type="is_fan" checked>
+            <label for="is_fan">I am a Fan</label>
+    </div>
+    <button type="submit" class="btn btn--blue btn--med">Save</button>
+  </form>
+</div>

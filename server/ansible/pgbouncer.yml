@@ -1,0 +1,4 @@
+- hosts: pgbouncer
+  roles:
+    - role: pgbouncer
+      become: yes

@@ -1,0 +1,47 @@
+{% import 'forms/base.html' as base %}
+{% if not achievement_id %}
+{% set action = url_for('profile.edit_achievement', user_id=profile.user_id) %}
+{% else %}
+{% set action = url_for('profile.edit_achievement_id', id=achievement_id, user_id=profile.user_id) %}
+{% endif %}
+<form
+    action="{{ action }}"
+    method="post" id="profile_achievement_form" class="form">
+
+    <div class="form__row inline-label">  
+        <label>Year</label>
+        {{ form.year() }}
+
+        {{ base.errors(form.year.errors) }}
+    </div>
+
+    <div class="form__row inline-label">  
+        <label>Title</label>
+        {{ form.title(**{
+            'data-parsley-required': 'true',
+            'maxlength': '127'
+            })
+        }}
+        {{ base.errors(form.title.errors) }}
+    </div>
+
+    <div class="form__row">  
+        <p>Summary</p>
+        {{ form.summary(maxlength='800') }}
+
+        {{ base.errors(form.summary.errors) }}
+    </div>
+    {{ form.csrf_token }}
+
+    <div class="form__row">
+        {% if not achievement_id %}
+            <button class="btn btn--blue btn--med" id="btn--submit">Add achievement</button>
+        {% else %}
+            <button class="btn btn--blue btn--med" id="btn--submit">Save</button>
+        {% endif %}
+
+        <a href="{{  url_for('profile.main', user_id=current_user.user.id) }}" class="btn btn--secondary btn--med">Cancel</a>
+    </div>
+
+</form>
+

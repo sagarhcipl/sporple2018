@@ -1,0 +1,74 @@
+.tabs-mod{
+	position: relative;
+
+	& > nav{
+		margin-bottom: 1px;
+		height: 37px;
+	}
+
+	.tabs-mod__tab{
+	    display: block;
+	    float: left;
+	    margin-right: 1px;
+	    padding: 10px 10px;
+	    height: 37px;
+	    border: none;
+	    background-color: $brand-blue;
+	    color: #fff;
+	    text-align: center;
+	    @include font(14,19);
+	    font-weight: $bold;
+	    text-transform: uppercase;
+	    transition: background 0.25s ease-out, width 0.25s ease-in-out;
+	    cursor: pointer;
+
+	    &.active,
+	    &:hover,
+	    &:focus{
+	    	background-color: $blue-secondary;
+	    }
+
+		@include mq($from: tablet) {
+			padding: 10px 15px;
+			min-width: 120px;
+		}
+	}
+
+	.tabs-mod__tab-body-cont{
+
+		.header--secondary{
+			background-color: $blue-secondary;
+		}
+
+		.tab-body-section__content{
+			margin: 0 auto 10px;
+			padding: 10px 20px 0;
+		}
+		
+	}
+
+		.tabs-mod__tab-body{
+			position: absolute;
+			top: 0;
+			z-index: 0;
+			visibility: hidden;
+			overflow: hidden;
+			height: 0;
+			opacity: 0;
+			transition: opacity 0.25s ease-out;
+
+			&.active{
+				position: relative;
+				bottom: auto;
+				z-index: 1;
+				visibility: visible;
+				overflow: visible;
+				opacity: 1;
+				height: auto;
+			}
+		}
+
+
+		.activity_container{}
+
+}

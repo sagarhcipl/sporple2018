@@ -1,0 +1,132 @@
+@media only screen and (max-width: 376px) {
+    section#footer {
+        display: none;
+    }
+}
+/*Footer*/
+#footer {
+    color: #636466;
+    background: #fff url('/images/bg_footer_new.png') repeat-x left top;
+    font-size: 11px;
+    min-height: 96px;
+    padding-top: 1px;
+}
+
+#footer .social {
+    float: left;
+    height: 54px;
+    margin-left: 513px;
+    margin-top: 27px;
+    width: 210px;
+}
+
+#footer .social .social_button {
+    float: left;
+    height: 36px;
+    width: 36px;
+    margin: 8px;
+}
+
+#footer .social .social_button a {
+    width: 100%;
+    height: 100%;
+}
+
+#footer .social .facebook {
+    background: url('/images/facebook.png') no-repeat;
+}
+
+#footer .social .facebook:hover {
+    background-color: #3b579d;
+}
+
+#footer .social .twitter {
+    background: url('/images/twitter.png') no-repeat;
+}
+
+#footer .social .twitter:hover {
+    background-color: #19c5ff;
+}
+
+#footer .social .youtube {
+    background: url('/images/youtube.png') no-repeat;
+}
+
+#footer .social .youtube:hover {
+    background-color: #e64a41;
+}
+
+#footer .social .google {
+    background: url('/images/google.png') no-repeat;
+}
+
+#footer .social .google:hover {
+    background-color: #da4835;
+}
+
+#footer .footer_wrapper {
+    margin: 0 auto;
+    width: 1064px;
+}
+
+#footer .footer_wrapper nav {
+    background: url('/images/bg_footer_vert_spacer.png') repeat-y top left;
+    float: left;
+    margin: 5px 0 10px 20px;
+    min-height: 50px;
+}
+
+#footer .footer_wrapper nav ul {
+    padding-left: 14px;
+    margin: 0;
+}
+
+#footer .footer_wrapper nav ul li {
+    margin: 4px;
+    list-style: none;
+}
+
+#footer .footer_wrapper nav ul li a {
+    color: #fff;
+    font-family: "HelveticaW01-TextbookBd 709911",Helvetica,Arial,sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#footer .footer_wrapper nav p {
+    color: rgba(225, 225, 225, 0.7);
+    clear: both;
+    font-family: "HelveticaW01-TextbookRg 709917", Helvetica, Arial, sans-serif;
+    margin: 0 0 0 30px;
+}
+
+#footer .footer_wrapper .footer_wrap {
+    background: url('/images/bg_footer_wrap.png') no-repeat top left;
+    margin: 7px 0 0 -139px;
+    min-height: 91px;
+    padding: 0 0 0 135px;
+}
+
+#footer .footer_wrapper .footer_logo {
+    background: url('/images/bg_footer_vert_spacer.png') repeat-y top right;
+    float: right;
+    margin: 15px 20px 0 0;
+    text-decoration: none;
+    padding-right: 20px;
+    padding-top: 23px;
+}
+
+#footer .footer_wrapper .footer_logo p {
+    color: #fff;
+    font-family: "HelveticaW01-TextbookBd 709911",Helvetica,Arial,sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+#footer .footer_wrapper .footer_logo img {
+    max-width: 100%;
+    margin-left: 57px;
+    width: 80px;
+}

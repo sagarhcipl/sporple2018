@@ -1,0 +1,128 @@
+.career-overview {
+    li {
+        border-bottom: solid 1px #f5f5f5;
+        padding: 27px;
+        position: relative;
+    }
+    .title-prefix {
+        color: $blue;
+        @include font(18, 24, $font-title);
+    }
+    h4 {
+        @include font(42, 52);
+    }
+    .info {
+        @include font(14);
+        span {
+            padding:0 10px;
+            @include mq($until: desktop) {
+                display: block;
+                padding: 0;
+            }
+            &:first-child {
+                padding-left: 0;
+            }
+        }
+        p {
+            display: inline;
+        }
+    }
+}
+.endorsements {
+    li {
+        border-bottom: solid 1px #f5f5f5;
+        padding: 27px;
+        position: relative;
+    }
+    .subtitle {
+        color: $blue;
+        @include font(14, 18, $font-default);
+    }
+    h4 {
+        @include font(30, 34);
+    }
+    .more {
+        @include font(14, 20);
+        quotes: "\201C""\201D""\2018""\2019";
+        &:before {
+            content: open-quote;
+            font-size: 2em;
+            float: left;
+            margin: 0 5px;
+        }
+    }
+
+}
+
+.athlete-info, .achievements, .qualification {
+    dd {
+        @include font(42, 52, $font-title);
+        padding: 10px 5px 0;
+        a {
+            @include font(14, 20, $font-default);
+        }
+    }
+    .description {
+        @include font(14);
+        padding: 20px 10px;
+    }
+    dd, .description {
+        width: 70%;
+        text-align: left;
+        display: inline-block;
+        color: #434343;
+    }
+    dt, .title {
+        padding: 20px 15px;
+        width: 25%;
+        text-align: left;
+        display: inline-block;
+        font-weight: normal;
+        @include font(14);
+        border-right: solid 1px #f5f6f7;
+        vertical-align: top;
+        margin: 0;
+        color: $grey-med;
+    }
+    .row, li {
+        border-bottom: solid 1px #f5f6f7;
+        position: relative;
+    }
+    .show-more-athlete-info, .hide-more-athlete-info {
+        margin: 10px 0;
+        display: inline-block;
+    }
+}
+
+textarea.summary {
+    height: 200px;
+}
+
+.my-team {
+    ul {
+        margin: 10px;
+    }
+    .btn--box.btn--danger.delete {
+        padding: 3px 6px;
+        position: absolute;
+        top: 5px;
+        left: 0px;
+    }
+    h3.ttl2 {
+        padding-top: 5px;
+        a {
+            color: #434343;
+            &:hover, &:focus {
+                color: #434343;
+            }
+        }
+    }
+    img {
+        max-width: 120px;
+    }
+    .content-title a.active {
+        color: #4a4a4a;
+        cursor: default;
+        pointer-events: none;
+    }
+}

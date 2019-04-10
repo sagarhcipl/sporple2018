@@ -1,0 +1,97 @@
+<!-- Signup Flow -->
+<div class="info">
+<form name="signup-form" id="signup-form" method="post" action="/register/json" autocomplete="off">
+
+<div id="sf1" class="frm">
+    <fieldset>
+        <div class="row row-centered">
+            <div class="col-xs-4 col-md-5 right">I am</div>
+            <div class="form-group col-xs-8 col-md-6 left">
+              <select class="cs-select  cs-skin-underline no-style" name="role" id="role-signup">
+                <option value="2" selected="selected">A player</option>
+                <option value="1">An Agent</option>
+                <option value="3">A Club</option>
+              </select>
+            </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-9 col-md-offset-2">
+            <button class="btn btn--large btn--blue open1" type="button">Continue</button> 
+          </div>
+        </div>
+    </fieldset>
+</div>
+
+<div id="sf2" class="frm" style="display:none;">
+    <fieldset>
+        <div class="row row-centered">
+            <div class="col-xs-8 col-xs-offset-1 col-md-5 right xs-text-left">My Sport is</div>
+            <div class="form-group col-xs-8 col-xs-offset-1 col-md-offset-0 col-md-6 left">
+              <select class="cs-select cs-skin-underline no-style" name="sport" id="role-signup">
+                <option value="2" selected="selected">Rugby</option>
+                <option value="4">Basketball</option>
+                <option value="1">Soccer</option>
+              </select>
+            </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-9 col-md-offset-2">
+            <button class="btn btn--large btn--blue open2" type="button">Continue</button> 
+          </div>
+        </div>
+    </fieldset>
+</div>
+
+<div id="sf3" class="frm" style="display:none;">
+{{ form.hidden_tag() }}
+    <fieldset class="row row-centered">
+        <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+        <div class="form-group">
+            <input class="fake-field" type="email" name="noop_username"/>
+            <input class="fake-field" type="password" name="noop_password"/>
+        </div>
+      <div class="col-md-5 col-centered">
+        <div class="form-group float-label-control hidden" id="club-form-group">
+          <label>Club Name</label>
+          <input type="text" name="clubname" class="form-control"/>
+        </div>
+
+        <div class="form-group float-label-control">
+          <label>Your Full Name</label>
+          <input type="text" name="fullname" class="form-control" required/>
+        </div>
+
+        <div class="form-group float-label-control">
+          <label>Email Address</label>
+          <input type="email" name="email" class="form-control" autocomplete="false" required/>
+        </div>
+
+        <div class="form-group float-label-control">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" autocomplete="false" required>
+        </div>
+        <div class="form-group">
+            <ul class="clearfix gender">
+              <li>
+                <input type="radio" name="gender" id="male" class="form-control default" value="Male" checked>
+                <label for="male">Male<i class="fa fa-check hidden" aria-hidden="true"></i></label>
+              </li>
+              <li>
+                <input type="radio" name="gender" id="female" class="form-control" value="Female">
+                <label for="female">Female
+                <i class="fa fa-check hidden" aria-hidden="true"></i></label>
+              </li>
+            </ul>
+        </div>
+        <div class="alert alert-error hidden"></div>
+        <div class="form-group last">
+            <button class="btn btn--large btn--blue" type="submit">Continue</button> 
+        </div>
+        <div class="or"><span>or</span></div>
+        <button class="btn btn--large btn--fb" type="button" data-url="{{ url_for('facebook_authorize') }}">Signup With Facebook</button>
+      </div>
+    </fieldset>
+</div>
+
+</form>
+</div>

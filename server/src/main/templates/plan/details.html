@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Plan &amp; Pricing | Sporple{% endblock title %}
+{% block content %}
+<div class="plan">
+<h1>Plan &amp; Pricing</h1>
+
+{% if not current_user.is_authenticated %}
+<section class="join-us">
+    <div class="col-md-9 col-xs-12">Join Free and connect with  <span class="blue">{{ total_users or '10,000+' }}</span> users who are using Sporple today.</div>
+    <button class="btn btn--large btn--blue open-sign-up">Get started</button>
+</section>
+<section class="athlete">
+<h2>Athlete</h2>
+<div class="row card">
+    <div class="col-md-6">
+        <div class="price"><span>Free</span></div>
+        <img class="hidden-xs" src="/static/images/winner.png"/>
+        <div class="tagline hidden-xs">Sporple is an equal opportunity platform for athletes. <br/>Join, Explore and Be Awesome!</div>
+    </div>
+    <div class="col-md-6">
+    <ul>
+        <li>Upload highlight videos, career stats</li>
+        <li>Find and connect with your team mates</li>
+        <li>Get Feedback from senior players</li>
+        <li>Search for all opportunities worldwide</li>
+        <li>Get notified of new opportunities</li>
+        <li>Directly reach out to leading agents and clubs</li>
+    </ul>
+    <button class="btn btn--large btn--blue open-sign-up">Get started</button>
+    </div>
+</div>
+</section>
+{% endif %}
+
+{% if not current_user.is_authenticated or role_slug == 'club' %}
+<section class="club">
+<h2><a name="club">Club</a></h2>
+<div class="row row-centered">
+    <div class="col-md-5 col-xs-11 col-centered card">
+        <div>
+            <div class="price"><span>Free</span></div>
+            <ul>
+                <li class="passive">Showcase your current and previous players</li>
+                <li class="passive">Unlimited postings for open opportunities</li>
+                <li class="passive">Direct notifications of athlete applications</li>
+                <li class="passive">Unlimited custom searches for athletes</li>
+                <li class="passive">Directly reply to all inbound communications</li>
+            </ul>
+            {% if not current_user.is_authenticated %}
+            <button class="btn btn--large btn--blue open-sign-up">Get started</button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-5 col-xs-11 col-centered card">
+        <div>
+            <div class="price">
+                <span>$29</span> / month
+                <div class="baseline">billed annually or $35/month billed monthly</div>
+            </div>
+            <ul>
+                {% include 'plan/benefits_club.html' %}
+            </ul>
+            {% if current_user.is_authenticated and role_slug == 'club' %}
+            <a class="btn btn--large btn--blue" href="{{ url_for('plan.checkout') }}">Go Premium</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</section>
+{% endif %}
+{% if not current_user.is_authenticated or role_slug == 'agent' %}
+<section class="agent">
+<h2><a name="agent">Agent</a></h2>
+<div class="row row-centered">
+    <div class="col-md-5 col-xs-11 col-centered card">
+        <div>
+            <div class="price"><span>Free</span></div>
+            <ul>
+                <li class="passive">Showcase your best clients and clubs</li>
+                <li class="passive">Unlimited postings for opportunities</li>
+                <li class="passive">Direct notifications of athlete &amp; club communications</li>
+                <li class="passive">Unlimited custom searches for athletes &amp; clubs</li>
+                <li class="passive">Directly reply to all inbound communications</li>
+            </ul>
+            {% if not current_user.is_authenticated %}
+            <button class="btn btn--large btn--blue open-sign-up">Get started</button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-5 col-xs-11 col-centered card">
+        <div>
+            <div class="price">
+                <span>$49</span> / month
+                <div class="baseline">billed annually or $55/month billed monthly</div>
+            </div>
+            <ul>
+                {% include 'plan/benefits_agent.html' %}
+            </ul>
+            {% if current_user.is_authenticated and role_slug == 'agent' %}
+            <a class="btn btn--large btn--blue" href="{{ url_for('plan.checkout') }}">Go Premium</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</section>
+{% endif %}
+</div>
+{% endblock content %}

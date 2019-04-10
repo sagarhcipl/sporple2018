@@ -1,0 +1,144 @@
+{% import 'forms/base.html' as base %}
+{% extends 'base.html' %}
+{% block content %}
+<h1>Signup Flow</h1>
+<div class="row row-centered autoregister">
+<form action="{{ url_for('auth.auto_register_club') }}" method="post" enctype="multipart/form-data" class="form new-school col-xs-12 col-md-6 col-centered">
+        {{ form.hidden_tag() }}
+        {% if club_name %}
+        <div class="alert alert-success">{{ club_name }} added.
+            <a href="{{ url_for('profile.slug', slug=slug) }}" style="text-decoration: underline;">View profile</a></div>
+        {% endif %}
+        <br/><br/>
+    <div class="form__row inline-label">
+        <label>Profile Picture</label>
+        {{ form.profile_image(**{
+            'id': 'upload-profile-image',
+            'accept': 'image/jpeg,image/png,capture=camera',
+            'data-parsley-profilepic': 'upload-profile-image',
+            'data-parsley-trigger': 'change',
+            'style': 'display:inline-block;width:70%;'
+            })
+        }}
+        {{ base.errors(form.profile_image.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Club name<span class="red">*</span></label>
+        {{ form.club_name(**{
+            'data-parsley-required': 'true',
+            'minlength': '3',
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.club_name.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Sport<span class="red">*</span></label>
+        {{ form.sport(**{
+            'data-parsley-required': 'true',
+            'data-parsley-trigger': 'change',
+            'class': 'sport-select'
+            })
+        }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>First name<span class="red">*</span></label>
+        {{ form.first_name(**{
+            'data-parsley-required': 'true',
+            'minlength': '3',
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+        {{ base.errors(form.first_name.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Last name<span class="red">*</span></label>
+        {{ form.last_name(**{
+            'data-parsley-required': 'true',
+            'minlength': '3',
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+        {{ base.errors(form.last_name.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Email<span class="red">*</span></label>
+        {{ form.username(**{
+            'data-parsley-required': 'true',
+            'minlength': '3',
+            'malength': '200',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+        {{ base.errors(form.username.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Website</label>
+        {{ form.club_contact_url(**{
+            'type': 'url',
+            'minlength': '4',
+            'maxlength': '255',
+            'data-parsley-required': 'false',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.club_contact_url.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Division<span class="red">*</span></label>
+        {{ form.club_league(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-required': 'false',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.club_league.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>City<span class="red">*</span></label>
+        {{ form.address_city(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+
+        {{ base.errors(form.address_city.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Country<span class="red">*</span></label>
+        {{ form.address_country(**{
+            'data-parsley-required': 'true',
+            'data-parsley-trigger': 'change',
+            'class': 'country-select'
+            })
+        }}
+
+        {{ base.errors(form.address_country.errors) }}
+    </div>
+
+    <button class="btn btn--blue btn--med" id="btn--submit">Save</button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</form>
+</div>
+{% endblock content %}

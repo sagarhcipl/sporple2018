@@ -1,0 +1,37 @@
+
+<h3 class="sub-ttl">Testimonial</h3>
+
+{% if current_step == 1 %}
+
+    <img src="/static/images/landing/tom-beatie.jpg" alt="Tom Beatie">
+
+    <blockquote>
+        <p>Sporple is unique in that it is a multifaceted platform that can be utilised effectively by talent, agents and clubs alike. Both player placement and recruitment has become a 24/7 business and with Sporple's global reach it is an excellent addition to the marketplace</p>
+        <span>
+            Tom Beatie <span>Head of Rugby - Paragon Sports Management</span>
+        </span>
+    </blockquote>
+
+{% elif current_step == 2 %}
+
+    <img src="/static/images/landing/matt-small.jpg" alt="Tom Beatie">
+
+    <blockquote>
+        <p>Throughout my career I had so many mates that wanted to play rugby overseas however they never knew how to connect with agents, players or even coaches in those countries. Sporple helps solve this problem</p>
+        <span>
+            Matt Giteau <span>Wallaby &amp; Heineken Cup champion</span>
+        </span>
+    </blockquote>
+
+{% elif current_step == 3 %}
+
+    <img src="/static/images/landing/tobias-small.jpg" alt="Tom Beatie">
+
+    <blockquote>
+        <p>Sporple was a massive reason behind how I came in contact with Jersey RUFC and how I got the contract, without it I don’t know if I would have ever got this good an opportunity to play rugby professionally</p>
+        <span>
+            Tobias Hoskins <span>Jersey Rugby Football Club, United Kingdom</span>
+        </span>
+    </blockquote>
+
+{% endif %}

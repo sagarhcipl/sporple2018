@@ -1,0 +1,90 @@
+{% extends "emails/base.html" %}
+{% block content %}
+            <!-- welcome message -->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff"
+                   style="background:#ffffff;">
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;">
+                            <h2 style="font-size:22px;font-weight:bold;color:#000000;margin:30px auto 0;font-family:Arial,Tahoma,sans-serif;">
+                                Congratulations!
+                            </h2>
+
+                            <p style="font-size:14px;font-family:Arial,Tahoma,sans-serif;margin-top:5px;margin-bottom:30px;">
+                                {{ user.profile.firstname }} has invited you to join Sporple!
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- profile avatar -->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff"
+                   style="background:#ffffff;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="30%" bgcolor="#ffffff"
+                                   style="background:#ffffff;">
+                                <tbody>
+                                    <tr>
+                                        <td align="center" valign="top">
+                                            <a href="{{ url_for('profile.slug', slug=user.profile.slug, _external=True) }}" target="_blank" title="Check out {{ user.name }}'s profile on Sporple">
+                                                <img src="{{ config.BASE_URL + user.profile.get_image() }}"
+                                                     alt="Check out {{ user.name }}'s profile on Sporple"
+                                                     width="182" height="auto"
+                                                     style="width:100%;height:auto;border-style:solid;border-color:#bbbbbb;border-width:1px;"/>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- profile details -->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff"
+                   style="background:#ffffff;">
+                <tbody>
+                <tr>
+                    <td align="center" valign="middle">
+                        <p style="font-family:Arial,Tahoma,sans-serif;font-size:14px;color:#000000;margin-top:5px;margin-bottom:2px;">
+                            <strong>{{ user.name }}</strong>, {{ user.sports_string }}
+                        </p>
+                        {% if user.profile.positions_string %}
+                        <p style="font-family:Arial,Tahoma,sans-serif;font-size:14px;color:#000000;margin-top:2px;margin-bottom:2px;">
+                            {{ user.profile.positions_string }}
+                        </p>
+                        {% endif %}
+
+                        <p style="font-family:Arial,Tahoma,sans-serif;font-size:14px;color:#000000;margin-top:2px;margin-bottom:2px;">
+                            {% if user.profile.current_club %}Current club - {{ user.profile.current_club }}, {% endif %}{% if user.profile.address_country %}{{ user.profile.address_country.name }}{% endif %}
+                        </p>
+                        <p style="font-family:Arial,Tahoma,sans-serif;font-size:14px;color:#000000;margin-top:2px;margin-bottom:2px;">
+                            <a href="{{ url_for('profile.slug', slug=user.profile.slug, _external=True) }}" style="text-decoration:none;">View Profile &gt;</a>
+                        </p>
+                        <p style="height:1px;margin-top:15px;margin-bottom:15px;width:60%;margin-left:auto;margin-right:auto;background-color:#d9dada">
+
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" valign="middle">
+                        <p style="text-align:left;">Sporple is an open platform that connects Clubs &amp; Agents to Athletes worldwide.</p>
+                        <p style="text-align:left;"><strong>Athletes</strong>, you can create your profile, upload your videos and search for recruitment opportunities globally for free!<br/>
+                        <strong>Clubs &amp; Agents</strong>, you can showcase you team and hire talented athletes from anywhere in the world.</p>
+                        <p>
+                        <em>Connect with <strong>10,000+</strong> users who have joined the sporting revolution!</em></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" valign="middle" style="padding:0 0 30px 0;">
+                        <a href="{{ url_for('index', _external=True) }}" style="box-sizing: border-box; font-size: 12px; color: #FFF; text-decoration: none; line-height: 2em;font-weight: bold; text-align: center; cursor: pointer; display: inline-block;text-transform: uppercase; background-color: #4a90e2; margin: 0; padding: 10px 30px;">JOIN NOW</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+{% endblock content %}

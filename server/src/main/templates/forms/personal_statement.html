@@ -1,0 +1,23 @@
+<form action="{{ url_for('profile.edit_personal_statement', user_id=profile.user_id) }}" method="post" class="form" id="profile_personal_statement_form">
+    {{ form.csrf_token }}
+    <div class="form__row">  
+        <p>Your personal statement is a summary that will be displayed to potential agents, clubs and businesses.</p>
+        {{ form.personal_statement(class='summary') }}
+        {% if form.personal_statement.errors %}
+            <div class="errors-list filled">
+              <ul class="errors">
+              {% for error in form.personal_statement.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+              </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form__row">
+        <button class="btn btn--blue btn--med" id="btn--submit">Save</button>
+        <a href="/profile/personalStatement/{{ current_user.user.id }}" class="btn btn--secondary btn--med">Cancel</a>
+    </div>
+
+</form>
+

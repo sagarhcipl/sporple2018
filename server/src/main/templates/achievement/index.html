@@ -1,0 +1,18 @@
+{% if achievements or is_owner %}
+    <header class="header--secondary">
+        <h2 {% if foldable != False %}class="foldable" {% endif %}>
+            {% if profile.role.slug == 'athlete' %}
+                Achievements
+            {% else %}
+                Accomplishments
+            {% endif %}
+        </h2>
+    </header>
+{% endif %}
+
+<div class="profile__about-section-content">
+    {% if edit_achievement %}
+        {% include 'forms/achievement.html' %}
+    {% endif %}
+    {% include 'achievement/list.html' %}
+</div>

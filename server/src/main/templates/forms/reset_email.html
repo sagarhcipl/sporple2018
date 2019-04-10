@@ -1,0 +1,55 @@
+{% import 'forms/base.html' as base %}
+{% extends 'base.html' %}
+{% block content %}
+<section id="container" class="password">
+    <section id="profile_basic_information" class="row row-centered settings top_content" style="min-height: 600px">
+        {% include 'settings/left_column.html' %}
+
+        <div class="container col-md-4 col-centered">
+            <h1>EMAIL</h1>
+            Change your email
+
+            <form method="POST" action="{{ url_for('settings.email') }}" class="form new-school" data-parsley-validate>
+                {% if not has_password_setup %}
+                    <div class="form__row">
+                        <span class="warning">
+                            ATTENTION !!! <br/>
+                            You do not have a password set. <br/>
+                            In order to change your email <br/>
+                            you need to <a href="{{ url_for('settings.password') }}">set a password</a>.
+                        </span>
+                    </div>
+                {% endif %}
+
+                <div class="form__row">
+                    <span class="info">Your current email is {{ current_user.user.username }}</span>
+                </div>
+
+                <div class="form__row">
+                    {{ form.current_password(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'blur',
+                        })
+                    }}
+                    <label class="form__label">Current Password</label>
+                    {{ base.errors(form.current_password.errors) }}
+                </div>
+                <div class="form__row">
+                    {{ form.email(**{
+                        'data-parsley-required': 'true',
+                        'data-parsley-trigger': 'blur',
+                        })
+                    }}
+                    <label class="form__label">New Email</label>
+                    {{ base.errors(form.email.errors) }}
+                </div>
+                {% if success_message %}
+                 <p class="warning">{{ success_message }}</p>
+                {% endif %}
+                <button class="btn btn--large btn--blue">SAVE</button>
+            </form>
+        </div>
+    </section>
+</section>
+<div class="clearfix"></div>
+{% endblock %}

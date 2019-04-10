@@ -1,0 +1,38 @@
+{% import 'forms/base.html' as base %}
+{% extends 'base.html' %}
+{% block content %}
+<section class="row row-centered search-opportunity">
+        <h1>current opportunities</h1>
+        <span class="subtitle">Use filtering criteria below to find your opportunities</span>
+        <form method="POST" action="{{ url_for('opportunities') }}" class="form row row-centered col-xs-12 col-md-10 col-centered">
+                <div class="form__row inline-label col-xs-12 col-md-4">
+                    <label>Country</label>
+                    {{ form.country(**{
+                        'id': 'country-select',
+                        'class': 'no-style multiple--hidded',
+                        'data-label': 'Choose Countries',
+                        })
+                    }}
+                </div>
+                <div class="form__row col-xs-12 col-md-4 inline-label">
+                    <label>Position</label>
+                    {{ form.positions(**{
+                        'id': 'position-select',
+                        'class': 'no-style multiple--hidded',
+                        'data-label': 'Choose Position(s)',
+                        })
+                    }}
+                </div>
+                <button class="btn btn--large btn--blue">SEARCH</button>
+        </form>
+        <div class="row row-centered col-xs-12 col-md-10 col-centered">
+            <ul id="country-select-list" class="multiple-select-list col-xs-12 col-md-4 select-list-inline"></ul>
+            <ul id="position-select-list" class="multiple-select-list col-xs-12 col-md-4 select-list-inline"></ul>
+        </div>
+
+</section>
+<section class="row row-centered opportunities-page">
+    {% include 'search/opportunity_list.html' %}
+</section>
+<div class="clearfix"></div>
+{% endblock content %}

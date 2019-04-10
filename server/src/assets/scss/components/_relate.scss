@@ -1,0 +1,44 @@
+.relate-option {
+    text-align: left;
+    margin: 15px auto;
+    button {
+        margin: 10px auto;
+    }
+    input[type=radio] {
+        margin-right: 10px;
+    }
+    label {
+        cursor: pointer;
+    }
+}
+
+.btn-group.connect {
+    margin: 45px;
+    display: inline-block;
+    position: relative;
+    .dropdown-menu__list-cont {
+        position: absolute;
+        top: 100%;
+        height: 0;
+        overflow: hidden;
+        width: 100%;
+        z-index: 5;
+        ul {
+            border: solid #ddd;
+            border-width: 0 1px;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fefefe;
+            cursor: pointer;
+            &:hover, &:focus {
+                background-color: #eee;
+            }
+            a {
+                color: #333;
+                @include font(15);
+            }
+        }
+    }
+}

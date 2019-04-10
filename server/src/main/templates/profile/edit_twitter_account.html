@@ -1,0 +1,41 @@
+{% if twitter_form %}
+<h3 class="content-title"><i class="fa fa-twitter"></i> Twitter Account</h3>
+    <div class="twitter-mod__inner">
+        <h2 class="ttl3">
+            Add your Twitter Timeline
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+            </span>
+        </h2>
+
+        <form action="{{ url_for('profile.twitter_account', user_id=profile.user_id) }}" method="post" id="profile__twitter-form" class="form new-school">
+            {{ twitter_form.csrf_token }}
+            <p>Enter your Twitter username (without the '@')</p>
+
+            <div class="form__row">
+                {{ twitter_form.twitter_account(placeholder='',
+                    **{'data-parsley-required': 'true',
+                    'maxlength': '20',
+                    'data-parsley-pattern': '/^[A-Za-z0-9_]+$/',
+                    'data-parsley-trigger': 'blur',
+                }) }}
+
+                <label class="form__label">username</label>
+
+                {% if twitter_form.twitter_account.errors %}
+                    <ul class="errors-list filled">
+                        {% for error in twitter_form.twitter_account.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+            </div>
+
+            <button class="btn btn--large btn--blue btn--full-width" id="profile__twitter-submit">Add Twitter timeline</button>
+        
+        </form>
+    </div>
+</section>
+{% endif %}

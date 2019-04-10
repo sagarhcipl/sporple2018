@@ -1,0 +1,41 @@
+{% import 'forms/base.html' as base %}
+{% if qualification_id %}
+{% set action = url_for('profile.edit_qualification_id', id=qualification_id) %}
+{% else %}
+{% set action = url_for('profile.edit_qualification') %}
+{% endif %}
+<form
+    action="{{ action }}" method="post" class="form" id="profile_qualification_form">
+    <div class="form__row inline-label">  
+        <label>Year</label>
+        {{ form.year() }}
+        {{ base.errors(form.year.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label>Title</label>
+        {{ form.title(**{
+            'data-parsley-required': 'true',
+            'maxlength': '127'
+            })
+        }}
+        {{ base.errors(form.title.years) }}
+    </div>
+
+    <div class="form__row">  
+        <p>Summary</p>
+        {{ form.summary(maxlength='800') }}
+
+        {{ base.errors(form.summary.errors) }}
+    </div>
+
+    {% if not qualification_id %}
+        <button class="btn btn--blue" id="btn--submit">Add Qualification</button>
+    {% else %}
+        <button class="btn btn--blue" id="btn--submit">Save</button>
+    {% endif %}
+
+    {{ form.csrf_token }}
+    <a href="{{ url_for('profile.main', user_id=current_user.user.id) }}"
+        class="btn btn--secondary">Cancel</a>
+</form>

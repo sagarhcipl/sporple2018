@@ -1,0 +1,33 @@
+{% if achievements or is_owner %}
+    <ul class="content_list">
+        {% for achievement in achievements %}
+            <li class="icon{{ achievement.icon }} achievement_item_id_{{ achievement.id }}">
+                <span>
+                    {{ achievement.year }} - <em>{{ achievement.title }}</em>
+                </span>
+
+                <p>{{ achievement.summary | nl2br | safe }}</p>
+
+                {% if is_owner %}
+                <a class="delete-profile-about-section-item"
+                    data-query=".achievement_item_id_{{ achievement.id }}"
+                    href="{{ url_for('profile.delete_achievement', id=achievement.id) }}">
+                    <img src="/static/images/ico_delete_field.png" class="clr_field_button"/>
+                </a>
+                <a class="edit-profile-about-section"
+                    data-query=".achievement_item_id_{{ achievement.id }}" 
+                    href="{{ url_for('profile.edit_achievement_id', id=achievement.id) }}">
+                    <img src="/static/images/icon_edit.png" class="clr_field_button"/>
+                </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if is_owner %}
+    <a href="{{ url_for('profile.edit_achievement') }}" id="profile_add_achievement" class="btn--edit edit-profile-about-section">
+        <img src="/static/images/icon_edit.png"/>
+    </a>
+{% endif %}
+

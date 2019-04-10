@@ -1,0 +1,126 @@
+{% import 'forms/base.html' as base %}
+{% if career_item_id %}
+{% set action = url_for('profile.edit_career_item_id', id=career_item_id, user_id=profile.user_id) %}
+{% else %}
+{% set action = url_for('profile.edit_career_item', user_id=profile.user_id) %}
+{% endif %}
+<form
+    action="{{ action }}"
+    method="post" id="career-timeline__form" enctype="multipart/form-data" class="form">
+
+    <div class="form__row  month-year-fields-cont cf inline-label">  
+        <p>Date from</p>
+        {{ form.date_from_month(**{
+            'data-parsley-required': 'true',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+        {{ form.date_from_year(**{
+            'data-parsley-required': 'true',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.date_from_month.errors) }}
+        {{ base.errors(form.date_from_year.errors) }}
+    </div>
+
+    <div class="form__row month-year-fields-cont cf inline-label">  
+        <p>Date until</p>
+        {{ form.date_till_month() }}
+        {{ form.date_till_year() }}
+    </div>
+
+        <div class="checkbox">
+            <label><input type="checkbox"/> I still currently play here</label>
+        </div>
+
+        {{ base.errors(form.date_till_month.errors) }}
+        {{ base.errors(form.date_till_year.errors) }}
+    </div>
+
+    <div class="form__row inline-label">  
+        <label class="">Club name</label>
+        {{ form.club_name(**{
+            'data-parsley-required': 'true',
+            'minlength': '2',
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.club_name.errors) }}
+    </div>
+
+    <div class="form__row inline-label">  
+        <label class="">Level</label>
+        {{ form.level(**{
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.level.errors) }}
+    </div>
+
+    <div class="form__row inline-label">
+        <label class="">Location</label>
+        {{ form.location(**{
+            'maxlength': '255',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.location.errors) }}
+    </div>
+
+    <div class="form__row">  
+        <p>Summary</p>
+        {{ form.body(maxlength='800') }}
+
+        {{ base.errors(form.body.errors) }}
+    </div>
+
+    <div class="form__row">
+
+        {{ form.original_image_name(id='career-timeline__original-image-name') }}
+
+        <a id="career-timeline__delete-img" class="btn btn--text {% if not form.original_image_name.data %}hidden{% endif %}">
+            <svg class="icon btn-icon" role="presentation" title="delete" viewBox="0 0 17.156 17.156">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#x"></use>
+            </svg>
+            <span>{{ form.original_image_name.data }}</span>
+        </a>
+
+
+        <div class="btn btn--text file-wrapper">
+            {{ form.item_image(**{
+                'id': 'career-timeline__image',
+                'accept': 'image/jpeg,image/png,capture=camera',
+                'data-parsley-profilepic': 'career-timeline__image',
+                'data-parsley-trigger': 'change'
+                })
+            }}
+
+            <svg class="icon btn-icon" role="presentation" viewBox="0 0 49.4 45.2">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#paperclip"></use>
+            </svg> 
+            <span>{% if form.original_image_name.data%}Change{% else %}Add{% endif %} Image</span>
+        </div>
+        {{ base.errors(form.item_image.errors) }}
+    </div>
+
+    {{ form.csrf_token }}
+
+    <div class="form__row">
+        {% if not career_item_id %}
+            <button class="btn btn--blue btn--med" id="btn--submit">Add Carrer item</button>
+        {% else %}
+            <button class="btn btn--blue btn--med" id="btn--submit">Save</button>
+        {% endif %}
+
+        <a href="#" class="btn btn--secondary btn--med"
+               id="profile_career_item_cancel">Cancel</a>
+
+    </div>
+</form>

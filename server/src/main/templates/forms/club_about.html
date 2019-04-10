@@ -1,0 +1,15 @@
+{% import 'forms/base.html' as base %}
+Add a short statement about your club to get noticed. 
+<form action="{{ url_for('profile.edit_club_about') }}" method="post" class="form" id="profile__about-club-form">
+    {{ form.csrf_token }}
+    
+    <div class="form__row">
+        {{ form.career_summary(class='summary') }}
+        {{ base.errors(form.career_summary.errors) }}
+    </div>
+
+    <div class="form__row">
+        <button class="btn btn--blue btn--med" id="btn--submit">Save</button>
+        <a href="#" class="btn btn--secondary btn--med" id="profile__about-club-cancel">Cancel</a>
+    </div>
+</form>

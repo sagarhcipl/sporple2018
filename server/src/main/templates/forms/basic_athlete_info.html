@@ -1,0 +1,190 @@
+{% import 'forms/base.html' as base %}
+<form action="{{ url_for('profile.edit_athlete', user_id=profile.user_id) }}" method="post" id="profile_basic_information_form" class="form new-school">
+    {{ form.hidden_tag() }}
+    <div id="profile_basic_information_form__first-name-cont" class="form__row inline-label">
+        <label class="">First name<span class="red">*</span></label>
+        {{ form.firstname(**{
+            'data-parsley-required': 'true',
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.firstname.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__last-name-cont" class="form__row inline-label">
+        <label class="">Last name<span class="red">*</span></label>
+        {{ form.lastname(**{
+            'data-parsley-required': 'true',
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.lastname.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__birth-date-cont" class="form__row inline-label">
+        <p>Date of Birth<span class="red">*</span></p>
+        
+        <div class="birth-date-fields-cont">
+            {{ form.birthday(**{
+                'data-parsley-required': 'true',
+                'data-parsley-trigger': 'change'
+                })
+            }}
+        </div>
+        {{ base.errors(form.birthday.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__height-cont" class="form__row inline-label">
+        <label class="">Height in cm</label>
+        {{ form.height(**{
+            'data-parsley-type': 'integer',
+            'data-parsley-type-message': 'Your height to the nearest centimeter e.g. 183',
+            'length': '4',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.height.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__weight-cont" class="form__row inline-label">
+        <label class="">Weight in kg</label>
+        {{ form.weight(**{
+            'data-parsley-type': 'integer',
+            'data-parsley-type-message': 'Your weight to the nearest kilogram e.g. 100',
+            'length': '4',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.weight.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__positions-cont" class="form__row inline-label">
+
+        <p>Which positions do you play?<span class="red">*</span></p>
+        {{ form.user_position_list(**{
+            'id': 'profile__user-position',
+            'data-parsley-nonempty': 'true',
+            'data-parsley-nonempty-message': 'Please select at least 1 position',
+            'data-parsley-maxcheck': '4',
+            'data-parsley-trigger': 'change',
+            'class': 'no-style multiple--hidded'
+            })
+        }}
+    </div>
+    <div class="col-md-6 col-md-push-4 col-centered">
+    <ul id="profile__user-position-list" class="multiple-select-list"></ul>
+    </div>
+    <div id="profile_basic_information_form__nationality-cont" class="form__row inline-label">
+        <p>Nationality</p>
+        {{ form.nationality() }}
+        {{ base.errors(form.nationality.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__passport-1-cont" class="form__row inline-label">
+        <p>Passport 1</p>
+        {{ form.passport_1() }}
+        {{ base.errors(form.passport_1.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__passport-2-cont" class="form__row inline-label">
+        <p>Passport 2</p>
+        {{ form.passport_2() }}
+        {{ base.errors(form.passport_2.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__country-cont" class="form__row inline-label">
+        <p>Country</p>
+        {{ form.address_country() }}
+        {{ base.errors(form.address_country.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__city-cont" class="form__row inline-label">
+        <label class="">City</label>
+        {{ form.address_city(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.address_city.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__club-cont" class="form__row inline-label">
+        <label class="">Current club</label>
+        {{ form.current_club(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.current_club.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__marital-status-cont" class="form__row inline-label">
+        <p>Marital status
+        <span>
+            <a class="help layout-right" href="#" onmouseover="$('#stat_tip').addClass('show_tip')" onmouseout="$('#stat_tip').removeClass('show_tip')">?</a>
+        </span>
+        <span id="stat_tip" class="tip_info">Supplying your marital status gives potential recruiters the most accurate up to date personal information on you.</span> 
+        </p>
+        {{ form.marital_status() }}
+        {{ base.errors(form.marital_status.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__children-cont" class="form__row inline-label">
+        <p>Children</p>
+        {{ form.children() }}
+        {{ base.errors(form.children.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__agent-first-name-cont" class="form__row inline-label">
+        <label class="">Current Agent&#39;s first name</label>
+        {{ form.agent_firstname(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.agent_firstname.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__agent-last-name-cont" class="form__row inline-label">
+        <label class="">Current Agent&#39;s last name</label>
+        {{ form.agent_lastname(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.agent_lastname.errors) }}
+    </div>
+
+    <div id="profile_basic_information_form__agent-email-cont" class="form__row inline-label">
+        <label class="">Current Agent&#39;s email</label>
+        {{ form.agent_email(**{
+            'type': 'email',
+            'minlength': '2',
+            'maxlength': '255',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        {{ base.errors(form.agent_email.errors) }}
+    </div>
+
+    <a href="#" class="btn btn--secondary btn--side-by-side" id="profile__edit-basic-information-cancel">Cancel</a>
+    <button class="btn btn--side-by-side btn--blue" id="btn--submit">Save</button>
+
+</form>

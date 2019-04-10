@@ -1,0 +1,533 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ use_javascript('frontend/main/anonymous.js') | safe }}
+{{ use_javascript('frontend/search/advancedSearch.js') | safe }}
+<section class="page_content row row-centered" id="page-content">
+    <section class="col-xs-11 col-md-7 col-centered">
+        <h1 class="top-title">
+            Search Plus
+        </h1>
+
+        <ul class="advanced-search-right__select col-xs-12 col-md-6 col-md-offset-1 pull-right">
+            <li>
+                <a id="ha-athlete" href="?athlete" class="ha-clickable selected">
+                    <strong>Athlete</strong>
+                    <span class="athlete">
+                        <img src="/static/images/advanced-search-athlete.png" alt="Search for Athletes">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a id="ha-agent" href="?agent" class="ha-clickable">
+                    <strong>Agent</strong>
+                    <span class="agent">
+                        <img src="/static/images/advanced-search-agent.png" alt="Search for Agents">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a id="ha-club" href="?club" class="ha-clickable">
+                    <strong>Club</strong>
+                    <span class="club">
+                        <img src="/static/images/advanced-search-club.png" alt="Search for Clubs">
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <div id="ha-athlete-expand" class="advanced-search-content ha-expandable">
+            <form action="{{ url_for('search.results', page=0) }}" class="advanced-search-left__form form new-school" method="get">
+                <input type="hidden" name="type" value="athlete">
+                <input type="hidden" name="searchType" value="advanced">
+                <div class="col-xs-12 col-md-5">
+                    {{ form.sports(class="no-style") }} 
+
+                    <p class="advanced-search-left__not-required">(not required)</p>
+
+                    <div class="form__row">
+                        {{ form.firstname(**{
+                            'minlength': '2',
+                            'maxlength': '128',
+                            'data-parsley-trigger': 'blur',
+                            'placeholder': ''
+                            })
+                        }}
+
+                        <label class="form__label">First name</label>
+                    </div>
+
+                    <div class="form__row">
+                        {{ form.lastname(**{
+                            'minlength': '2',
+                            'maxlength': '128',
+                            'data-parsley-trigger': 'blur',
+                            'placeholder': ''
+                            })
+                        }}
+
+                        <label class="form__label">Last name</label>
+                    </div>
+
+                    <div class="advanced-search-left__image hidden-xs">
+                        <img src="/static/images/advanced-search-athlete-icon.jpg" alt="Search for Athletes">
+                    </div>
+                </div>
+
+                <div class="advanced-search-right col-xs-12 col-md-6 col-md-offset-1">
+                    <div class="clearfix hidden-xs"></div>
+
+                    <div id="advanced-search-right__accordion">
+                        <div class="advanced-search-right__accordion--panel" id="panel-position">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed"
+                                    data-toggle="collapse" data-target="#position">
+                                Position
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="position" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {% for sport in all_sports %}
+                                        <select id="position-select-{{ sport.slug }}"
+                                            name="position"
+                                            class="position-select no-style"
+                                            style="display:none;">
+                                        <option value="" selected="selected">Choose</option>
+                                        {% for position in sport.positions %}
+                                        <option value="{{ position.name}}">{{ position.name}}</option>
+                                        {% endfor %}
+                                        </select>
+                                    {% endfor %}
+
+                                    <ul class="options positions"></ul>
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="positions">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-country">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed"
+                                    data-toggle="collapse" data-target="#athlete-country">
+                                Country
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-country" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    <select class="no-style country-select"  name="country" id="country-select">
+                                      <option value="">Choose</option>
+                                      {% for field in form.country %}
+                                        {{ field }}
+                                      {% endfor %}
+                                    </select>
+
+                                    <ul class="options countries"></ul>
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="countries">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-age">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed"
+                                    data-toggle="collapse" data-target="#athlete-age">
+                                Age
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-age" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="age">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                    <div class="clearfix visible-xs-block"></div>
+
+                                    {{ form.age_min(class='no-style') }}
+
+                                    <span class="select-between"> - </span>
+
+                                    {{ form.age_max(class='no-style') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-gender">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed"
+                                    data-toggle="collapse" data-target="#athlete-gender">
+                                Gender
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-gender" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.gender(class='no-style') }}
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="gender">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-height">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed"
+                                    data-toggle="collapse" data-target="#athlete-height">
+                                Height (cm)
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-height" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                     <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="height">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                    <div class="clearfix visible-xs-block"></div>
+                                    {{ form.height_min(class='no-style') }}
+
+                                    <span class="select-between"> - </span>
+
+                                    {{ form.height_max(class='no-style') }}
+                               </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-weight">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#athlete-weight">
+                                Weight (kg)
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-weight" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="weight">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                    <div class="clearfix visible-xs-block"></div>
+                                    {{ form.weight_min(class='no-style') }}
+
+                                    <span class="select-between"> - </span>
+
+                                    {{ form.weight_max(class='no-style') }}
+
+                               </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-passport">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#athlete-passport">
+                                Passport
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-passport" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    <select class="no-style passport-select" name="passport" id="passport-select">
+                                        <option value="">Choose</option>
+                                        {% for field in form.passport %}
+                                            {{ field }}
+                                        {% endfor %}
+                                    </select>
+
+                                    <ul class="options passports"></ul>
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="passports">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-showreel">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#athlete-showreel">
+                                Showreel
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-showreel" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.has_showreel(class='no-style') }}
+                                    {{ form.has_showreel.label }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-agent">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#athlete-agent">
+                                Agent
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="athlete-agent" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.has_agent(class='no-style') }}
+                                    {{ form.has_agent.label }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="advanced-search-left__form--submit btn btn--full-width">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="ha-agent-expand" class="advanced-search-content ha-expandable">
+            <form action="{{ url_for('search.results', page=0) }}" class="advanced-search-left__form form new-school" method="get">
+                <input type="hidden" name="type" value="agent">
+                <input type="hidden" name="searchType" value="advanced">
+                <div class="col-xs-12 col-md-5">
+                    {{ form.sports(class="no-style") }}
+
+                    <p class="advanced-search-left__not-required">(not required)</p>
+
+                    <div class="form__row">
+                        {{ form.firstname(**{
+                            'minlength': '2',
+                            'maxlength': '128',
+                            'data-parsley-trigger': 'blur',
+                            'placeholder': ''
+                            })
+                        }}
+
+                        <label class="form__label">First name</label>
+                    </div>
+
+                    <div class="form__row">
+                        {{ form.lastname(**{
+                            'minlength': '2',
+                            'maxlength': '128',
+                            'data-parsley-trigger': 'blur',
+                            'placeholder': ''
+                            })
+                        }}
+
+                        <label class="form__label">Last name</label>
+                    </div>
+
+                    <div class="advanced-search-left__image hidden-xs">
+                        <img src="/static/images/advanced-search-agent-icon.jpg" alt="Search for Agents">
+                    </div>
+                </div>
+
+                <div class="advanced-search-right col-xs-12 col-md-6 col-md-offset-1">
+                    <div class="clearfix hidden-xs"></div>
+
+                    <div id="advanced-search-right__accordion">
+                        <div class="advanced-search-right__accordion--panel" id="panel-country">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#agent-country">
+                                Country
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="agent-country" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.country(class='no-style country-select') }}
+
+                                    <ul class="options countries"></ul>
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="countries">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-weight">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#agent-experience">
+                                Years of experience
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="agent-experience" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.min_experience(class='no-style') }}
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="weight">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-weight">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#agent-qualifications">
+                                Qualifications
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="agent-qualifications" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.has_qualifications(class='no-style') }}
+                                    {{ form.has_qualifications.label }}
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="weight">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-weight">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#agent-has-clients">
+                                Clients
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="agent-has-clients" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.has_clients(class='no-style') }}
+                                    {{ form.has_clients.label }}
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="weight">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-weight">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#agent-has-vacancies">
+                                Vacancies
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="agent-has-vacancies" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.has_vacancies(class='no-style') }}
+                                    {{ form.has_vacancies.label }}
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="weight">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="advanced-search-left__form--submit btn btn--full-width">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="ha-club-expand" class="advanced-search-content ha-expandable">
+            <form action="{{ url_for('search.results', page=0) }}" class="advanced-search-left__form form new-school" method="get">
+                <input type="hidden" name="type" value="club">
+                <input type="hidden" name="searchType" value="advanced">
+                <div class="col-xs-12 col-md-5">
+                    {{ form.sports(class="no-style") }}
+
+                    <p class="advanced-search-left__not-required">(not required)</p>
+
+                    <div class="form__row">
+                        {{ form.clubname(**{
+                            'minlength': '2',
+                            'maxlength': '128',
+                            'data-parsley-trigger': 'blur',
+                            'placeholder': ''
+                            })
+                        }}
+
+                        <label class="form__label">Club name</label>
+                    </div>
+
+                    <div class="advanced-search-left__image hidden-xs">
+                        <img src="/static/images/advanced-search-club-icon.jpg" alt="Search for Clubs">
+                    </div>
+                </div>
+
+                <div class="advanced-search-right col-xs-12 col-md-6 col-md-offset-1">
+                    <div class="clearfix hidden-xs"></div>
+
+                    <div id="advanced-search-right__accordion">
+                        <div class="advanced-search-right__accordion--panel" id="panel-country">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#club-country">
+                                Country
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="club-country" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.country(class='no-style country-select') }}
+
+                                    <ul class="options countries"></ul>
+
+                                    <button type="reset" class="col-xs-2 pull-right reset-panel" data-target="countries">
+                                        <span class="reset-icon"></span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-showreel">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#club-showreel">
+                                Showreel
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="club-showreel" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.has_showreel(class='no-style') }}
+                                    {{ form.has_showreel.label }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advanced-search-right__accordion--panel" id="panel-listing">
+                            <button type="button" class="advanced-search-right__accordion--header collapsed" data-toggle="collapse"
+                                    data-target="#club-listing">
+                                Listings
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </button>
+
+                            <div id="club-listing" class="collapse">
+                                <div class="advanced-search-right__accordion--content clearfix ">
+                                    {{ form.has_listings(class='no-style') }}
+                                    {{ form.has_listings.label }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="advanced-search-left__form--submit btn btn--full-width">Search</button>
+
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="right_content">
+    </section>
+</section>
+{% endblock content %}

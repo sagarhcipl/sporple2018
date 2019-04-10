@@ -1,0 +1,1054 @@
+/*club profile*/
+.club_profile .top_content{
+    background:#e8e8e8 url(/static/images/bg_club_top.png) repeat-y top right;
+
+    background: -moz-linear-gradient(left, #f0f0f0 0%, #ababab 100%, #ababab 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left top, color-stop(0%,#f0f0f0), color-stop(100%,#ababab), color-stop(100%,#ababab)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #f0f0f0 0%,#ababab 100%,#ababab 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #f0f0f0 0%,#ababab 100%,#ababab 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #f0f0f0 0%,#ababab 100%,#ababab 100%); /* IE10+ */
+    background: linear-gradient(to right, #f0f0f0 0%,#ababab 100%,#ababab 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#f0f0f0',GradientType=0); /* IE6-9 */
+
+    border-bottom:1px solid #c4c4c4;
+    border-left:1px solid #bfbfbf;
+    border-right:1px solid #8c8c8c;
+    border-top:1px solid #969696;
+    margin-left:-7px;
+    padding:15px 0;
+    width:1022px;
+}
+.club_profile .top_content #basic_club_information.player_information .player_info {
+   width:230px;
+}
+.club_profile .top_content .player_information {
+    /*  border-right:1px solid #d0d0d0;*/
+    padding:0 0 0 7px;
+    width:260px;
+}
+.club_profile .top_content .club_media {
+    background:url(/static/images/bg_vert_spacer.png) repeat-y top left;
+    margin-left:0px;
+    /*margin-top:20px;*/
+    /*min-width:675px;*/
+    padding:0 20px 20px 50px;
+    width: 675px;
+    float: left;
+}
+.club_profile .top_content .club_media > figure.club_cover {
+  background-color:#000;
+  background-position:center center;
+  min-height:360px;
+}
+.club_profile .left_content {
+    margin-bottom:-2px;
+    margin-top:-2px;
+}
+.club_profile .club_tabs {
+    background:#fff;
+    float:left;
+    margin:0 0 0 -7px;
+    width:672px;
+}
+.club_profile .club_tabs #cg_profile_list {
+    border-left:7px solid #244988;
+}
+.club_profile .club_tabs .tabs_main {
+/*  background:#fff;*/
+  float:left;
+  overflow:hidden;
+  padding:30px 0 15px;
+  width:100%;
+}
+.club_profile .club_tabs nav {}
+.club_profile .club_tabs nav ul {}
+.club_profile .club_tabs nav ul li {
+    float:left;
+    margin:0 0 0 3px;
+}
+.club_profile .club_tabs nav ul li:first-child {
+    margin-left:15px;
+}
+.club_profile .club_tabs nav ul li a {
+    background:#c7c8ca;
+    border-radius:5px 5px 0 0;
+    color:#fff;
+    display:block;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    font-size:13px;
+    line-height:20px;
+    padding:0px 23px;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+.club_profile .club_tabs nav ul li a.active,
+.club_profile .club_tabs nav ul li a:hover {
+    background:#1f4586 url(/static/images/bg_content_part.png) repeat-x top left;
+    /*  webkit-box-shadow: 0px 22px 0px 0px rgba(0,0,0,0.2);
+         -moz-box-shadow: 0px 22px 0px 0px rgba(0,0,0,0.2);
+              box-shadow: 0px 22px 0px 0px rgba(0,0,0,0.2);*/
+}
+.club_profile .club_tabs aside {
+    background:url(/static/images/bg_club_name.png) repeat-x top left;
+    color:#636466;
+    float:left;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    font-size:17px;
+    line-height:41px;
+    min-height:41px;
+    padding:0 22px 0 0;
+    text-align:right;
+    text-shadow:1px 1px rgba(255,255,255,0.5);
+    width:650px;
+}
+.club_profile .content_tabs_container .tabs_content_container .content.activity .activity_main {
+    height:620px;
+}
+.club_profile .content_tabs_container .tabs_content_container .content.activity {
+    border-bottom:1px solid #cbcbcc;
+    margin-top:10px;
+}
+.club_profile .page_content .content_part > header {
+    background:#224984;
+    float:left;
+    min-width:85px;
+    width:auto;
+}
+.club_profile .page_content .content_part > header h2 {
+    background:none;
+}
+.page_content .content_tab_main_container {
+  border-left:7px solid #244988;
+  float:left;
+  margin:15px 0 0;
+  width:100%;
+}
+.club_profile .games_dd {
+    background:#fff;
+    float:left;
+    margin-left:-7px;
+    margin-top:8px;
+    padding:0 15px 15px;
+}
+.club_profile .games_dd select {
+    color:#000;
+    font-size:12px;
+    height:25px;
+    text-transform:uppercase;
+    width:150px;
+}
+.club_profile .games_dd .select_spacer {
+  background:url(/static/images/ico_arrow_club.png) no-repeat;
+  display:block;
+  float:left;
+  height:11px;
+  margin:8px 15px 0 -15px;
+  width:15px;
+}
+.club_profile .content_part .table_main {
+    background:#ededee;
+    border-bottom:1px solid #cbcbcc;
+    width:665px;
+}
+.club_profile .content_part .thead {
+    background:#224984;
+    border-radius:0 8px 0 0;
+    color:#fff;
+}
+.club_profile .content_part .thead {
+    font-size:12px;
+    width:100%;
+}
+.club_profile .content_part .thead tr {
+    height:25px;
+}
+.club_profile .content_part .thead td:last-child,
+.club_profile .content_part .thead td:first-child {
+    border:0px;
+}
+.club_profile .content_part .thead td {
+    text-align:center;
+    vertical-align:middle;
+    border-left:1px solid #a7b6ce;
+}
+.club_profile .content_part .date {
+  width:105px;
+}
+.club_profile .content_part .round {
+  text-align:center;
+  width:70px;
+}
+.club_profile .content_part .time {
+  width:85px;
+}
+.club_profile .content_part .opponent {
+/*  width:200px;*/
+  width:170px;
+}
+.club_profile .content_part .opponent a {
+  color:#224984;
+  padding-left:20px;
+  text-decoration:none;
+}
+.club_profile .content_part .where {
+  width:135px;
+}
+.club_profile .content_part .thead .action {
+  width:100px;
+}
+.club_profile .content_part .action {
+  text-align:right;
+  vertical-align:middle;
+  width:70px;
+}
+.club_profile .content_part .action > a {
+  text-decoration:none;
+}
+.club_profile .content_part .action > a:hover .btn_delete {
+  display:none;
+}
+.club_profile .content_part .action > a:hover .lbl_delete {
+  display:block;
+}
+.club_profile .content_part .action > a .lbl_delete {
+  background:#800000;
+  color:#fff;
+  display:none;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:10px;
+  float:right;
+  line-height:14px;
+  margin:0;
+  padding:0 5px !important;
+  text-transform:uppercase;
+/*  visibility:hidden;*/
+}
+.club_profile .content_part .action > a .btn_delete {
+  color:#800000;
+  display:block;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:14px;
+  margin:0 20px 0 0;
+  text-decoration:none;
+}
+/*.club_profile .content_part .action > a .btn_delete:hover {
+  display:none;
+}
+.club_profile .content_part .action > a .btn_delete:hover + .lbl_delete,
+.club_profile .content_part .action > a .lbl_delete:hover {
+  visibility:visible;
+}*/
+.club_profile .content_part .table_wrapper {
+    color:#000;
+    height:920px;
+    font-size:13px;
+    margin:15px 0 40px;
+    overflow:auto;
+    padding-right:30px;
+    width:620px;
+}
+.club_profile .content_part .table_wrapper .add_league_image {
+  padding-bottom:0px;
+}
+.club_profile .content_part .table_wrapper .add_banner {
+  display:block;
+  margin:0 0 0 8px;
+  padding:0px;
+  width:641px;
+}
+.club_profile .content_part .table_wrapper .add_banner img {
+  max-width:100%;
+}
+.club_profile .content_part .table_wrapper aside {
+    background:url(/static/images/bg_hor_spacer.png) repeat-x left bottom;
+/*    background:none;*/
+/*    border-bottom:1px solid #808080;*/
+    float:left;
+    margin:15px 0 15px 7px;
+    min-height:0px;
+    width:609px;
+}
+#cg_list_content table {
+  clear:both;
+}
+.club_profile .content_part .table_wrapper aside span {
+    background:#2f2f30;
+    border-radius:5px 5px 0 0;
+    color:#fff;
+    float:left;
+    font-size:13px;
+    line-height:27px;
+    min-width:210px;
+    padding-left:20px;
+    text-align:left;
+    text-shadow:none;
+}
+.club_profile .content_part .table_wrapper aside .delete_item {
+  background:none;
+  border:0px;
+  border-radius:0px;
+  color:rgba(0,0,0,0.4);
+  float:right;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:12px;
+  line-height:27px;
+  min-width:0px;
+  width: auto;
+}
+.club_profile .content_part .table_wrapper aside .delete_item em {
+  color:#800000;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:14px;
+}
+.club_profile .content_part .table_wrapper table tr td {
+  background:url(/static/images/bg_vert_club.png) repeat-y top right;
+  padding:10px 0;
+}
+.club_profile .content_part .table_wrapper table tr td.where,
+.club_profile .content_part .table_wrapper table tr td:last-child {
+  background:none;
+}
+.club_profile .content_part .table_wrapper table tr td span {
+  padding:0 0 0 20px;
+}
+.club_profile .content_part section.activity_container {
+  margin-top:30px;
+}
+.club_profile .club_tabs .activity_container aside {
+  background: none;
+  float: left;
+  font-size: 13px;
+  height: auto;
+  line-height: normal;
+  margin: 10px 0 0;  
+  min-height: 0;
+  text-align:left;
+  width: 100%;
+}
+.club_profile .club_tabs .activity_container aside a span {
+  font-weight:normal;
+}
+.club_profile section.activity_container .comments {
+  clear:both;
+}
+.club_profile .club_tabs .activity_container aside a {
+  color: #6d6d6d;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-weight:normal;
+  margin: 0 15px 0 0;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+.club_profile section.activity_container article div li fieldset div textarea {
+  background:#fff;
+  width: 100%;
+  display: block;
+  border-radius:0px;
+  box-sizing: border-box;
+  box-shadow:none;
+  height: 30px;
+  min-height: 30px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  resize: none;
+  border: 1px solid #DADBDB;
+  overflow: hidden;
+  padding: 7px 10px 5px 10px;
+  margin: 5px 0px 0px 0px;
+  word-break: break-all;
+  -webkit-transition: height 0.3s ease-out 0s;
+  -moz-transition: height 0.3s ease-out 0s;
+  -o-transition: height 0.3s ease-out 0s;
+  transition: height 0.3s ease-out 0s;
+}
+.club_profile .club_tabs .activity_container aside a:hover {
+  text-decoration:underline;
+}
+.club_profile .club_media_container {
+  background:#ededee;
+  border-bottom:1px solid #cacacb;
+  float:left;
+  margin:0;
+  width:100%;
+}
+.club_profile .club_tabs .media_tabs {
+  float:left;
+  width:100%;
+}
+.club_profile .club_tabs .media_tabs ul {
+  float:left;
+  width:100%;
+}
+.club_profile .club_tabs .media_tabs ul li:first-child,
+.club_profile .club_tabs .media_tabs ul li {
+  float:left;
+  margin:0px;
+  width:50%;
+}
+.club_profile .club_tabs .media_tabs ul li.selected,
+.club_profile .club_tabs .media_tabs ul li:hover {
+  background: #f0f0f0; /* Old browsers */
+  background: -moz-linear-gradient(top, #d4d4d7 0%, #f0f0f0 80%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d4d4d7), color-stop(80%,#f0f0f0)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #d4d4d7 0%,#f0f0f0 80%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #d4d4d7 0%,#f0f0f0 80%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #d4d4d7 0%,#f0f0f0 80%); /* IE10+ */
+  background: linear-gradient(to bottom, #d4d4d7 0%,#f0f0f0 80%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#f0f0f0',GradientType=0); /* IE6-9 */
+}
+.club_profile .club_tabs .media_tabs ul li:last-child a {
+  background:none;
+}
+.club_profile .club_tabs .media_tabs ul li a,
+.club_profile .club_tabs .media_tabs ul li a:hover {
+  background:url(/static/images/bg_vert_club.png) repeat-y top right;
+  display:block;
+  height:95px;
+  min-height:95px;
+  padding:0px;
+  text-align:center;
+  text-decoration:none;
+  width:100%;
+}
+.club_profile .club_tabs .media_tabs ul li a span {
+  color:#cbcbcb;
+  display:block;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:25px;
+  height:100%;
+  line-height:60px;
+  text-shadow:1px 3px 2px rgba(255,255,255,0.5);
+  width:100%;
+}
+.club_profile .club_tabs .media_tabs ul li.selected a span,
+.club_profile .club_tabs .media_tabs ul li:hover a span {
+  color:#818183;
+}
+.club_profile .club_tabs .media_tabs .video_tab span {
+  background:url(/static/images/ico_vid.png) no-repeat center 50px ;
+}
+.club_profile .club_tabs .media_tabs li:hover .video_tab span,
+.club_profile .club_tabs .media_tabs li.selected .video_tab span {
+  background:url(/static/images/ico_vid_active.png) no-repeat center 50px;
+}
+.club_profile .club_tabs .media_tabs .photo_tab span {
+  background:url(/static/images/ico_photo.png) no-repeat center 50px;
+}
+.club_profile .club_tabs .media_tabs li:hover .photo_tab span,
+.club_profile .club_tabs .media_tabs li.selected .photo_tab span {
+  background:url(/static/images/ico_photo_active.png) no-repeat center 50px;
+}
+.club_profile .club_tabs .media_tabs ul li .add_video,
+.club_profile .club_tabs .media_tabs ul li .add_photos,
+.club_profile .club_tabs .media_tabs ul li .add_video:hover,
+.club_profile .club_tabs .media_tabs ul li .add_photos:hover {
+  background:#9c9c9c !important;
+  border-radius:0px;
+  color:#fff;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:22px;
+  height:auto;
+  line-height:50px;
+  min-height:0px;
+  padding-bottom:5px;
+  width:330px;
+}
+
+.club_profile .club_tabs .media_tabs ul li:last-child .add_photos {
+  float:right;
+}
+.club_profile .club_tabs .media_tabs ul li .add_video strong,
+.club_profile .club_tabs .media_tabs ul li .add_photos strong {
+  color:#0077b3;
+  /*font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;*/
+  font-size:50px;
+  margin:0 5px 0 0;
+  position:relative;
+  top:4px;
+}
+.club_profile .media_main {
+  float:left;
+  margin:10px 0 0;
+  padding:0 20px;
+  width:625px;
+}
+.club_profile .media_main .media_wrapper {
+  background:url(/static/images/bg_hor_club.png) repeat-x top left;
+  padding:15px 0;
+}
+.club_profile .media_main .media_wrapper article {
+  color:#000;
+  float:left;
+  font-size:13px;
+  line-height:18px;
+  padding:0 0 20px;
+  width:305px;
+}
+.club_profile .media_main .media_wrapper article:nth-child(even) {
+  float:right;
+}
+.club_profile .media_main .media_wrapper article .video_container {
+  background:#fff;
+  border:1px solid #d2d2d2;
+  display:inline-block;
+  max-height:168px;
+  overflow:hidden;
+  padding:2px;
+  position:relative;
+}
+.club_profile .media_main .media_wrapper article .video_container .vid_btn {
+  background:url(/static/images/btn_vid.png) no-repeat center center;
+  display:block;
+  height:100%;
+  left:0px;
+  position:absolute;
+  top:0px;
+  width:100%;
+}
+.club_profile .media_main .media_wrapper article header {
+  color:#939598;
+  line-height:14px;
+  padding:0 0 0 8px;
+  margin:5px 0;
+}
+.club_profile .media_main .media_wrapper article header h3 {
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+.club_profile .media_main .media_wrapper p {
+  padding:0 0 0 8px;
+}
+.club_profile .media_main .media_wrapper aside {
+  background:none;
+  font-family: "HelveticaW01-TextbookRg 709917", Helvetica, Arial, sans-serif;
+  font-size:13px;
+  margin:5px 0 0;
+  padding:0 0 0 8px;
+  text-align:left;
+  width:100%;
+}
+.club_profile .media_main .media_wrapper aside time {
+  color:#afb1b4;
+  margin:0 5px 0 0;
+}
+.club_profile .media_main .media_wrapper aside a {
+  color:#828283;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  margin:0 0 0 3px;
+  text-decoration:none;
+}
+.club_profile .club_tabs .pagination {
+  float:left;
+  padding:40px 0;
+  text-align:center;
+  width:100%;
+}
+.club_profile .club_tabs .pagination .prev {
+  background:url(/static/images/btn_calendar_scroll.png) no-repeat 0 0;
+  display:inline-block;
+/*  float:left;*/
+  height:33px;
+  margin:0 30px 0 0;
+  width:32px;
+}
+.club_profile .club_tabs .pagination .next {
+  background:url(/static/images/btn_calendar_scroll.png) no-repeat 0 -33px;
+  display:inline-block;
+/*  float:right;*/
+  height:33px;
+  margin:0 0 0 30px;
+  width:32px;
+}
+.club_profile .club_tabs .pagination ul {
+  display:inline-block;
+  margin:0 0 15px;
+}
+.club_profile .club_tabs .pagination ul li {
+  float:left;
+}
+.club_profile .club_tabs .pagination ul li a {
+  background:#cfcfcf;
+  border:1px solid #cfcfcf;
+  border-radius:100%;
+  box-shadow: 1px 1px 2px rgba(10,10,10,0.2);
+  display:block;
+  float:left;
+  height:7px;
+  margin:0 4px;
+  padding:0px;
+  text-align:center;
+  width:7px;
+}
+.club_profile .club_tabs .pagination ul li a.selected,
+.club_profile .club_tabs .pagination ul li a:hover {
+  background:#f89d00;
+  border-color:#f89d00;
+}
+.club_profile .media_main .media_wrapper figure {
+  background:#fff;
+  border:1px solid #d2d2d2;
+  box-shadow:1px 1px 1px rgba(0,0,0,0.2);
+  float:left;
+  height:145px;
+  margin:0 3px 5px 2px;
+  overflow:hidden;
+  padding:2px;
+  position:relative;
+  width:145px;
+}
+.club_profile .media_main .media_wrapper figure aside {
+  background: #f0f0f0; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(185,186,189,0.7) 0%, rgba(0,0,0,0.7) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(185,186,189,0.7)), color-stop(100%,rgba(0,0,0,0.7))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(185,186,189,0.7) 0%,rgba(0,0,0,0.7) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(185,186,189,0.7) 0%,rgba(0,0,0,0.7) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(185,186,189,0.7) 0%,rgba(0,0,0,0.7) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(185,186,189,0.7) 0%,rgba(0,0,0,0.7) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#f0f0f0',GradientType=0); /* IE6-9 */
+  
+  display:none;
+  
+  height:145px;
+  left:2px;
+  margin:0px;
+  padding:0px;
+  position:absolute;
+  text-shadow:none;
+  top:2px;
+  width:145px;
+}
+.club_profile .media_main .media_wrapper figure:hover aside {
+  display:block;
+}
+.club_profile .media_main .media_wrapper figure aside .overlay_content {
+  bottom:8px;
+  color:#9b9c99;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:11px;
+  left:8px;
+  line-height:15px;
+  position:absolute;
+}
+.club_profile .media_main .media_wrapper figure aside .overlay_content > span {
+  display:block;
+}
+.club_profile .media_main .media_wrapper figure aside .overlay_content a {
+  color:#fff;
+  margin:0 5px 0 0;
+  padding:0px;
+}
+
+/*club profile edit*/
+.club_profile .top_content.edit_profile .player_info {
+  width:245px;
+}
+.club_profile .top_content.edit_profile .player_info li:first-child a {
+  color:#000;
+  font-family: "HelveticaW01-TextbookRg 709917", Helvetica, Arial, sans-serif;
+  font-size:12px;
+  line-height:16px;
+  text-shadow:1px 1px 1px #fff;
+}
+.club_profile .top_content.edit_profile .player_info a strong {
+  display:block;
+  margin:4px 0 0 0;
+  /*font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;*/
+}
+.club_profile .top_content.edit_profile .player_info li:first-child {
+  margin-bottom:20px;
+}
+.club_profile .top_content.edit_profile .player_info li:first-child a img {
+  margin:0 5px 0 0;
+}
+.club_profile .top_content.edit_profile {
+  padding-bottom:0px;
+  padding-top:0px;
+}
+.club_profile .top_content.edit_profile .player_information {
+  margin:0;
+  padding-bottom:25px;
+  padding-top:30px;
+  padding-left:0px;
+  min-height:415px;
+}
+.club_profile .top_content .player_information .player_information .action_btn {
+  padding-right:20px;
+}
+.club_profile .top_content .player_information .player_information {
+  padding:0px;
+}
+.club_profile .top_content .player_information h1.player_name,
+.club_profile .top_content.edit_profile .player_information h1.player_name {
+  display:none;
+}
+.club_profile .top_content.edit_profile .player_information select,
+.club_profile .top_content.edit_profile .player_information input[type=text] {
+  width:200px;
+}
+.club_profile .top_content.edit_profile .player_information .action_btn {
+  margin-top:30px;
+  padding-right:50px;
+  width:245px;
+}
+.club_profile .top_content.edit_profile .club_media {
+  background:none;
+  margin-bottom:15px;
+  margin-top:35px;
+  padding-bottom:35px;
+  /*min-width:675px;*/
+}
+.club_profile .top_content .club_media .add_club_media {
+  background:#e8e8e8 url(/static/images/img_logo_club.png) no-repeat center 92px;
+  border:1px solid #f2f2f2;
+  box-shadow:0 1px 0 rgba(255,255,255,0.5);
+  min-height:260px;
+  padding:92px 0 0 0;
+  position:relative;
+}
+.club_profile .top_content .club_media .add_club_media_container {
+  background:#aaa;
+  margin:145px 0 0 0;
+  min-height:115px;
+  position:relative;
+}
+.club_profile .top_content .club_media .add_club_media_container .add_text {
+  background:url(/static/images/bg_add_club_media.png) no-repeat right top;
+  display:block;
+  float:right;
+  font-size:18px;
+  margin:7px 115px 0 0;
+  min-height:24px;
+  padding:63px 60px 0 0;
+}
+.club_profile .top_content .club_media .add_club_media_container em {
+  clear:both;
+  color:#fff;
+  display:block;
+  float:right;
+  font-size:11px;
+  margin:3px 175px 0 0;
+}
+.club_profile .btn_edit_game {
+  background:url(/static/images/ico_edit.png) no-repeat left center;
+  color:rgba(0,0,0,0.4);
+  float:left;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:12px;
+  line-height:27px;
+  margin:0 0 0 10px;
+  padding:0 0 0 20px;
+  text-decoration:none;
+}
+.club_profile #cg_add_league_button {
+  margin-top:8px;
+}
+.club_profile .btn_edit_game.right {
+  background-position: right center;
+  padding:0 20px 0 0;
+}
+.club_profile.edit_page .content_part .table_wrapper {
+  overflow-x:hidden;
+  overflow-y:auto;
+  position:relative;
+}
+/*.club_profile.edit_page .content_part .table_wrapper aside {
+  background:none;
+}*/
+.club_profile.edit_page .content_part .table_wrapper .add_game_container {
+  background:#dbdbdb;
+  float:left;
+  margin:0 0 0 8px;
+  min-height:130px;
+  width:650px;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main {
+  height: 0;
+  border-top: 130px solid #b6b6b6;
+  border-right: 320px solid transparent;
+  position: relative;
+  width:250px;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_games_content {
+  display:block;
+  left:0px;
+  position:absolute;
+  top:-130px;
+  width:640px;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main .add_league {
+  float:left;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main .add_league a {
+  display:block;
+  background:url(/static/images/bg_add_club_media.png) no-repeat left top;
+  margin:10px 0 0 10px;
+  min-height:100px;
+  text-decoration:none;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main .add_league a strong {
+  color:#636363;
+  display:block;
+  /*font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;*/
+  font-size:22px;  
+  padding:33px 0 0 100px;
+  text-transform:uppercase;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main .add_league a em {
+  color:#fff;
+  display:block;
+  font-size:14px;
+  padding:5px 0 0 60px;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main .mid_arrow {
+  background:url(/static/images/ico_arrow_add.png) no-repeat left top;
+  display:block;
+  height:47px;
+  position:absolute;
+  right:205px;
+  top:55px;
+  width:109px;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main .add_teams {
+  float:right;
+}
+.club_profile.edit_page .content_part .table_wrapper .add_game_main .add_teams a {
+  background:url(/static/images/ico_cross_white.png) no-repeat top right;
+  color:#636363;
+  display:block;
+  font-size:18px;
+  line-height:22px;
+  margin:10px 10px 0 0;
+  padding:65px 0 0;
+  text-align:right;
+  text-decoration:none;
+}
+.club_profile.edit_page .overlay_club_add {
+  background:#bebebe;
+  box-shadow:-8px 20px 30px rgba(204,204,204,0.8);
+  left:5px;
+  position:absolute;
+  top:0;
+  width:645px;
+  z-index:10;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container {
+  background:#e5e5e5;
+  margin:0 auto;
+  width:420px;
+  padding:15px 40px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container h2 {
+  color:#2674b2;
+  display:block;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:14px;
+  margin:0 0 10px;
+  text-shadow:1px 1px #fff;
+  text-transform:uppercase;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container form {
+  display:inline-block;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container ul {
+  display:inline-block;
+  float:left;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container ul.action_btn {
+  float:right;
+  width:auto;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container ul.action_btn .save {
+  color:#000;
+  text-decoration:none;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container ul.action_btn .save:hover {
+  color:#fff;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container ul li {
+  float:left;
+  margin:0 4px 10px 0;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container ul li label {
+  color:#636363;
+  display:block;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  padding:0 0 3px 8px;
+  text-shadow:1px 1px #fff;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container select,
+.club_profile.edit_page .overlay_club_add .club_add_container input[type=text]{
+  border:1px solid #c7c8ca;
+  border-radius:3px;
+  box-shadow:1px 1px 2px rgba(0,0,0,0.4) inset;
+  float:left;
+  height:24px;
+  padding:0 0 0 7px;
+  width:200px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container #cg_game_form input[type=text] {
+  width:190px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container .number {
+  clear:both;
+  margin:0 8px 0 0;
+  width:138px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container #cg_game_form .number input[type=text] {
+  width:130px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container .datetime select,
+.club_profile.edit_page .overlay_club_add .club_add_container #day,
+.club_profile.edit_page .overlay_club_add .club_add_container #month,
+.club_profile.edit_page .overlay_club_add .club_add_container #year,
+.club_profile.edit_page .overlay_club_add .club_add_container #time {
+  width:auto;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container button {
+  padding:0 8px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.successful {
+  padding:80px 40px;
+  text-align:center;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.successful > span {
+  color:#000;
+  display:block;
+  font-size:15px;
+  text-shadow:1px 1px #fff;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.successful > span:first-child {
+  color:#2674b2;
+  display:block;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  margin:0 0 10px;
+  text-transform:uppercase;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.successful .action_btn {
+  float:none;
+  margin:10px auto 0;
+  width:auto;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league {
+  display:inline-block;
+  margin:0 50px;
+  padding:15px 20px 0;
+  width:500px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .action_btn {
+  float:left;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half:first-child {
+  background:none;
+  padding:0 25px 0 5px;
+  width:220px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half {
+  background: url(/static/images/bg_vert_club.png) repeat-y top left;
+  float:left;
+  padding:0 0 0 35px;
+  width:215px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing {
+  background:#fff;
+  float:left;
+  max-width:170px;
+  min-height:120px;
+  min-width:180px;
+  padding:15px;  
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half:first-child .listing {
+  min-height:170px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul {
+  float:left;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li {
+  display:block;
+  font-size:13px;
+  line-height:25px;
+  margin:0;
+  width:100%;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li h3 {
+  color:#000;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:15px;
+  margin:0 0 5px;
+  text-transform:uppercase;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li > span {
+  float:left;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li a {  
+  float:left;
+  text-decoration:none;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li a .btn_delete {
+  color:#800000;
+  float:left;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:16px;
+  margin:0 0 0 8px;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li a .lbl_delete {
+  background:#800000;
+  color:#fff;
+  display:none;
+  float:left;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  font-size:10px;
+  line-height:16px;
+  margin:5px 0 0 8px;
+  padding:0 8px;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li a:hover .lbl_delete {
+  display:inline-block;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .add_half .listing ul li a:hover .btn_delete {
+  display:none;
+}
+.club_profile.edit_page .overlay_club_add .club_add_container.league .form_done {
+  background:#e5e5e5;
+  bottom:0px;
+  left:0px;
+  padding:10px 0;
+  position:absolute;
+  text-align:center;
+  width:100%;
+}
+
+#cg_list_content .cg_game_list_back_button,
+.club_profile.edit_page .overlay_club_add .club_add_container.league .form_done .cg_league_form_cancel_button {
+  background: url(/static/images/bg_edit_btn.png) repeat-x top left;
+  border: 0px;
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  line-height: 30px;
+  margin: 0px auto;
+  min-width: 80px;
+  padding: 0px;
+  padding: 0 20px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(255,255,255,1);
+}
+
+/*others*/
+#cg_list_content {
+  width:665px;
+}
+
+#cg_list_content .form_back {
+  background:#e5e5e5;
+  float:left;
+  margin-top:-2px;
+  padding:10px 0;
+  position:absolute;
+  width:665px;
+}
+#cg_list_content .cg_game_list_back_button {
+  float:right;
+  margin-right:30px;
+}

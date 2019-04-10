@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block javascripts %}
+   {{ super() }}
+   {{ use_javascript('frontend/vendor/classie.js') | safe }}
+   {{ use_javascript('frontend/vendor/selectFx.js') | safe }}
+{% endblock javascripts %}
+{% block content %}
+    <div class="register-form">
+    {% include 'forms/signup.html' %}
+    </div>
+{% endblock content %}
+

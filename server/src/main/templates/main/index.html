@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% block stylesheets %}{% endblock stylesheets %}
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{{ use_javascript('frontend/landing.js') | safe }}
+{{ use_javascript('frontend/vendor/classie.js') | safe }}
+{{ use_javascript('frontend/vendor/selectFx.js') | safe }}
+{% endblock javascripts %}
+{% block content %}
+<section class="landing landing-page__hero landing-page--generic">
+    <div class="landing-page__hero-inner col-md-8 col-md-offset-4 col-sm-offset-2 col-centered">
+        <div class="landing-page__hero-text center">
+
+            <h1>
+            {% if not exp or exp == 1 %}
+            Connect with Clubs,<br/>Athletes and Agents
+            {% elif exp == 2 %}
+            Discover Your Next <br/>Opportunity
+            {% else %}
+            Discover the superstar <br/>inside you
+            {% endif %}
+            </h1>
+            <a href="#" id="trigger-overlay" class="btn btn--orange btn--large open-sign-up">Get Started</a><br/>
+            <a href="#learn-more" class="btn btn--large learn-more-btn">Learn More</a>
+        </div>
+    </div>
+</section>
+<section class="landing opportunities">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-4">
+            <h2>Latest Opportunities</h2>
+        </div>
+        <div class="col-md-5 added-this-week">
+            <span class="sub-ttl">24 added this week</span>
+        </div>
+    </div>
+    <div class="tab">
+        {% for listing in latest_listings %}
+        <div class="card feature-listing">
+            <div class="col-xs-4 club">
+                <a href="{{ url_for('profile.slug', slug=listing.club.slug) }}">
+                    <img src="{{ listing.club.profile.get_image() }}"
+                        alt="{{ listing.club.name }} | {{ listing.club.profile.address_country_slug }}"
+                        title="{{ listing.club.name }} | {{ listing.club.profile.address_country_slug }}"
+                        class="image img-circle" width="137" height="137"/>
+                </a>
+            </div>
+            <div class="col-xs-7 info">
+                <div class="ttl">{{ listing.position.name }}</div>
+                <div class="sport">{{ listing.club.sport.name }}</div>
+                <span class="heading">Club:</span> {{ listing.club.name }}<br/>
+                {% if listing.season_start %}
+                    <span class="heading">Season Start:</span>{{ listing.season_start.strftime('%b %d, %Y') }}<br/>
+                {% endif %}
+                <span class="heading">Location:</span>{{ listing.club.profile.address_city }}, {{ listing.club.profile.address_country_slug }}</br>
+                <button class="apply open-sign-up" name="apply">Apply</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="scroll-left"><i class="fa fa-2x fa-angle-left"></i></div>
+    <div class="scroll-right"><i class="fa fa-2x fa-angle-right"></i></div>
+</section>
+<section class="landing showcase card">
+    <h2>Athlete Showcase</h2>
+    <div class="row container-x">
+        {% for profile in featured_profiles %}
+        <div class="{% if loop.index > 3 %}visible-xs-inline-block {% endif %}card info">
+            <img src="{{ profile.get_image() }}"
+                alt="{{ profile.user.name }} | {{ profile.address_country_slug }}"
+                title="{{ profile.user.name }} | {{ profile.address_country_slug }}"
+                class="img" width="130" height="130"/>
+            <div class="ttl">{{ profile.user.name }}</div>
+            <div class="sport">{{ profile.user.sport.name }}</div>
+            {% if profile.birthday %}
+            <span class="heading">Age:</span> {{ profile.age }}<br/>
+            {% endif %}
+            <span class="heading">Position:</span> {{ profile.first_position.name }}<br/>
+            <a class="apply" name="apply" href="{{ url_for('profile.slug', slug=profile.slug) }}">View Profile</a>
+        </div>
+        {% if loop.index == 1 %}
+        <div class="card video hidden-xs hidden-sm">
+            <iframe id="ytplayer" type="text/html" class="img"
+                src="https://www.youtube.com/embed/{{ profile.reel_video_url }}?wmode=opaque"></iframe>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="create-profile"><button class="btn btn--large btn--blue open-sign-up">Create Profile</button></div>
+</section>
+<section class="landing who-is-using row card">
+    <div class="text col-md-2">Who's using Sporple</div>
+    <div class="users col-md-10">
+        <a href="/randwick-rugby-club"><img src="/uploads/ooipThumber/uploads/profile/sporple-randwick-rugby-club.102x102.1.1.100.png" /></a>
+        <a href="/newport-rfc"><img src="/uploads/ooipThumber/uploads/profile/uploaded_3b24581c8af382b8374d89fbe10f9150d6925ff8_cropped.102x102.1.1.100.png" /></a>
+        <a href="/lindfield-rugby-club"><img src="/uploads/ooipThumber/uploads/profile/uploaded_3fd6d382350d8a05795198f29035a7c7659058fd_cropped.102x102.1.1.100.jpg"/></a>
+        <a href="/drew-mitchell"><img src="/static/images/profile/drew_mitchell.jpg" class="img-circle" /></a>
+        <a href="/pro-rugby-usa"><img src="/uploads/ooipThumber/uploads/profile/4217a217d82349f9a23d5eb32e44a3e9_cropped.102x102.1.1.100.jpg" /></a>
+        <a href="/racing-club-narbonne-mediterranean"><img src="/uploads/ooipThumber/uploads/profile/uploaded_44555911dc3af682322842a4f34688467ed45cf5_cropped.102x102.1.1.100.png" /></a>
+        <a href="/matt-giteau"><img src="/static/images/profile/matt_giteau.jpg" class="img-circle"/></a>
+    </div>
+</section>
+<section class="landing learn-more">
+    <h2><a name="learn-more">Learn More</a></h2>
+    <div class="row subttl">
+        <div class="col-xs-8 col-md-3 col-centered">
+        Sporple has something for everyone, whether you are a club, an agent or a athlete. Click the tabs below to find out.
+        </div>
+    </div>
+    <div class="tabs row">
+        <div class="col-xs-4 active" data-info='athlete'>
+            <h3 class="ttl"><img src="/static/images/profile/athlete.png" height="50"/>For Athletes</h3></div>
+        <div class="col-xs-4" data-info="club"><h3 class="ttl"><img src="/static/images/profile/club.png"/>For Clubs</h3></div>
+        <div class="col-xs-4" data-info="agent"><h3 class="ttl"><img src="/static/images/profile/agent.png"/>For Agents</h3></div>
+    </div>
+    <div class="row info athlete">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Create Profile</div>
+                <i class="fa fa-3x fa-user-plus"></i><br/>
+                Create and customize your own profile. Upload your highlight video and career stats. Your profile is how everyone finds you.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Connect</div>
+                <i class="fa fa-3x fa-users"></i><br/>
+                Find and connect with your team mates. Get direct access to the leading agents and clubs. Show off your talent to everyone.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Be a Pro</div>
+                <i class="fa fa-3x fa-star"></i><br/>
+                Find opportunities globally, search for your next team and get recruited instantly. Get in control of your own career.
+            </div>
+        </div>
+    </div>
+    <div class="row info agent hidden">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Connect</div>
+                <i class="fa fa-3x fa-users"></i><br/>
+                Create your professional profile. List your current and past athletes.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Endorse</div>
+                <i class="fa fa-3x fa-thumbs-up"></i><br/>
+                Showcase endorsements from past and present clients or clubs. Show off the world your success.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Search</div>
+                <i class="fa fa-3x fa-search"></i><br/>
+                Search and connect with your next marquee client. Instantly search open opportunities anywhere in the world. Scout for the next superstar.
+            </div>
+        </div>
+    </div>
+    <div class="row info club hidden">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Create Profile</div>
+                <i class="fa fa-3x fa-user-plus"></i><br/>
+                Create your club's interactive profile. Show off your team and your superstars to the world. Your profile is how athletes and agents find you.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Post Opportunities</div>
+                <i class="fa fa-3x fa-list-ul"></i><br/>
+                Publish your open positions on the platform. Get applications directly in your inbox. Connect with the athletes. Message them directly on the platform.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="ttl">Search &amp; Recruit</div>
+                <i class="fa fa-3x fa-search"></i><br/>
+                Scout easily for your next superstar. Connect with athletes and agents worldwide. Search with filters, cut through the noise. Discuss and send offer using Sporple.
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="landing join-us row">
+    <div class="col-md-9">Connect with <span class="blue">{{ "{:,}".format(total_users) }}</span> users who've joined the sporting revolution</div>
+    <div class="col-md-3"><button class="btn btn--large btn--blue open-sign-up">Let's connect</button></div>
+</section>
+
+{% endblock content %}

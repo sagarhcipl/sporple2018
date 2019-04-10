@@ -1,0 +1,296 @@
+/*
+ * Styles common across profile types
+ *
+ */
+
+.page--profile{
+
+}
+
+.profile__basic-info{
+	position: relative;
+
+	@include mq($until: desktop) {
+		position: relative;
+		z-index: 1;
+		margin-right: 0 !important;
+		margin-left: 0 !important;
+		margin-bottom: 70px !important;
+		width: 100% !important;
+	}
+	
+	.btn--edit{
+		margin-bottom: 30px;
+	}
+}
+
+	.profile__header{
+		margin-bottom: 15px;
+	}
+
+		.profile__profile-pic{
+			margin-top: -50px;
+			margin-bottom: 10px;
+			width: 130px;
+			height: 130px;
+			border: solid 4px #fff;
+			border-radius: 50%;
+			transition: all 0.25s $swiftOut;
+			transform-origin: 0 bottom;
+
+			.page--club-profile &{
+				border-radius: 0;
+			}
+
+			&.minimise{
+				margin-top: 0;
+				transform: scale(0.9);
+			}
+
+			@include mq($from: tablet) {
+				margin-top: -80px;
+				width: 200px;
+				height: 200px;
+			}
+
+			@include mq($from: desktop) {
+				margin-top: 0;
+				border: none;
+				border-radius: 0;
+
+				&.minimise{
+					transform: scale(1);
+				}
+			}
+		}
+
+		.profile__name{
+			margin-bottom: 10px;
+			max-width: 70%;
+			color: $text-main;
+            text-align: center;
+            h1 {
+                display: inline-block;
+            }
+            .premium {
+                margin-left: 10px;
+                padding: 3px 5px;
+                @include font(15, 20, $font-bebas-light);
+                background-color: lighten($grey-light, 20%);
+            }
+		}
+
+		.profile__followers{
+			color: $blue-secondary;
+			font-weight: $bold;
+			@include font(15,26);
+		}
+
+	.profile__stats{
+		margin-bottom: 5px;
+		font-weight: $bold;
+
+		dt{
+			display: inline-block;
+			margin-right: 3px;
+			margin-bottom: 3px;
+		}
+
+		dd{
+			display: inline;
+  			margin: 0;
+  			color: $grey-light;
+
+  			&:after{
+  				content: '';
+  				display: block;
+  			}
+		}
+	}
+
+	.profile__action-btn-cont{
+		position: absolute;
+		top: 55px;
+		right: 0;
+		width: 125px;
+		
+		#btn--view-photos{
+			float: right;
+			padding: 10px 10px;
+			color: $text-main;
+		}
+
+		@include mq($until: tablet) {
+			.btn{
+				width: 100%;
+				margin-bottom: 5px;
+			}
+		}
+
+		@include mq($from: tablet) {
+			top: 10px;
+			width: 250px;
+		}
+		@include mq($from: desktop) {
+			position: static;
+			margin-bottom: 20px;
+			width: auto;
+			max-width: 250px;
+
+			#btn--view-photos{
+				display: none;
+			}
+		}
+	}
+
+.profile__public-url{
+	float: left;
+    padding: 0 0 0 25px;
+    background: url("/static/images/url_logo.png") no-repeat left center;
+    color: $grey-light;
+    line-height: 30px;
+    font-weight: $bold;
+    cursor: pointer;
+
+    &:after{
+    	content: "Copy";
+    	display: none;
+    	margin-top: 1px;
+    	padding: 0 4px 2px;
+    	background-color: #fff;
+    	color: $text-main;
+    	text-transform: uppercase;
+    }
+
+    &.zeroclipboard-is-hover{
+	    &:after{
+	    	display: inline;
+	    }
+    }
+
+    &.copied{
+
+	    &:after{
+	    	content: "Copied";
+	    	display: inline;
+	    	color: $brand-orange;
+	    }
+    }
+}
+
+
+.page__main-col{
+	padding-top: 0;
+
+	@include mq($until: desktop) {
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+		width: 100% !important;
+	}
+
+	.header--secondary{
+		background-color: $blue-secondary;
+
+		@include mq($from: tablet) {
+			text-align: right;
+		}
+	}
+
+	.profile__about-section-content{
+		position: relative;
+		margin: 0 auto 20px;
+		padding: 10px 0 0;
+
+		@include mq($from: tablet) {
+			padding: 10px 20px 0;
+		}
+
+		&.module--loading{
+			min-height: 100px;
+		}
+	}
+
+	
+	@include mq($until: tablet) {
+		#profile__career-timeline{
+			display: none;
+		}
+	}
+}
+
+.page__aside-col{
+	@include mq($until: desktop) {
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+		width: 100% !important;
+	}
+}
+
+//SOCIAL SHARE MODULE
+.social-share-mod{
+	display: none;
+	margin-bottom: 0 !important;
+	padding-top: 0;
+	height: 38px;
+
+	@include mq($from: desktop) {
+		display: block;
+	}
+
+	.addthis_toolbox{
+		float: right;
+		min-width: 180px;
+	}
+
+	&.social-share-mod--small{
+		padding-top: 12px;
+
+		.addthis_toolbox{
+			min-width: 100px;
+		}
+
+		p{
+			display: inline;
+			font-weight: $bold;
+			color: $grey-light;
+		}
+	}
+}
+
+
+//EDIT INFO STUFF
+
+.player_information form{
+	padding-left: 10px;
+}
+
+.profile-pic-upload-cont{
+	min-height: 42px;
+
+	.profile-pic-upload__preview{
+		display: inline-block;
+		overflow: hidden;
+	}
+
+	.form__label{
+		position: static !important;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	input[type="file"]{
+		position: static;
+	}
+
+	.js & input[type="file"]{
+		position: absolute;
+	}
+}
+
+.is-modern .multiple--hidded{
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+

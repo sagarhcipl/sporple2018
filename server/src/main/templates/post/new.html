@@ -1,0 +1,32 @@
+{{ use_javascript('frontend/post/new.js') | safe }}
+{{ use_javascript('vendor/jquery.form.min.js') | safe }}
+<div class="content">
+    <form action="{{ url_for('post.submit') }}{% if form_is_new %}?id={{form.get_object().get_id()}}{% endif %}"
+          method="post" id="post_new_form" data-max-size="2097152" enctype="multipart/form-data">
+          {{ new_post_form.csrf_token }}
+          {{ new_post_form.body(rows='4', cols='30',
+                placeholder='Share an update...',
+                style='padding: 7px;',
+                id='post_body',
+                required='required')
+          }}
+
+        <section class="upload_item_conainer">
+            {% for i in range(0,10) %}
+           <footer class="upload_footer" id="upload_footer_{{ i }}" style="display: none">
+                <a class="upload_button">
+                 <input type="file" name="filename_{{ i }}" class="post_selectfile select_file_{{ i }}" id="post_new_attachements_{{ i }}_filename" />
+                 <span class="upload_file"><strong>+</strong>Add file</span>
+                </a>
+                <div id="filename_{{ i }}" class="post_filename"></div>
+            </footer>
+            {% endfor %}
+            <footer class="upload_share_btn">
+                <button id="post_new_submit" class="btn">Share</button>
+            </footer>
+        </section>
+
+    </form>
+</div>
+
+

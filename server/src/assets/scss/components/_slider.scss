@@ -1,0 +1,177 @@
+/* Slider */
+.slick-loading .slick-list
+{
+    background: url("/static/images/svg/spinner-grey.svg") center center no-repeat;
+    background-size: 34px 34px;
+}
+
+.slick-track{
+    position: relative;
+}
+
+/* Arrows */
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    padding: 0;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before
+{
+    opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before
+{
+    opacity: .25;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+
+    opacity: .75;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev
+{
+    left: -25px;
+}
+[dir='rtl'] .slick-prev
+{
+    right: -25px;
+    left: auto;
+}
+.slick-prev:before
+{
+    content: 'â†';
+}
+[dir='rtl'] .slick-prev:before
+{
+    content: 'â†’';
+}
+
+.slick-next
+{
+    right: -25px;
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: -25px;
+}
+.slick-next:before
+{
+    content: 'â†’';
+}
+[dir='rtl'] .slick-next:before
+{
+    content: 'â†';
+}
+
+/* Dots */
+.slick-slider{
+	position: relative;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+
+    .slick-list{
+        overflow: hidden;
+    }
+
+    .slick-slide{
+        float: left;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+
+.slick-dots
+{
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+
+    @include mq($from: tablet) {
+        bottom: -14px;
+    }
+
+}
+.slick-dots li
+{
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+}
+.slick-dots li button
+{
+    display: block;
+    overflow: hidden;
+    width: 10px;
+    height: 10px;
+    margin: 5px 7px;
+    padding: 0;
+    opacity: 0.5;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #fff;
+    text-indent: 105%;
+    transition: opacity 0.25s ease, background 0.25s ease;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus,
+.slick-dots li.slick-active button
+{
+    opacity: 1;
+    background: #fff;
+}

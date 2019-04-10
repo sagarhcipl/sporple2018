@@ -1,0 +1,117 @@
+.float-label-control {
+    position:relative;
+    margin-top:2.5rem;
+    margin-bottom: 0;
+
+    input:-webkit-autofill, textarea:-webkit-autofill,
+    #noautofill:-webkit-autofill {
+        background-color:transparent!important;
+        -webkit-box-shadow:0 0 0 1000px #FFF inset!important;
+        -moz-box-shadow:0 0 0 1000px #FFF inset!important;
+        box-shadow:0 0 0 1000px #FFF inset!important;
+    }
+
+    input, textarea,label {
+        box-shadow:none;
+        -webkit-box-shadow:none;
+    }
+
+    input:focus, textarea:focus {
+        box-shadow:none;
+        -webkit-box-shadow:none;
+        border-bottom-width:3px;
+        padding-bottom:0;
+    }
+
+    textarea:focus {
+        padding-bottom:4px;
+    }
+
+    input, textarea {
+        display:block;
+        width:100%;
+        border:none;
+        border-radius:0;
+        border-bottom:2px solid #aaa;
+        outline:none;
+        background:none;
+        margin:0;
+        padding:.1rem 0 1px;
+    }
+
+    textarea {
+        padding:.1rem 0 5px;
+    }
+
+    label {
+        position:absolute;
+        font-weight:400;
+        top: -2rem;
+        left:.08rem;
+        color: #aaa;
+        @include font(15);
+        z-index:-1;
+        -moz-animation:float-labels 300ms none ease-out;
+        -webkit-animation:float-labels 300ms none ease-out;
+        -o-animation:float-labels 300ms none ease-out;
+        -ms-animation:float-labels 300ms none ease-out;
+        -khtml-animation:float-labels 300ms none ease-out;
+        animation:float-labels 300ms none ease-out;
+        animation-play-state:running!important;
+        -webkit-animation-play-state:running!important;
+    }
+
+    input.empty + label, textarea.empty + label {
+        top: 1.5rem;
+        animation:none;
+        -webkit-animation:none;
+        color:#aaa;
+        font-size: inherit;
+    }
+
+    input:not(.empty) + label,
+    textarea:not(.empty) + label {
+        z-index:1;
+    }
+
+    input:not(.empty):focus + label,
+    textarea:not(.empty):focus + label {
+        color:#4a90e2;
+    }
+
+    &.label-bottom label {
+        -moz-animation:float-labels-bottom 300ms none ease-out;
+        -webkit-animation:float-labels-bottom 300ms none ease-out;
+        -o-animation:float-labels-bottom 300ms none ease-out;
+        -ms-animation:float-labels-bottom 300ms none ease-out;
+        -khtml-animation:float-labels-bottom 300ms none ease-out;
+        animation:float-labels-bottom 300ms none ease-out;
+    }
+    
+    &.label-bottom input:not(.empty) + label,
+    &.label-bottom textarea:not(.empty) + label {
+        top:3em;
+    }
+    
+}
+
+@keyframes float-labels {
+    0% { top: 1.5rem; font-size: 1.5em; }
+    100% { top: -2rem; }
+}
+
+@-webkit-keyframes float-labels {
+    0% { top: 1.5rem; font-size: 1.5em; }
+    100% { top: -2rem; }
+}
+
+@keyframes float-labels-bottom {
+    0% { top: 0.1em; font-size: 1.5em; }
+    100% { top: 3em; }
+}
+
+@-webkit-keyframes float-labels-bottom {
+    0% { top: 0.1em; font-size: 1.5em; }
+    100% { top: 3em; }
+}
+

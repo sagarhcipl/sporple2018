@@ -1,0 +1,22 @@
+
+.aside-mod{
+	width: 100%;
+
+	.header--secondary{
+		background-color: $brand-orange;
+	}
+
+	.header--sub{
+		margin-left: 10px;
+		padding-top: 5px;
+
+		h2,
+		h3,
+		h4{
+			margin-bottom: 1px;
+		}
+	}
+
+	margin-bottom: 50px;
+
+}

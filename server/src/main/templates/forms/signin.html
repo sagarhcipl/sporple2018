@@ -1,0 +1,109 @@
+<div class="cd-user-modal">
+<div class="cd-user-modal-container">
+    <ul class="cd-switcher">
+        <li><a href="#">Sign in</a></li>
+        <li><a href="/register">Register</a></li>
+    </ul>
+    <div id="cd-login">
+    <form action="{{ url_for('login') }}" method="post" id="login_form" class="cd-form tooltip-validation">
+        
+        <a href="{{ url_for('facebook_authorize') }}" class="btn btn--large btn--fb">login with facebook</a>
+
+        <div class="login-or">OR</div>
+        <div class="form__row">
+            <input type="email" name="signin[username]" data-parsley-required="true" minlength="6" maxlength="254" id="signin_username" />
+            <label class="form__label">Email Address</label>
+        </div>
+
+        <div class="form__row">
+            <input type="password" name="signin[password]" data-parsley-required="true" minlength="6" maxlength="128" id="signin_password" />
+            <label class="form__label">Password</label>
+        </div>
+
+        <label id="login_form__remember-me" class="login_form__secondary"><input type="checkbox" name="remember" checked="true" id="remember" data-parsley-multiple="remember" data-parsley-id="9"> Remember me</label>
+
+        <button type="submit" id="login_form__submit" class="btn btn--large btn--orange">login</button>
+    </form>
+    <p class="cd-form-bottom-message"><a href="#">Forgot your password?</a></p>
+    </div><!-- cd-login -->
+
+    <div id="cd-signup"><!-- signup form -->
+        <form id="register_form" action="{{ url_for('register') }}" method="post" class="cd-form tooltip-validation">
+        
+            <h2 class="ttl">Create your free account</h2>
+        
+            <a href="{{ url_for('facebook_authorize') }}" class="btn btn--large btn--fb">sign up with facebook</a>
+            {{ qr_form.csrf_token }}
+            <div class="login-or">OR</div>
+            <div class="form__row">
+                {{ qr_form.sport(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'change',
+                    'data-parsley-noselect': 'true',
+                    'data-parsley-noselect-message': 'Value is required',
+                    'id': 'quick-register_sport',
+                    })
+                }}
+            </div>
+
+            <div class="form__row">
+                {{ qr_form.role(**{
+                    'data-parsley-trigger': 'change',
+                    'data-parsley-required': 'true',
+                    'data-parsley-noselect': 'true',
+                    'data-parsley-noselect-message': 'Value is required',
+                    'id': 'quick-register_role'
+                    })
+                }}
+            </div>
+        
+            <div class="form__row">
+                {{ qr_form.email(**{
+                    'data-parsley-trigger': 'blur',
+                    'data-parsley-required': 'true',
+                    'minlength': '6',
+                    'maxlength': '128',
+                    'id': 'sign-up-form__email',
+                    })
+                }}
+                <label class="form__label">Email Address</label> 
+            </div>
+        
+            <div class="form__row">
+                {{ qr_form.password(**{
+                    'data-parsley-trigger': 'blur',
+                    'data-parsley-required': 'true',
+                    'minlength': '6',
+                    'maxlength': '128',
+                    'id': 'quick-register_password',
+                    })
+                }}
+                <label class="form__label">Create Password</label>
+            </div>
+        
+            <button type="submit" id="btn--submit" class="btn btn--large btn--orange">Let&#39;s get started</button>
+        
+            <p class="small-print">
+                By signing up to Sporple you agree to our <a href="https://newsroom.sporple.com/terms/">terms</a>, our
+                <a href="https://newsroom.sporple.com/privacy-cookies/">data policy</a> and <a href="https://newsroom.sporple.com/privacy-cookies/">cookie usage</a>
+            </p>
+        </form>
+    </div><!-- cd-signup -->
+
+    <div id="cd-reset-password">
+      <form class="cd-form" action="{{ url_for('forgot_password') }}" method="post" id="forgot_password_form">
+        <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+        <p class="cd-form-message success hidden">An email has been sent with password reset instructions.</p>
+        <div class="form__row">
+            <input class="full-width has-padding has-border" id="reset-email" type="email" name="username" maxlength="254" required>
+            <label class="form__label" for="reset-email">Email Address</label>
+        </div>
+        <button type="submit" id="forgot_password_form__submit" class="btn btn--large btn--orange" value="Reset Password">Reset Password</button>
+      </form>
+      <p class="cd-form-bottom-message"><a href="#">Back to log-in</a></p>
+    </div><!-- cd-reset-password -->
+
+    <button title="Close (Esc)" type="button" class="cd-close-form">×</button>
+</div><!-- cd-user-modal-container -->
+</div><!-- cd-user-modal -->
+

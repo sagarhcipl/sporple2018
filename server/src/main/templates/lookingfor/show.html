@@ -1,0 +1,84 @@
+<div class="btn-cont">
+    {% if is_owner %}
+        <a href="{{ url_for('profile.edit_looking_for', id=looking_for.id) }}"  
+            class="btn--edit"  
+            id="listing__edit-btn">
+            <img src="/static/images/icon_edit.png"/>
+            Edit
+        </a>
+    {% endif %}
+
+    <button class="btn btn--text" id="listing__back-btn">
+        <svg class="icon btn-icon" role="presentation" title="back" viewBox="0 0 22 43.9">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#arrow-left"></use>
+        </svg>
+        Back to Listings
+    </button>
+</div>
+
+
+<article id="profile__agent-listing--{{ looking_for.id }}" class="profile__listing">
+
+    <p class="listing__date-listed">Listed: <span>{{ looking_for.created_at.strftime('%d %m %Y') }}</span></p>
+
+    <div class="listing__img">
+        {% if profile.agency_image %}
+        <img src="{{ profile.agency_image }}" width="102" height="102"
+        alt="{{ looking_for.user.name }}"/>
+        {% else %}
+        <img src="/static/images/profile/not_found_profile_image_modified.png" width="102" height="102"/>
+        {% endif %}
+    </div>
+
+    <div class="listing__body">
+        {% if looking_for.title[0] in 'aeiou' %}
+            {% set determiner = 'an' %}
+        {% else %}
+            {% set determiner = 'a' %}
+        {% endif %}
+        <h1 class="ttl2">Looking for {{ determiner }} <span>{{ looking_for.title }}</span></h1>
+
+        <dl>
+            <dt>Sport</dt>
+            <dd>{{ looking_for.sport.name }}</dd>
+            <dt>Country</dt>
+            <dd>{% if looking_for.country_id %}{{ looking_for.country.name }}{% endif %}</dd>
+            {% if looking_for.age_min > 0 or looking_for.age_max < 99 %}
+            <dt>Age Requirement</dt>
+            <dd>{{ looking_for.age_min }} years &mdash; {{ looking_for.age_max }} years</dd>
+            {% endif %}
+            {% if looking_for.height_min > 0 or looking_for.height_max < 999 %}
+            <dt>Height Requirement</dt>
+            <dd>{{ looking_for.height_min }}cm &mdash; {{ looking_for.height_max }}cm</dd>
+            {% endif %}
+            {% if looking_for.weight_min > 0 or looking_for.weight_max < 999 %}
+            <dt>Weight Requirement</dt>
+            <dd>{{ looking_for.weight_min}}kg &mdash; {{looking_for.weight_max }}kg</dd>
+            {% endif %}
+        </dl>
+
+        <hr>
+        <p>{{ looking_for.body }}</p>
+
+        <hr>
+
+        {% if not is_owner and current_user.is_authenticated %}
+            <a id="listing__msg-agent" class="btn btn--side-by-side btn--message send-message" data-user-id="{{ looking_for.user_id }}">
+                Message
+            </a>
+
+        {% endif %}
+
+        {% if is_owner %}
+            <p class="ttl2 listing__share-sentance"><span class="fb-share-button" data-href="https://www.sporple.com/{{ looking_for.user.profile.slug }}?tab=listings&amp;lid={{ looking_for.id }}&amp;ref=fb-share" data-layout="button"></span> your listing on Facebook.</p>
+
+        {% else %}
+
+            <p class="ttl2 listing__share-sentance">Do you know a great <strong>{{ looking_for.title }}</strong>? &nbsp;<span class="fb-share-button" data-href="https://www.sporple.com/{{ looking_for.user.profile.slug }}?tab=listings&amp;lid={{ looking_for.id }}&amp;ref=fb-share" data-layout="button"></span> this listing.</p>
+
+        {% endif %}
+
+    </div>
+
+</article>
+

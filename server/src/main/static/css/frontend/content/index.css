@@ -1,0 +1,265 @@
+#show-only-logo #header {
+  min-height: 0;
+  max-height: 0;
+  padding-bottom: 55px;
+}
+
+#show-only-logo #header .user_info, 
+#show-only-logo .header_nav_wrapper {
+  display: none;
+}
+
+#wrapper-fade {
+  background-image: url('/images/bg_fade.png');
+  background-repeat: repeat-x;
+
+  background-image: linear-gradient(top, #EEEEEE, #FFFFFF); 
+  background-image: -moz-linear-gradient(top, #EEEEEE, #FFFFFF); 
+  background-image: -o-linear-gradient(top, #EEEEEE, #FFFFFF); 
+  background-image: -webkit-linear-gradient(top, #EEEEEE, #FFFFFF); 
+}
+
+#sporple-content-logo {
+  float: right;
+  clear: both;
+}
+
+.content-space {
+  padding: 100px;
+}
+
+.page_content.legal h1, 
+.page_content.legal h2, 
+.page_content.legal h3, 
+.page_content.legal h4, 
+.page_content.legal h5, 
+.page_content.legal h6, 
+.page_content.legal li, 
+.page_content.legal p,
+.page_content.legal em,
+.page_content.legal ol li strong {
+  padding-bottom:25px;
+}
+
+.spacing-bottom-50 {
+  margin-bottom: 50px;
+}
+
+.page_content.legal h1, .page_content.legal h2,
+.page_content.about h1, .page_content.about h2 {
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+.page_content.about h1 {
+  color: #f89d00;	
+}
+
+.page_content.about .what-is-sporple {
+  color: #a7a8a9;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  margin-bottom:25px;
+}
+
+.page_content.about .founded {
+  color: #333333;
+}
+
+.page_content.about .sporple-is {
+  border-top: 1px solid #EEEEEE;
+  padding-top: 10px;
+  color: #111111;
+}
+
+.page_content.legal em,
+.page_content.legal p,
+.page_content.legal strong,
+.page_content.about .founded,
+.page_content.about .sporple-is {
+  text-align: justify;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+.page_content.about .what-is-sporple {
+  font-size: 26px;
+  line-height: 32px;
+}
+
+.page_content.about h1 {
+  font-size: 26px;
+  margin-bottom:40px;
+}
+
+.page_content.legal h1 {
+  font-size: 20px;
+}
+
+.page_content.legal h2 {
+  font-size: 18px;
+}
+
+.page_content.legal em {
+  font-style: italic;
+}
+
+.letter-spacing-1 {
+  letter-spacing: 1px;
+}
+
+.page_content.legal.list-decimal ol {
+  list-style-type: decimal;
+}
+
+.page_content.legal.list-roman ol {
+  list-style-type: upper-roman;
+}
+
+.page_content.legal ol li strong,
+.page_content.legal ul li strong,
+.page_content.legal ol,
+.page_content.about .sporple-is {
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+.page_content.legal p, .page_content.legal ol+li+p, .what-we-do+ol, .page_content.legal ol ol {
+  font-weight: normal;
+}
+.page_content.legal p {
+  font-family: "HelveticaW01-TextbookRg 709917", Helvetica, Arial, sans-serif;
+}
+.page_content.legal .dashes-inside {
+  padding-left: 0;
+}
+
+.align-left li p {
+  margin-left: -20px;
+}
+
+.page_content.legal ol,
+.page_content.legal ol li .title {
+  padding-left: 20px;
+}
+
+.page_content.legal ol li .what-we-do {
+  margin-left: -25px;
+}
+
+.page_content.legal ol li .numbers-inside {
+  font-family: "HelveticaW01-TextbookRg 709917", Helvetica, Arial, sans-serif;
+  padding-left: 40px;
+}
+
+.page_content.legal .dashes-inside li p {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.page_content.legal .dashes-inside li:before {
+  content: '\b7\a0';
+}
+
+.page_content.legal .dashes-inside li,
+.page_content.legal .dashes-inside li p {
+  padding-bottom: 0px;
+}
+
+.page_content.legal ol li ol li {
+  padding-bottom: 0;
+}
+
+
+
+
+
+
+/* ========== contact ============== */
+
+
+
+#show-only-logo #header {
+  min-height: 0;
+  max-height: 0;
+  padding-bottom: 55px;
+}
+
+#show-only-logo #header .user_info, 
+#show-only-logo .header_nav_wrapper {
+  display: none;
+}
+
+#sporple-content-logo {
+  float: right;
+  clear: both;
+}
+
+.content-space {
+  padding: 100px;
+}
+
+.spacing-bottom-50 {
+  margin-bottom: 50px;
+}
+
+.spacing-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.page_content.contact h1, .page_content.contact h2, .page_content.contact .thank-you {
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+.page_content.contact h1 {
+  color: #f89d00;
+}
+
+.page_content.contact .thank-you {
+  color: #222222;
+}
+
+.page_content.contact .for {
+  color: #999999;
+}
+
+.page_content.contact .contact-group {
+  border-bottom: 1px solid #EEEEEE;
+  padding-bottom: 10px;
+  color: #111111;
+}
+
+.page_content.contact .mail a {
+  color: #000000;
+}
+
+.page_content.contact .enquiries {
+  color: #777777;
+}
+
+.page_content.contact .enquiries {
+  font-size: 22px;
+}
+
+.page_content.contact h1 {
+  font-size: 26px;
+}
+
+page_content.contact .thank-you {
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.page_content.contact .for {
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.page_content.contact .please-contact, .page_content.contact .mail {
+  font-size: 14px;
+}
+
+.page_content.contact .mail {
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+.page_content.contact .mail a {
+  text-decoration: none;
+}

@@ -1,0 +1,6 @@
+<h1>You are sharing this post</h1>
+<span>{{ post.user.name }}</span>
+{% if attached_file %}
+  <img src="{{ attached_file }}" alt=""/>
+{% endif %}
+<p>{{ post.body }}</p>

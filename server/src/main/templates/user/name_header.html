@@ -1,0 +1,12 @@
+<header>
+  <h1>{{ current_user.user.name }}</h1>
+  <span>
+    <a href="{{ url_for('connections') }}" class="connections_link">
+    Following <strong>{{ nr_following }}</strong>
+  </a>
+  </span>
+  <span>
+    <a href="{{ url_for('connections') }}" class="connections_link">
+    <strong>{{ nr_followers }}</strong> Followers</a>
+  </span>
+</header>

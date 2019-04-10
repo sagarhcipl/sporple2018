@@ -1,0 +1,188 @@
+/**
+ * @group css.base.fonts
+ *
+ * Here we define the font styles
+ *
+ * ## Usage
+ * Import into your main file using
+ *
+ * @example
+ *     @import "__base/_fonts.scss";
+ *
+ */
+
+
+@font-face {
+    font-family: "BebasNeue";
+    font-style: normal;
+    font-weight: normal;
+    src: local('Bebas Neue Bold'), url('/static/fonts/bebas-neue-bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'bebasregular';
+    src: url('/static/fonts/bebas-regular.eot');
+    src: url('/static/fonts/bebas-regular.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/bebas-regular.woff') format('woff'),
+         url('/static/fonts/bebas-regular.ttf') format('truetype'),
+         url('/static/fonts/bebas-regular.svg#bebasregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/**
+ * @group css.base.fonts
+ * @param {string} $font-arial
+ */
+$font-default: 'Lato', Helvetica, sans-serif;
+$font-bebas: 'BebasNeue', 'Open Sans', sans-serif;
+$font-title: 'BebasNeue', 'Open Sans', sans-serif;
+$font-bebas-light: 'bebasregular', sans-serif;
+
+$normal: 400;
+$bold: 700;
+
+/**
+ * The globally used html styles are declared here
+ */
+html {
+	font-size: 62.5%;
+	-webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/**
+ * The globally used font styles are declared here
+ */
+body {
+	@include font(12, 18, $font-default);
+    font-weight: $normal;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+    &:hover, &:focus {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+
+// Better font rendering
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a,
+span,
+input,
+label,
+time,
+button,
+address,
+div{
+    @include anti-alias-text;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: $font-title;
+}
+
+strong{
+    font-weight: $bold;
+}
+
+blockquote{
+  
+    p{
+        position: relative;
+        margin-bottom: 15px;
+        @include font(16,22);
+        font-weight: $bold;
+
+        &:before{
+            content:'“';
+            display: block;
+            font-size: 30px;
+        }
+
+        &:after{
+            content:'”';
+            font-size: 30px;
+        }
+    }
+
+    span{
+        @include font(18,27);
+        font-weight: $bold;
+    }
+
+}
+
+
+.ttl{
+    @include font(22, 28, $font-title);
+    font-weight: $bold;
+    text-transform: uppercase;
+    color: #434343;
+
+    &.ttl--lower{
+        text-transform: capitalize;
+    };
+}
+
+.ttl2,
+.ttl4{
+    text-transform: uppercase;
+
+    &.ttl--lower{
+        text-transform: capitalize;
+    };
+}
+
+.ttl2,
+.ttl3{
+    margin-bottom: 7px;
+    @include font(22, 24, $font-title);
+    font-weight: $bold;
+    color: $grey-dark;
+}
+
+.ttl4,
+.ttl5{
+    margin-bottom: 0;
+    @include font(13, 16);
+    font-weight: $bold;
+    color: $grey-dark;
+}
+
+.sub-ttl{
+    @include font(32, 36, $font-bebas-light);
+    color: $grey-med;
+}
+
+.small-print{
+    @include font(10, 16, $font-default);   
+}
+
+.red{
+    color: $error;
+}
+
+.orange{
+    color: $brand-orange;
+}
+
+.fa.fa-1-5x {
+    font-size: 1.5em;
+    position: relative;
+    top: 1px;
+}

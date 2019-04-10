@@ -1,0 +1,4 @@
+db_user:        postgres
+db_password:    ae3aeFau7fah
+db_host:        sporple-db-master-postgresql
+db_name:        sporple

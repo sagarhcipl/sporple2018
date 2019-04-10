@@ -1,0 +1,56 @@
+{% extends "emails/base.html" %}
+{% block content %}
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>
+							<table width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td style="width:100%;">
+										<h1 style="text-align:center;">$ {{ bt_subscription.price }} Paid</h1>
+									</td>
+								</tr>
+								<tr>
+									<td style="width: 100%;">
+										<h2 style="text-align:center;">Premium {{ role_slug.capitalize() }} Membership - Sporple</h2>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center;">
+										<table style="margin:40px auto; text-align:left; width:80%;">
+											<tr>
+												<td style="padding: 5px 0;">
+                                                    <strong>{{ user.profile.fullname }}</strong><br>
+                                                    {% if role_slug == 'club' %}
+                                                    For: {{ user.profile.club_name }}<br>
+                                                    {% endif %}
+                                                    Invoice # in_SP{{ subscription.braintree_subscription_id }}<br>
+                                                    {{ subscription.created_at.strftime('%b %d, %Y') }}</td>
+											</tr>
+											<tr>
+												<td style="padding: 5px 0;">
+													<table style="width:100%;" cellpadding="0" cellspacing="0">
+														<tr>
+															<td style="border-top: #eee 1px solid; padding:10px 0;">
+                                                                {{ subscription.plan_length.capitalize() }} {{ role_slug.capitalize() }} Membership Subscription &mdash; {{ bt_subscription.first_billing_date.strftime('%b %d, %Y') }} to {{ bt_subscription.next_billing_date.strftime('%b %d, %Y') }}</td>
+															<td style="border-top: #eee 1px solid; padding:10px 0;text-align:right;">$ {{ bt_subscription.price }}</td>
+														</tr>
+														<tr>
+															<td style="border-top:2px solid #333; border-bottom:2px solid #333; font-weight:700;text-align:right;" width="80%">Total</td>
+															<td style="border-top:2px solid #333; border-bottom:2px solid #333;font-weight:700;text-align:right;">$ {{ bt_subscription.price }}</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center;">
+										Sporple Inc, 435 Hamilton Ave, Palo Alto 94301
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+{% endblock content %}

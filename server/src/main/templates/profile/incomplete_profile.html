@@ -1,0 +1,22 @@
+<div class="incomplete-profile">
+    <h2 class="ttl ttl--lower modal__user-badge">
+        <span class="profile-pic">
+        <img src="{{ current_user.user.profile.get_image('x-small') }}" width="30"
+            alt="Profile image" title="Profile image"/>
+        </span>
+        Your profile is {{ complete }}% complete
+    </h2>
+
+    <p>Hi {{ current_user.user.name }},<br/>
+    Your profile is {{ complete }}% complete. Please complete the following sections to apply.<br/>
+    <ul>
+        {% for key, value in missing.iteritems() %}
+        <li>{{ value }}</li>
+        {% endfor %}
+    </ul><br/>
+
+    <div class="form__row form__row--btns">
+        <a id="incomplete-profile__go-btn" href="{{ url_for('profile.slug', slug=current_user.user.profile.slug) }}" class="btn btn--side-by-side">Go to Profile</a>
+        <a id="incomplete-profile__cancel-btn" class="btn btn--secondary btn--side-by-side">Apply Later</a>
+    </div>
+</div>

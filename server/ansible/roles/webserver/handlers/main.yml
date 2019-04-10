@@ -1,0 +1,11 @@
+- name: reload webserver
+  service: name=gunicorn state=reloaded
+  become: yes
+
+- name: restart webserver
+  service: name=gunicorn state=restarted
+  become: yes
+
+- name: restart celery
+  service: name=celery state=restarted
+  become: yes

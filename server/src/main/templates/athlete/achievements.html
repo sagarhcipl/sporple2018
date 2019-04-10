@@ -1,0 +1,26 @@
+{% if is_owner %}
+<button class="btn--box edit-header open-edit-modal"
+    data-url="{{ url_for('profile.edit_achievement', user_id=profile.user_id) }}"
+    data-title="Add Achievement"><i class="fa fa-plus"></i> Add</button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-trophy"></i> Achievements</h3>
+<ul>
+    {% for achievement in achievements %}
+        <li class="achievement_item_id_{{ achievement.id }}">
+            <div class="title">{{ achievement.year }}</div>
+            <div class="description">{{ achievement.title }}</div>
+            {% if is_owner %}
+            <div class="edit-buttons">
+                <button class="btn--box btn--edit open-edit-modal"
+                    data-url="{{ url_for('profile.edit_achievement_id', id=achievement.id, user_id=profile.user_id) }}"
+                    data-title="Edit Achievement"><i class="fa fa-edit fa-1-5x"></i>
+                </button>
+                <button class="btn--box btn--danger delete"
+                    data-url="{{ url_for('profile.delete_achievement', id=achievement.id, user_id=profile.user_id) }}"><i class="fa fa-trash-o fa-1-5x"></i>
+                </button>
+            </div>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+

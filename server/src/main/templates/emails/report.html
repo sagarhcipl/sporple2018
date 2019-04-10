@@ -1,0 +1,39 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+<h1>Report for : {{ duration }}</h1><br/>
+<h2>Stats</h2>
+<table border="0">
+  <tr><td>New Listings: {{ new_listings }}</td></tr>
+  <tr><td>New Applications:{{ new_apps }}</td></tr>
+  <tr><td>New Users:{{ total_new_users }}</td></tr>
+  <tr><td>New Clubs: {{ new_clubs }}</td></tr>
+  <tr><td>New Agents: {{ new_agents }}</td></tr>
+  <tr><td>New Athletes: {{ new_athletes }}</td></tr>
+  <tr><td>New Unknown users: {{ new_uknown_users }}</td></tr>
+  <tr><td>New Messages: {{ new_messages }}</td></tr>
+  <tr><td>New Clubs Messages: {{ new_club_msgs }}</td></tr>
+  <tr><td>New Agent Messages: {{ new_agent_msgs }}</td></tr>
+  <tr><td>New Athlete Messages: {{ new_athlete_msgs }}</td></tr>
+  <tr><td>New Threads: {{ new_threads }}</td></tr>
+  <tr><td>New Clubs Threads: {{ new_club_threads }}</td></tr>
+  <tr><td>New Agent Threads: {{ new_agent_threads }}</td></tr>
+  <tr><td>New Athlete Threads: {{ new_athlete_threads }}</td></tr>
+  <tr><td>New Connections: {{ new_connections }}</td></tr>
+  <tr><td>New Looking For: {{ new_looking_for }}</td></tr>
+  <tr><td>New Posts: {{ new_posts }}</td></tr>
+</table>
+
+
+<h2>Listings</h2>
+<table border="0">
+  {% for listing in listings %}
+  <tr><td>{{ listing['club_name'] }}</td><td>{{ listing['position'] }}</td></tr>
+  {% endfor %}
+</table>
+
+<h2>Apps</h2>
+<table border="0">
+  {% for app in apps %}
+  <tr><td>{{ app['club_name'] }}</td><td>{{ app['position'] }}</td><td>{{ app['count'] }}</td></tr>
+  {% endfor %}
+{% endblock content %}

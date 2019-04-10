@@ -1,0 +1,110 @@
+{{ use_stylesheet('frontend/post/_list.css') | safe }}
+
+{% if career_items %}
+        <section class="timeline_container">
+            <section class="timeline_main">
+                <section class="timeline_wrapper">
+                    <section class="timeline_wrap">
+                        <section class="timeline_content">
+                            <div class="year_item">
+                                <ul>
+                                    {% set current_year = now.year %}
+                                    {% for career_item in career_items %}
+                                    {% if career_item.date_from.year != now.year %}
+                                </ul>
+                                <aside>{{ now.year }}</aside>
+                            </div>
+
+                            <div class="year_item">
+                                <ul>
+                                    {% set current_year = career_item.date_from.year %}
+                                    {% endif %}
+                                    <li class="careeritem_item_id_{{ career_item.id }}">
+                                        <article>
+                                            <header>
+												<span>
+													{% if career_item.date_from.year == career_item.date_till.year %}
+                                                        {{ current_year }}
+                                                    {% else %}
+                                                        {{ career_item.date_from.year}} - {{ career_item.date_till.year }}
+                                                    {% endif %}
+
+                                                    {% if is_owner %}
+                                                    <a class="delete-profile-about-section-item"
+                                                        data-query=".careeritem_item_id_{{ career_item.id }}"
+                                                        href="{{ url_for('profile.delete_career_item', id=career_item.id) }}">
+                                                        <img src="/static/images/ico_delete_field.png" class="clr_field_button"/>
+                                                    </a>
+
+                                                    <a class="edit-profile-about-section"
+                                                        data-query=".careeritem_item_id_{{ career_item.id }}"
+                                                        href="{{ url_for('profile.edit_career_item_id', id=career_item.id) }}">
+                                                        <img src="/static/images/icon_edit.png" class="clr_field_button"/>
+                                                    </a>
+                                                    {% endif %}
+												</span>
+
+                                                <h3>{{ career_item.club_name }}</h3>
+                                            </header>
+                                            <div class="description">
+                                                <figure>
+                                                    {% if career_item.image %}
+                                                    {% set image_src = '/uploads/careerItem/' + career_item.image %}
+                                                    <a href="{{ image_src }}" class="attachment-link">
+                                                        <img src="{{ career_item.image_icon }}"
+                                                            alt="Career item" title="Career item">
+                                                    </a>
+
+                                                    {% endif %}
+                                                </figure>
+                                                {% if career_item.club_name %}
+                                                    <p>
+                                                        <strong>Club:</strong>
+                                                        {{ career_item.club_name }}
+                                                    </p>
+                                                {% endif %}
+                                                {% if career_item.level %}
+                                                    <p>
+                                                        <strong>Level:</strong> {{ career_item.level }}
+                                                    </p>
+                                                {% endif %}
+                                                {% if career_item.location %}
+                                                    <p>
+                                                        <strong>Location:</strong> {{ career_item.location }}
+                                                    </p>
+                                                {% endif %}
+                                                <p>
+                                                    {{ career_item.body_with_hyperlinks | safe }}
+                                                </p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                                {% if career_items %}
+                                    <aside>{{ career_items[-1].date_from.year }}</aside>
+                                {% endif %}
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <!-- start media popup -->
+        <div id="career_popup" class="popupPostMedia">
+            <a class="b-close">x</a>
+            <header></header>
+            <a class="btn_prev"></a>
+            <figure></figure>
+            <a class="btn_next"></a>
+        </div>
+        <!-- end media popup -->
+
+{% endif %}
+
+{% if is_owner %}
+    <a href="{{ url_for('profile.edit_career_item') }}" id="profile_add_career_item" class="btn--edit edit-profile-about-section">
+        <img src="/static/images/icon_edit.png" />
+    </a>
+{% endif %}
+

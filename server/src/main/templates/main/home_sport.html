@@ -1,0 +1,73 @@
+{% extends 'base_old.html' %}
+{% block content %}
+{{ use_stylesheet('frontend/profile/_relatedProfiles.css') | safe }}
+{{ use_stylesheet('frontend/main/_opportunity.css') | safe }}
+{{ use_javascript('frontend/main/_listings.js') | safe }}
+{{ use_javascript('frontend/main/_lookingFor.js') | safe }}
+{{ use_javascript('frontend/main/_suggestedProfiles.js') | safe }}
+{{ use_javascript('frontend/post/delete_button.js') | safe }}
+{{ use_javascript('frontend/post/edit_button.js') | safe }}
+<div id="main_container" class="old-school">
+<section class="page_content page--home">
+    <section class="left_content">
+        <section class="invite-friends">
+            {% include 'profile/invite.html' %}
+        </section>
+
+        <section class="activity_input">
+            {% include 'user/name_header.html' %}
+            {% include 'post/new.html' %}
+        </section>
+        <section class="activity_container with_picture" id="homepage_activity_container" data-url="{{ url_for('post.list') }}" data-id="{{ current_user.user.id }}">
+            {% include 'post/list.html' %}
+        </section>
+    </section>
+   
+    <section class="right_content">
+        {% if current_user.user.profile.role.slug == 'athlete'%}
+            <!-- Opportunities Widget -->
+            <section id="opportunites-mod" class="aside-mod new-school">
+                <header class="header--secondary">
+                    <h1>Opportunities</h1>
+                </header>
+
+                <div class="header--sub">
+                    <h2 class="ttl2">Clubs</h2>
+                </div>
+
+                <ul class="profile-list">
+                    {% include 'main/listings.html' %}
+                </ul>
+
+                <div class="header--sub">
+                    <h2 class="ttl2">Agents</h2>
+                </div>
+
+                <ul class="profile-list">
+                    {% include 'main/looking_for.html' %}
+                </ul>
+            </section>
+            <!-- Opportunities Widget -->
+        {% endif %}
+
+        {% if current_user.user.profile.role.slug != 'athlete' and current_user.user.sport.slug == 'rugby' %}
+            <!-- Suggested Profiles Widget -->
+            <section id="related-profiles-mod" class="aside-mod new-school">
+                <header class="header--secondary">
+                    <h1>Suggested Profiles</h1>
+                </header>
+                <div class="header--sub">
+                    <h2 class="ttl2">Athletes</h2>
+                </div>
+
+                <ul class="profile-list">
+                    {% include 'main/suggested_profiles.html' %}
+                </ul>
+
+            </section>
+            <!-- Suggested Profiles Widget -->
+        {% endif %}
+    </section>
+</section>
+</div>
+{% endblock content %}

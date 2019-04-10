@@ -1,0 +1,76 @@
+.clients {
+    h3.ttl2 {
+        margin-bottom: -5px;
+        a {
+            color: inherit;
+        }
+    }
+    .client__img {
+        height: 90px;
+        text-align: center;
+        position: relative;
+    }
+    img {
+        max-height: 80px;
+        max-width: 100px;
+        width: auto;
+        height: auto;
+        position: absolute;
+        bottom: 10px;
+    }
+    li {
+        margin: 10px 0;
+        position: relative;
+    }
+    ul {
+        padding: 10px 27px;
+    }
+
+    .add-success {
+        padding: 30px 0;
+        .check {
+            content: '';
+            background: url(/static/images/svg/tick.png) center center no-repeat #4a90e2;
+            background-size: 15px 15px;
+            height: 30px;
+            border-radius: 50%;
+            width: 30px;
+            margin: auto;
+        }
+        img {
+            position: inherit;
+            margin: auto;
+        }
+        h2 {
+            @include font(40);
+        }
+        p {
+            padding: 20px;
+        }
+        .btn:hover, .btn:focus {
+            color: $white;
+        }
+        #add-another-client {
+            padding-top: 10px;
+            display: inline-block;
+        }
+    }
+    .btn--box.btn--danger.delete {
+        padding: 3px 6px;
+        position: absolute;
+        top: 5px;
+        left: 0;
+    }
+}
+
+.profile__listing form {
+    text-align: left;
+    padding: 30px 10px;
+    .client-pic-upload-cont {
+        display: inline;
+    }
+    .btn {
+        color: $white;
+    }
+}
+

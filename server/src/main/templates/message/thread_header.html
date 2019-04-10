@@ -1,0 +1,5 @@
+<d>
+  {% for message_thread_user in other_users %}
+  {{ message_thread_user.user.name }}{% if other_users | length > loop.index %}, {% endif %}
+  {% endfor %}
+</d>

@@ -1,0 +1,149 @@
+/*
+ * Styles for media panel in profile page
+ *
+ */
+
+.profile-media {
+    margin: auto;
+    padding: 10px;
+    background-color: $white;
+
+    .profile__media-cover-cont{
+        display: block;
+    	margin-bottom: 5px;
+    	background-color: $grey-light;
+    }
+    .upload-video {
+        background-color: #4386d4;
+        color: $white;
+        display: table;
+        .content {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            @include font(14);
+            h3 {
+                @include font(42);
+                margin-bottom: 20px;
+            }
+            div {
+                max-width: 300px;
+                margin: auto;
+            }
+            .btn {
+                margin: 20px auto;
+            }
+        }
+    }
+}
+//screen to catch click events over the vimeo player on <= tablet BP
+#vid-player-screen{
+	@include abs-cover;
+
+	@include mq($from: desktop) {
+		display: none;
+	}
+}
+
+
+//EDIT MEDIA STUFF
+.profile__edit-cover-form{
+
+	@include mq($until: desktop) {//kill .aspect-ratio > * styles on mob
+		position: static;
+		display: block;
+		height: auto;
+	}
+    img {
+        display: inline;
+        top: 10px;
+        position: relative;
+    }
+    .tooltip {
+        background-color: #333;
+        border-radius: 50%;
+        width: 20px;
+        display: inline-block;
+    }
+    .btn.file-wrapper {
+        background-color: lighten($grey-light, 20%);
+        margin: auto !important;
+    }
+
+	.profile__edit-cover-or{
+		display: none;
+
+		@include mq($from: desktop) {
+			position: absolute;
+			top: 245px;
+			left: 96px;
+			display: block;
+		}
+	}
+
+	.profile__edit-img-cont{
+		padding: 10px;
+
+		.ttl{
+			display: inline-block;
+			vertical-align: middle;
+			color: $text-main;
+		}
+
+		.btn{
+			vertical-align: middle;
+		}
+
+		@include mq($from: desktop) {
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			padding: 0;
+			width: 310px;
+			text-align: right;
+		}
+	}
+}
+
+#profile__edit-media{
+
+	@include mq($until: desktop) {
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+		padding: 5px 0;
+		width: 30px;
+		background-color: #fff;
+		background-color: rgba(255,255,255,0.8);
+		text-align: center;
+	}	
+}
+
+#profile__edit-media-cancel{
+	float: right;
+	margin-right: 10px;
+}
+
+#profile__edit-cover-submit{
+	display: none;
+
+	.no-js &{
+		display: block;
+	}
+}
+
+//modals
+.delete-image__image-cont{
+	width: 100%;
+	max-height: 375px;
+	text-align: center;
+
+	img{
+		margin: 0 auto;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 375px;
+	}
+}

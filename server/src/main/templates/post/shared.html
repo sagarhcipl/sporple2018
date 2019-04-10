@@ -1,0 +1,13 @@
+<div class="SharedPost {% if not attached_file %}no_attached_image{% endif %}">
+    {% if attached_file %}
+    <img src="{{ attached_file }}" width="80" height="80"  alt="Profile image" title="Profile image"/>
+    {% endif %}
+  <p>
+    Shared:
+    <br/>
+    Posted by {{ post.shared_post.user.name }}
+    {{ post_date_format(post.shared_post.created_at) }}
+    <br/>
+    {{ replace_media_links(post.shared_post.body) | nl2br | safe }}
+  </p>
+</div>

@@ -1,0 +1,31 @@
+{% if is_owner %}
+<button class="btn--box edit-header open-edit-modal"
+    data-url="{{ url_for('profile.edit_endorsement', user_id=profile.user_id) }}"
+    data-title="Add Endorsement"><i class="fa fa-plus"></i> Add</button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-star"></i> Endorsements</h3>
+<ul>
+    {% for endorsement in endorsements %}
+        <li class="endorsement_item_id_{{ endorsement.id }} row">
+            <h4>{{ endorsement.first_name}} {{ endorsement.last_name }}</h4>
+            <span class="subtitle">{{ endorsement.title }}</span>
+            {% if endorsement.body %}
+            <p class="more">{{ endorsement.body | nl2br | safe }}</p>
+            {% endif %}
+            {% if is_owner %}
+            <div class="edit-buttons">
+              <button class="btn--box btn--edit open-edit-modal"
+                  data-url="{{ url_for('profile.edit_endorsement_id', id=endorsement.id, user_id=profile.user_id) }}"
+                  data-title="Edit Endorsement">
+                <i class="fa fa-edit fa-1-5x"></i><span class="hidden-xs"> Edit</span>
+              </button>
+              <button class="btn--box btn--danger delete"
+                  data-url="{{ url_for('profile.delete_endorsement', id=endorsement.id, user_id=profile.user_id) }}">
+                <i class="fa fa-trash-o fa-1-5x"></i>
+              </button>
+            </div>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+

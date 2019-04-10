@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page_content page--search page-connection row row-centered">
+  <section class="col-md-6 col-centered">
+  <h2>APPLICANT LIST</h2>
+{#    <div>{% include 'connections/counts.html' %}</div>#}
+{#    {% include 'global/pagination.html' %}#}
+
+    <div class="Contacts">
+        <ul class="search-results">
+  {% for application in applicants %}
+  <li class="row">
+    <div class="search-results__profile-info col-md-6 col-xs-12 left">
+      <div class="search-results__profile-info--avatar col-xs-4">
+        <a href="{{ url_for('profile.slug', slug=application.applicant.slug) }}">
+          <img src="{{ application.applicant.profile.get_image('small') }}">
+        </a>
+      </div>
+
+      <div class="TextHolder col-xs-7">
+        <a href="{{ url_for('profile.slug', slug=application.applicant.slug) }}" class="ttl">{{ application.applicant.name }}</a><br/>
+        {{ application.applicant.sports_string }}<br/>
+        <span class="club">{{ application.applicant.profile.address_city }}{% if application.applicant.profile.address_country %}, {{ application.applicant.profile.address_country.name }}{% endif %}</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0 buttons">
+      <a class="btn btn--side-by-side btn--message send-message" data-user-id="{{  application.applicant.id }}">Message</a>
+      {% if type == 'following' or current_user.user.is_following(application.applicant.id) %}
+        <a href="#" class="follow btn btn--side-by-side btn--follow active" data-user-id="{{  application.applicant.id }}">
+          <span>Following</span>
+        </a>
+      {% else %}
+        <a href="#" class="follow btn btn--side-by-side btn--follow" data-user-id="{{  application.applicant.id }}">
+          <span>Follow</span>
+        </a>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+    </div>
+
+  </section>
+
+</section>
+{% endblock content %}

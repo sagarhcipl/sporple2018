@@ -1,0 +1,25 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+Hi {{ user.name }},<br/>
+There are over 100 clubs looking for athletes like you. Discover your next opportunity here.
+Check out these clubs who are currently recruiting on Sporple.
+<br/><br/><br/>
+<table border="0">
+{% for listing in listings %}
+<tr>
+    <td style="font-size:12px; margin:5px;font-size:12px;padding:5px; border-bottom: 1px solid #efefef;height:90px;"><a href="{{ url_for('profile.slug', slug=listing.club.slug, _external=True) }}" style="border:0;"><img src="{{ config.BASE_URL + listing.club.profile.get_image('small') }}" style="border:0; width:80px;"/></a></td>
+    <td style="padding: 10px;font-size:11px; vertical-align:top;margin:0;line-height:15px;min-height:90px;border-bottom:1px solid #efefef;">
+        <a href="{{ url_for('profile.slug', slug=listing.club.slug, _external=True) }}" style="color:#4a90e2; text-decoration:none;"><strong style="text-transform:uppercase; font-size:12px;">{{ listing.club.name }}</strong></a><br/>
+        Looking For: {{ listing.position.name }}<br/>
+        Division: {{ listing.division }}<br/>
+        {{ listing.club.profile.address_country_slug }}<br/>
+    </td>
+</tr>
+{% endfor %}
+</table>
+<br/>
+There are many more clubs waiting for you.<br/><br/>
+<div style="width: 100%; text-align:center;">
+<a href="https://www.sporple.com" style="box-sizing: border-box; font-size: 12px; color: #FFF; text-decoration: none; line-height: 2em;font-weight: bold; text-align: center; cursor: pointer; display: inline-block;text-transform: uppercase; background-color: #4a90e2; margin: 0; padding: 5px 20px;">VIEW LISTINGS</a>
+</div>
+{% endblock content %}

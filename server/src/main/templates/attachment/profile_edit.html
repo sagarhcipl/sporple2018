@@ -1,0 +1,10 @@
+<div class="media-carousel__item " id="media-carousel__item-{{ attachment.id }}">
+    <a target="_blank" class="attachment-link" href="{{ attachment.link }}">
+        <img src="{{ attachment.thumb_link }}" />
+    </a>
+    {% if edit %}
+    <a class="delete-attachment" href="{{ url_for('upload.delete', attachment_id=attachment.id) }}">
+        <svg class="icon" role="img" title="delete" viewBox="0 0 17.156 17.156"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/svg/foreground-svg.svg#x"></use></svg>
+    </a>
+    {% endif %}
+</div>

@@ -1,0 +1,350 @@
+/**
+ * default styles for popups
+ */
+ 
+#popup, 
+#popup a.b-close
+{
+  -mox-box-sizing: content-box;
+  box-sizing: content-box;
+  position: relative;
+  min-width: 610px;
+  min-height: 130px;
+  padding: 40px 30px 75px 30px;
+  background: white;
+  border: 4px solid #666666;
+  cursor: default;
+  -webkit-border-radius: 11px;
+     -moz-border-radius: 11px;
+          border-radius: 11px;
+  -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+     -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+          box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+
+  background: #fafafa; /* Old browsers */
+  background: -moz-linear-gradient(top,  #fafafa 0%, #cdcdcd 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#cdcdcd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #fafafa 0%,#cdcdcd 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #fafafa 0%,#cdcdcd 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #fafafa 0%,#cdcdcd 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #fafafa 0%,#cdcdcd 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#cdcdcd',GradientType=0 ); /* IE6-9 */
+}
+
+#popup a.b-close
+{
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  min-width: 21px;
+  min-height: 21px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #888888;
+  padding: 0px;
+  text-align: center;
+  cursor: pointer;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  line-height: 18px;
+  font-size: 16px;
+  -webkit-box-shadow: 0px -1px 3px rgba(255,255,255,1) inset;
+     -moz-box-shadow: 0px -1px 3px rgba(255,255,255,1) inset;
+          box-shadow: 0px -1px 3px rgba(255,255,255,1) inset;
+}
+
+/**
+ * buttons
+ */
+
+#popup input[type=submit],
+#popup input[type=button]
+{
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  vertical-align: top;
+  width: 95px;
+}
+
+
+/**
+ * other default styles
+ */
+
+#popup .message-cont,
+#popup d
+{
+  background:none;
+  border: 0px;
+  display:block;
+  float:none;
+  margin: 0px;
+  padding: 0px;
+  width:auto;
+}
+
+#popup .message-cont form.inline,
+#popup d form.inline
+{
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px;
+}
+ 
+#popup .message-cont h1,
+#popup d h1
+{
+  font-size: 20px;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  color: #00437F;
+  padding: 0px 0px 15px 0px;
+}
+ 
+#popup .message-cont h1 strong,
+#popup d h1 strong
+{
+  color: #6F6C6D;
+}
+ 
+#popup .message-cont p,
+#popup d p
+{
+  font-size: 16px;
+  padding: 0px 0px 15px 0px;
+}
+
+/**
+ * messages
+ */
+ 
+#popup div.message-cont
+{
+  border: 0px;
+  margin: 0px;
+  padding: 0px 0px 0px 55px;
+}
+
+#popup div.message-cont.full
+{
+  padding: 0px;
+}
+
+#popup div.message-cont img
+{
+  float: left;
+  margin: 0px 0px 0px -55px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #FFFFFF;
+}
+
+#popup div.message-cont textarea
+{
+  width: 100%;
+  height: 100px;
+  resize: none;
+  overflow: auto;
+  padding: 10px 20px;
+  margin: 0px;
+  outline: none;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.1) inset;
+     -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.1) inset;
+          box-shadow: 1px 1px 2px rgba(0,0,0,0.1) inset;
+}
+
+#popup div.message-cont textarea::-webkit-input-placeholder { 
+  color: #BBBBBB; }
+#popup div.message-cont textarea::-moz-placeholder          { 
+  color: #999999; }
+#popup div.message-cont textarea:-moz-placeholder           { 
+  color: #999999; }
+#popup div.message-cont textarea:-ms-input-placeholder      { 
+  color: #BBBBBB; }
+
+#popup div.message-cont form
+{
+  background: #EDEDEE;
+  overflow: hidden;
+}
+
+#popup div.message-cont form + form
+{
+  z-index: 0;
+  position: relative;
+  height: 32px;
+  margin-top: -32px;
+  background: transparent;
+  overflow: visible;
+}
+ 
+#popup div.message-cont form + form #message-popup-file-form-file-dropzone
+{
+  display: inline-block;
+  overflow: visible;
+}
+ 
+#popup div.message-cont form + form #message-popup-file-form-file-dropzone .message
+{
+  background:none;
+  display: block;
+  height: 24px;
+  width: 180px;
+  line-height: 24px;
+  font-size: 13px;
+  border: 2px dotted #C6C6C7;
+  padding: 0px 10px;
+  margin: 2px 0px;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+}
+ 
+#popup div.message-cont form + form #message-popup-file-form-file-dropzone .message_thread_new_message_image .message_thread_delete_attachment {
+  width:14px;
+  height:12px;
+}
+#popup div.message-cont form + form #message-popup-file-form-file-dropzone #message-popup-form-files
+{
+  padding:3px;
+  float: left;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  margin-left:1px;
+  margin-top:-2px;
+  -webkit-border-radius: 0px 0px 10px 10px;
+     -moz-border-radius: 0px 0px 10px 10px;
+          border-radius: 0px 0px 10px 10px;
+          text-align:center;
+          width:45px;
+          max-width:45px;
+}
+ 
+#popup div.message-cont form + form #message-popup-file-form-file-dropzone #message-popup-form-files img
+{
+  border:none;
+  margin: 0;
+  max-width:100%;
+  float:none;
+}
+
+/**
+ *Input Upload Button
+ */
+
+#popup div.message-cont a.upload_button
+{
+  cursor: pointer;
+  display: inline-block;
+  width: 100px;
+  overflow: hidden;
+  position: relative;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+#popup div.message-cont a.upload_button input
+{
+  position: absolute;
+  cursor: pointer;
+  background: #CCCCCC;
+  left: -200px;
+  width: 300px;
+  height: 32px;
+  opacity: 0;
+}
+
+#popup div.message-cont a.upload_button span
+{
+  display: inline-block;
+  text-shadow: 1px 1px rgba(255,255,255,0.8);
+  line-height: 32px;
+  padding: 0px 15px;
+}
+
+#popup div.message-cont span strong
+{
+  float: left;
+  color: #207AC2;
+  font-size: 23px;
+  line-height: 27px;
+  /*font-weight: 800;*/
+  margin: 0px 4px 0px 0px;
+}
+
+#popup div.message-cont a.upload_button:hover span
+{
+  background: #207AC2;
+  color: #FFFFFF;
+  text-shadow: 1px 1px rgba(0,0,0,0.5);
+}
+
+#popup div.message-cont a.upload_button:hover span strong
+{
+  color: #FFFFFF;
+}
+
+/**
+ *Input Button
+ */
+
+#popup div.message-cont input[type=submit],
+#popup div.message-cont input[type=button]
+{
+  float: right;
+  margin: 0 0 0 10px;
+}
+
+/**
+ * popup share preview
+ */
+
+#post_new_popup_share_preview
+{
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+#popup div.message-cont #post_new_popup_share_preview span
+{
+  display: inline-block;
+  text-transform: uppercase;
+  color: #000000;
+  text-decoration: none;
+}
+
+#popup div.message-cont #post_new_popup_share_preview img
+{
+  margin: 0px 20px 0px 0px;
+}
+
+#popup div.middle_buttons {
+    margin-left: 200px;
+    margin-top:50px;
+}
+#popup hr {
+    height: 5px;
+    background-color: #BBBBBD;
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-right: 70px;
+    border: 0;
+}
+#popup h3
+{
+    font-size: 15px;
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    color: #6F6C6D;
+    text-align: center;
+}
+
+#popup.delete_image {
+    padding: 23px 30px 0;
+}
+
+#popup.delete_image div.middle_buttons {
+    margin-top: 20px;
+}

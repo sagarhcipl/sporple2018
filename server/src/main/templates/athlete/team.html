@@ -1,0 +1,25 @@
+{% if False %}
+<button class="btn--box edit-header open-edit-modal"
+    data-url="{{ url_for('profile.edit_career_item', user_id=profile.user_id) }}"
+    data-title="Add Career Item"><i class="fa fa-plus"></i> Add</button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-trophy"></i> Played With</h3>
+<ul class="row">
+{% for player in team %}
+    <li class="col-xs-6 col-md-3 team-player {% if loop.index > 4 %}hidden{% endif %}">
+    <a href="{{ url_for('profile.slug', slug=player.slug) }}">
+        <img src="{{ player.profile.get_image() }}" alt="{{ player.name }}"
+            title="{{ player.name }}"/>
+    </a>
+    <div class="body">
+        <h3 class="ttl2"><a href="{{ url_for('profile.slug', slug=player.slug) }}">{{ player.name }}</a></h3>
+        {% if is_owner %}
+        <button class="btn--box btn--danger delete"
+            data-url="{{ url_for('relate.delete', target_id=player.id, user_id=profile.user_id) }}"><i class="fa fa-trash-o"></i>
+        </button>
+        {% endif %}
+    </div>
+    </li>
+{% endfor %}
+</ul>
+

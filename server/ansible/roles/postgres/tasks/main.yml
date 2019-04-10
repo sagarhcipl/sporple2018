@@ -1,0 +1,30 @@
+- name: install postgres
+  apt: name={{item}} update_cache=yes state=present
+  with_items:
+    - postgresql
+    - libpq-dev
+
+- name: ensure database is created
+  postgresql_db: name={{db_name}} encoding='UTF-8'
+  become: yes
+  become_user: postgres
+
+- name: ensure user has access to database
+  postgresql_user: db={{db_name}} name={{db_user}} password={{db_password}} priv=ALL
+  become: yes
+  become_user: postgres
+
+- name: ensure user has access to all tables
+  postgresql_privs: db={{db_name}} privs=ALL objs=ALL_IN_SCHEMA role={{db_user}} state=present
+  become: yes
+  become_user: postgres
+
+- name: ensure user has access to all sequences
+  postgresql_privs: db={{db_name}} type=sequence privs=ALL objs=ALL_IN_SCHEMA role={{db_user}} state=present
+  become: yes
+  become_user: postgres
+
+- name: ensure user does not have unnecessary privilege
+  postgresql_user: name={{db_user}} role_attr_flags=NOSUPERUSER,NOCREATEDB
+  become: yes
+  become_user: postgres

@@ -1,0 +1,23 @@
+<form action="{{ url_for('profile.edit_career_summary', user_id=profile.user_id) }}" method="post" class="form" id="profile_career_summary_form">
+    {{ form.csrf_token }}
+    <div class="form__row">  
+        <p>Your career summary should outline your career up to the present day. It will be displayed to potential agents, clubs and businesses.</p>
+        {{ form.career_summary(class='summary') }}
+        {% if form.career_summary.errors %}
+            <div class="errors-list filled">
+              <ul class="errors">
+              {% for error in form.career_summary.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+              </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form__row">
+        <button class="btn" id="profile_career_summary_submit">Save</button>
+        <a href="/profile/careerSummary{{ current_user.user.id }}" class="btn btn--secondary" id="profile_personal_statement_cancel">Cancel</a>
+    </div>
+
+</form>
+

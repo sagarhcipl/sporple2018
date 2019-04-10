@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    var seed = {{ seed }};
+    var user_id = {{ profile.user_id }};
+</script>
+
+<h3 class="content-title"><i class="fa fa-users"></i> Related Profiles</h3>
+<ul class="profile-list">
+{% for user in related_profiles %}
+    {% set following = current_user.is_authenticated and user.is_followed_by(current_user.user.id) %}
+    <li>
+        <a class="profile-pic" href="{{ url_for('profile.slug', slug=user.slug) }}">
+            <img src="{{ user.profile.get_image('x-small') }}" alt="{{ user.name }} | {{ user.profile.address_country_slug }}" title="{{ user.name }} | {{ user.profile.address_country_slug }}"/>
+        </a>
+
+        <div class="profiles-list__details">
+
+            <a class="ttl4" href="{{ url_for('profile.slug', slug=user.slug) }}">{{ user.name | truncate(25) }}
+                {% if user.profile.age and user.role_slug == 'athlete' %}
+                     - <span class="age">{{ user.profile.age }}</span>
+                {% endif %}
+            </a>
+            <p class="ttl5">
+                {% if user.profile.address_country %}{{ user.profile.address_country.name }}{% endif %}
+                {{ user.profile.address_city or ''| truncate(27) }}
+            </p>
+            <p class="ttl5">
+                {{ user.profile.first_position_string }}
+            </p>
+        </div>
+
+        {% if current_user.is_authenticated %}
+        <!-- <a class="profiles-list__remove-btn">x</a> -->
+        <button class="btn btn--small btn--follow {% if following %}active{% endif %}" data-user-id="{{ user.id }}">{% if following %}following{% else %}Follow{% endif %}</button>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>

@@ -1,0 +1,67 @@
+{% include 'global/pagination.html' %}
+<div class="clearfix"></div>
+<ul class="listing-info opportunity-list row">
+    {% for listing in listings %}
+    <li data-position="{{ listing.position.name }}" class="row card col-md-5 col-centered">
+        <div class="col-md-7 col-xs-12">
+            {% if listing.club %}
+            <a href="{{ url_for('profile.slug', slug=listing.club.slug) }}">
+            <img src="{{ listing.club.profile.get_image() }}" class="listing-club-image"/>
+            </a>
+            <div class="looking-for">
+                <a href="{{ url_for('profile.slug', slug=listing.club.slug) }}">{{ listing.club.name }}</a>
+            </div>
+            {% else %}
+        <a href="{{ url_for('profile.slug', slug=listing.user.slug) }}">
+            <img src="{{ listing.user.profile.get_image() }}" class="listing-club-image"/>
+            </a>
+            <div class="looking-for">
+                <a href="{{ url_for('profile.slug', slug=listing.user.slug) }}">{{ listing.user.name }}</a>
+            </div>
+        {% endif %}
+            <h3 class="position-title">{{ listing.position.name }}</h3>
+            <button class="btn--info show-listing-details">View Details</button>
+            <div class="listing-details hidden">
+                <p>{{ listing.description }}</p>
+                <p>
+                {% if listing.age_min or (listing.age_max and listing.age_max < 99) %}
+                AGE: {{ listing.age_min }} &mdash; {{ listing.age_max }}<br/>
+                {% endif %}
+                {% if listing.height_min or (listing.height_max and listing.height_max < 999) %}
+                HEIGHT (cms): {{ listing.height_min }} &mdash; {{ listing.height_max }}<br/>
+                {% endif %}
+                {% if listing.weight_min or (listing.weight_max and listing.weight_max < 999) %}
+                WEIGHT (kg): {{ listing.weight_min }} & mdash; {{ listing.weight_max }} <br/>
+                {% endif %}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-12 center">
+            {% if listing.season_start %}
+            <p class="">Season start: <span>{{ listing.season_start.strftime('%d %b, %Y') }}</span></p>
+            {% else %}
+            {% endif %}
+            {% if current_user.is_authenticated and current_user.user.role_slug == 'athlete' %}
+            <button data-id="{{ listing.id }}"
+                {% if listing.club %}
+                    data-role="club"
+                data-url="{{ url_for('profile.new_application', listing_id=listing.id, role='club') }}"
+                {% else %}
+                    data-role="agent"
+                 data-url="{{ url_for('profile.new_application', listing_id=listing.id, role='agent') }}"
+                    {% endif %}
+                class="btn btn--blue btn--med btn--apply">Apply</button>
+            {% elif not current_user.us_authenticated %}
+            <button class="btn btn--blue btn--med open-signin">Apply</button>
+            {% endif %}
+        </div>
+    </li>
+    {% if loop.index % 2 == 0 %}
+    <li class="clearfix hidden-xs"></li>
+    {% endif %}
+    {% endfor %}
+</ul>
+<div class="bottom">
+{% include 'global/pagination.html' %}
+</div>
+<div class="clearfix"></div>

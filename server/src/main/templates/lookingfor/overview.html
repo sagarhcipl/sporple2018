@@ -1,0 +1,43 @@
+<header class="header--secondary">
+    <h2>Current opportunities</h2>
+</header>
+
+<div id="profile__listings-cont" class="profile__listings-cont profile__listings-cont--agent" data-profile-id="{{ profile.user_id }}">
+
+    <div class="btn-cont">
+        {% if is_owner %}
+            <button id="profile__listings-add" class="btn btn--text" data-href="{{ url_for('profile.new_looking_for') }}">
+                <svg class="icon btn-icon" role="presentation" title="add" viewBox="0 0 46.8 46.9">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#plus"></use>
+                </svg>
+                Add new listing
+            </button>
+        {% endif %}
+    </div>
+
+    <ul class="profile__listings-list"></ul>
+
+    <div id="profile__listing-cont" class="module--loading"></div>
+    
+    <div class="table-navigation">
+        <ul class="table-navigation_list">
+            {% if pages and pages > 1 %}
+                <li class="table-navigation_list--arrow left-arrow" id="listing-page-prev">
+                    <a href="#" alt="Navigate left"></a>
+                </li>
+            {% for i in range(0, pages) %}
+                <li class="table-navigation_list--dot listing-page {% if i == 0 %}active{% endif %}"
+                    id="listing-page-{{ i+1 }}" data-page="{{ i+1 }}">
+                    <a href="#" alt="Page {{ i+1 }}"></a>
+                </li>
+            {% endfor %}
+                <li class="table-navigation_list--arrow right-arrow" id="listing-page-next">
+                    <a href="#" alt="Navigate right"></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+

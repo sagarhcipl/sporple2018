@@ -1,0 +1,58 @@
+{% if is_owner %}
+<button class="btn--box edit-header open-edit-modal"
+    data-url="{{ url_for('profile.edit_career_item', user_id=profile.user_id) }}"
+    data-title="Add Career Item"><i class="fa fa-plus"></i> Add</button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-trophy"></i> Career Overview</h3>
+<ul>
+{% for career_item in career_items %}
+    <li class="careeritem_item_id_{{ career_item.id }} row">
+    <div class="col-md-8">
+        <div class="title-prefix">
+        {% if career_item.date_from or career_item.date_till %}
+	      {% if career_item.date_from == career_item.date_till %}
+              {{ career_item.date_from.year }}
+          {% else %}
+              {% if career_item.date_from %}
+              {{ career_item.date_from.strftime('%b %Y')}} -
+              {% endif %}
+              {% if career_item.date_till %}
+                {{ career_item.date_till.strftime('%b %Y') }}
+              {% else %}
+                Present
+              {% endif %}
+          {% endif %}
+        {% endif %}
+        </div>
+        <h4>{{ career_item.club_name }}</h4>
+        <div class="info">
+            <span>{% if career_item.location %}Location &mdash; {{ career_item.location }}</span><p class="hidden-xs hidden-sm"> | </p>{% endif %}
+            <span>{% if career_item.level %}Level &mdash; {{ career_item.level }}{% endif %}</span>
+        </div>
+        <p class="more">{{ career_item.body_with_hyperlinks | safe }}</p>
+    </div>
+    <div class="col-md-4">
+    {% if career_item.image %}
+    <a class="attachment-link">
+        <img src="{{ career_item.image_icon }}" alt="{{ career_item.club_name }}"
+            title="{{ career_item.club_name }}"/>
+    </a>
+    {% endif %}
+    </div>
+    {% if is_owner %}
+    <div class="edit-buttons">
+      <button class="btn--box btn--edit open-edit-modal"
+            data-url="{{ url_for('profile.edit_career_item_id', id=career_item.id, user_id=profile.user_id) }}"
+            data-title="Edit Career Item">
+        <i class="fa fa-edit fa-1-5x"></i><span class="hidden-xs"> Edit</span>
+      </button>
+      <button class="btn--box btn--danger delete"
+            data-url="{{ url_for('profile.delete_career_item', id=career_item.id, user_id=profile.user_id) }}">
+        <i class="fa fa-trash-o fa-1-5x"></i>
+      </button>
+    </div>
+    {% endif %}
+    </li>
+{% endfor %}
+</ul>
+

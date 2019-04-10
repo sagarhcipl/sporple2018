@@ -1,0 +1,105 @@
+.content_space {
+	padding: 100px;
+}
+
+#wrapper-box {
+  background-image: url('/images/bg_fade_reverse.png');
+  background-repeat: repeat-x;
+
+  background-image: linear-gradient(top, #FFFFFF, #EEEEEE); 
+  background-image: -moz-linear-gradient(top, #FFFFFF, #EEEEEE); 
+  background-image: -o-linear-gradient(top, #FFFFFF, #EEEEEE); 
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #EEEEEE); 
+
+  padding: 50px 0;
+}
+
+.page_content.signup_complete {
+  width: 60%;
+}
+
+.page_content.signup_complete h1,
+.page_content.signup_complete p {
+  text-align: center;
+}
+
+.page_content.signup_complete .knop {
+  display: inline-block;
+  text-align: center;
+}
+
+.page_content.signup_complete .font-arial {
+  font-family: arial;
+}
+
+.page_content.signup_complete .border-top {
+  border-top: 1px solid #CCCCCC;
+  padding-top: 20px;
+}
+
+.page_content.signup_complete .spacing-top-20 {
+  margin-top: 20px;
+}
+	
+.page_content.signup_complete .wrapper {
+  overflow: auto;
+}
+
+.page_content.signup_complete .l-left {
+  float: left;
+  clear: both;
+}
+
+.page_content.signup_complete .l-right {
+  float: right;
+}
+
+.l-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block !important;
+}
+
+.page_content.signup_complete h1 {
+  color: #AAAAAA;
+}
+
+.page_content.signup_complete p {
+  color: #999999;
+}
+
+.page_content.signup_complete h1 {
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding-bottom: 20px;
+}
+
+.page_content.signup_complete p {
+  font-size: 14px;
+}
+
+.page_content.signup_complete h1 {
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+}
+
+.signup_premium h1.bigger {
+  font-size: 24px;
+}
+
+.signup_premium strong.bigger {
+  font-size: 18px;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.signup_premium strong.special-message {
+  font-size: 16px;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  color: #AAAAAA;
+  letter-spacing: 1px;
+  line-height: 24px;
+  margin-top: 10px;
+  display: inline-block;
+  margin-bottom: 20px;
+}

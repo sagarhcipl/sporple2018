@@ -1,0 +1,147 @@
+.modal--send-message .module--loading{
+	height: 207px;
+}
+
+.send-message{
+	textarea{
+		height: 110px;
+	}
+
+	.form__row--btns{
+		float: right;
+		width: 55%;
+		text-align: right;
+
+		.btn{
+			margin-bottom: 0;
+			min-width: 100px;
+		}
+
+		#send-message__cancel-btn{
+			display: none;
+		}
+
+	    @include mq($from: tablet){
+			width: 40%;
+
+	 		.btn{
+				min-width: 0;
+			}
+
+			#send-message__cancel-btn{
+				display: inline-block;
+			}
+		}
+	}
+
+	.send-message__submitted .form__row--btns{
+		float: none;
+	}
+
+	//if we have attachment prev hide dropzone
+	#send-message__file-form.has-attachment{
+
+		#send-message__file-dropzone{
+			display: none;
+		}
+
+		#send-message__attachment-prev{
+			display: inline-block;
+		}
+
+	}
+
+	//file upload stuff
+	.send-message__file-input-btn{
+		display: inline-block;
+		vertical-align: top;
+		margin-right: 22px;
+		height: $button-height;
+		line-height: $button-height;
+		color: $blue-bright;
+		transition: color 0.25s ease-out;
+
+		.icon{
+			vertical-align: middle;
+			margin: 0 5px;
+			width: 23px;
+			height: 21px;
+			fill: $blue-bright;
+			transition: fill 0.25s ease-out;
+		}
+
+		&:hover,
+		&:focus{
+			color: darken($blue-bright, 10%);
+			font-weight: $bold;
+
+			.icon{
+				fill: darken($blue-bright, 10%);
+			}
+		}
+
+	}
+
+	#send-message__file-dropzone{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 4px;
+		padding: 0 15px;
+		height: 29px;
+		border-radius: 10px;
+		background-color: $grey-lighter;
+		transition: background-color 0.25s ease-out;
+		line-height: 29px;
+
+		&.over{
+			background-color: $brand-orange;
+		}
+
+		.lt-ie10 &{
+	        display: none;
+	    }
+
+	    @include mq($until: tablet){
+			display: none;
+		}
+	}
+
+	#send-message__attachment-prev{
+		display: none;
+		overflow: hidden;
+		height: $input-height;
+	}
+
+	.message__attachment-prev{
+		position: relative;
+		height: $input-height;
+
+		.message__attachment-img{
+			width: auto;
+			height: 100%;
+		}
+
+		.message__attachment-delete{
+			position: absolute;
+			top: 3px;
+			right: 3px;
+			width: 15px;
+    		height: 15px;
+    		cursor: pointer;
+		}
+	}
+
+	//preview interactions
+	.csstransforms3d &{
+
+		.message__attachment-prev{
+			transform: scale(0) translate3d(0,0,0);
+			transition: all 0.25s $pop;
+
+			&.show{
+				transform: scale(1) translate3d(0,0,0);
+			}
+		}
+	}
+}
+

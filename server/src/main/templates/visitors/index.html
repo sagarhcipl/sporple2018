@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page_content page--search page-connection row row-centered">
+  <h1 class="padded">Recent visitors</h1>
+  <section class="col-md-6 col-centered">
+    {% include 'global/pagination.html' %}
+
+    <div class="Contacts">
+        {% include 'visitors/list.html' %}
+    </div>
+
+  </section>
+
+</section>
+{% endblock content %}

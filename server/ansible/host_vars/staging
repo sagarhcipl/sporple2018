@@ -1,0 +1,9 @@
+ansible_user:       deploy
+ansible_host:       staging.sporple.com
+
+public_ip:          52.51.102.20
+private_ip:         172.31.34.220
+
+environment_name:   staging
+app_config_file:     ../config/staging.cfg
+domain_name:        staging.sporple.com

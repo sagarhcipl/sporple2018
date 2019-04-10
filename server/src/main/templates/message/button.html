@@ -1,0 +1,4 @@
+{% if current_user.is_authenticated and current_user.user.id != other_user_id %}
+	<a class="message send-message" data-user-id="{{ other_user_id }}"></a>
+{% endif %}
+

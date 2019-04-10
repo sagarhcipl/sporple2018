@@ -1,0 +1,41 @@
+- name: create group
+  group: name=elasticsearch system=yes state=present
+
+- name: create user
+  user:  name=elasticsearch group=elasticsearch system=yes state=present
+
+- name: ensure java is installed
+  apt: name=openjdk-7-jre-headless state=present update_cache=yes force=yes
+
+- name: create directories
+  file: path={{ item }} state=directory owner=elasticsearch group=elasticsearch
+  with_items:
+    - /var/run/elasticsearch
+    - "{{ data_directory }}/elasticsearch"
+    - "{{ log_directory }}/elasticsearch"
+    - "/tmp/elasticsearch"
+
+
+- name: download elasticsearch from url - version 2.1.0
+  get_url:
+    url:    https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-2.1.0.deb
+    dest:   /tmp/elasticsearch-2.1.0.deb
+    validate_certs: no
+
+- name: ensure elasticsearch is installed
+  apt: deb=/tmp/elasticsearch-2.1.0.deb
+  notify: restart elasticsearch
+
+- name: update elasticsearch config
+  template:
+    src: "elasticsearch.yml.j2"
+    dest: "/etc/elasticsearch/elasticsearch.yml"
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0644
+    force: yes
+  notify: restart elasticsearch
+
+- name: add elasticsearch to defaults
+  command: update-rc.d elasticsearch defaults 95 10
+  notify: restart elasticsearch

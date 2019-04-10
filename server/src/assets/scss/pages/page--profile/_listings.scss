@@ -1,0 +1,179 @@
+/*
+ * Styles for listings module in club profile page
+ *
+ */
+.recruiting-header {
+    margin-top: 30px;
+    background-color: $black;
+    color: $white;
+    padding: 27px;
+    h2 {
+        @include font(42, 52);
+        text-align: left;
+    }
+    span {
+        color: #757e83;
+        @include font(14, 16);
+    }
+    .add-listing {
+        float: right;
+        margin-top: 10px;
+    }
+    @include mq($until: tablet) {
+        &.bottom-btn-container {
+            padding-bottom: 80px;
+            position: relative;
+            .add-listing {
+                float: none;
+                margin:0;
+                position: absolute;
+                bottom: 15px;
+                left: 25px;
+            }
+        }
+    }
+}
+.listing-info {
+    background-color: $white;
+    .looking-for {
+        color: $blue;
+        @include font(18, 24, $font-title);
+    }
+    h3 {
+        @include font(42, 52);
+    }
+    li {
+        border-bottom: solid 1px #f5f5f5;
+        padding: 27px;
+        position: relative;
+        @include mq($from: tablet) {
+            .edit-buttons {
+                top: 50px;
+            }
+        }
+    }
+    .listing-details {
+        padding-top: 10px;
+        text-align: left;
+    }
+}
+
+.modal .thank-you {
+    font-weight: bold;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+
+
+
+
+
+
+////////////// OLD STYLES /////////////////////////
+
+//apply stuff
+.listing__apply-cont{
+	overflow: hidden;
+	height: 0;
+	text-align: center;
+	transition: height 0.3s $swiftOut;
+
+	.no-js &{
+		height: auto;
+	}
+
+	.inner{
+		padding: 20px 0;
+	}
+
+	form{
+		text-align: left;
+	}
+}
+
+.incomplete-profile {
+    p {
+        padding: 20px;
+    }
+    ul {
+        padding: 0 20px;
+    }
+    li {
+        list-style-type: disc;
+        list-style-position: inside;
+        font-weight: bold;
+    }
+}
+
+.apply__profile-card{
+	width: 100%;
+	margin: 0 auto 30px;
+	padding: 10px;
+	background-color: #fff;
+
+	.profile-pic{
+		float: left;
+		margin-right: 10px;
+		width: 62px;
+		height: 62px;
+	}
+
+	.profile-card__details{
+		overflow: hidden;
+		text-align: left;
+	}
+
+	.ttl{
+		color: $brand-orange;
+	}
+
+	p{
+		margin-bottom: 0;
+	}
+
+	@include mq($from: tablet) {
+		width: 340px;
+		margin: 0 auto 40px;
+	}
+}
+
+//EDIT LISTINGS
+.listing__edit-cont{
+
+	.btn {
+		float: right;
+		margin-left: 5px;
+		min-width: 105px;
+	}
+    .premium {
+        background-color: lighten($blue, 30%);
+        padding: 10px 0;
+        margin: 30px 0;
+        label {
+            padding-left: 10px;
+        }
+    }
+    textarea {
+        height: 100px;
+    }
+}
+
+.listing_country_groups {
+    position: absolute;
+    visibility: hidden;
+}
+
+#country_groups-list {
+    .multiple-select-list__delete {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        margin-top: 4px;
+        width: 20px;
+        height: 20px;
+        background: url(/static/images/svg/x.png) center no-repeat #ccc;
+    }
+}
+

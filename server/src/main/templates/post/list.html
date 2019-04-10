@@ -1,0 +1,174 @@
+{% if not request.is_xhr %}
+{{ use_javascript('frontend/post/list.js') | safe }}
+{% endif %}
+{{ use_stylesheet('frontend/post/_list.css') | safe }}
+{% for post in posts %}
+{% if post.user.slug %}
+    <!-- start article -->
+    <article id="post_{{post.id}}" class="post_item_id_{{ post.id }}{% if post.welcome_post %} new-post{% endif %}">
+        <div class="article-inner">
+            {% if post.welcome_post %}
+                <div class="new-post-badge">
+                    New Profile
+                </div>
+            {% endif %}
+
+            <header>
+                {% if post.is_by_admin %}
+                    <div class="title">Sporple team</div>
+                {% else %}
+                    <a href="{{ url_for('profile.slug', slug=post.user.slug)}}">{{ post.user.name }}</a>
+                    -
+                    <span>
+                        {{ post.user.profile.role.name }}
+                    </span>
+                {% endif %}
+            </header>
+            {% if post.is_by_admin %}
+                <img src="{{ image_path('Sporple_Icon.png') }}" />
+            {% else %}
+                <a href="{{ url_for('profile.slug', slug=post.user.slug) }}">
+                <img src="{{ post.user.profile.get_image('x-small') }}" width="45" alt="Profile image" title="Profile image"/>
+                </a>
+            {% endif %}
+
+            <p class=" {% if post.welcome_post %}new-post-notification{% endif %}">
+                {% if not post.welcome_post and current_user.is_authenticated and current_user.user.id == post.user_id %}
+
+                <a class="post_delete_button"
+                    data-jquery-query=".post_item_id_{{ post.id }}"
+                    href="{{ url_for('post.delete', id=post.id) }}">
+                    <img src="/static/images/ico_delete_field.png" class="clr_field_button"/>
+                </a>
+
+                    {% if request.endpoint == 'home' %}
+                <a
+                    class="post_edit_button"
+                    data-jquery-query=".post_item_id_{{ post.id }}"
+                    href="{{ url_for('post.edit', id=post.id) }}">
+                    <img src="/static/images/icon_edit.png" class="clr_field_button"/>
+                </a>
+
+                    {% endif %}
+                {% endif %}
+                {{ replace_media_links(post.body) | link_text }}
+                {% set attachments = post.get_attachments() %}
+                {% for attachment in attachments %}
+                    {% include 'attachment/view.html' %}
+                {% endfor %}
+                {% if post.shared_post %}
+                    {% include 'post/shared.html' %}
+                {% endif %}
+            </p>
+
+            <aside>
+                {% if not post.welcome_post %}
+                    <time>
+                        {{ post_date_format(post.created_at) }}
+                    </time>
+                    {% set has_favourited = post.has_favourited(current_user.user.id) %}
+
+                    <div class="favourite-button-holder favourite-button-holder-post-id-{{ post.id }}">
+                    {% if current_user.user.id != post.user_id and has_favourited %}
+                        <a href="#" class="button-unfavourite" data-post-id="{{ post.id }}"><span>unlike</span></a>
+                    {% else %}
+                        <a href="#" class="button-favourite" data-post-id="{{ post.id }}"><span>like</span></a>
+                    {% endif %}
+
+                    </div>
+                          <a href="#" class="new_comment_link new_comment_link_{{ post.id }}">
+                        comment
+                    </a>
+
+                    <p {% if not has_favourited %}style="display:none" {% endif %} class="favourite-text-holder-post-id-{{ post.id }}"><strong>You</strong> like this</p>
+                {% elif post.user_id != current_user.user.id %}
+                <div class="follow-button-holder follow-button-holder-user-id-{{ post.user_id }}">
+
+                    {% if current_user.user.is_following(post.user_id) %}
+                      <a href="#" class="Follow Following button-unfollow" data-user-id="{{ post.user_id }}">
+                        <span>Following</span>
+                      </a>
+                    {% else %}
+                      <a href="#" class="Follow button-follow" data-user-id="{{ post.user_id }}">
+                        <span>Follow</span>
+                      </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </aside>
+
+            <!-- start comments -->
+            {% if not post.welcome_post %}
+                <div class="comments">
+                    <ul>
+                        {% set comments = post.get_comments() %}
+                        {% if comments %}
+                        {% set clength = comments | length %}
+                            {% if clength > 3 %}
+                                <a href="#" class="hide_show_comment_link comment_show_link_{{post.id}}">
+                                    <span class="visible" id="show_comment_text_{{post.id}}">View {{ comments | length - 3 }} more comments</span>
+                                    <span class="hidden" id="hide_comment_text_{{post.id}}">Hide {{ comments | length - 3 }} comments</span>
+                                </a>
+                            {% endif %}
+
+                            {% for comment in comments %}
+                                {% set comment_user = comment.get_author() %}
+                                <li {% if clength > 3 and loop.index < clength - 2 %} class="hidden comment_{{post.id}}" {% endif %} >
+                                    <a href="{{ url_for('profile.slug', slug=comment_user.profile.slug) }}">
+                                    <img src="{{ comment_user.profile.get_image('x-small') }}" width="45"
+                                        alt="Profile image" title="Profile image"/>
+                                    </a>
+                                    <a href="{{ url_for('profile.slug', slug=comment_user.profile.slug) }}">
+                                        {{ comment_user.name }}
+                                    </a>
+
+                                    <p>
+                                        {{ replace_media_links(comment.text) | link_text }}
+                                    </p>
+                                    <time>{{ post_date_format(comment.created_at) }}</time>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+
+                        <li class="new_comment_container">
+                            <a href="#" id="new_comment_{{ post.id }}">
+                                <img src="{{ current_user.user.profile.get_image('x-small') }}" width="45" alt="Profile image" title="Profile image"/>
+                            </a>
+                            {% include 'forms/comment.html' %}
+                            <span class="dummy"></span>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+            <!-- end comments -->
+
+            <!-- start media popup
+            <div id="post_{{ post.id }}_popup" class="popupPostMedia">
+                <a class="b-close">x</a>
+
+                <header>
+                    {% if post.is_by_admin %}
+                        <img src="{{ image_path('Sporple_Icon.png') }}" />
+                    {% else %}
+                    <img src="{{ post.user.profile.get_image('x-small') }}" width="35" alt="Profile image" title="Profile image"/>
+                    {% endif %}
+                    <strong>
+                        {{ post.user.name }}
+                    </strong>
+
+                    <span>
+                        {{ post.user.profile.role.name.capitalize() }}
+                    </span>
+                </header>
+
+                <a class="btn_prev"></a>
+                <figure></figure>
+                <a class="btn_next"></a>
+            </div>
+            end media popup -->
+        </div>
+    </article>
+    <!-- end article -->
+{% endif %}
+{% endfor %}
+

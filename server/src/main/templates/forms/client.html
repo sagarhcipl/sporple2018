@@ -1,0 +1,124 @@
+{% import 'forms/base.html' as base %}
+{% if client_id %}
+{% set action = url_for('profile.edit_client_id', id=client_id) %}
+{% else %}
+{% set action = url_for('profile.edit_client') %}
+{% endif %}
+<div class="client__edit-cont profile__listing {% if client_id %}edit-listing{% else %}add-listing{% endif %} row row-centered">
+
+    <form action="{{ action }}" method="POST"
+          class="form listing__edit-form col-xs-12 col-md-8 col-centered"
+          id="{% if not client_id %}listing__add-form{% else %}listing__edit-form{% endif %}"
+          enctype="multipart/form-data">
+        <div>
+
+            <div class="form__row cf client-pic-upload-cont file-wrapper inline-label">
+                {{ form.hidden_tag() }}
+                {% if client %}
+                <div id="client-crop-preview"  class="client-pic-upload__preview">
+                    <img width="100" height="100"
+                        alt="Client image" title="Client image"
+                        id="client_image_preview"
+                        src="{{ avatar('/uploads/client/' + client.image, 'small') }}"/>
+                </div>
+                <label>Edit Client Picture</label>
+                {% else %}
+                <button class="btn btn--primary" type="button">Add Photo</button>
+                {% endif %}
+
+                {{ form.client_image(**{
+                    'class': 'client-pic-upload upload-resizer',
+                    'accept': 'image/jpeg,image/png,capture=camera',
+                    'data-parsley-profilepic': 'client_image',
+                    'data-parsley-trigger': 'change',
+                    'data-prefix': 'client'
+                    })
+                }}
+                {{ base.errors(form.client_image.errors) }}
+            </div>
+
+            <div class="form__row inline-label">
+                <label>Name</label>
+                {{ form.name(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'blur',
+                    'maxlength': '127'
+                    })
+                }}
+                {{ base.errors(form.name.errors) }}
+            </div>
+
+            <div class="form__row inline-label">
+                <label>Current Club name</label>
+                {{ form.club_name(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'blur',
+                    'maxlength': '127'
+                    })
+                }}
+                {{ base.errors(form.club_name.errors) }}
+            </div>
+
+            <div class="form__row inline-label">
+                <label>Position</label>
+                {{ form.position(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'change',
+                    })
+                }}
+                {{ base.errors(form.position.errors) }}
+            </div>
+
+            <div class="form__row inline-label">
+                <label>Height in cm</label>
+                {{ form.height(**{
+                    'data-parsley-type': 'integer',
+                    'data-parsley-type-message': 'Height in nearest cm, eg. 183',
+                    'length': '4',
+                    'data-parsley-trigger': 'blur'
+                    })
+                }}
+                {{ base.errors(form.height.errors) }}
+            </div>
+            <div class="form__row inline-label">
+                <label>Weight in kg</label>
+                {{ form.weight(**{
+                    'data-parsley-type': 'integer',
+                    'data-parsley-type-message': 'Weight in nearest kilogram, eg. 90',
+                    'length': '4',
+                    'data-parsley-trigger': 'blur'
+                    })
+                }}
+                {{ base.errors(form.weight.errors) }}
+            </div>
+            <div class="form__row inline-label dob">
+                <label>Date of Birth</label>
+                {{ form.dd(**{
+                    'data-parsley-required': 'true',
+                    'data-parlsey-trigger': 'change',
+                    'placeholder': 'Date',
+                    })
+                }}
+
+                {{ form.mm() }}
+                {{ form.yyyy() }}
+                {{ base.errors(form.dd.errors) }}
+                {{ base.errors(form.mm.errors) }}
+                {{ base.errors(form.yyyy.errors) }}
+            </div>
+            <div class="form__row inline-label">
+                <label>Country</label>
+                {{ form.address_country(**{
+                    'data-parsley-required': 'true',
+                    'data-parsley-trigger': 'change',
+                    })
+                }}
+            </div>
+        </div>
+        <div class="form__row form__row--btns">
+            <button id="btn--submit" class="btn btn--blue btn--med {% if client_id %}edit{% else %}add{% endif %}-listing-submit'">Done</button>
+            <a id="listing__cancel" class="btn btn--secondary btn--med">Cancel</a>
+        </div>
+    </form>
+</div>
+

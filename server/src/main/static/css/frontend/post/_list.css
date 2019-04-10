@@ -1,0 +1,150 @@
+/**
+ * post popup
+ */
+ 
+.popupPostMedia,
+.popupPostMedia a.b-close
+{
+  border: 4px solid #666666;
+  padding: 2px;
+  margin: 0px;
+  background: white;
+  cursor: default;
+  -webkit-border-radius: 0px 15px 0px 0px;
+     -moz-border-radius: 0px 15px 0px 0px;
+          border-radius: 0px 15px 0px 0px;
+  -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+     -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+          box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+
+  background: #fafafa; /* Old browsers */
+  background: -moz-linear-gradient(top,  #fafafa 0%, #cdcdcd 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#cdcdcd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #fafafa 0%,#cdcdcd 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #fafafa 0%,#cdcdcd 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #fafafa 0%,#cdcdcd 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #fafafa 0%,#cdcdcd 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#cdcdcd',GradientType=0 ); /* IE6-9 */
+}
+
+.popupPostMedia a.b-close
+{
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  display: inline-block;
+  padding: 0px;
+  width: 21px;
+  height: 21px;
+  border: 1px solid #888888;
+  text-align: center;
+  cursor: pointer;
+  font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+  line-height: 18px;
+  font-size: 16px;
+  -webkit-box-shadow: 0px -1px 3px rgba(255,255,255,1) inset;
+     -moz-box-shadow: 0px -1px 3px rgba(255,255,255,1) inset;
+          box-shadow: 0px -1px 3px rgba(255,255,255,1) inset;
+  -webkit-border-radius: 11px;
+     -moz-border-radius: 11px;
+          border-radius: 11px;
+}
+
+.popupPostMedia
+{
+  position: absolute;
+  display: none;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: -moz-none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.popupPostMedia header
+{
+  height: 35px;
+  padding: 5px 0px 5px 45px;
+  display: block;
+}
+
+.popupPostMedia header img
+{
+  float: left;
+  margin-left: -40px;
+  height: 35px;
+  width: 35px;
+  vertical-align: top;
+}
+
+.popupPostMedia header strong
+{
+  color: #000000;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: block;
+  padding: 5px 0px 2px 0px;
+}
+
+.popupPostMedia header span
+{
+  display: block;
+  font-size: 13px;
+  color: #f89d00;
+  font-weight: normal;
+}
+
+.popupPostMedia figure
+{
+  display: block;
+  background: #000000;
+  overflow: hidden;
+  text-align: center;
+}
+
+.popupPostMedia figure img
+{
+  display: block;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.popupPostMedia a.btn_prev,
+.popupPostMedia a.btn_next
+{
+  display: block;
+  width: 45px;
+  height: 44px;
+  position: absolute;
+  background: transparent url(/static/images/profile/prev.png) no-repeat top left;
+  top: 50%;
+  left: 0px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.popupPostMedia a.btn_next
+{
+  left: auto;
+  right: 0px;
+  background: transparent url(/static/images/profile/next.png) no-repeat top left;
+}
+
+.popupPostMedia a.btn_prev:hover,
+.popupPostMedia a.btn_next:hover
+{
+  opacity: 1;
+}
+
+.popupPostMedia a.btn_prev.disabled,
+.popupPostMedia a.btn_next.disabled
+{
+  display: none;
+}
+
+.empty-state{
+  padding: 50px 0 0;
+  text-align: center;
+}

@@ -1,0 +1,75 @@
+<header class="profile__header">
+    <img src="{{ profile.get_image() }}" width="284"
+        alt="Club image" title="Club image" class="profile__profile-pic"/>
+    <div class="profile__name">
+        <h1 class="ttl">{{ profile.user.name }}</h1>{% if profile.plan == 'pro' %}<span class="premium">Premium</span>{% endif %}
+    </div>
+    <span class="profile__followers">
+        {{ profile.get_followers_count() }} followers
+    </span>
+</header>
+
+<dl class="profile__stats">
+    <dt>Sport:</dt>
+    <dd>{{ profile.sport.name }}</dd>
+
+    <dt>Website:</dt>
+    <dd>
+        {% if profile.club_contact_url or '' %}
+            <a href="{{ profile.club_url_link }}" target="_blank">{{ profile.club_url_name | truncate(30) }}</a>
+        {% endif %}
+    </dd>
+
+    <dt>Established:</dt>
+    <dd>{{ profile.year_establishment or '' }}</dd>
+    <dt>Country:</dt>
+    <dd>{% if profile.address_country %}{{ profile.address_country.name }}{% endif %}</dd>
+    <dt>City:</dt>
+    <dd>{{ profile.address_city or '' }}</dd>
+    <dt>Division:</dt>
+    <dd>{{ profile.club_league or '' }}</dd>
+</dl>
+
+{% if is_owner %}
+    <a href="{{ url_for('profile.edit_club') }}" 
+        class="btn--edit" 
+        id="profile__edit-basic-information">
+        <img src="/static/images/icon_edit.png"/>
+    </a>
+{% endif %}
+
+
+<div class="profile__action-btn-cont">
+    {% if current_user.is_authenticated and not is_owner %}
+        {% set follow_url = url_for('social.follow', user_id=profile.user_id) %}
+        {% set unfollow_url = url_for('social.unfollow', user_id=profile.user_id) %}
+        <a class="btn btn--side-by-side btn--follow {% if is_following %}active{% endif %}" data-user-id="{{ profile.user_id }}" href="{% if is_following %}{{ unfollow_url }}{% else %}{{ follow_url }}{% endif %}">
+            {% if follow_url %} Follow {% else %} Following {% endif %}
+        </a>    
+
+        <a class="btn btn--side-by-side btn--message send-message" data-user-id="{{ profile.user_id }}">
+            Message
+        </a>
+    {% endif %}
+        
+    <a class="btn btn--text" id="btn--view-photos" data-user-id="{{ profile.user_id }}">
+        <svg class="icon btn-icon" role="presentation" viewBox="0 0 14 14">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#picture"></use>
+        </svg> 
+        View Photos
+    </a>
+</div>
+
+
+<dl class="profile__stats">
+    <dt>Date Joined:</dt>
+    <dd>{{ profile.created_at.strftime('%m %d, %Y') }}</dd>
+</dl>
+
+<span id="profile__public-url" class="profile__public-url" data-clipboard-text="{{ url_for('profile.slug', slug=profile.slug, _external=True) }}">
+    sporple.com{{ url_for('profile.slug', slug=profile.slug) }}
+</span>
+{% if current_user.is_authenticated and current_user.user.is_test_profile and not is_owner %}
+<span style="text-transform: uppercase; clear: both; width: 155px; display: block; border: #828ca2 1px solid; border-radius: 60px; background-color: #FFFF8B; padding: 5px 10px; font-size: 11px; font-weight: bold;">this is a test profile</span>
+{% endif %}
+

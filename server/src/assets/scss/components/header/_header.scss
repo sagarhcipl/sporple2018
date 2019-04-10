@@ -1,0 +1,535 @@
+.site-header{
+    position: relative;
+    z-index: 3;
+    background-color: $black;
+    color: #fff;
+
+    .not-responsive &{
+        min-width: 1064px;
+    }
+
+    @include mq($from: tablet) {
+        height: 83px;
+    }
+
+    @include mq($from: desktop) {
+        height: 60px;
+    }
+
+    .grid--all > *{
+        margin-bottom: 0;
+    }
+
+    .col-3-12,
+    .col-9-12{
+        margin-bottom: 0;
+    }
+
+    .col-3-12{
+        @include mq($from: desktop) {
+            padding-top: 6px;
+        }
+    }
+    &.absolute-header {
+        position: absolute;
+        width: 100%;
+    }
+
+    //Logo stuff
+    .site-header__logo{
+        margin-left: 2%;
+
+        .logo{
+            width: 80px;
+            height: 20px;
+            margin: 5px 10px;
+        }
+
+        @include mq($from: desktop) {
+            position: relative;
+            float: left;
+            margin-right: 40px;
+            margin-left: 0;
+            padding-top: 15px;
+            padding-right: 10px;
+
+            &:after{
+                content: "";
+                position: absolute;
+                top: 12px;
+                right: 0;
+                display: block;
+                width: 1px;
+                height: 37px;
+                background-color: $blue-bright;
+            }
+
+            .logo{
+                width: 112px;
+                height: 28px;
+                margin: 0;
+            }
+        }
+
+    }
+
+        .logo,
+        &.site-header--logged-out .logo {
+            display: inline-block;
+            margin: 11px 20px 0;
+            width: 140px;
+            height: 40px;
+            padding: 0 40px; 
+            background: url("/static/images/logos/logo-white@2x.png") 0 0 no-repeat;
+            background-size: 100%;
+            @include image-2x("/static/images/logos/logo-white@2x.png", 100%, 100%);
+        }
+
+    .navbar.navbar-inverse {
+        background-color: transparent;
+        border: none;
+        margin-bottom: 0;
+        z-index: auto;
+    }
+    .navbar-toggle {
+        border:none;
+    }
+    .navbar-right {
+        background-color: darken($grey-dark, 15%);
+        @include mq($from: desktop) {
+            padding-right: 15px;
+            padding-top: 5px;
+            background-color: transparent;
+        }
+    }
+
+
+    //Main Nav stuff
+    .site-header__nav{
+        padding-top: 2px;
+
+        @include mq($until: desktop) {
+            display: flex;
+            justify-content: space-around;
+            margin: 0 !important;
+            width: 80%;
+        }
+
+        @include mq($from: desktop) {
+            padding-top: 10px;
+        }
+    }
+
+        .site-header__nav-itm{
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            opacity: 0.9;
+            &.active, &:hover, &:focus {
+                opacity: 1;
+            }
+            .fa {
+                margin-bottom: -2px;
+            }
+
+            @include mq($from: desktop) {
+                margin-right: 10px;
+            }
+
+            .site-header__nav-icon{
+                display: block;
+                margin: 0 auto;
+                height: 23px;
+                fill: #ccd9e5;
+                transition: fill 0.2s ease-out;
+            }
+
+            &#nav-itm--home{
+                @include mq($from: desktop) {
+                    margin-right: 22px;
+                }
+
+                .site-header__nav-icon{
+                    width: 23px;
+                }
+            }
+
+            &#nav-itm--profile .site-header__nav-icon{
+                width: 28px;
+            }
+
+            &#nav-itm--connections .site-header__nav-icon{
+                width: 29px;
+            }
+
+            &#nav-itm--messages .site-header__nav-icon{
+                width: 24px;
+            }
+
+            &#nav-itm--search{ 
+
+                .site-header__nav-icon{
+                    width: 21px;
+                }
+
+                @include mq($from: desktop) {
+                    display: none;
+                }
+            }
+
+            &#nav-itm--notifications .site-header__nav-icon{
+                width: 24px;
+            }
+
+            &#nav-itm--marketplace .site-header__nav-icon{
+                width: 24px;
+            }
+
+            .site-header__nav-notif{
+                position: absolute;
+                top: -4px;
+                left: 75%;
+                visibility: hidden;
+                opacity: 0;
+                padding: 1px 3px;
+                background-color: $brand-orange;
+                box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.4);
+                @include font(10,14);
+                transform: translateX(-50%) scale(0);
+                transition: all 0.2s $pop;
+
+                &.show{
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateX(-50%) scale(1);
+                }
+            }
+
+            span{
+                opacity: 0.7;
+                display: block;
+                padding-top: 4px;
+                @include font(10,12);
+                font-weight: $bold;
+                text-transform: capitalize;
+                transition: opacity 0.2s ease-out;
+
+                @include mq($from: tablet) {
+                    padding-top: 7px;
+                    @include font(12,13);
+                }
+            }
+
+            &:hover,
+            &.active{
+
+                .site-header__nav-icon{
+                    fill: $blue-bright;
+                }
+                span{
+                    opacity: 1;
+                }
+            }
+
+        }
+
+
+    //Login nav
+    .main-nav{
+        float: right;
+        width: auto;
+        height: auto;
+        padding: 5px 0;
+        @include mq($until: tablet) {
+            padding: 10px 0;
+        }
+
+        li {
+            display: block;
+            margin: 0 2em;
+            min-width: 150px;
+
+            @include mq($from: tablet) {
+                min-width: auto;
+                margin: 0 0.5em;
+            }
+        }
+        @include mq($until: tablet){
+            li:last-child {
+                border: none;
+                text-align:center;
+                padding: 20px;
+            }
+        }
+
+
+        a {
+            display:inline-block;
+            padding: 0.6em 1em;
+            color: $grey-lighter;
+            text-transform: uppercase;
+            font-weight: $bold;
+            @include font(12, 15);
+            @include mq($until: tablet) {
+                padding-top: 10px;
+            }
+            &:hover {
+                text-decoration: none;
+                color: $white;
+            }
+        }
+        .cd-signup {
+            border-radius: 0.5em;
+            font-weight: $bold;
+            border: solid 2px $grey-lighter;
+            &:hover {
+                border-color: $white;
+            }
+        }
+    }
+
+
+    // Popup Modal
+    .cd-user-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($black, .85);
+        z-index: 5;
+        overflow-y: auto;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+        transition: visibility 0.3s;
+
+        &.is-visible {
+            visibility: visible;
+            opacity: 1;
+ 
+            .cd-user-modal-container {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    .cd-user-modal-container {
+        position: relative;
+        width: 90%;
+        max-width: 400px;
+        background: #FFF;
+        margin: 3em auto 4em;
+        cursor: auto;
+        transform: translateY(-30px);
+        transition: all 0.3s ease-in-out;
+
+        .cd-switcher {
+            border-bottom: 1px solid lighten($brand-orange, 30%);
+            text-align:center;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $text-main;
+            &:after {
+                clear: both;
+            }
+
+            &:after, &:before {
+                content: "";
+                display: table;
+            }
+            li {
+                width: 40%;
+                display:inline-block;
+                float:left;
+            }
+            a {
+                padding: 10px 15px;
+                display: block;
+                width: 100%;
+
+                &.selected {
+                    background: lighten($brand-orange, 30%);
+                }
+                &:hover {
+                    text-decoration: none;
+                    color: $text-main;
+                }
+            }
+        }
+
+        .cd-form-message {
+            padding: 0 10px;
+            @include font(12, 20);
+            &.success {
+                background-color: #DFF2BF;
+                border-radius: 5px;
+                padding: 5px;
+            }
+        }
+    
+        @include mq($until: tablet) {
+            margin: 4em auto;
+        }
+
+        .btn--large {
+            font-family: $font-default;
+            text-transform: uppercase;
+            @include font(14, 22);
+        }
+        .btn--fb {
+            width: 100%;
+        }
+
+        h2 {
+            @include font(15, 28);
+            text-align: center;
+            padding-bottom: 10px;
+            font-family: $font-default;
+        }
+    }
+
+    
+    .cd-form {
+    	padding: 1.4em;
+
+    	.fieldset {
+    		position: relative;
+    		margin: 1.4em 0;
+
+    		&:first-child {
+    			margin-top: 0;
+    		}
+    		&:last-child {
+    			margin-bottom: 0;
+    		}
+    	}
+
+        .login-or {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+    	label {
+    		@include font(14, 16);
+    	}
+        #login_form__remember-me {
+            padding-bottom: 5px;
+            display:inline-block;
+        }
+
+    	input {
+    		&.has-border {
+    			border: 1px solid $grey-border;
+    			-moz-appearance: none;
+                -webkit-appearance: none;
+
+    			&:focus {
+    				border-color: $brand-blue;
+    				box-shadow: 0 0 5px rgba($brand-blue, .1);
+    				outline: none;
+    			}
+    		}
+
+    		&.has-error {
+    			border: 1px solid $error;
+    		}
+
+    		&[type=submit] {
+    			padding: 16px 0;
+    			cursor: pointer;
+    			background: $brand-orange;
+    			color: #FFF;
+    			font-weight: bold;
+    			border: none;
+    			-webkit-appearance: none;
+                -moz-appearance: none;
+
+    			.no-touch &:hover, .no-touch &:focus {
+    				background: lighten($brand-orange, 5%);
+    				outline: none;
+    			}
+    		}
+    	}
+
+    	@include mq($until: tablet) {
+    		padding: 2em;
+
+    		.fieldset {
+    			margin: 2em 0;
+
+    			&:first-child {
+    				margin-top: 0;
+    			}
+
+    			&:last-child {
+    				margin-bottom: 0;
+    			}
+    		}
+
+    		input.has-padding {
+    			padding: 16px 20px 16px 50px;
+    		}
+
+    		input[type=submit] {
+    			padding: 16px 0;
+    		}
+    	}
+    }
+
+    .cd-form-bottom-message {
+    	position: absolute;
+    	width: 100%;
+    	left: 0;
+    	text-align: center;
+    	@include font(14);
+    	a {
+    		color: #FFF;
+    		text-decoration: underline;
+    	}
+    }
+
+    .cd-close-form {
+    	/* form X button on top right */
+    	display: block;
+    	position: absolute;
+    	width: 40px;
+    	height: 40px;
+    	right: 0;
+    	top: 0px;
+        font-size: 28px;
+        line-height: 35px;
+        cursor: pointer;
+    }
+
+    #cd-login, #cd-signup, #cd-reset-password {
+    	display: none;
+    }
+
+    #cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
+    	display: block;
+    }
+
+
+
+
+    //LANDING PAGE NAV & LOGGED OUT NAV
+    &.site-header--landing-page,
+    &.site-header--logged-out{
+        border-bottom: none;
+        background-color: $black;
+        height: auto;
+        color: $text-main;
+
+        &.absolute-header {
+            background-color: transparent;
+            border-bottom: none;
+        }
+
+        @include mq($from: desktop) {
+            height: auto;
+            border-bottom: none;
+        }
+    }
+}

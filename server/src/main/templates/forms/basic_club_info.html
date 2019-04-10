@@ -1,0 +1,104 @@
+{% import 'forms/base.html' as base %}
+<form action="{{ url_for('profile.edit_club') }}" method="post" id="profile_basic_club_information_form" enctype="multipart/form-data" class="form new-school">
+        
+    <div id="profile_basic_club_information_form__club-profile-pic-cont" class="form__row cf profile-pic-upload-cont file-wrapper">
+        {{ form.hidden_tag() }}
+
+        <div id="profile-crop-preview" class="profile-pic-upload__preview">
+            <img src="{{ profile.get_image('x-small') }}" width="42"
+                id="profile_image_preview" alt="Profile image" title="Profile image" />
+        </div>
+
+        <label class="form__label">Edit Profile Picture</label>
+        {{ form.profile_image(**{
+            'class': 'profile-pic-upload',
+            'accept': 'image/jpeg,image/png,capture=camera',
+            'data-parsley-profilepic': 'profile_image',
+            'data-parsley-trigger': 'change'
+            })
+        }}
+        {{ base.errors(form.profile_image.errors) }}
+    </div>
+
+    <div id="profile_basic_club_information_form__club-name-cont" class="form__row">
+        {{ form.club_name(**{
+            'data-parsley-required': 'true',
+            'minlength': '3',
+            'maxlength': '127',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">Club name<span class="red">*</span></label>
+        {{ base.errors(form.club_name.errors) }}
+    </div>
+
+    <div id="profile_basic_club_information_form__club-url-cont" class="form__row">
+        {{ form.club_contact_url(**{
+            'type': 'url',
+            'minlength': '4',
+            'maxlength': '255',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">Website</label>
+        {{ base.errors(form.club_contact_url.errors) }}
+    </div>
+
+    <div id="profile_basic_club_information_form__club-year-cont" class="form__row">
+        {{ form.year_establishment(**{
+            'data-parsley-type': 'integer',
+            'data-parsley-type-message': 'This should be a valid year e.g. 1999',
+            'length': '4',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">Year Established</label>
+        {{ base.errors(form.year_establishment.errors) }}
+    </div>
+
+    <div id="profile_basic_club_information_form__club-league-cont" class="form__row">
+        {{ form.club_league(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-required': 'true',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">Division<span class="red">*</span></label>
+        {{ base.errors(form.club_league.errors) }}
+    </div>
+
+    <div id="profile_basic_club_information_form__club-city-cont" class="form__row">
+        {{ form.address_city(**{
+            'minlength': '2',
+            'maxlength': '128',
+            'data-parsley-trigger': 'blur'
+            })
+        }}
+
+        <label class="form__label">City</label>
+
+        {{ base.errors(form.address_city.errors) }}
+    </div>
+
+    <label class="form__label">Country<span class="red">*</span></label>
+    <div id="profile_basic_club_information_form__club-country-cont" class="form__row">
+        {{ form.address_country(**{
+            'data-parsley-required': 'true',
+            'data-parsley-trigger': 'change',
+            'class': 'country-select'
+            })
+        }}
+
+        {{ base.errors(form.address_country.errors) }}
+    </div>
+
+
+    <a href="/profile/basicClubInformation{{ url_for('profile.slug', slug=profile.slug) }}" class="btn btn--secondary btn--side-by-side" id="profile__edit-basic-information-cancel">Cancel</a>
+    <button class="btn btn--side-by-side" id="btn--submit">Save</button>
+
+</form>

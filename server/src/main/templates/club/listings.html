@@ -1,0 +1,70 @@
+<div class="recruiting-header {% if is_owner %}bottom-btn-container{% endif %}">
+{% if is_owner %}
+  <button class="btn btn--blue btn--med add-listing open-edit-modal"
+        data-url="{{ url_for('profile.edit_club_listing') }}"
+        data-title="Add New Listing">
+    <i class="fa fa-plus"></i> Add Listing
+  </button>
+{% endif %}
+  <h2>{% if listings %} {{ listings[0].season_start.year }} season recruiting{% else %}not recruiting{% endif %}
+  </h2>
+  <span>{% if profile.club_league %}{{ profile.club_league.capitalize() }} {% endif %}, {{ profile.address_country_slug }}</span>
+</div>
+<ul class="listing-info">
+{% for listing in listings %}
+    <li data-action="{{ action }}" data-position="{{ listing.position.name }}" class="row">
+       <div class="col-md-8">
+         <div class="looking-for">Looking for</div>
+         <h3 class="position-title">{{ listing.position.name }}</h3>
+         <button class="btn--info show-listing-details">View Details</button>
+         <div class="listing-details hidden">
+           <p>{{ listing.description }}</p>
+           <p>
+           {% if listing.age_min or (listing.age_max and listing.age_max < 99) %}
+           AGE: {{ listing.age_min }} &mdash; {{ listing.age_max }}<br/>
+           {% endif %}
+           {% if listing.height_min or (listing.height_max and listing.height_max < 999) %}
+           HEIGHT (cms): {{ listing.height_min }} &mdash; {{ listing.height_max }}<br/>
+           {% endif %}
+           {% if listing.weight_min or (listing.weight_max and listing.weight_max < 999) %}
+           WEIGHT (kg): {{ listing.weight_min }} &mdash; {{ listing.weight_max }}<br/>
+           {% endif %}
+           {% if listing.country_groups %}
+           <strong>Eligible Athletes: {% for cg in listing.country_groups %} {{ cg.name }}, {% endfor %}</strong><br/>
+           {% endif %}
+           </p>
+         </div>
+       </div>
+       <div class="col-md-4 center">
+         <p class="">Season start: <span>{{ listing.season_start.strftime('%d %b, %Y') }}</span></p>
+         {% if current_user.is_authenticated and current_user.user.role_slug == 'athlete' %}
+         <button data-id="{{ listing.id }}"
+                 data-role = "club"
+                data-url="{{ url_for('profile.new_application', listing_id=listing.id, role='club') }}"
+                class="btn btn--blue btn--med btn--apply">Apply</button>
+         {% elif not current_user.is_authenticated %}
+         <button class="btn btn--blue btn--med btn--apply open-signin">Apply</button>
+         {% endif %}
+       </div>
+       {% if is_owner %}
+       <div class="edit-buttons">
+           <a href="{{ url_for('profile.get_applicant_list', listing_id=listing.id, role="club") }}">
+               <button class="btn--box btn--blue open-applied-list"
+                    data-title="Edit Listing">
+                <i class="fa fa-list fa-1-5x"></i><span class="hidden-xs"> Get Applicant List</span>
+            </button></a>
+            <button class="btn--box btn--edit open-edit-modal"
+                    data-url="{{ url_for('profile.edit_club_listing', listing_id=listing.id) }}"
+                    data-title="Edit Listing">
+                <i class="fa fa-edit fa-1-5x"></i><span class="hidden-xs"> Edit</span>
+            </button>
+            <button class="btn--box btn--blue delete-listing"
+                data-url="{{ url_for('club.delete_listing', id=listing.id) }}">
+                <i class="fa fa-close fa-1-5x"></i><span class="hidden-xs">RECRUITED</span>
+            </button>
+        </div>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+

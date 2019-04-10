@@ -1,0 +1,84 @@
+/**
+ * @group css.styles
+ *
+ * This is the core/primary stylesheet for the whole site, all other stylesheets are pulled in by this one.
+ * It is mobile first so we declare all our base styles first add more through media queries
+ *
+ */
+
+// ------------------------------------------------
+// Common Styles
+// ------------------------------------------------
+
+// Import Mixins
+@import "__mixins/mq";
+@import "__mixins/rg";
+@import "__mixins/mixins";
+
+// Import Base Styles
+@import "__base/normalize";
+@import "__base/layout";
+@import "__base/colours";
+@import "__base/helpers";
+@import "__base/fonts";
+@import "__base/base";
+@import "__base/buttons";
+@import "__base/forms";
+
+
+// ------------------------------------------------
+// Module Styles
+// ------------------------------------------------
+
+//Component Styles
+@import "components/header/header";
+@import "components/header/search";
+@import "components/header/profile";
+@import "components/header/signup";
+@import "components/footer";
+@import "components/slider";
+@import "components/modal";
+@import "components/dropdown-menu";
+@import "components/tabs";
+@import "components/aside-mod";
+@import "components/cropit";
+@import "components/profile-list";
+@import "components/send-message";
+@import "components/alerts";
+@import "components/select/cs_select";
+@import "components/select/cs_underline";
+@import "components/relate";
+@import "components/floating-label";
+@import "components/invoice";
+@import "components/post";
+
+
+
+// ------------------------------------------------
+// Page Styles
+// ------------------------------------------------
+
+// Common Page Modules
+@import "pages/page";
+@import "pages/landing-page/landing-page__hero";
+@import "pages/landing-page/landing-page--generic";
+@import "pages/page--search";
+@import "pages/page--sign-up/sign-up-form--3";
+@import "pages/page--profile/page--profile";
+@import "pages/page--profile/page--profile-club";
+@import "pages/page--profile/page--profile-agent";
+@import "pages/page--profile/media";
+@import "pages/page--profile/agent-media";
+@import "pages/page--profile/listings";
+@import "pages/page--profile/twitter";
+@import "pages/page--profile/base";
+@import "pages/page--profile/athlete";
+@import "pages/page--profile/agent";
+@import "pages/page--profile/club";
+@import "pages/page--profile/gallery";
+@import "pages/page--plan";
+@import "pages/page--settings";
+@import "pages/page--messages";
+@import "pages/page--opportunity";
+@import "pages/page--invite";
+

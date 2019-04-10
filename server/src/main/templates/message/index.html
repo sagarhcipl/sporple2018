@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ use_stylesheet('frontend/message/index.css') | safe }}
+{{ use_stylesheet('frontend/post/_list.css') | safe }}
+{{ use_javascript('frontend/message/index.js') | safe }}
+<script type="text/javascript">
+  message_retrieve_user_threads_url   = "{{ url_for('message.user_threads') }}";
+  message_retrieve_thread_url         = "{{ url_for('message.thread') }}";
+  message_retrieve_thread_input_url   = "{{ url_for('message.thread_input') }}";
+  message_retrieve_thread_header_url  = "{{ url_for('message.thread_header') }}";
+  message_retrieve_thread_header_images_url  = "{{ url_for('message.thread_header_images') }}";
+  message_delete_images_url           = "{{ url_for('message.delete_file') }}";
+</script>
+
+<section class="page_content page--messages">
+  <section class="row row-centered">
+
+    <d id="message-user-threads" class="col-xs-12 col-md-4 centered">
+      <d id="message-user-threads-filter-input">
+        <form id="message-user-threads-filter-form" method="post" action="{{ url_for('message.user_threads') }}">
+          <input name="filter" type="text"><input type="submit" value="Search" class="btn btn--blue">
+        </form>
+      </d>
+      <d id="message-user-threads-list">
+      </d>
+    </d>
+    <d id="message-current" class="col-xs-12 col-md-5 centered left hidden-xs">
+      <a class="message-back visible-xs" href="#"><i class="fa fa-angle-left"></i> All Messages</a>
+      <h2 id="message-current-header"></h2>
+      <d id="message-current-thread">
+        <div style="padding: 10px;">
+          Select a conversation on the left to open it.
+        </div>
+      </d>
+      <d id="message-current-input">
+      {% include 'message/thread_input.html' %}
+      </d>
+    </d>
+
+  </section>
+</section>
+{% endblock content %}

@@ -1,0 +1,91 @@
+
+//COOKIE BANNER
+.cookie-banner{
+	overflow: hidden;
+	height: 0;
+	background-color: #000;
+	color: #fff;
+	@include font(12, 16);
+	transition: height 0.25s ease-out;
+
+	&.active{
+		height: auto;
+
+		@include mq($from: desktop) {
+   			height: 24px;
+		}
+	}
+
+	.grid{
+		padding-top: 4px;
+		padding-bottom: 4px;
+	}
+
+	figcaption{
+		a{
+			font-weight: $bold;
+		}
+	}
+
+	.cookie-banner__close{
+		float: right;
+		margin-top: 1px;
+		width: 14px;
+		height: 14px;
+		cursor: pointer;
+
+		svg{
+			width: 14px;
+			height: 14px;
+			fill: #fff;
+		}
+	}
+}
+
+//ALERT BANNER
+.alert-banner{
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 15px;
+	max-height: 170px;
+	background-color: $grey-blue;
+	transition: max-height 0.3s $swiftOut;
+
+	.alert-banner__close{
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		width: 20px;
+		height: 20px;
+
+		.icon{
+			width: 20px;
+			height: 20px;
+			fill: $text-main;
+		}
+	}
+
+	.alert-banner__inner{
+		padding: 15px 25px;
+	}
+
+	@include mq($from: tablet) {
+		max-height: 125px;
+	}
+}
+
+.header-alert {
+    position: fixed;
+    top: 0;
+    border-radius: 0;
+    z-index: 10;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 10px;
+    text-align: center;
+    display: none;
+    .close {
+        float: right;
+        font-weight: bold;
+    }
+}

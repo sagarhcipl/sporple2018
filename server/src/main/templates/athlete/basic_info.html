@@ -1,0 +1,93 @@
+{% if is_owner %}
+<button data-url="{{ url_for('profile.edit_athlete', user_id=profile.user_id) }}" class="btn--info edit-header open-edit-modal" data-title="Edit profile"><i class="fa fa-edit fa-1-5x"></i> <span class="hidden-xs"> Edit</span></button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-info"></i> Basic Information</h3>
+<div class="profile__stats">
+    {% if profile.age %}
+    <div class="row">
+        <dt>Age:</dt>
+        <dd>{{ profile.age or 'Unknown' }}</dd>
+    </div>
+    {% endif %}
+    {% if profile.height %}
+    <div class="row">
+        <dt>Height:</dt>
+        <dd>{{ profile.height }} cm</dd>
+    </div>
+    {% endif %}
+    {% if profile.weight %}
+    <div class="row">
+    <dt>Weight:</dt>
+    <dd>{{ profile.weight or '' }} kg</dd>
+    </div>
+    {% endif %}
+    <div class="row positions-small">
+    <dt>Position:</dt>
+    <dd>{{ profile.first_position_string }}</dd>
+    </div>
+    <div class="row athlete-info-more">
+        <div class="col-xs-12 center">
+            <a href="#" class="show-more-athlete-info">View more details</a>
+        </div>
+    </div>
+</div>
+<div class="profile__stats more_details hidden">
+    <div class="row">
+    <dt>Position:</dt>
+    <dd>{{ profile.positions_string }}</dd>
+    </div>
+    {% if profile.nationality_id %}
+    <div class="row">
+    <dt>Nationality:</dt>
+    <dd>{{ profile.nationality.name }}</dd>
+    </div>
+    {% endif %}
+    {% if profile.passport_1_id or profile.passport_2_id %}
+    <div class="row">
+    <dt>Passport:</dt>
+    <dd>{% if profile.passport_1_id %}{{ profile.passport_1.name }}{% endif %}
+        {% if profile.passport_2_id %}{{ profile.passport_2.name }}{% endif %}
+    </dd>
+    </div>
+    {% endif %}
+    {% if profile.address_country_id %}
+    <div class="row">
+    <dt>Country:</dt>
+    <dd>{{ profile.address_country.name }}</dd>
+    </div>
+    {% endif %}
+    {% if profile.address_city %}
+    <div class="row">
+    <dt>City:</dt>
+    <dd>{{ profile.address_city or ''}}</dd>
+    </div>
+    {% endif %}
+    {% if profile.current_club %}
+    <div class="row">
+    <dt>Club:</dt>
+    <dd>{{ profile.current_club or ''}}</dd>
+    </div>
+    {% endif %}
+    {% if profile.marital_status_id %}
+    <div class="row">
+    <dt>Marital Status:</dt>
+    <dd>{% if profile.marital_status %}{{ profile.marital_status.name }}{% endif %}</dd>
+    </div>
+    {% endif %}
+    <div class="row">
+    <dt>Children:</dt>
+    <dd>{% if profile.children %}Yes{% else %}No{% endif %}</dd>
+    </div>
+    <div class="row">
+    <dt>Agent:</dt>
+    <dd>{{ profile.agent_firstname or '' }} {{ profile.agent_lastname or '' }}</dd>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 center">
+            <a href="#" class="hide-more-athlete-info">Hide details</a>
+        </div>
+    </div>
+
+</div>
+
+

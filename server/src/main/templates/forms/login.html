@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row row-centered login-page">
+    <form action="{{ url_for('login') }}" method="post" class="cd-form col-xs-11 col-md-6 col-lg-4 col-centered login-form-page-form">
+        <a href="{{ url_for('facebook_authorize') }}" class="btn btn--large btn--fb">Login with Facebook</a>
+        <div class="login-or">OR</div>
+        <div class="form__row">
+            <input type="email" name="signin[username]" data-parsley-required="true" minlength="6" maxlength="254" id="signin_username"/>
+            <label class="form__label">Email Address</label>
+        </div>
+        <div class="form__row">
+            <input type="password" name="signin[password]" data-parsley-required="true" minlength="6" maxlength="128" id="signin_password" />
+            <label class="form__label">Password</label>
+        </div>
+
+        <div class="form__row remember-me">
+            <label id="login_form__remember-me" class="login_form__secondary"><input type="checkbox" name="remember" checked="true" id="remember" data-parsley-multiple="remember" data-parsley-id="9"> Remember me</label>
+            <input type="hidden" name="next" value="{{ request.args.get('next', '') }}"/>
+        </div>
+        <button type="submit" id="login_form__submit" class="btn btn--large btn--orange">login</button>
+    </form>
+    <p class="cd-form-bottom-message forgot-password-link"><a href="#">Forgot your password?</a></p>
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Join Now</a></p>
+</div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block javascripts %}
+   {{ use_javascript('frontend/landing.js') | safe }}
+   {{ use_javascript('frontend/vendor/classie.js') | safe }}
+   {{ use_javascript('frontend/vendor/selectFx.js') | safe }}
+{% endblock javascripts %}
+{% block content %}
+
+	<script>fbq('track', "CompleteRegistration");</script>
+    <h2 class="register">Profile</h2>
+    <div class="register-form" style="height:80%;">
+    {% include 'forms/register_info.html' %}
+    </div>
+{% endblock content %}

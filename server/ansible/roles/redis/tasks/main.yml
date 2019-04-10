@@ -1,0 +1,23 @@
+- name: create group
+  group: name=redis system=yes state=present
+
+- name: create user
+  user:  name=redis group=redis system=yes state=present
+
+- name: install redis
+  apt: name=redis-server state=present
+
+- name: create data directory
+  file: path={{ data_directory }}/redis state=directory owner=redis group=redis mode=0755
+
+- name: create log directory
+  file: path={{ log_directory }}/redis state=directory owner=redis group=redis mode=0755
+
+- name: update redis-config
+  template: src=redis.conf.j2 dest=/etc/redis/redis.conf owner=root group=root mode=0644
+
+- name: restart redis-server
+  command: /etc/init.d/redis-server restart
+
+#- name: copy redis config
+

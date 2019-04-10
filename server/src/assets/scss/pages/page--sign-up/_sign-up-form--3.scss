@@ -1,0 +1,433 @@
+.sign-up-form__step{
+	position: relative;
+    margin: 0 auto;
+	height: 70px;
+	@include font(38,38);
+	font-weight: $bold;
+	color: #fff;
+	transition: all 0.25s ease-out;
+    max-width: 445px;
+
+	@include mq($from: tablet){
+		margin-bottom: 15px;	
+		width: 100%;
+		height: auto;
+		color: $brand-blue;
+	}
+
+	&:before{
+		position: absolute;
+		top: 12px;
+		right: 30px;
+		@include font(38,38);
+		font-weight: $bold;
+		color: #fff;
+
+		@include mq($from: tablet){
+			left: 5px;
+			right: auto;
+			height: 30px;
+			color: $brand-blue;
+		}
+	}
+
+	.sign-up-form__step-img-cont{
+		float: left;
+		text-align: center;
+        padding-left: 20px;
+
+		& > svg,
+		& > .sign-up-form__step-icon{
+			margin: 2px auto 0;
+			width: 55px;
+			height: 55px;
+			fill: $grey-light;
+			transition: fill 0.25s ease-out;
+		}
+	}
+
+	.sign-up-form__step-ttl{
+		@include font(20);
+        line-height: inherit;
+		font-weight: $bold;
+		color: $white;
+		transition: color 0.25s ease-out;
+
+		@include mq($from: tablet){
+			margin-bottom: 10px;
+
+			br{
+				display: none;
+			}
+		}
+	}
+
+	.errors-list.filled,
+	.parsley-errors-list.filled{
+		position: absolute;
+		bottom: -4px;
+		left: 94px;
+		@include font(14, 18);
+		font-weight: $normal;
+
+		@include mq($from: tablet){
+			position: static;
+			clear: both;
+		}
+	}
+
+
+	//steps with textboxes need some different rules
+	&.has-textbox{
+
+		.sign-up-form__step-ttl{
+			display: none;
+		}
+
+		& > .form__row,
+		& > input[type="text"]{
+			float: left;
+			margin-top: 9px;
+			width: 230px;
+
+			input,
+			label{
+				@include font(15, 23, $font-title);
+			}
+
+			.errors-list.filled,
+			.parsley-errors-list.filled{
+				top: 39px;
+				bottom: auto;
+				left: 0px;
+				z-index: 2;
+				width: 130%;
+			}
+		}
+
+		.sign-up-form__step-img-cont ~ .form__row{
+			width: 160px;
+		}
+
+
+		@include mq($from: tablet){
+
+			.sign-up-form__step-ttl{
+				display: block;
+			}
+
+			& > .form__row,
+			& > input[type="text"]{
+				margin: 0 0 0 70px;
+				width: 270px;
+
+				input,
+				label{
+					padding: 8px 10px;
+					height: 38px;
+				}
+			}
+
+			.sign-up-form__step-img-cont ~ .form__row{
+				width: 200px;
+			}
+		}
+
+	}
+
+
+	//hover and complete styles
+	&.complete,
+	.no-touchevents &:hover{
+
+		@include mq($until: tablet){
+			.sign-up-form__step-img-cont svg{
+				fill: #fff;
+			}
+
+			.sign-up-form__step-ttl{ color: #fff; }
+		}
+	}
+
+}
+
+
+.sign-up-form__step-1{
+    border: dashed 2px #666;
+    border-radius: 2px;
+
+	#registration-crop-preview{
+		display: block;
+		overflow: hidden;
+		margin: 2px auto 0;
+		max-width: 85px;
+		max-height: 85px;
+        @include mq($until: desktop) {
+            max-width: 55px;
+            height: 55px;
+        }
+
+		& > svg,
+		& > .sign-up-form__step-icon{
+			width: 85px;
+			height: 85px;
+			fill: $grey-light;
+			transition: fill 0.25s ease-out;
+            @include mq($until: desktop) {
+                width: 55px;
+                height: 55px;
+            }
+		}
+	}
+    .sign-up-form__step-ttl {
+		margin-top: 15px;
+    }
+
+	input[type="file"]{
+		position: static;
+	}
+
+	.js & input[type="file"]{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 1;
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+
+	.js.lt-ie10  & input[type="file"]{
+		max-width: 100%;
+		height: auto;
+	}
+
+	//form older browsers (ie9)
+	.js &.show-file-input,
+	&.show-file-input{
+
+		input[type="file"]{
+			position: static !important;
+			opacity: 1;
+			margin-left: 70px;
+			margin-bottom: 20px;
+			width: auto;
+			height: auto;
+		}
+	}
+
+
+	.sign-up-form__step-img-cont + .sign-up-form__step-ttl{
+		@include mq($from: tablet){
+			margin: 25px 0;
+		}
+	}
+
+}
+
+.sign-up-form__step-2{
+	#registration_positions{
+		position: absolute;
+		top: 0;
+		left: 0;
+		visibility: hidden;
+	}
+
+	& > #user_positions{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 1;
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+
+		@include mq($from: tablet){
+			position: static;
+			opacity: 1;
+			margin-left: 70px;
+			width: auto;
+			height: 35px;
+		}
+	}
+
+    .select-wrapper {
+        background-color: $black;
+        .select-wrapper__label {
+            @include font(17, 23, $font-default);
+            color: $white;
+        }
+    }
+
+	&.agent > .select-wrapper{
+
+		@include mq($from: tablet){
+			margin-left: 70px;
+			width: 75px;
+		}
+	}
+    input[type=text] {
+        background-color: $black;
+        color: $white;
+        @include font(17, 23, $font-default);
+    }
+}
+
+.sign-up-form__step-3{
+	.sign-up-form__step-ttl{
+		display: block !important;
+	}
+
+	#registration_address_country_id{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 1;
+		opacity: 0;
+		width: 100%;
+		height: 100%;	
+	}
+
+	.ui-autocomplete-input,
+	.ui-helper-hidden-accessible{
+		display: none;
+	}
+
+	.is-modern &{
+		#registration_address_country_id{
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: auto;
+			visibility: hidden;
+			height: 0;
+		}
+
+		.ui-autocomplete-input{
+			display: block;
+			@include font(17, 23, $font-default);
+            width: 100%;
+		}
+	}
+
+	& > .select-wrapper{
+	  	@include mq($from: tablet){
+			margin-left: 70px;
+			width: 210px;
+	  	}
+	}
+    input[type=text] {
+        background-color: $black;
+        color: $white;
+    }
+}
+
+.is-modern .page--sign-up ~ .ui-autocomplete{
+
+	@include mq($from: tablet){
+		z-index: 3;
+		overflow: scroll;
+		width: 200px;
+		max-height: 113px;
+
+		li{
+			padding: 5px 10px;
+			cursor: pointer;
+
+			&:nth-child(odd){
+				background-color: $grey-bg;
+			}
+
+			&:hover{
+				background-color: $grey-lighter;
+			}
+		}
+	}
+
+}
+
+
+.sign-up-form__value-list{
+	@include mq($from: tablet){
+		margin-left: 70px;	
+	}
+
+	&#sign-up-form__country-list{
+		margin-bottom: 20px;
+
+		@include mq($from: tablet){
+			margin-bottom: 0;	
+		}
+	}
+
+	li{
+		margin-top: 10px;
+		@include font(14,34);
+		transition: all 0.2s $swiftOut;
+
+		&:last-child{
+			margin-bottom: 10px;
+		}
+
+		&.remove{
+			transform: translate(50%,0);
+			transform: translate3d(50%,0,0);
+			opacity: 0;
+		}
+
+		.sign-up-form__delete-position{
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 10px;
+			width: 30px;
+			height: 30px;
+			background: $brand-blue url("/static/images/svg/x.png") center no-repeat;
+
+			.svg &{
+				background-image: url("/static/images/svg/x.svg");
+				background-size: 20px 20px;
+			}
+		}
+
+		@include mq($from: tablet){
+			margin-top: 0;	
+			@include font(14,22);
+
+			&:last-child{
+				margin-bottom: 15px;
+			}
+
+			.sign-up-form__delete-position{
+				width: 20px;
+				height: 20px;
+
+				.svg &{
+					background-size: 12px 12px;
+				}
+			}
+		}
+	}
+}
+
+// Login related
+.login-page {
+    @include mq($from: desktop){
+        padding-top: 100px;
+    }
+    .login-or {
+        text-align: center;
+        padding: 10px 0;
+    }
+    p a {
+        text-decoration: underline;
+    }
+}
+
+.remember-me {
+    text-align: left;
+    @include font(14,16);
+}

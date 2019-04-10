@@ -1,0 +1,19 @@
+<div class="incomplete-profile">
+    <h2 class="ttl ttl--lower modal__user-badge">
+        <span class="profile-pic">
+        <img src="{{ current_user.user.profile.get_image('x-small') }}" width="30"
+            alt="Profile image" title="Profile image"/>
+        </span>
+        You are not eligible for this listing
+    </h2>
+
+    <p>Hi {{ current_user.user.name }},<br/>
+    Looks like you do not meet the minimum requirements for this listing.<br/>
+    Don't worry, you can find more opportunities on Home page.
+    <br/>
+
+    <div class="form__row form__row--btns">
+        <a id="incomplete-profile__go-btn" href="{{ url_for('home') }}" class="btn btn--side-by-side">Go to Home</a>
+        <a id="incomplete-profile__cancel-btn" class="btn btn--secondary btn--side-by-side">Cancel</a>
+    </div>
+</div>

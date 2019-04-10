@@ -1,0 +1,24 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+Hi {{ user.name }},<br/>
+There are over 10,000 athletes, looking for clubs like yours.
+Check out the athletes who recently signed up on Sporple.<br/>
+<br/>
+<table border="0">
+{% for profile in profiles %}
+<tr>
+    <td style="font-size:12px; margin:5px;font-size:12px;padding:5px; border-bottom: 1px solid #efefef;height:90px;"><a href="{{ url_for('profile.slug', slug=profile.slug, _external=True) }}" style="border:0;"><img src="{{ config.BASE_URL + profile.get_image('small') }}" style="border:0; width:80px;"/></a></td>
+    <td style="padding: 10px;font-size:11px; vertical-align:top;margin:0;line-height:15px;min-height:90px;border-bottom:1px solid #efefef;">
+        <a href="{{ url_for('profile.slug', slug=profile.slug, _external=True) }}" style="color:#4a90e2; text-decoration:none;"><strong style="text-transform:uppercase; font-size:12px;">{{ profile.fullname }}</strong></a><br/>
+        {% if profile.positions_string %}{{ profile.positions_string }}<br/>{% endif %}
+        {{ profile.age }} years, {{ profile.address_country_slug }}<br/>
+    </td>
+</tr>
+{% endfor %}
+</table>
+<br/>
+There are many more athletes waiting for you.<br/><br/><br/>
+<div style="width: 100%; text-align:center;">
+<a href="https://www.sporple.com" style="box-sizing: border-box; font-size: 12px; color: #FFF; text-decoration: none; line-height: 2em;font-weight: bold; text-align: center; cursor: pointer; display: inline-block;text-transform: uppercase; background-color: #4a90e2; margin: 0; padding: 5px 20px;">VIEW PROFILES</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,244 @@
+.site-header__search-form{
+    position: absolute;
+    top: 78px;
+    left: 0;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    padding: 0 2%;
+    width: 100%;
+    height: 0;
+    background: $brand-blue;
+    transition: height 0.2s $swiftOut;
+
+    &.open{
+        overflow: visible;
+    }
+
+    @include mq($from: desktop) {
+        position: relative;
+        top: 0;
+        overflow: visible;
+        margin-right: 5px;
+        margin-left: 6%;
+        padding: 0;
+        width: 308px;
+        height: 40px !important;
+    }
+
+    input[type="text"],
+    input[type="search"]{
+        display: block;
+        float: left;
+        margin: 2% 0;
+        padding: 10px 0 10px 10px;
+        width: 90%;
+        height: 40px;
+        border: solid 1px #fff;
+        border-right: none;
+        color: $text-main;
+        @include font(14, 23);
+        transition: border 0.2s ease-out;
+
+        &:focus{
+            outline: none;
+            border-color: $white;
+        }
+
+        @include mq($from: desktop) {
+            margin: 0;
+            width: 278px;
+        }
+    }
+
+    .site-header__search-btn{
+        display: block;
+        float: left;
+        margin-top: 2%;
+        padding: 0;
+        width: 9.375%;
+        height: 40px;
+        border: solid 1px #fff;
+        border-left: none;
+        background-color: #fff;
+        transition: border 0.2s ease-out;
+
+        .site-header__search-icon{
+            margin-top: 4px;
+            width: 17px;
+            height: 18px;
+            fill: $grey-light;
+        }
+
+        &:focus{
+            outline: none;
+
+            .site-header__search-icon{
+                fill: $white;
+            }
+        }
+
+        @include mq($from: desktop) {
+            margin-top: 0;
+            width: 30px;
+        }
+    }
+
+    input[type="text"]:focus + .site-header__search-btn,
+    input[type="search"]:focus + .site-header__search-btn{
+        border-color: $white;
+    }
+
+}
+
+.site-header__advanced-search{
+    display: none;
+
+    @include mq($from: desktop) {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 9px;
+        @include font(11,12);
+        font-weight: $bold;
+    }
+
+    .icon{
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 2px;
+        width: 26px;
+        height: 21px;
+        fill: #ccd9e5;
+        transition: fill 0.2s ease-out;
+    }
+
+    span{
+        display: inline-block;
+        vertical-align: top;
+        color: #ccd9e5;
+        transition: color 0.2s ease-out;
+    }
+
+    &:hover,
+    &.active{
+        .icon{
+            fill: $white;
+        }
+
+        span{
+            color: #fff;
+        }
+    }
+}
+
+
+.site-header__search-results-cont{
+    position: absolute;
+    left: 0;
+    top: 52px;
+    display: none;
+    width: 100%;
+    border: solid 1px $grey-lighter;
+    background-color: #fff;
+
+    &.open{
+        display: block;
+    }
+
+    //svg loading icon
+    .svg &.site-header__search-results-cont--loading{
+        text-align: center;
+
+        &:after{
+            content: "";
+            display: inline-block;
+            vertical-align: top;
+            margin: 8px auto;
+            width: 22px;
+            height: 22px;
+            background: url("/static/images/svg/spinner-grey.svg") 0 0 no-repeat;
+            background-size: 22px 22px;
+            transform: scale(1);
+        }
+    }
+
+    @include mq($from: tablet) {
+        top: 69px;
+    }
+
+    @include mq($from: desktop) {
+        top: 40px;
+        width: 308px;
+    }
+}
+
+.site-header__search-results{
+    color: $grey-med;
+
+    .search-results__list-item{
+        margin: 0 15px;
+        padding: 10px 0;
+        min-height: 70px;
+        border-bottom: solid 1px $grey-lighter;
+
+        &.search-results__list-item--last{
+            border-bottom: none;
+        }
+
+        .search-results__profile-pic-cont{
+            float: left;
+            width: 50px;
+            height: 50px;
+            margin-right: 8px;
+
+            img{
+                width: 100%;
+                height: 100%;     
+            }
+        }
+
+        .site-header__search-results-cont{
+            overflow: hidden;
+            margin-left: 58px;
+        }
+
+            .search-results__profile-name{
+                @include font(14,19);
+                text-transform: capitalize;
+
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+
+            .search-results__profile-type,
+            .search-results__profile-additional{
+                margin-bottom: 0;
+                @include font(11,15);
+                text-transform: capitalize;
+            }
+
+        &.search-results__list-item--club{
+            .search-results__profile-additional{
+                color: $brand-orange;
+            }    
+        }
+    }
+
+    .search-results__cta-item{
+        margin: 0;
+        padding: 10px 0;
+        background-color: $grey-light;
+        color: #fff;
+        text-align: center;
+
+        p{
+            margin-bottom: 0;
+        }
+
+        & a:hover{
+            background-color: transparent;
+            color: $brand-blue;
+        }
+    }
+}

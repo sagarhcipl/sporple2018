@@ -1,0 +1,94 @@
+/*Footer*/
+#footer {
+    padding: 20px 0 10px;
+    background: #000;
+    color: $grey-light;
+    text-align: left;
+
+    @include mq($until: desktop) {
+        text-align: center;
+    }
+    .logo {
+        width: 125px;
+        padding-top: 7px;
+        opacity: 0.7;
+        margin: auto;
+    }
+    nav{
+        ul {
+            margin: 0;
+            @include mq($from: tablet) {
+                padding: 14px;
+            }
+            li{
+                display: inline-block;
+                margin: 5px 10px;
+            }
+            a{
+                @include font(12,19);
+                font-weight: $bold;
+                &:hover, &:focus {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    .footer__aside{
+        @include mq($from: desktop) {
+            text-align: right;
+            padding-right: 10px;
+        }
+    }
+
+    .footer__social-cont{
+        a{
+            height: 26px;
+            width: 26px;
+            display: inline-block;
+            .icon,
+            svg{
+                height: 26px;
+                width: 26px;    
+            }
+
+            @include mq($from: tablet) {
+                margin: 0 0 0 16px;
+            }
+
+            &.facebook {
+                &:hover {
+                    background-color: #3b579d;
+                }
+            }
+
+            &.twitter {
+                &:hover {
+                    background-color: #19c5ff;
+                }
+            }
+
+            &.youtube {
+                &:hover {
+                    background-color: #e64a41;
+                }
+            }
+
+            &.google {
+                &:hover {
+                    background-color: #da4835;
+                }
+            }
+
+        }
+    }
+
+    .footer__copyright{
+        @include font(13,20);
+    }
+
+}
+
+#habla_window_div.habla_window_div_base {
+    z-index: 1 !important;
+}

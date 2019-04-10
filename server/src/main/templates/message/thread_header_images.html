@@ -1,0 +1,9 @@
+{% if image %}
+    <div class="message_thread_new_message_image">
+        {% if icon %}
+        <img src="{{ icon }}" />
+        {% endif %}
+        <img class="message_thread_delete_attachment" src="/static/images/ico_delete_img.png">
+    </div>
+{% endif %}
+

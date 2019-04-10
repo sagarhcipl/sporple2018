@@ -1,0 +1,47 @@
+{% if is_owner %}
+<button data-url="{{ url_for('profile.edit_agent') }}" class="btn--info edit-header open-edit-modal" data-title="Edit Profile"><i class="fa fa-edit fa-1-5x"></i> <span class="hidden-xs"> Edit</span></button>
+{% endif %}
+<h3 class="content-title"><i class="fa fa-info"></i> Basic Information</h3>
+<div class="profile__stats">
+    {% if profile.agency_name %}
+    <div class="row">
+        <dt>Agency</dt>
+        <dd>{{ profile.agency_name or '' }}</dd>
+    </div>
+    {% endif %}
+    {% if profile.agency_url %}
+    <div class="row">
+        <dt>Website</dt>
+        <dd><a href="{{ profile.agency_url_link }}" target="_blank">{{ profile.agency_url_name | truncate(30) }}</a></dd>
+    </div>
+    {% endif %}
+    <div class="row">
+        <dt>Experience (yrs)</dt>
+        <dd>{{ profile.years_experience_string or '-' }}</dd>
+    </div>
+    {% if profile.address_country %}
+    <div class="row">
+        <dt>Country</dt>
+        <dd>{{ profile.address_country.name }}</dd>
+    </div>
+    {% endif %}
+    {% if profile.nationality_id %}
+    <div class="row">
+        <dt>Nationality</dt>
+        <dd>{% if profile.nationality %}{{ profile.nationality.name }}{% endif %}</dd>
+    </div>
+    {% endif %}
+    {% if profile.address_city %}
+    <div class="row">
+        <dt>City</dt>
+        <dd>{{ profile.address_city }}</dd>
+    </div>
+    {% endif %}
+    {% if profile.age %}
+    <div class="row">
+        <dt>Age</dt>
+        <dd>{{ profile.age }}</dd>
+    </div>
+    {% endif %}
+</div>
+

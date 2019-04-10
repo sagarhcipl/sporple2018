@@ -1,0 +1,174 @@
+<div class="header-alert alert alert-success" role="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <span class="alert-message">Thank you!</span>
+</div>
+<header class="site-header {% if current_user.is_authenticated %}site-header--logged-in{% else %}site-header--logged-out {{ header_type }}{% endif %}">
+    <div class="row">
+        {% if current_user.is_authenticated %}
+        <div class="site-header__logo">
+            <a href="{{ url_for('index') }}" class="logo" title="Sporple home"></a>
+        </div>
+            <nav class="col-xs-8 col-sm-7 site-header__nav">
+
+                <a id="nav-itm--home" class="site-header__nav-itm {% if request.endpoint in ['home', 'home_sport'] %} active {% endif %}" href="{{ url_for('home') }}">
+                    <i class="fa fa-2x fa-home"></i>
+                    <span>Home</span>
+                </a>
+
+                <a id="nav-itm--messages" class="site-header__nav-itm {% if request.endpoint == 'message' %} active {% endif %}" href="{{ url_for('message') }}">
+                    <i class="fa fa-2x fa-comments"></i>
+                    <span>Message</span>
+                    <i id="site-header__nav-notif--messages" class="site-header__nav-notif">0</i>
+                </a>
+
+                {% if current_user.user.role_slug == 'athlete' %}
+                <a id="nav-itm--connections" class="site-header__nav-itm {% if request.endpoint == 'opportunities' %} active {% endif %}" href="{{ url_for('opportunities') }}">
+                    <i class="fa fa-2x fa-star"></i>
+                    <span>Opportunities</span>
+                </a>
+                {% endif %}
+                <a id="nav-itm--visitors" class="site-header__nav-itm {% if request.endpoint == 'visitors' %} active {% endif %}"
+                    href="{{ url_for('visitors') }}">
+                    <i class="fa fa-2x fa-globe"></i>
+                    <span>Visitors</span>
+                    <i class="site-header__nav-notif show">New</i>
+                </a>
+                <a id="nav-itm--search" class="site-header__nav-itm {% if request.endpoint == 'search' %}active {% endif %}" href="{{ url_for('search.advanced') }}">
+                    <i class="fa fa-2x fa-search"></i>
+                    <span>Search</span>
+                </a>
+
+                {% if sport %}
+                    <form action="{{ url_for('search.results', page=0) }}" class="site-header__search-form" id="search-form">
+
+                        <input type="hidden" name="sport" value="{{sport.slug}}">
+
+                        <input type="text" name="searchTerms" id="site-header__search-box" class="site-header__search-box" placeholder="Search for players, agents &amp; clubs" id="search-bar-input" autocomplete="off">
+
+                        <button class="site-header__search-btn">
+                            <svg class="icon site-header__search-icon" role="image" title="Search" viewBox="0 0 41.8 44.5">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#search"></use>
+                            </svg>
+                        </button>
+
+                        <div id="site-header__search-results-cont" class="site-header__search-results-cont">
+                            <ul id="site-header__search-results" class="site-header__search-results"></ul>
+                        </div>
+                    </form>
+
+                    <a href="{{ url_for('search.advanced') }}" class="site-header__advanced-search {% if request.endpoint == 'search_advanced' %} active {% endif %}">
+                        <span>Search <br>Plus</span>
+                        <svg class="icon site-header__advanced-search-icon" role="presentation" viewBox="0 0 52.6 42.9">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#binoculars"></use>
+                        </svg>
+                    </a>
+
+                {% endif %}
+
+            <!-- premium button -->
+            {% if not current_user.user.role_slug == 'athlete' %}
+                <a class="btn btn--premium" href="{{ url_for('plan.pricing') }}">Go to premium</a>
+            {% endif %}
+            </nav>
+
+            <section class="col-xs-2 site-header__profile dropdown-menu-header">
+                <div class="site-header__profile-nav-toggle dropdown-menu__toggle">
+                    <a class="profile-pic" href="{{ url_for('profile.slug', slug=current_user.user.profile.slug) }}">
+                        <img src="{{ current_user.user.profile.get_image('small') }}" width="84"
+                        alt="Profile image" title="Profile image" class="user_thumb"/>
+                    </a>
+                    <a class="profile-name" href="{{ url_for('profile.slug', slug=current_user.user.profile.slug) }}">{{ current_user.user.profile.firstname }}</a>
+                </div>
+
+                <nav class="site-header__profile-nav dropdown-menu__list-cont">
+                    <ul>
+                        <li>
+                            <a href="{{ url_for('profile.slug', slug=current_user.user.profile.slug) }}" class="{% if request.endpoint == 'profile' %} active {% endif %}">
+                                <i class="fa fa-user fa-2x icon site-header__profile-nav-icon"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('visitors') }}">
+                                <i class="fa fa-globe fa-2x icon site-header__profile-nav-icon"></i>
+                                <span>Profile Visitors</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('auth.invite') }}">
+                                <i class="fa fa-envelope fa-2x icon site-header__profile-nav-icon"></i>
+                                <span>Invite Friends</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('connections') }}">
+                                <i class="fa fa-users fa-2x icon site-header__profile-nav-icon"></i>
+                                <span>Connections</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('settings.password') }}"
+                             class="{% if request.endpoint in ['settings.password', 'settings.email', 'settings.email_notifications'] %}active {% endif %}">
+                                <i class="fa fa-gear fa-2x icon site-header__profile-nav-icon"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://sporple.zendesk.com/hc"><i class="fa fa-question-circle fa-2x icon site-header__profile-nav-icon"></i><span>Help</span></a>
+                        <li>
+                            <a href="{{ url_for('logout') }}">
+                                <i class="fa fa-power-off fa-2x icon site-header__profile-nav-icon"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </section>
+
+        {% else %}
+            <div class="col-xs-3">
+                <a href="{{ url_for('index') }}" class="logo" title="Sporple home"></a>
+            </div>
+
+            <div class="col-xs-9 site-header__login-cont">
+                <nav class="main-nav navbar navbar-inverse navbar-static-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                 <li><a href="/plan/pricing">Pricing Plans</a></li>
+                                <li><a href="#learn-more">How It Works</a></li>
+                                <li><a href="#" class="cd-signin">Login</a></li>
+                                <li><a href="/register" class="cd-signup">Join Now</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                {% include 'forms/signin.html' %}
+            </div>
+        {% endif %}
+
+    </div>
+</header>
+
+{% if not current_user.is_authenticated and profile and profile.midnight_madness %}
+    <!-- MM_001 -->
+    <div id="leaderboard">
+        <div id='div-gpt-ad-1409080322023-0' style='width:728px; height:90px; margin-left: auto; margin-right: auto;'>
+            <script type='text/javascript'>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1409080322023-0'); });
+            </script>
+        </div>
+    </div>
+{% endif %}
+

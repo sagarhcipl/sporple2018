@@ -1,0 +1,9 @@
+<section id="profile__agent-media" class="agent_media col-8-12">
+    {% include 'clients/client_overview.html' %}
+    {% include 'profile/looking_for_overview.html' %}
+    {% if is_owner %}
+        {# when we have edit modus available we need these scripts #}
+	    {% use_javascript('vendor/JCrop/jquery.Jcrop.min.js') | safe %}
+	    {% use_stylesheet('vendor/JCrop/jquery.Jcrop.min.css') | safe %}
+	{% endif %}
+</section>

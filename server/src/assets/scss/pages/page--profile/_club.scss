@@ -1,0 +1,80 @@
+.roster {
+    background-color: $white;
+    margin-bottom: 20px; 
+    .images {
+        padding: 13px;
+    }
+}
+
+.delete-listing-popup {
+    p {
+        padding-left: 10px;
+    }
+    .form.delete-listing {
+        .form__row {
+            @include mq($from:desktop) {
+                padding: 5px 40px;
+            }
+            &.inline-label label {
+                @include font(12);
+            }
+        }
+        .delete-listing-quick-search, .delete-listing-outside {
+            margin: -15px 15px 10px;
+        }
+    }
+    #delete-listing-results-container {
+        position: relative;
+        .quick-search-results {
+            @include font(12);
+            position: absolute;
+            z-index:10;
+            width: 100%;
+            background-color: $white;
+            li {
+                border-top: 0;
+                border: solid 1px #efefef;
+                padding: 10px;
+                cursor: pointer;
+                &:hover {
+                    background-color: $grey-lighter;
+                }
+            }
+            img {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+            }
+            .search-results__profile-pic-cont, .search-results__profile-details, p {
+                display: inline-block;
+            }
+            .search-results__profile-pic-cont {
+                height: 30px;
+            }
+            .search-results__profile-name {
+                @include font(20, 20, $font-title);
+            }
+            .search-results__profile-details {
+                vertical-align: top;
+                padding: 7px 5px 0;
+            }
+        }
+    }
+    .delete-listing-picked-user {
+        background-color: lighten($grey-lighter, 10%);
+        padding: 5px;
+        height: 50px;
+        vertical-align: middle;
+        img {
+            display: inline-block;
+            height: 40px;
+            border-radius: 50%;
+        }
+        span.name {
+            display: inline-block;
+            vertical-align: top;
+            padding: 15px 10px 10px;
+            @include font(24, 10, $font-title);
+        }
+    }
+}

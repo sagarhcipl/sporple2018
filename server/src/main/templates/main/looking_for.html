@@ -1,0 +1,25 @@
+{% if not looking_for_list %}
+    <li>
+        <div class="opportunity-profiles-placeholder">
+            <img src="/static/images/suggested-profile-placeholder.jpg" alt="Sporple Opportunities">
+        </div>
+    </li>
+{% else %}
+    {% for looking_for in looking_for_list %}
+        {% set hidden = (loop.index > 8 or page > 1) %}
+        <li class="has-clickable" {% if hidden %} style="display:none"{% endif %}>
+            <a class="clickable" href="{{ url_for('profile.main', user_id=looking_for.user_id) }}">
+                <div class="profile-pic">
+                    <img src="{{ looking_for.user.profile.get_image('x-small') }}" alt="Agent image" title="Agent image"/>
+                </div>
+
+                <div class="profiles-list__details">
+                    <p class="ttl4">{{ looking_for.user.profile.fullname }}</p>
+                    <p class="ttl5">Looking For: <span class="orange">{{ looking_for.title }}</span></p>
+                    <p class="ttl5">{{ looking_for.user.profile.address_country.name }}</p>
+                    <p class="profiles-list__date">Listed: {{ looking_for.created_at.strftime('%b %d, %Y') }}</p>
+                </div>
+            </a>
+        </li>
+    {% endfor %}
+{% endif %}

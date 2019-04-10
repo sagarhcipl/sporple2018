@@ -1,0 +1,38 @@
+<button class="media-carousel__btn-prev">
+    <svg class="icon" role="image" title="Previous button" viewBox="0 0 22 43.9">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#arrow-left"></use>
+    </svg>
+</button>
+<div id="profile__media-carousel" class="profile__media-carousel">
+    {% for attachment in profile.get_attachments() %}
+        {% include 'attachment/profile_edit.html' %}
+    {% endfor %}
+</div>
+<button class="media-carousel__btn-next">
+    <svg class="icon" role="image" title="Next button" viewBox="0 0 22 43.9">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#arrow-right"></use>
+    </svg>
+</button>
+
+
+{% if edit %}
+    {% if config.MAX_NR_ATTACHMENTS > nr_attachments and image_form %}
+        <form id="profile__media-form" method="post"
+            action="{{ url_for('upload.attachment') }}" enctype="multipart/form-data">
+            {{ image_form.csrf_token }}
+            {{ image_form.referrer() }}
+
+            <a href="{{ url_for('profile.main', user_id=current_user.user.id) }}" class="btn"
+           id="profile__edit-media-cancel">Done</a>
+
+            <a class="btn btn--text file-wrapper">
+                <svg class="icon btn-icon" role="image" title="Next button" viewBox="0 0 46.8 46.9">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ image_path('svg/foreground-svg.svg') }}#plus"></use>
+                </svg>
+                Add photos
+                {{ image_form.filename(id='profile__media-add-file') }}
+            </a>
+        </form>
+    {% endif %}
+{% endif %}
+

@@ -1,0 +1,5 @@
+[hosts]
+elasticsearch
+
+[elasticsearch:children]
+hosts

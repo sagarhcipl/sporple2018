@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Premium Subscription</h1>
+<div class="plan">
+    <div class="row row-centered">
+        <div class="col col-centered col-xs-11 col-md-5 card">
+            <h2>Access Denied</h2>
+            <div>You should by premium plan to access the new features, go to premium plan.</div>
+            <a class="btn btn--blue btn--large" href="{{ url_for('plan.pricing') }}">Go to premium</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

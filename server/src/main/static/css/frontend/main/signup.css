@@ -1,0 +1,139 @@
+
+/*/////////////////////////
+GENERAL CLASES
+/////////////////////////*/
+.yellow{
+    color:#e88d13;
+}
+
+.white{
+    color:#fff;
+}
+
+/*/////////////////////////
+HEADER
+/////////////////////////*/
+#header .login_form li:last-child {
+    margin-left: 5px;
+    border-left:1px solid #9499ab;
+}
+
+#header .login_form li:last-child a {
+    position:relative;
+    top:3px;
+}
+
+/*/////////////////////////
+LOGIN BLOCK
+/////////////////////////*/
+.landing_join{
+    position:relative;
+}
+
+.landing_join hr{
+    position:relative;
+    margin:0;
+    z-index:2;
+    clear:both;
+}
+
+.landing_join .landing_join_bkg{
+    position:absolute;
+    height:100%;
+    width:100%;
+    z-index:1;
+    top:0;
+}
+
+.landing_join .landing_join_bkg .landing_join_bkg--top{
+    height:30%;
+    background-color:#333333;
+}
+
+.landing_join .landing_join_bkg .landing_join_bkg--bottom{
+    height:70%;
+    background-color:#6d6d6d;
+}
+
+.landing_join .landing_join--body{
+    position:relative;
+    z-index:2;
+    padding:45px 0;
+    width:1064px;
+    margin:0 auto;
+    clear:both;
+}
+
+.landing_join .landing_join_video{
+    float:left;
+    padding:0 0 45px;
+}
+
+.landing_join .landing_join_content{
+    float:left;
+    padding-left:48px;
+    text-align:left;
+}
+
+.landing_join .landing_join_content h1{
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    font-size: 27px;
+    margin:15px 0 40px;
+}
+
+.landing_join .landing_join_content h2{
+    font-family: "HelveticaW01-TextbookBd 709911", Helvetica, Arial, sans-serif;
+    font-size: 23px;
+    margin:15px 0;
+}
+
+.landing_join ul{
+    padding:0 0 40px;
+}
+
+.landing_join ul li{
+    padding:0;
+}
+
+.landing_join ul li a{
+    position:relative;
+}
+
+.landing_join ul li a:hover{
+    padding:0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+}
+
+.landing_join ul li a:active{
+    top:2px;
+}
+
+.landing_join .landing_join_content .default-signup h2{
+    font-family: Helvetica, Arial, sans-serif;
+    color:#e1e1e1;
+    font-weight:normal;
+    margin:10px 0;
+}
+
+.landing_join ul li.terms {
+    border-top:none;
+    color: #d7d7d7;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 10px 0 0;
+    padding:0;
+}
+
+.landing_join_slogan{
+    font-size:17px;
+    color:#e0e0e0;
+    padding:15px 0 17px;
+    background-color:#333333;
+    text-align:center;
+    position:relative;
+    z-index:2;
+}

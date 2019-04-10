@@ -1,0 +1,31 @@
+{% if listing.club %}
+<p class="">Your profile will be sent to {{ listing.club.name }}</p>
+{% else %}
+<p class="">Your profile will be sent to {{ listing.user.name }}</p>
+{% endif %}
+<div class="apply__profile-card">
+    <div class="profile-pic">
+        <img src="{{ current_user.user.profile.get_image('small') }}"
+            width="124" alt="Profile Photo" title="Profile photo"/>
+    </div>
+    <div class="profile-card__details">  
+        <h3 class="ttl ttl--lower">{{ current_user.user.name }} - {{ current_user.user.profile.age }}</h3> 
+        <p>{{ current_user.user.sport_slug }}</p>
+        <p>{{ current_user.user.profile.full_address }}</p>
+    </div>
+</div>
+{% if listing.club %}
+<form action="{{ url_for('profile.new_application', listing_id=listing.id, role=listing.club.role_slug) }}" id="apply-form" method="POST" class="form" data-club-name="{{ listing.club.name }}">
+{% else %}
+<form action="{{ url_for('profile.new_application', listing_id=listing.id, role=listing.user.role_slug) }}" id="apply-form" method="POST" class="form" data-club-name="{{ listing.user.name }}">
+{% endif %}
+    <div class="form__row">
+        <p>Would you like to add an additional note to the Club? (Optional)</p>
+        {{ form.note() }}
+    </div>
+    {% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+    {{ form.hidden_tag() }}
+    <button class="btn btn--blue btn--med" id="apply-form__submit">Send</button>
+</form>

@@ -1,0 +1,4 @@
+db_user:        sporple
+db_name:        sporple
+db_password:    1q2w3e4r
+db_host:        localhost

@@ -1,0 +1,13 @@
+- name: install celery
+  pip: name=celery virtualenv=/sporple/venv
+  become: no
+
+- name: make pid directory for celery
+  file: path=/var/run/celery state=directory owner=sporple group=sporple mode=0755
+
+- name: copy celery config
+  template: src=celery.init.conf.j2 dest=/etc/init/celery.conf backup=yes mode=0644
+
+- name: create log directory
+  file: path={{ log_directory }} state=directory owner=sporple group=sporple mode=0755
+

@@ -1,0 +1,11 @@
+{% if career_items or is_owner %}
+    <header class="header--secondary">
+        <h2 {% if foldable != False %}class="foldable"{% endif %}>
+            Career Timeline
+        </h2>
+    </header>
+{% endif %}
+
+<div class="profile__about-section-content">
+    {% include 'careeritem/list.html' %}
+</div>

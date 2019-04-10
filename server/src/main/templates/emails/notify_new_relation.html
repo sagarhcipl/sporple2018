@@ -1,0 +1,81 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+
+<!-- welcome message -->
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff"
+       style="background:#ffffff;">
+    <tbody>
+        <tr>
+            <td style="text-align:center;">
+                <h2 style="font-size:22px;font-weight:bold;color:#000000;margin:30px auto 0;font-family:Arial,Tahoma,sans-serif;">
+                    Congratulations {{ user.profile.firstname }}
+                </h2>
+
+                <p style="font-size:14px;font-family:Arial,Tahoma,sans-serif;margin-top:5px;margin-bottom:30px;">
+                    You have a new connection on Sporple!<br/>
+                    {{ relation_desc }}
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- profile avatar -->
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff"
+       style="background:#ffffff;">
+    <tbody>
+        <tr>
+            <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="30%" bgcolor="#ffffff"
+                       style="background:#ffffff;">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="top">
+                                <a href="{{ url_for('profile.slug', slug=source_user.profile.slug, _external=True) }}" target="_blank" title="Check out {{ source_user.name }}'s profile on Sporple">
+                                    <img src="{{ config.BASE_URL + source_user.profile.get_image() }}"
+                                         alt="Check out {{ source_user.name }}'s profile on Sporple"
+                                         width="182" height="auto"
+                                         style="width:100%;height:auto;border-style:solid;border-color:#bbbbbb;border-width:1px;"/>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- profile details -->
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff"
+       style="background:#ffffff;">
+    <tbody>
+    <tr>
+        <td align="center" valign="middle">
+            <p style="font-family:Arial,Tahoma,sans-serif;font-weight:bold;font-size:14px;color:#000000;margin-top:5px;margin-bottom:2px;">
+                {{ source_user.name }} - <span style="color:#4a90e2; text-transform: uppercase;">{{ source_user.role_slug }}</span>
+            </p>
+
+            <p style="font-family:Arial,Tahoma,sans-serif;font-size:14px;color:#000000;margin-top:2px;margin-bottom:2px;">
+                {{ source_user.sports_string }} - {{ source_user.profile.positions_string }}
+            </p>
+
+            <p style="font-family:Arial,Tahoma,sans-serif;font-size:14px;color:#000000;margin-top:2px;margin-bottom:2px;">
+                {% if source_user.profile.current_club %}Current club - {{ source_user.profile.current_club }}, {% endif %}{{ source_user.profile.address_country_slug }}
+            </p>
+
+            <p style="height:1px;margin-top:15px;margin-bottom:15px;width:60%;margin-left:auto;margin-right:auto;background-color:#d9dada">
+
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" valign="middle" style="padding:0 0 30px 0;">
+
+<a href="{{ url_for('profile.slug', slug=source_user.slug, _external=True) }}" style="box-sizing: border-box; font-size: 12px; color: #FFF; text-decoration: none; line-height: 2em;font-weight: bold; text-align: center; cursor: pointer; display: inline-block;text-transform: uppercase; background-color: #4a90e2; margin: 0; padding: 5px 20px;">{% if not user.is_following(source_user.id) %}CONNECT{% else %}VIEW PROFILE{% endif %}</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+{% endblock content %}

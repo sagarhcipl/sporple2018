@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page_content page--search">
+    <section class="left_content">
+    <h1 class="top-title">
+        Search Results
+        <span class="live-results"><b>{{ results.hits.total }}</b> results</span>
+    </h1>
+    {% include 'global/pagination.html' %}
+    <ul class="search-results">
+        {% for user in results %}
+            {% set user_data = user.doc %}
+            {% if user_data.clubname %}
+                {% set user_name = user_data.clubname %}
+            {% else %}
+                {% set user_name = (user_data.firstname or '') + ' ' + (user_data.lastname or '') %}
+            {% endif %}
+
+            {% set user_alt_title = 'View' + user_name + '\'s Profile' %}
+            <li class="row">
+                <div class="search-results__profile-info col-md-6 col-xs-9">
+                    <div class="search-results__profile-info--avatar col-xs-3 col-md-2">
+                        <a href="{{ url_for('profile.main', user_id=user.meta.id) }}">
+                            <img src="{{ avatar(user_data.avatar, 'small') }}"
+                                alt="{{ user_alt_title }}" title="{{ user_alt_title }}" class="user_thumb" />
+                        </a>
+                    </div>
+
+                    <div class="search-results__profile-info--details col-xs-8 col-md-9">
+                        <p class="name">
+                            <b>
+                                <a href="{{ url_for('profile.main', user_id=user.meta.id) }}" class="search_link">
+                                    {{ user_name }}
+                                </a>
+                            </b>
+                            - <span class="age">{% if user_data.age %}{{ user_data.age }}{% endif %}</span>
+                        </p>
+
+                        <p class="sport">
+                            <span class="profile">{{ user.meta.doc_type }}</span> - {% if user_data.sports %}{{ user_data.sports }}{% endif %}
+                        </p>
+
+                        <p class="position">
+                            {% if user_data.positions %}{{ user_data.positions.replace('-', '/') }}{% endif %}
+                        </p>
+
+                        <p class="nationality">
+                            {% if user_data.city %}{{ user_data.city }}, {% endif %}
+                            {% if user_data.country %}{{ user_data.country }}{% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="search-results__showreel col-md-1 col-xs-2">
+                    {% if user_data.has_showreel %}
+                        Showreel
+                        {% if user_data.showreel_type == 'youtube' %}
+                                {% set video_embed_code_url =
+                                    '<iframe id="ytplayer" type="text/html" frameborder="0" allowfullscreen width="560" height="315" src="https://www.youtube.com/embed/' + user_data.showreel_code +  '?wmode=transparent"></iframe>' %}
+                        {% elif user_data.showreel_type == 'vimeo' %}
+                                {% set video_embed_code_url =
+                                    '<iframe id="vimeoplayer" src="//player.vimeo.com/video/' + user_data.showreel_code + '?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>' %}
+                        {% else %}
+                                {% set video_embed_code_url  = '' %}
+                        {% endif %}
+                        <a data-video-iframe="{{ video_embed_code_url  }}" class="search-results__showreel--icon show-showreel">
+                            View {{ user_name }}'s Showreel
+                        </a>
+                    {% endif %}
+                </div>
+
+                <div class="search-results__follow new-school col-xs-12 col-md-5">
+                    {% if current_user.is_authenticated and user.meta.id != current_user.user.id %}
+                        {% if current_user.user.is_following(user.meta.id) %}
+                            {% set action = 'Following' %}
+                        {% else %}
+                            {% set action = 'Follow' %}
+                        {% endif %}
+                        
+                        <a data-user-id="{{ user.meta.id }}" class="btn btn--side-by-side btn--follow {% if action == 'Following' %}active{% endif %}">
+                            {{ action }}
+                        </a>
+
+                        <a class="btn btn--side-by-side btn--message send-message" data-user-id="{{ user.meta.id }}">
+                            Message
+                        </a>
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    </section>
+</section>
+{% endblock %}

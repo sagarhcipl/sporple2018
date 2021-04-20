@@ -54,5 +54,5 @@ soundcloud==0.5.0
 SQLAlchemy==1.0.11
 traitlets==4.1.0
 urllib3==1.14
-Werkzeug==0.11.4
+Werkzeug==0.15.3
 WTForms==2.1

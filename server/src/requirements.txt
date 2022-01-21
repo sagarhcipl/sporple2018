@@ -25,7 +25,7 @@ fudge==1.1.0
 gnureadline==6.3.3
 gunicorn==19.4.5
 inflect==0.2.5
-ipython==4.1.1
+ipython==7.16.3
 ipython-genutils==0.1.0
 itsdangerous==0.24
 Jinja2==2.8

@@ -31,7 +31,7 @@ itsdangerous==0.24
 Jinja2==2.8
 kombu==3.0.33
 mailchimp==2.0.9
-Mako==1.0.3
+Mako==1.2.2
 mandrill==1.0.57
 MarkupSafe==0.23
 path.py==8.1.2
